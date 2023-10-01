@@ -1,0 +1,19 @@
+Package: oeli
+Type: Package
+Title: Lennart Oelschläger's R Code
+Version: 0.0.0.9000
+Author: Lennart Oelschläger
+Maintainer: Lennart Oelschläger <oelschlaeger.lennart@gmail.com>
+Description: General utilities.
+License: GPL (>= 3)
+Encoding: UTF-8
+LazyData: true
+Suggests: 
+    testthat (>= 3.0.0)
+Config/testthat/edition: 3
+RoxygenNote: 7.2.3
+Imports: 
+    checkmate,
+    cli
+URL: https://github.com/loelschlaeger/oeli
+BugReports: https://github.com/loelschlaeger/oeli/issues
