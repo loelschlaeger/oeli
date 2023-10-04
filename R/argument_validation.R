@@ -29,8 +29,8 @@
 match_arg <- function (arg, choices, several.ok = FALSE, none.ok = FALSE) {
   checkmate::assert_character(arg)
   checkmate::assert_character(choices)
-  checkmate::assert_logical(several.ok, len = 1)
-  checkmate::assert_logical(none.ok, len = 1)
+  checkmate::assert_flag(several.ok)
+  checkmate::assert_flag(none.ok)
   arg_name <- deparse(substitute(arg))
   if (!several.ok && length(arg) > 1L) {
     cli::cli_abort(
