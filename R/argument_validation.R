@@ -96,6 +96,7 @@ check_covariance_matrix <- function(x, dim = NULL) {
 
 #' @rdname check_covariance_matrix
 #' @inheritParams checkmate::assert_matrix
+#' @export
 
 assert_covariance_matrix <- checkmate::makeAssertionFunction(
   check_covariance_matrix
@@ -139,6 +140,7 @@ check_correlation_matrix <- function(x, dim = NULL) {
 
 #' @rdname check_correlation_matrix
 #' @inheritParams checkmate::assert_matrix
+#' @export
 
 assert_correlation_matrix <- checkmate::makeAssertionFunction(
   check_correlation_matrix
