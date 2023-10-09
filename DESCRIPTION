@@ -14,6 +14,7 @@ Config/testthat/edition: 3
 RoxygenNote: 7.2.3
 Imports: 
     checkmate,
-    cli
+    cli,
+    stats
 URL: https://github.com/loelschlaeger/oeli
 BugReports: https://github.com/loelschlaeger/oeli/issues

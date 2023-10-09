@@ -59,3 +59,87 @@ match_arg <- function (arg, choices, several.ok = FALSE, none.ok = FALSE) {
   i <- i[i > 0L]
   choices[i]
 }
+
+#' Check if an argument is a covariance matrix
+#'
+#' @description
+#' This function checks whether the input is a symmetric, real matrix that
+#' fulfills the covariance matrix properties.
+#'
+#' @param x
+#' Object to check.
+#'
+#' @param dim
+#' An \code{integer}, the matrix dimension.
+#'
+#' @return
+#' Compare to \code{\link[checkmate]{check_matrix}}.
+
+check_covariance_matrix <- function(x, dim = NULL) {
+  res <- checkmate::check_matrix(x, mode = "numeric")
+  if (!isTRUE(res))
+    return(res)
+  if (nrow(x) != ncol(x))
+    return("Must be square")
+  if (any(abs(x - t(x)) > sqrt(.Machine$double.eps)))
+    return("Must be symmetric")
+  if (any(eigen(x)$value < -sqrt(.Machine$double.eps)))
+    return("Must have positive eigenvalues only")
+  if (!is.null(dim)) {
+    checkmate::assert_count(dim, positive = TRUE)
+    if (nrow(x) != dim) {
+      return(paste("Must be of dimension", dim))
+    }
+  }
+  return(TRUE)
+}
+
+#' @rdname check_covariance_matrix
+#' @inheritParams checkmate::assert_matrix
+
+assert_covariance_matrix <- checkmate::makeAssertionFunction(
+  check_covariance_matrix
+)
+
+#' Check if an argument is a correlation matrix
+#'
+#' @description
+#' This function checks whether the input is a symmetric, real matrix that
+#' fulfills the correlation matrix properties.
+#'
+#' @param x
+#' Object to check.
+#'
+#' @param dim
+#' An \code{integer}, the matrix dimension.
+#'
+#' @return
+#' Compare to \code{\link[checkmate]{check_matrix}}.
+
+check_correlation_matrix <- function(x, dim = NULL) {
+  res <- checkmate::check_matrix(x, mode = "numeric")
+  if (!isTRUE(res))
+    return(res)
+  if (nrow(x) != ncol(x))
+    return("Must be square")
+  if (any(abs(x - t(x)) > sqrt(.Machine$double.eps)))
+    return("Must be symmetric")
+  if (any(diag(x) != 1))
+    return("Must have ones on the diagonal")
+  if (any(x < -1 | x > 1))
+    return("Must have values between -1 and 1")
+  if (!is.null(dim)) {
+    checkmate::assert_count(dim, positive = TRUE)
+    if (nrow(x) != dim) {
+      return(paste("Must be of dimension", dim))
+    }
+  }
+  return(TRUE)
+}
+
+#' @rdname check_correlation_matrix
+#' @inheritParams checkmate::assert_matrix
+
+assert_correlation_matrix <- checkmate::makeAssertionFunction(
+  check_correlation_matrix
+)
