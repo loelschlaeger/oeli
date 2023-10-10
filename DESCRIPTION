@@ -1,7 +1,7 @@
 Package: oeli
 Type: Package
 Title: Lennart Oelschläger's R Code
-Version: 0.0.0.9000
+Version: 0.0.0.9001
 Author: Lennart Oelschläger
 Maintainer: Lennart Oelschläger <oelschlaeger.lennart@gmail.com>
 Description: Some general utilities that I find useful.
