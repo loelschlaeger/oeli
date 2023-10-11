@@ -1,4 +1,5 @@
 #' @keywords internal
+#' @useDynLib oeli, .registration=TRUE
 "_PACKAGE"
 
 ## usethis namespace: start
@@ -11,6 +12,7 @@
 #' @importFrom checkmate makeAssertionFunction
 #' @importFrom cli cli_abort
 #' @importFrom cli cli_inform
+#' @importFrom Rcpp evalCpp
 #' @importFrom stats rWishart
 ## usethis namespace: end
 NULL

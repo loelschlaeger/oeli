@@ -42,3 +42,4 @@ user_confirm <- function (question = "Question?", default = FALSE) {
     cli::cli_inform("Please enter 'y' or 'n'.")
   }
 }
+

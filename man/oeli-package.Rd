@@ -6,7 +6,7 @@
 \alias{oeli-package}
 \title{oeli: Lennart Oelschläger's R Code}
 \description{
-Some general utilities that I find useful.
+Some general utilities that I and maybe others find useful.
 }
 \seealso{
 Useful links:

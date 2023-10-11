@@ -5,5 +5,5 @@
 [![Codecov test coverage](https://codecov.io/gh/loelschlaeger/oeli/branch/master/graph/badge.svg)](https://app.codecov.io/gh/loelschlaeger/oeli?branch=master)
 <!-- badges: end -->
 
-This R package contains some general utilities that I find useful.
+This R package contains some general utilities that I and maybe others find useful.
 
