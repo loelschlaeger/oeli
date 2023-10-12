@@ -1,3 +1,6 @@
+# These functions calculate density values. They base on C++ implementation
+# but provide additional input checks.
+
 #' @inherit ddirichlet_cpp title description return
 #' @inheritParams ddirichlet_cpp
 #'

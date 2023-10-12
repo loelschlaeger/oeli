@@ -1,3 +1,6 @@
+# These functions allows for more informative or abbreviated printing of
+# matrix-type objects.
+
 #' Print (abbreviated) \code{matrix}
 #'
 #' @description

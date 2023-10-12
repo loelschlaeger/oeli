@@ -1,3 +1,5 @@
+# These functions provide tools for validation of user inputs.
+
 #' Argument matching
 #'
 #' @description

@@ -1,3 +1,6 @@
+# These functions draw from distributions. They base on C++ implementation
+# but provide additional input checks.
+
 #' Sample covariance matrix
 #'
 #' @description

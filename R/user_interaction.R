@@ -1,3 +1,5 @@
+# These functions allow for interaction with the user.
+
 #' User confirmation
 #'
 #' @description
