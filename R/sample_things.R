@@ -59,9 +59,12 @@ rdirichlet <- function(n = 1, concentration) {
   checkmate::assert_int(n, lower = 1)
   checkmate::assert_vector(concentration, strict = TRUE)
   checkmate::assert_numeric(concentration, any.missing = FALSE, lower = 0)
+  dim <- length(concentration)
   out <- replicate(n = n, rdirichlet_cpp(concentration), simplify = TRUE)
   if (n == 1) {
     drop(out)
+  } else if (dim == 1) {
+    as.matrix(out)
   } else {
     t(out)
   }
@@ -89,11 +92,17 @@ rmvnorm <- function(n = 1, mean, Sigma, log = FALSE) {
   checkmate::assert_int(n, lower = 1)
   checkmate::assert_vector(mean, strict = TRUE)
   checkmate::assert_numeric(mean, finite = TRUE, any.missing = FALSE)
-  assert_covariance_matrix(Sigma, dim = length(mean))
+  dim <- length(mean)
+  if (dim == 1 && checkmate::test_atomic_vector(Sigma, len = 1)) {
+    Sigma <- as.matrix(Sigma)
+  }
+  assert_covariance_matrix(Sigma, dim = dim)
   checkmate::assert_flag(log)
   out <- replicate(n = n, rmvnorm_cpp(mean, Sigma, log), simplify = TRUE)
   if (n == 1) {
     drop(out)
+  } else if (dim == 1) {
+    as.matrix(out)
   } else {
     t(out)
   }

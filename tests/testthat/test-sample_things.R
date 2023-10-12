@@ -17,6 +17,9 @@ test_that("Dirichlet can be drawn", {
     rdirichlet(concentration = diag(3)),
     "Assertion on 'concentration' failed: Must be of type 'vector', not 'matrix'."
   )
+  checkmate::expect_matrix(
+    rdirichlet(n = 5, concentration = 1), ncols = 1, nrows = 5
+  )
 })
 
 test_that("Multivariate normal can be drawn", {
@@ -28,6 +31,16 @@ test_that("Multivariate normal can be drawn", {
     rmvnorm(n = 5, mean = mean, Sigma = Sigma), ncols = 2, nrows = 5
   )
   expect_error(rmvnorm(mean = 1:3, Sigma = diag(4)))
+})
+
+test_that("Univariate normal can be drawn", {
+  mean <- 0
+  Sigma <- 1
+  expect_length(rmvnorm(mean = mean, Sigma = Sigma, log = FALSE), 1)
+  expect_length(rmvnorm(mean = mean, Sigma = Sigma, log = TRUE), 1)
+  checkmate::expect_matrix(
+    rmvnorm(n = 5, mean = mean, Sigma = Sigma), ncols = 1, nrows = 5
+  )
 })
 
 test_that("(Inverse-) Wishart can be drawn", {

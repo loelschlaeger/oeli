@@ -1,13 +1,12 @@
 Package: oeli
 Type: Package
 Title: Lennart Oelschläger's R Code
-Version: 0.0.0.9003
+Version: 0.0.0.9004
 Author: Lennart Oelschläger
 Maintainer: Lennart Oelschläger <oelschlaeger.lennart@gmail.com>
 Description: Some general utilities that I and maybe others find useful.
 License: GPL (>= 3)
 Encoding: UTF-8
-LazyData: true
 Suggests: 
     testthat (>= 3.0.0),
     xml2
