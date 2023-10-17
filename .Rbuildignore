@@ -6,3 +6,5 @@
 ^\.github$
 ^codecov\.yml$
 ^dev_pkgs\.R$
+^CRAN-SUBMISSION$
+^cran-comments\.md$
