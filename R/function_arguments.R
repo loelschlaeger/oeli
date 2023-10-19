@@ -29,6 +29,9 @@ function_arguments <- function(f, with_default = TRUE, with_ellipsis = TRUE) {
   checkmate::assert_function(f)
   checkmate::assert_flag(with_default)
   args <- formals(f)
+  if (is.null(args)) {
+    return(character())
+  }
   if (!with_default) {
     args <- args[sapply(seq_along(args), function(n) {
       !nzchar(args[[n]]) & is.name(args[[n]])
