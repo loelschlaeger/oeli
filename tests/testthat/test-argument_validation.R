@@ -121,3 +121,78 @@ test_that("check for correlation matrix works", {
   matrix_with_correct_dimensions <- diag(2)
   expect_silent(assert_correlation_matrix(matrix_with_correct_dimensions, dim = 2))
 })
+
+test_that("check for transition probability matrix works", {
+  # Test a non-numeric matrix
+  non_numeric_matrix <- matrix(letters[1:9], nrow = 3)
+  expect_error(
+    assert_transition_probability_matrix(non_numeric_matrix),
+    "Must store numerics"
+  )
+
+  # Test a non-square matrix
+  non_square_matrix <- matrix(1:6, nrow = 2)
+  expect_error(
+    assert_transition_probability_matrix(non_square_matrix),
+    "Must be square"
+  )
+
+  # Test a matrix with bad rows
+  matrix_with_bad_rows <- matrix(c(1, 2, 2, 1), nrow = 2)
+  expect_error(
+    assert_transition_probability_matrix(matrix_with_bad_rows),
+    "Assertion on 'matrix_with_bad_rows' failed: Must have values between 0 and 1."
+  )
+
+  # Test a matrix with bad row sum
+  matrix_with_bad_row_sums <- matrix(c(1, 1, 0, 1), nrow = 2)
+  expect_error(
+    assert_transition_probability_matrix(matrix_with_bad_row_sums),
+    "Assertion on 'matrix_with_bad_row_sums' failed: Must have row sums equal to 1."
+  )
+
+  # Test a matrix with the wrong dimensions
+  matrix_with_wrong_dimensions <- diag(3)
+  expect_error(
+    assert_transition_probability_matrix(matrix_with_wrong_dimensions, dim = 2),
+    "Must be of dimension 2"
+  )
+
+  # Test a matrix with the correct dimensions
+  matrix_with_correct_dimensions <- diag(2)
+  expect_silent(assert_transition_probability_matrix(matrix_with_correct_dimensions, dim = 2))
+})
+
+test_that("check for probability vector works", {
+  # Test a non-numeric vector
+  non_numeric_vector <- letters[1:9]
+  expect_error(
+    assert_probability_vector(non_numeric_vector),
+    "Must be of type 'numeric', not 'character'."
+  )
+
+  # Test a vector with bad elements
+  vector_with_bad_elements <- 0:2
+  expect_error(
+    assert_probability_vector(vector_with_bad_elements),
+    "Assertion on 'vector_with_bad_elements' failed: Element 3 is not <= 1."
+  )
+
+  # Test a vector with bad sum
+  vector_with_bad_sum <- c(1, 1:5 / sum(1:5))
+  expect_error(
+    assert_probability_vector(vector_with_bad_sum),
+    "Assertion on 'vector_with_bad_sum' failed: Must add up to 1."
+  )
+
+  # Test a vector with the wrong dimensions
+  vector_with_wrong_length <- 1:5 / sum(1:5)
+  expect_error(
+    assert_probability_vector(vector_with_wrong_length, len = 4),
+    "Assertion on 'vector_with_wrong_length' failed: Must have length 4, but has length 5."
+  )
+
+  # Test a vector with the correct dimensions
+  vector_with_correct_length <- 1:5 / sum(1:5)
+  expect_silent(assert_probability_vector(vector_with_correct_length, len = 5))
+})

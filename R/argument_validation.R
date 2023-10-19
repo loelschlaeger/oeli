@@ -147,3 +147,80 @@ check_correlation_matrix <- function(x, dim = NULL) {
 assert_correlation_matrix <- checkmate::makeAssertionFunction(
   check_correlation_matrix
 )
+
+#' Check if an argument is a transition probability matrix
+#'
+#' @description
+#' This function checks whether the input is a quadratic, real matrix with
+#' elements between 0 and 1 and row sums equal to 1.
+#'
+#' @param x
+#' Object to check.
+#'
+#' @param dim
+#' An \code{integer}, the matrix dimension.
+#'
+#' @return
+#' Compare to \code{\link[checkmate]{check_matrix}}.
+
+check_transition_probability_matrix <- function(x, dim = NULL) {
+  res <- checkmate::check_matrix(x, mode = "numeric")
+  if (!isTRUE(res))
+    return(res)
+  if (nrow(x) != ncol(x))
+    return("Must be square")
+  if (any(x < 0 | x > 1))
+    return("Must have values between 0 and 1")
+  if (any(rowSums(x) != 1))
+    return("Must have row sums equal to 1")
+  if (!is.null(dim)) {
+    checkmate::assert_count(dim, positive = TRUE)
+    if (nrow(x) != dim) {
+      return(paste("Must be of dimension", dim))
+    }
+  }
+  return(TRUE)
+}
+
+#' @rdname check_transition_probability_matrix
+#' @inheritParams checkmate::assert_matrix
+#' @export
+
+assert_transition_probability_matrix <- checkmate::makeAssertionFunction(
+  check_transition_probability_matrix
+)
+
+#' Check if an argument is a probability vector
+#'
+#' @description
+#' This function checks whether the input is a real vector with non-negative
+#' entries that add up to one.
+#'
+#' @param x
+#' Object to check.
+#'
+#' @inheritParams checkmate::check_numeric
+#'
+#' @return
+#' Compare to \code{\link[checkmate]{check_numeric}}.
+
+check_probability_vector <- function(x, len = NULL) {
+  res1 <- checkmate::check_atomic_vector(x, any.missing = FALSE, len = len)
+  if (!isTRUE(res1))
+    return(res1)
+  res2 <- checkmate::check_numeric(x, lower = 0, upper = 1)
+  if (!isTRUE(res2))
+    return(res2)
+  if (sum(x) != 1)
+    return("Must add up to 1")
+  return(TRUE)
+}
+
+#' @rdname check_probability_vector
+#' @inheritParams checkmate::assert_atomic_vector
+#' @inheritParams checkmate::assert_numeric
+#' @export
+
+assert_probability_vector <- checkmate::makeAssertionFunction(
+  check_probability_vector
+)

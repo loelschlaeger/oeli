@@ -2,6 +2,8 @@
 
 export(assert_correlation_matrix)
 export(assert_covariance_matrix)
+export(assert_probability_vector)
+export(assert_transition_probability_matrix)
 export(chol_2_cov)
 export(cov_2_chol)
 export(ddirichlet)
