@@ -1,10 +1,17 @@
-# I fixed:
+You: Please use a more informative title.
 
-Flavor: r-devel-linux-x86_64-debian-gcc, r-devel-windows-x86_64
-Check: C++ specification, Result: NOTE
-    Specified C++11: please drop specification unless essential
-    
-# I cannot fix (words are not misspelled):
+Response: I chose a more informative title.
 
-Check: CRAN incoming feasibility, Result: NOTE
-  Possibly misspelled words in DESCRIPTION
+You: The Description field is intended to be a (one paragraph) description of what the package does and why it may be useful. Please add more details about the package functionality and implemented methods in your Description text.
+
+Response: I extended the Description field.
+
+You: If there are references describing the methods in your package, please add these in the description field of your DESCRIPTION file.
+
+Response: There are no references (yet).
+
+You: Please rather use the Authors@R field and declare Maintainer, Authors and Contributors with their appropriate roles with person() calls.
+
+Response: Fixed.                    
+          
+

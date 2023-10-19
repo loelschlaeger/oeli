@@ -1,10 +1,17 @@
 Package: oeli
 Type: Package
-Title: Lennart Oelschläger's R Code
+Title: General Utilities for Developing Data Science Software
 Version: 0.1.0
-Author: Lennart Oelschläger
-Maintainer: Lennart Oelschläger <oelschlaeger.lennart@gmail.com>
-Description: Some general utilities that I and maybe others find useful.
+Authors@R: c(
+    person("Lennart", "Oelschl\u00e4ger", 
+           email = "oelschlaeger.lennart@gmail.com", 
+           role = c("aut", "cre"))
+           )
+Description: Some general utilities that I and maybe others find useful when
+    developing data science software. Functionality includes argument 
+    validation, density calculation and sampling, dealing with Cholesky roots, 
+    covariance matrix differencing, matrix printing, samplings, 
+    user interaction, and more.
 License: GPL (>= 3)
 Encoding: UTF-8
 Suggests: 

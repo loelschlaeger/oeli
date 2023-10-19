@@ -4,9 +4,9 @@
 \name{oeli-package}
 \alias{oeli}
 \alias{oeli-package}
-\title{oeli: Lennart Oelschläger's R Code}
+\title{oeli: General Utilities for Developing Data Science Software}
 \description{
-Some general utilities that I and maybe others find useful.
+Some general utilities that I and maybe others find useful when developing data science software. Functionality includes argument validation, density calculation and sampling, dealing with Cholesky roots, covariance matrix differencing, matrix printing, samplings, user interaction, and more.
 }
 \seealso{
 Useful links:
@@ -14,6 +14,10 @@ Useful links:
   \item \url{https://github.com/loelschlaeger/oeli}
   \item Report bugs at \url{https://github.com/loelschlaeger/oeli/issues}
 }
+
+}
+\author{
+\strong{Maintainer}: Lennart Oelschläger \email{oelschlaeger.lennart@gmail.com}
 
 }
 \keyword{internal}
