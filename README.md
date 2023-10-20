@@ -1,4 +1,4 @@
-# <img src="man/figures/logo.png" align="right" height="139" alt="" />
+# Utilities for Developing Data Science Software <img src="man/figures/logo.png" align="right" height="139" alt="" />
 
 <!-- badges: start -->
 [![CRAN status](https://www.r-pkg.org/badges/version/oeli)](https://CRAN.R-project.org/package=oeli)
