@@ -4,7 +4,7 @@
 \name{oeli-package}
 \alias{oeli}
 \alias{oeli-package}
-\title{oeli: General Utilities for Developing Data Science Software}
+\title{oeli: Utilities for Developing Data Science Software}
 \description{
 \if{html}{\figure{logo.png}{options: style='float: right' alt='logo' width='120'}}
 
