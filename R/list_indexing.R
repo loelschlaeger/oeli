@@ -1,5 +1,3 @@
-### These functions provide a simple indexing interface for list elements.
-
 #' Index R6 Object
 #'
 #' @description
