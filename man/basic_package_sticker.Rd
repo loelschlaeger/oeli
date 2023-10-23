@@ -4,14 +4,20 @@
 \alias{basic_package_sticker}
 \title{Creating and initializing a basic package sticker}
 \usage{
-basic_package_sticker(package_name)
+basic_package_sticker(package_name, brackets = TRUE)
 }
 \arguments{
 \item{package_name}{A \code{character}, the package name.}
+
+\item{brackets}{Either \code{TRUE} to have curly brackets around the package name (default)
+or \code{FALSE} if not.}
 }
 \value{
-No return value, but runs \code{\link[usethis]{use_logo}} in the end.
+No return value, but it runs \code{\link[usethis]{use_logo}} in the end.
 }
 \description{
-This function sets up a basic package sticker.
+This function sets up a basic package sticker. The sticker has a white
+background and the package name (with or without curly brackets) in the
+center. The font size for the package name is scaled such that it fits inside
+the sticker. Type \code{?oeli} to see an example.
 }

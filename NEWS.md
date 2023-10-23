@@ -8,6 +8,8 @@
 
 * Added R6 object `Index` that provides a simple indexing interface for list elements.
 
+* Modified `basic_package_sticker()`: Option to add brackets to package name, now scales font, the function is no longer exported.
+
 # oeli 0.1.0
 
 * Initial CRAN submission.
