@@ -27,7 +27,7 @@ test_that("names of function arguments can be extracted", {
   )
 })
 
-test_that("Extraction of function body as character works", {
+test_that("extraction of function body as character works", {
   test_fun <- function(x) {
     stopifnot(is.numeric(x))
     {x + 1}
@@ -41,5 +41,23 @@ test_that("Extraction of function body as character works", {
   expect_equal(
     function_body(test_fun, nchar = 20),
     "stopifnot(is.nume..."
+  )
+})
+
+test_that("determination of variable name works", {
+  expect_equal(
+    variable_name(a),
+    "a"
+  )
+  f <- function(x) variable_name(x)
+  expect_equal(
+    f(a),
+    "a"
+  )
+  expect_equal(
+    variable_name(function(x) {
+      mean(x)
+    }),
+    "unnamed"
   )
 })

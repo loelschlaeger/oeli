@@ -14,6 +14,8 @@
 
 * Added function `permutation()` which creates all permutations of a given vector.
 
+* Added function `variable_name()` which tries to determine the name of a variable passed to a function.
+
 # oeli 0.1.0
 
 * Initial CRAN submission.

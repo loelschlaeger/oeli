@@ -2,7 +2,7 @@
 % Please edit documentation in R/function_helpers.R
 \name{function_arguments}
 \alias{function_arguments}
-\title{Function arguments}
+\title{Get function arguments}
 \usage{
 function_arguments(f, with_default = TRUE, with_ellipsis = TRUE)
 }
