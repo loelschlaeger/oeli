@@ -10,6 +10,10 @@
 
 * Modified `basic_package_sticker()`: Option to add brackets to package name, now scales font, the function is no longer exported.
 
+* Added function `function_body()` which extracts the body of a function.
+
+* Added function `permutation()` which creates all permutations of a given vector.
+
 # oeli 0.1.0
 
 * Initial CRAN submission.

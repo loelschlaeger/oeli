@@ -8,7 +8,7 @@
 \description{
 \if{html}{\figure{logo.png}{options: style='float: right' alt='logo' width='120'}}
 
-Some general utilities that I and maybe others find useful when developing data science software. Functionality includes argument validation, density calculation and sampling, dealing with Cholesky roots, matrix printing and indexing, user interaction, and more.
+Some general utilities (helper functions) that I and maybe others find useful when developing data science software. Functionality includes argument validation, density calculation and sampling, matrix printing and indexing, user interaction, and more.
 }
 \seealso{
 Useful links:
