@@ -41,6 +41,35 @@ function_arguments <- function(f, with_default = TRUE, with_ellipsis = TRUE) {
   names(args)
 }
 
+#' Get default function arguments
+#'
+#' @description
+#' This function returns the default function arguments (if any).
+#'
+#' @param f
+#' A \code{function}.
+#' @param exclude
+#' A \code{character} of argument names to exclude.
+#'
+#' @return
+#' A named \code{list}.
+#'
+#' @examples
+#' f <- function(a, b = 1, c = "", ...) { }
+#' function_defaults(f)
+#' function_defaults(f, exclude = "b")
+#'
+#' @export
+
+function_defaults <- function(f, exclude = character()) {
+  checkmate::assert_function(f)
+  checkmate::assert_character(exclude)
+  formals_f <- formals(f)
+  formals_f <- formals_f[!sapply(formals_f, is.symbol)]
+  formals_f <- formals_f[!names(formals_f) %in% exclude]
+  return(formals_f)
+}
+
 #' Extract function body
 #'
 #' @description

@@ -27,6 +27,18 @@ test_that("names of function arguments can be extracted", {
   )
 })
 
+test_that("default values of a function can be returned", {
+  f <- function(a, b = 1, c = "", ...) { }
+  expect_equal(
+    function_defaults(f),
+    list(b = 1, c = "")
+  )
+  expect_equal(
+    function_defaults(f, exclude = "b"),
+    list(c = "")
+  )
+})
+
 test_that("extraction of function body as character works", {
   test_fun <- function(x) {
     stopifnot(is.numeric(x))

@@ -16,6 +16,8 @@
 
 * Added function `variable_name()` which tries to determine the name of a variable passed to a function.
 
+* Added function `function_defaults()` which returns the default function arguments.
+
 # oeli 0.1.0
 
 * Initial CRAN submission.
