@@ -19,6 +19,8 @@
 #' @param allow_overwrite
 #' Either \code{TRUE} (default) to allow overwriting existing keys with new
 #' values, or \code{FALSE} else. Duplicate keys are never allowed.
+#' @param keys_reserved
+#' A \code{character} (\code{vector}) of names that must not be used as keys.
 #' @param alias_choices
 #' Optionally a \code{character} \code{vector} of possible values for the alias.
 #' Can also be \code{NULL}, then all alias values are allowed.
@@ -43,7 +45,8 @@ Dictionary <- R6::R6Class(
 
     initialize = function(
       key_name, alias_name = NULL, value_names = character(),
-      value_assert = alist(), allow_overwrite = TRUE, alias_choices = NULL
+      value_assert = alist(), allow_overwrite = TRUE,
+      keys_reserved = character(), alias_choices = NULL
     ) {
       checkmate::assert_string(key_name)
       checkmate::assert_string(alias_name, null.ok = TRUE)
@@ -58,6 +61,9 @@ Dictionary <- R6::R6Class(
       )
       checkmate::assert_flag(allow_overwrite)
       checkmate::assert_character(
+        keys_reserved, any.missing = FALSE, unique = TRUE
+      )
+      checkmate::assert_character(
         alias_choices, any.missing = FALSE, unique = TRUE, null.ok = TRUE
       )
       private$.key_name <- key_name
@@ -70,6 +76,7 @@ Dictionary <- R6::R6Class(
       private$.value_names <- value_names
       private$.value_assert <- value_assert
       private$.allow_overwrite <- allow_overwrite
+      private$.keys_reserved <- keys_reserved
       private$.alias_choices <- alias_choices
     },
 
@@ -190,6 +197,7 @@ Dictionary <- R6::R6Class(
     .value_names = character(),
     .value_assert = alist(),
     .allow_overwrite = NA,
+    .keys_reserved = character(),
     .alias_choices = NULL,
 
     .check_inputs = function(inputs) {
@@ -201,6 +209,12 @@ Dictionary <- R6::R6Class(
       if (private$.alias_activated && !is.null(private$.alias_choices)) {
         checkmate::assert_subset(
           inputs[[private$.alias_name]], choices = private$.alias_choices
+        )
+      }
+      if (inputs[[private$.key_name]] %in% private$.keys_reserved) {
+        stop(
+          "The key '", inputs[[private$.key_name]], "' must not be used.",
+          call. = FALSE
         )
       }
       if (private$.key_exists(inputs[[private$.key_name]]) &&

@@ -23,6 +23,7 @@ test_that("dictionary with optimizers works", {
       "out_elements" = checkmate::assert_character(any.missing = FALSE, unique = TRUE)
     ),
     allow_overwrite = FALSE,
+    keys_reserved = c("custom"),
     alias_choices = c("constrained", "unconstrained")
   )
   expect_snapshot(
@@ -31,6 +32,21 @@ test_that("dictionary with optimizers works", {
   expect_s3_class(
     optimizer_dictionary,
     "Dictionary"
+  )
+  expect_error(
+    optimizer_dictionary$add(
+      "label" = "custom",
+      "method" = c("unconstrained"),
+      "algorithm" = stats::nlm,
+      "arg_objective" = "f",
+      "arg_initial" = "p",
+      "out_value" = "minimum",
+      "out_parameter" = "min",
+      "direction" = "min",
+      "arguments" = as.list(formals(stats::nlm)),
+      "out_elements" = c("minimum", "estimate", "gradient", "hessian", "code", "iterations")
+    ),
+    "The key 'custom' must not be used."
   )
   expect_silent(
     optimizer_dictionary$add(

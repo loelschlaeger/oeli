@@ -37,6 +37,7 @@ initializing a \code{Dictionary} object
   value_names = character(),
   value_assert = alist(),
   allow_overwrite = TRUE,
+  keys_reserved = character(),
   alias_choices = NULL
 )}\if{html}{\out{</div>}}
 }
@@ -59,6 +60,8 @@ any arguments for the assertion function except for the \code{x} argument.}
 
 \item{\code{allow_overwrite}}{Either \code{TRUE} (default) to allow overwriting existing keys with new
 values, or \code{FALSE} else. Duplicate keys are never allowed.}
+
+\item{\code{keys_reserved}}{A \code{character} (\code{vector}) of names that must not be used as keys.}
 
 \item{\code{alias_choices}}{Optionally a \code{character} \code{vector} of possible values for the alias.
 Can also be \code{NULL}, then all alias values are allowed.}
