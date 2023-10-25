@@ -6,15 +6,12 @@
 \description{
 Provides a simple key-value interface based on R6.
 }
-\examples{
-# TODO
-}
 \section{Active bindings}{
 \if{html}{\out{<div class="r6-active-bindings">}}
 \describe{
-\item{\code{keys}}{TODO}
+\item{\code{keys}}{A \code{character} \code{vector} of available keys.}
 
-\item{\code{alias}}{TODO}
+\item{\code{alias}}{A \code{list} of available keys per alias value.}
 }
 \if{html}{\out{</div>}}
 }
@@ -25,7 +22,6 @@ Provides a simple key-value interface based on R6.
 \item \href{#method-Dictionary-add}{\code{Dictionary$add()}}
 \item \href{#method-Dictionary-get}{\code{Dictionary$get()}}
 \item \href{#method-Dictionary-remove}{\code{Dictionary$remove()}}
-\item \href{#method-Dictionary-alias_keys}{\code{Dictionary$alias_keys()}}
 \item \href{#method-Dictionary-print}{\code{Dictionary$print()}}
 }
 }
@@ -36,31 +32,36 @@ Provides a simple key-value interface based on R6.
 initializing a \code{Dictionary} object
 \subsection{Usage}{
 \if{html}{\out{<div class="r">}}\preformatted{Dictionary$new(
-  key,
-  alias,
-  values,
-  value_types,
-  allow_overwrite = FALSE,
-  alias_allowed = NULL
+  key_name,
+  alias_name = NULL,
+  value_names = character(),
+  value_assert = alist(),
+  allow_overwrite = TRUE,
+  alias_choices = NULL
 )}\if{html}{\out{</div>}}
 }
 
 \subsection{Arguments}{
 \if{html}{\out{<div class="arguments">}}
 \describe{
-\item{\code{key}}{TODO}
+\item{\code{key_name}}{A single \code{character}, the name for the key variable.}
 
-\item{\code{key}}{TODO}
+\item{\code{alias_name}}{Optionally a single \code{character}, the name for the alias variable.
+Can also be \code{NULL} (default) for no alias.}
 
-\item{\code{alias}}{TODO}
+\item{\code{value_names}}{A \code{character} (\code{vector}), the names of the values connected to a
+key.}
 
-\item{\code{values}}{TODO}
+\item{\code{value_assert}}{A \code{alist} with check functions for supplied values. For each element
+in \code{value_names}, \code{values_assert} \emph{can} have an identically named
+element of the form \code{checkmate::assert_*(...)}, where \code{...} can be
+any arguments for the assertion function except for the \code{x} argument.}
 
-\item{\code{value_types}}{TODO}
+\item{\code{allow_overwrite}}{Either \code{TRUE} (default) to allow overwriting existing keys with new
+values, or \code{FALSE} else. Duplicate keys are never allowed.}
 
-\item{\code{allow_overwrite}}{TODO}
-
-\item{\code{alias_allowed}}{TODO}
+\item{\code{alias_choices}}{Optionally a \code{character} \code{vector} of possible values for the alias.
+Can also be \code{NULL}, then all alias values are allowed.}
 }
 \if{html}{\out{</div>}}
 }
@@ -80,7 +81,14 @@ adding an element
 \subsection{Arguments}{
 \if{html}{\out{<div class="arguments">}}
 \describe{
-\item{\code{...}}{TODO}
+\item{\code{...}}{Values for
+\itemize{
+\item the key variable \code{key_name} (must be a single \code{character}),
+\item the alias variable \code{alias_name} (optionally, must then be a
+\code{character} \code{vector}),
+\item all the variables specified for \code{value_names} (if any, they must
+comply to the \code{value_assert} checks).
+}}
 }
 \if{html}{\out{</div>}}
 }
@@ -94,17 +102,19 @@ invisibly the \code{Dictionary} object
 \subsection{Method \code{get()}}{
 getting elements
 \subsection{Usage}{
-\if{html}{\out{<div class="r">}}\preformatted{Dictionary$get(key, value)}\if{html}{\out{</div>}}
+\if{html}{\out{<div class="r">}}\preformatted{Dictionary$get(key, value = NULL)}\if{html}{\out{</div>}}
 }
 
 \subsection{Arguments}{
 \if{html}{\out{<div class="arguments">}}
 \describe{
-\item{\code{key}}{TODO}
+\item{\code{key}}{A single \code{character}, a value for the key variable \code{key_name}.
+Use the \code{$keys} method for available keys.}
 
-\item{\code{key}}{TODO}
-
-\item{\code{value}}{TODO}
+\item{\code{value}}{Optionally a single \code{character}, one of the elements in
+\code{value_names}, selecting the required value.
+Can also be \code{NULL} (default) for all values connected to the
+\code{key}, returned as a \code{list}.}
 }
 \if{html}{\out{</div>}}
 }
@@ -116,7 +126,7 @@ the selected value
 \if{html}{\out{<a id="method-Dictionary-remove"></a>}}
 \if{latex}{\out{\hypertarget{method-Dictionary-remove}{}}}
 \subsection{Method \code{remove()}}{
-removing elements
+removing elements (and associated alias, if any)
 \subsection{Usage}{
 \if{html}{\out{<div class="r">}}\preformatted{Dictionary$remove(key)}\if{html}{\out{</div>}}
 }
@@ -124,9 +134,8 @@ removing elements
 \subsection{Arguments}{
 \if{html}{\out{<div class="arguments">}}
 \describe{
-\item{\code{key}}{TODO}
-
-\item{\code{key}}{TODO}
+\item{\code{key}}{A single \code{character}, a value for the key variable \code{key_name}.
+Use the \code{$keys} method for available keys.}
 }
 \if{html}{\out{</div>}}
 }
@@ -135,41 +144,14 @@ invisibly the \code{Dictionary} object
 }
 }
 \if{html}{\out{<hr>}}
-\if{html}{\out{<a id="method-Dictionary-alias_keys"></a>}}
-\if{latex}{\out{\hypertarget{method-Dictionary-alias_keys}{}}}
-\subsection{Method \code{alias_keys()}}{
-getting keys by alias
-\subsection{Usage}{
-\if{html}{\out{<div class="r">}}\preformatted{Dictionary$alias_keys(alias)}\if{html}{\out{</div>}}
-}
-
-\subsection{Arguments}{
-\if{html}{\out{<div class="arguments">}}
-\describe{
-\item{\code{alias}}{TODO}
-}
-\if{html}{\out{</div>}}
-}
-\subsection{Returns}{
-a \code{character}
-}
-}
-\if{html}{\out{<hr>}}
 \if{html}{\out{<a id="method-Dictionary-print"></a>}}
 \if{latex}{\out{\hypertarget{method-Dictionary-print}{}}}
 \subsection{Method \code{print()}}{
 printing details of the dictionary
 \subsection{Usage}{
-\if{html}{\out{<div class="r">}}\preformatted{Dictionary$print(...)}\if{html}{\out{</div>}}
+\if{html}{\out{<div class="r">}}\preformatted{Dictionary$print()}\if{html}{\out{</div>}}
 }
 
-\subsection{Arguments}{
-\if{html}{\out{<div class="arguments">}}
-\describe{
-\item{\code{...}}{currently not used}
-}
-\if{html}{\out{</div>}}
-}
 \subsection{Returns}{
 invisibly the \code{Dictionary} object
 }

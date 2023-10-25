@@ -18,6 +18,8 @@
 
 * Added function `function_defaults()` which returns the default function arguments.
 
+* Added R6 object `Dictionary` that provides a simple simple key-value interface.
+
 # oeli 0.1.0
 
 * Initial CRAN submission.
