@@ -4,12 +4,13 @@
 \alias{function_defaults}
 \title{Get default function arguments}
 \usage{
-function_defaults(f, exclude = character())
+function_defaults(f, exclude = NULL)
 }
 \arguments{
 \item{f}{A \code{function}.}
 
-\item{exclude}{A \code{character} of argument names to exclude.}
+\item{exclude}{A \code{character} of argument names to exclude. Can be \code{NULL} (default)
+to not exclude any argument names.}
 }
 \value{
 A named \code{list}.
