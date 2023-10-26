@@ -38,7 +38,8 @@ initializing a \code{Dictionary} object
   value_assert = alist(),
   allow_overwrite = TRUE,
   keys_reserved = character(),
-  alias_choices = NULL
+  alias_choices = NULL,
+  dictionary_name = NULL
 )}\if{html}{\out{</div>}}
 }
 
@@ -65,6 +66,8 @@ values, or \code{FALSE} else. Duplicate keys are never allowed.}
 
 \item{\code{alias_choices}}{Optionally a \code{character} \code{vector} of possible values for the alias.
 Can also be \code{NULL}, then all alias values are allowed.}
+
+\item{\code{dictionary_name}}{Optionally a single \code{character}, a name for the dictionary.}
 }
 \if{html}{\out{</div>}}
 }

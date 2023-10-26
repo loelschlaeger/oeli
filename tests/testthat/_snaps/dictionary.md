@@ -3,7 +3,7 @@
     Code
       print(optimizer_dictionary)
     Output
-      <Dictionary>
+      <Dictionary> 
       No elements contained.
 
 ---
@@ -11,7 +11,7 @@
     Code
       print(optimizer_dictionary)
     Output
-      <Dictionary>
+      <Dictionary> 
       Keys: 
       - stats::nlm
       - stats::optim

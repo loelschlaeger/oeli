@@ -24,6 +24,8 @@
 #' @param alias_choices
 #' Optionally a \code{character} \code{vector} of possible values for the alias.
 #' Can also be \code{NULL}, then all alias values are allowed.
+#' @param dictionary_name
+#' Optionally a single \code{character}, a name for the dictionary.
 #' @param key
 #' A single \code{character}, a value for the key variable \code{key_name}.
 #' Use the \code{$keys} method for available keys.
@@ -46,7 +48,8 @@ Dictionary <- R6::R6Class(
     initialize = function(
       key_name, alias_name = NULL, value_names = character(),
       value_assert = alist(), allow_overwrite = TRUE,
-      keys_reserved = character(), alias_choices = NULL
+      keys_reserved = character(), alias_choices = NULL,
+      dictionary_name = NULL
     ) {
       checkmate::assert_string(key_name)
       checkmate::assert_string(alias_name, null.ok = TRUE)
@@ -66,6 +69,7 @@ Dictionary <- R6::R6Class(
       checkmate::assert_character(
         alias_choices, any.missing = FALSE, unique = TRUE, null.ok = TRUE
       )
+      checkmate::assert_string(dictionary_name, null.ok = TRUE)
       private$.key_name <- key_name
       if (is.null(alias_name)) {
         private$.alias_activated <- FALSE
@@ -78,6 +82,7 @@ Dictionary <- R6::R6Class(
       private$.allow_overwrite <- allow_overwrite
       private$.keys_reserved <- keys_reserved
       private$.alias_choices <- alias_choices
+      private$.dictionary_name <- dictionary_name
     },
 
     #' @description
@@ -149,7 +154,7 @@ Dictionary <- R6::R6Class(
     #' invisibly the \code{Dictionary} object
 
     print = function() {
-      cat("<Dictionary>\n")
+      cat("<Dictionary>", private$.dictionary_name,"\n")
       if (length(self$keys) == 0) {
         cat("No elements contained.")
       } else {
@@ -199,6 +204,7 @@ Dictionary <- R6::R6Class(
     .allow_overwrite = NA,
     .keys_reserved = character(),
     .alias_choices = NULL,
+    .dictionary_name = NULL,
 
     .check_inputs = function(inputs) {
       input_names_required <- c(private$.key_name, private$.value_names)
