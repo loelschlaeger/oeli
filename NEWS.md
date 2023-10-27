@@ -20,6 +20,8 @@
 
 * Added R6 object `Dictionary` that provides a simple simple key-value interface.
 
+* Added function `merge_lists()` which merges `list`s based on their element names.
+
 # oeli 0.1.0
 
 * Initial CRAN submission.
