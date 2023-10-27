@@ -22,6 +22,10 @@
 
 * Added function `merge_lists()` which merges `list`s based on their element names.
 
+* Renamed arguments in function `timed()`: `expr` -> `expression`, `secs` -> `seconds`.
+
+* Added argument `units` to function `do.call_timed()`.
+
 # oeli 0.1.0
 
 * Initial CRAN submission.

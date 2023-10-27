@@ -4,12 +4,14 @@
 \alias{do.call_timed}
 \title{Measure computation time}
 \usage{
-do.call_timed(what, args)
+do.call_timed(what, args, units = "secs")
 }
 \arguments{
 \item{what}{Passed to \code{\link[base]{do.call}}.}
 
 \item{args}{Passed to \code{\link[base]{do.call}}.}
+
+\item{units}{Passed to \code{\link[base]{difftime}}.}
 }
 \value{
 A list of the two elements \code{"result"} (the results of the \code{do.call}

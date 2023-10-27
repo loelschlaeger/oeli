@@ -13,8 +13,8 @@ merge_lists(...)
 A \code{list}.
 }
 \description{
-This function merges \code{list}s based on their names. Elements are only
-included in the final output \code{list}, if no former \code{list} has
+This function merges \code{list}s based on their element names. Elements are
+only included in the final output \code{list}, if no former \code{list} has
 contributed an element with the same name.
 }
 \examples{

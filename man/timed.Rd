@@ -4,20 +4,19 @@
 \alias{timed}
 \title{Interrupt long evaluations}
 \usage{
-timed(expr, secs)
+timed(expression, seconds = Inf)
 }
 \arguments{
-\item{expr}{An R expression to be evaluated.}
+\item{expression}{An R expression to be evaluated.}
 
-\item{secs}{The number of seconds.}
+\item{seconds}{The number of seconds.}
 }
 \value{
-Either the value of \code{expr} or \code{NULL} if the evaluation time
-exceeded \code{secs} seconds.
+Either the value of \code{expression} or \code{NULL} if the evaluation time
+exceeded \code{seconds} seconds.
 }
 \description{
-This function evaluates \code{expr} and interrupts the evaluation after
-\code{secs} seconds.
+This function interrupts an evaluation after a certain number of seconds.
 }
 \details{
 This function is a wrapper for \code{\link[R.utils]{withTimeout}}.

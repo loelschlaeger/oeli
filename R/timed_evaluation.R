@@ -1,22 +1,19 @@
-# These functions allow for timing of R evaluations.
-
 #' Interrupt long evaluations
 #'
 #' @description
-#' This function evaluates \code{expr} and interrupts the evaluation after
-#' \code{secs} seconds.
+#' This function interrupts an evaluation after a certain number of seconds.
 #'
 #' @details
 #' This function is a wrapper for \code{\link[R.utils]{withTimeout}}.
 #'
-#' @param expr
+#' @param expression
 #' An R expression to be evaluated.
-#' @param secs
+#' @param seconds
 #' The number of seconds.
 #'
 #' @return
-#' Either the value of \code{expr} or \code{NULL} if the evaluation time
-#' exceeded \code{secs} seconds.
+#' Either the value of \code{expression} or \code{NULL} if the evaluation time
+#' exceeded \code{seconds} seconds.
 #'
 #' @examples
 #' \dontrun{
@@ -27,16 +24,14 @@
 #'
 #' @export
 
-timed <- function(expr, secs) {
-  checkmate::assert_number(secs, lower = 0)
-  setTimeLimit(cpu = secs, elapsed = secs, transient = TRUE)
+timed <- function(expression, seconds = Inf) {
+  checkmate::assert_number(seconds, lower = 0)
+  setTimeLimit(cpu = seconds, elapsed = seconds, transient = TRUE)
   on.exit({
     setTimeLimit(cpu = Inf, elapsed = Inf, transient = FALSE)
   })
   tryCatch(
-    {
-      expr
-    },
+    expression,
     error = function(e) {
       msg <- e$message
       tl <- grepl("reached elapsed time limit|reached CPU time limit", msg)
@@ -57,6 +52,8 @@ timed <- function(expr, secs) {
 #' Passed to \code{\link[base]{do.call}}.
 #' @param args
 #' Passed to \code{\link[base]{do.call}}.
+#' @param units
+#' Passed to \code{\link[base]{difftime}}.
 #'
 #' @return
 #' A list of the two elements \code{"result"} (the results of the \code{do.call}
@@ -71,10 +68,9 @@ timed <- function(expr, secs) {
 #'
 #' @export
 
-do.call_timed <- function(what, args) {
+do.call_timed <- function(what, args, units = "secs") {
   start <- Sys.time()
   res <- do.call(what = what, args = args)
   end <- Sys.time()
-  total <- difftime(end, start)
-  return(list("result" = res, "time" = total))
+  list("result" = res, "time" = difftime(end, start, units = units))
 }
