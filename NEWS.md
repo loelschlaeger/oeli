@@ -1,4 +1,4 @@
-# oeli development
+# oeli 0.2.0
 
 * Added function `timed()` which evaluates an expression and interrupts the evaluation after a defined amount of seconds.
 
