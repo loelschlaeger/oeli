@@ -1,3 +1,15 @@
+# oeli development
+
+* Added function `check_date()` which checks if the input has the correct date format.
+
+* Added function `find_closest_year()` which finds the closest year to a given date.
+
+* Added function `match_numerics()` which matches the indices of two numeric vectors as good as possible (that means with the smallest possible sum of deviations).
+
+* Added function `simulate_markov_chain()` which simulates a Markov chain.
+
+* Added function `sample_transition_probability_matrix()` which samples a transition probability matrix.
+
 # oeli 0.2.0
 
 * Added function `timed()` which evaluates an expression and interrupts the evaluation after a defined amount of seconds.

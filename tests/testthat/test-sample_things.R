@@ -1,12 +1,3 @@
-test_that("covariance matrix can be sampled", {
-  expect_silent(
-    assert_covariance_matrix(sample_covariance_matrix(3))
-  )
-  expect_silent(
-    assert_covariance_matrix(sample_covariance_matrix(3, diag = TRUE))
-  )
-})
-
 test_that("Dirichlet can be drawn", {
   concentration <- 1:3
   expect_length(rdirichlet(concentration = concentration), 3)
@@ -50,4 +41,22 @@ test_that("(Inverse-) Wishart can be drawn", {
   expect_equal(dim(rwishart(df = df, scale = scale, inv = TRUE)), c(2,2))
   expect_error(dmvnorm(rwishart(df = 1, scale = numeric(3))))
 })
+
+test_that("transition probabiliy matrix can be sampled", {
+  expect_true(
+    check_transition_probability_matrix(
+      sample_transition_probability_matrix(3)
+    )
+  )
+})
+
+test_that("covariance matrix can be sampled", {
+  expect_true(
+    check_covariance_matrix(sample_covariance_matrix(3))
+  )
+  expect_true(
+    check_covariance_matrix(sample_covariance_matrix(3, diag = TRUE))
+  )
+})
+
 

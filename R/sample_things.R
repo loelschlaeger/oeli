@@ -1,44 +1,3 @@
-# These functions draw from distributions. They base on C++ implementation
-# but provide additional input checks.
-
-#' Sample covariance matrix
-#'
-#' @description
-#' This function samples a covariance matrix from an inverse Wishart
-#' distribution.
-#'
-#' @param dim
-#' An \code{integer}, the dimension.
-#' @param df
-#' An \code{integer} greater or equal \code{dim}, the degrees of freedom of
-#' the inverse Wishart distribution.
-#' @param scale
-#' A covariance \code{matrix} of dimension \code{dim}, the scale matrix of the
-#' inverse Wishart distribution.
-#' @param diag
-#' Set to \code{TRUE} for a diagonal matrix.
-#'
-#' @return
-#' A covariance \code{matrix}.
-#'
-#' @examples
-#' sample_covariance_matrix(dim = 3)
-#'
-#' @export
-
-sample_covariance_matrix <- function(
-    dim, df = dim, scale = diag(dim), diag = FALSE
-  ) {
-  checkmate::assert_count(dim, positive = TRUE)
-  checkmate::assert_int(df, lower = dim)
-  assert_covariance_matrix(scale, dim = dim)
-  checkmate::assert_flag(diag)
-  cov <- solve(stats::rWishart(1, df = df, Sigma = scale)[,,1])
-  if (diag) cov[row(cov) != col(cov)] <- 0
-  assert_covariance_matrix(cov)
-  return(cov)
-}
-
 #' @inherit rdirichlet_cpp title description
 #' @inheritParams rdirichlet_cpp
 #'
@@ -126,3 +85,69 @@ rwishart <- function(df, scale, inv = FALSE) {
   rwishart_cpp(df, scale, inv)
 }
 
+#' Sample transition probability matrices
+#'
+#' @description
+#' This function returns a random, squared matrix of dimension \code{dim}
+#' that fulfills the properties of a transition probability matrix.
+#'
+#' @param dim
+#' An \code{integer}, the matrix dimension.
+#' @param state_persistent
+#' Set to \code{TRUE} (default) to put more probability on the diagonal.
+#'
+#' @return
+#' A transition probability \code{matrix}.
+#'
+#' @importFrom stats runif
+#'
+#' @examples
+#' sample_transition_probability_matrix(dim = 3)
+#'
+#' @export
+
+sample_transition_probability_matrix <- function(dim, state_persistent = TRUE) {
+  checkmate::assert_int(dim, lower = 1)
+  checkmate::assert_flag(state_persistent)
+  Gamma <- matrix(stats::runif(dim^2), dim, dim)
+  if (state_persistent) Gamma <- Gamma + diag(dim)
+  Gamma / rowSums(Gamma)
+}
+
+#' Sample covariance matrix
+#'
+#' @description
+#' This function samples a covariance matrix from an inverse Wishart
+#' distribution.
+#'
+#' @param dim
+#' An \code{integer}, the dimension.
+#' @param df
+#' An \code{integer} greater or equal \code{dim}, the degrees of freedom of
+#' the inverse Wishart distribution.
+#' @param scale
+#' A covariance \code{matrix} of dimension \code{dim}, the scale matrix of the
+#' inverse Wishart distribution.
+#' @param diag
+#' Set to \code{TRUE} for a diagonal matrix.
+#'
+#' @return
+#' A covariance \code{matrix}.
+#'
+#' @examples
+#' sample_covariance_matrix(dim = 3)
+#'
+#' @export
+
+sample_covariance_matrix <- function(
+    dim, df = dim, scale = diag(dim), diag = FALSE
+) {
+  checkmate::assert_count(dim, positive = TRUE)
+  checkmate::assert_int(df, lower = dim)
+  assert_covariance_matrix(scale, dim = dim)
+  checkmate::assert_flag(diag)
+  cov <- solve(stats::rWishart(1, df = df, Sigma = scale)[,,1])
+  if (diag) cov[row(cov) != col(cov)] <- 0
+  assert_covariance_matrix(cov)
+  return(cov)
+}
