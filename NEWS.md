@@ -10,6 +10,8 @@
 
 * Added function `sample_transition_probability_matrix()` which samples a transition probability matrix.
 
+* Added functions `test_covariance_matrix()`, `test_correlation_matrix()`, `test_transition_probability_matrix()`, and `test_probability_vector()` (which are the "test" version of the corresponding "assert" functions).
+
 # oeli 0.2.0
 
 * Added function `timed()` which evaluates an expression and interrupts the evaluation after a defined amount of seconds.

@@ -3,6 +3,7 @@
 \name{check_correlation_matrix}
 \alias{check_correlation_matrix}
 \alias{assert_correlation_matrix}
+\alias{test_correlation_matrix}
 \title{Check if an argument is a correlation matrix}
 \usage{
 check_correlation_matrix(x, dim = NULL)
@@ -13,6 +14,8 @@ assert_correlation_matrix(
   .var.name = checkmate::vname(x),
   add = NULL
 )
+
+test_correlation_matrix(x, dim = NULL)
 }
 \arguments{
 \item{x}{Object to check.}

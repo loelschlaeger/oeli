@@ -3,6 +3,7 @@
 \name{check_probability_vector}
 \alias{check_probability_vector}
 \alias{assert_probability_vector}
+\alias{test_probability_vector}
 \title{Check if an argument is a probability vector}
 \usage{
 check_probability_vector(x, len = NULL)
@@ -13,6 +14,8 @@ assert_probability_vector(
   .var.name = checkmate::vname(x),
   add = NULL
 )
+
+test_probability_vector(x, len = NULL)
 }
 \arguments{
 \item{x}{Object to check.}

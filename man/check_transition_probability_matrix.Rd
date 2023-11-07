@@ -3,6 +3,7 @@
 \name{check_transition_probability_matrix}
 \alias{check_transition_probability_matrix}
 \alias{assert_transition_probability_matrix}
+\alias{test_transition_probability_matrix}
 \title{Check if an argument is a transition probability matrix}
 \usage{
 check_transition_probability_matrix(x, dim = NULL)
@@ -13,6 +14,8 @@ assert_transition_probability_matrix(
   .var.name = checkmate::vname(x),
   add = NULL
 )
+
+test_transition_probability_matrix(x, dim = NULL)
 }
 \arguments{
 \item{x}{Object to check.}

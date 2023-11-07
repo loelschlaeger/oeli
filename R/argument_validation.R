@@ -1,5 +1,3 @@
-# These functions provide tools for validation of user inputs.
-
 #' Argument matching
 #'
 #' @description
@@ -76,6 +74,8 @@ match_arg <- function (arg, choices, several.ok = FALSE, none.ok = FALSE) {
 #'
 #' @return
 #' Compare to \code{\link[checkmate]{check_matrix}}.
+#'
+#' @export
 
 check_covariance_matrix <- function(x, dim = NULL) {
   res <- checkmate::check_matrix(x, mode = "numeric")
@@ -104,6 +104,13 @@ assert_covariance_matrix <- checkmate::makeAssertionFunction(
   check_covariance_matrix
 )
 
+#' @rdname check_covariance_matrix
+#' @inheritParams checkmate::test_matrix
+#' @export
+test_covariance_matrix <- checkmate::makeTestFunction(
+  check_covariance_matrix
+)
+
 #' Check if an argument is a correlation matrix
 #'
 #' @description
@@ -118,6 +125,8 @@ assert_covariance_matrix <- checkmate::makeAssertionFunction(
 #'
 #' @return
 #' Compare to \code{\link[checkmate]{check_matrix}}.
+#'
+#' @export
 
 check_correlation_matrix <- function(x, dim = NULL) {
   res <- checkmate::check_matrix(x, mode = "numeric")
@@ -148,6 +157,13 @@ assert_correlation_matrix <- checkmate::makeAssertionFunction(
   check_correlation_matrix
 )
 
+#' @rdname check_correlation_matrix
+#' @inheritParams checkmate::test_matrix
+#' @export
+test_correlation_matrix <- checkmate::makeTestFunction(
+  check_correlation_matrix
+)
+
 #' Check if an argument is a transition probability matrix
 #'
 #' @description
@@ -162,6 +178,8 @@ assert_correlation_matrix <- checkmate::makeAssertionFunction(
 #'
 #' @return
 #' Compare to \code{\link[checkmate]{check_matrix}}.
+#'
+#' @export
 
 check_transition_probability_matrix <- function(x, dim = NULL) {
   res <- checkmate::check_matrix(x, mode = "numeric")
@@ -190,6 +208,13 @@ assert_transition_probability_matrix <- checkmate::makeAssertionFunction(
   check_transition_probability_matrix
 )
 
+#' @rdname check_transition_probability_matrix
+#' @inheritParams checkmate::test_matrix
+#' @export
+test_transition_probability_matrix <- checkmate::makeTestFunction(
+  check_transition_probability_matrix
+)
+
 #' Check if an argument is a probability vector
 #'
 #' @description
@@ -203,6 +228,8 @@ assert_transition_probability_matrix <- checkmate::makeAssertionFunction(
 #'
 #' @return
 #' Compare to \code{\link[checkmate]{check_numeric}}.
+#'
+#' @export
 
 check_probability_vector <- function(x, len = NULL) {
   res1 <- checkmate::check_atomic_vector(x, any.missing = FALSE, len = len)
@@ -222,5 +249,14 @@ check_probability_vector <- function(x, len = NULL) {
 #' @export
 
 assert_probability_vector <- checkmate::makeAssertionFunction(
+  check_probability_vector
+)
+
+#' @rdname check_probability_vector
+#' @inheritParams checkmate::assert_atomic_vector
+#' @inheritParams checkmate::assert_numeric
+#' @export
+
+test_probability_vector <- checkmate::makeTestFunction(
   check_probability_vector
 )

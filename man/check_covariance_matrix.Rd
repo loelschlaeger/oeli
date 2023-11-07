@@ -3,6 +3,7 @@
 \name{check_covariance_matrix}
 \alias{check_covariance_matrix}
 \alias{assert_covariance_matrix}
+\alias{test_covariance_matrix}
 \title{Check if an argument is a covariance matrix}
 \usage{
 check_covariance_matrix(x, dim = NULL)
@@ -13,6 +14,8 @@ assert_covariance_matrix(
   .var.name = checkmate::vname(x),
   add = NULL
 )
+
+test_covariance_matrix(x, dim = NULL)
 }
 \arguments{
 \item{x}{Object to check.}
