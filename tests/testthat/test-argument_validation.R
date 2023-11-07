@@ -161,6 +161,18 @@ test_that("check for transition probability matrix works", {
   # Test a matrix with the correct dimensions
   matrix_with_correct_dimensions <- diag(2)
   expect_silent(assert_transition_probability_matrix(matrix_with_correct_dimensions, dim = 2))
+
+  # Deal with machine epsilon
+  matrix_rounding_issues <- structure(
+    c(0.96413163700029, 0.342824884561103, 0.0358683629997102, 0.657175115438897),
+    dim = c(2L, 2L)
+  )
+  expect_false(
+    test_transition_probability_matrix(matrix_rounding_issues, tolerance = 0)
+  )
+  expect_true(
+    test_transition_probability_matrix(matrix_rounding_issues)
+  )
 })
 
 test_that("check for probability vector works", {

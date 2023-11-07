@@ -6,21 +6,24 @@
 \alias{test_covariance_matrix}
 \title{Check if an argument is a covariance matrix}
 \usage{
-check_covariance_matrix(x, dim = NULL)
+check_covariance_matrix(x, dim = NULL, tolerance = sqrt(.Machine$double.eps))
 
 assert_covariance_matrix(
   x,
   dim = NULL,
+  tolerance = sqrt(.Machine$double.eps),
   .var.name = checkmate::vname(x),
   add = NULL
 )
 
-test_covariance_matrix(x, dim = NULL)
+test_covariance_matrix(x, dim = NULL, tolerance = sqrt(.Machine$double.eps))
 }
 \arguments{
 \item{x}{Object to check.}
 
 \item{dim}{An \code{integer}, the matrix dimension.}
+
+\item{tolerance}{A non-negative \code{numeric} tolerance value.}
 
 \item{.var.name}{[\code{character(1)}]\cr
 Name of the checked object to print in assertions. Defaults to

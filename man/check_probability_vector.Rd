@@ -6,22 +6,25 @@
 \alias{test_probability_vector}
 \title{Check if an argument is a probability vector}
 \usage{
-check_probability_vector(x, len = NULL)
+check_probability_vector(x, len = NULL, tolerance = sqrt(.Machine$double.eps))
 
 assert_probability_vector(
   x,
   len = NULL,
+  tolerance = sqrt(.Machine$double.eps),
   .var.name = checkmate::vname(x),
   add = NULL
 )
 
-test_probability_vector(x, len = NULL)
+test_probability_vector(x, len = NULL, tolerance = sqrt(.Machine$double.eps))
 }
 \arguments{
 \item{x}{Object to check.}
 
 \item{len}{[\code{integer(1)}]\cr
 Exact expected length of \code{x}.}
+
+\item{tolerance}{A non-negative \code{numeric} tolerance value.}
 
 \item{.var.name}{[\code{character(1)}]\cr
 Name of the checked object to print in assertions. Defaults to

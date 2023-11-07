@@ -72,20 +72,26 @@ match_arg <- function (arg, choices, several.ok = FALSE, none.ok = FALSE) {
 #' @param dim
 #' An \code{integer}, the matrix dimension.
 #'
+#' @param tolerance
+#' A non-negative \code{numeric} tolerance value.
+#'
 #' @return
 #' Compare to \code{\link[checkmate]{check_matrix}}.
 #'
 #' @export
 
-check_covariance_matrix <- function(x, dim = NULL) {
+check_covariance_matrix <- function(
+    x, dim = NULL, tolerance = sqrt(.Machine$double.eps)
+  ) {
+  checkmate::assert_number(tolerance, lower = 0)
   res <- checkmate::check_matrix(x, mode = "numeric")
   if (!isTRUE(res))
     return(res)
   if (nrow(x) != ncol(x))
     return("Must be square")
-  if (any(abs(x - t(x)) > sqrt(.Machine$double.eps)))
+  if (any(abs(x - t(x)) > tolerance))
     return("Must be symmetric")
-  if (any(eigen(x)$value < -sqrt(.Machine$double.eps)))
+  if (any(eigen(x)$value < -tolerance))
     return("Must have positive eigenvalues only")
   if (!is.null(dim)) {
     checkmate::assert_count(dim, positive = TRUE)
@@ -123,20 +129,26 @@ test_covariance_matrix <- checkmate::makeTestFunction(
 #' @param dim
 #' An \code{integer}, the matrix dimension.
 #'
+#' @param tolerance
+#' A non-negative \code{numeric} tolerance value.
+#'
 #' @return
 #' Compare to \code{\link[checkmate]{check_matrix}}.
 #'
 #' @export
 
-check_correlation_matrix <- function(x, dim = NULL) {
+check_correlation_matrix <- function(
+    x, dim = NULL, tolerance = sqrt(.Machine$double.eps)
+  ) {
+  checkmate::assert_number(tolerance, lower = 0)
   res <- checkmate::check_matrix(x, mode = "numeric")
   if (!isTRUE(res))
     return(res)
   if (nrow(x) != ncol(x))
     return("Must be square")
-  if (any(abs(x - t(x)) > sqrt(.Machine$double.eps)))
+  if (any(abs(x - t(x)) > tolerance))
     return("Must be symmetric")
-  if (any(diag(x) != 1))
+  if (any(abs(diag(x) - 1) > tolerance))
     return("Must have ones on the diagonal")
   if (any(x < -1 | x > 1))
     return("Must have values between -1 and 1")
@@ -176,12 +188,18 @@ test_correlation_matrix <- checkmate::makeTestFunction(
 #' @param dim
 #' An \code{integer}, the matrix dimension.
 #'
+#' @param tolerance
+#' A non-negative \code{numeric} tolerance value.
+#'
 #' @return
 #' Compare to \code{\link[checkmate]{check_matrix}}.
 #'
 #' @export
 
-check_transition_probability_matrix <- function(x, dim = NULL) {
+check_transition_probability_matrix <- function(
+    x, dim = NULL, tolerance = sqrt(.Machine$double.eps)
+  ) {
+  checkmate::assert_number(tolerance, lower = 0)
   res <- checkmate::check_matrix(x, mode = "numeric")
   if (!isTRUE(res))
     return(res)
@@ -189,7 +207,7 @@ check_transition_probability_matrix <- function(x, dim = NULL) {
     return("Must be square")
   if (any(x < 0 | x > 1))
     return("Must have values between 0 and 1")
-  if (any(rowSums(x) != 1))
+  if (any(abs(rowSums(x) - 1) > tolerance))
     return("Must have row sums equal to 1")
   if (!is.null(dim)) {
     checkmate::assert_count(dim, positive = TRUE)
@@ -224,6 +242,9 @@ test_transition_probability_matrix <- checkmate::makeTestFunction(
 #' @param x
 #' Object to check.
 #'
+#' @param tolerance
+#' A non-negative \code{numeric} tolerance value.
+#'
 #' @inheritParams checkmate::check_numeric
 #'
 #' @return
@@ -231,14 +252,17 @@ test_transition_probability_matrix <- checkmate::makeTestFunction(
 #'
 #' @export
 
-check_probability_vector <- function(x, len = NULL) {
+check_probability_vector <- function(
+    x, len = NULL, tolerance = sqrt(.Machine$double.eps)
+  ) {
+  checkmate::assert_number(tolerance, lower = 0)
   res1 <- checkmate::check_atomic_vector(x, any.missing = FALSE, len = len)
   if (!isTRUE(res1))
     return(res1)
   res2 <- checkmate::check_numeric(x, lower = 0, upper = 1)
   if (!isTRUE(res2))
     return(res2)
-  if (sum(x) != 1)
+  if (abs(sum(x) - 1) > tolerance)
     return("Must add up to 1")
   return(TRUE)
 }
