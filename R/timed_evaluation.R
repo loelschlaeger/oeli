@@ -2,6 +2,7 @@
 #'
 #' @description
 #' This function interrupts an evaluation after a certain number of seconds.
+#' Note the limitations documented in \code{\link[base]{setTimeLimit}}.
 #'
 #' @param expression
 #' An R expression to be evaluated.
@@ -20,11 +21,12 @@
 #' is specified for \code{on_time_out}.
 #'
 #' @examples
-#' \dontrun{
-#' foo <- function(x) { for(i in 1:10) Sys.sleep(x/10); return(x) }
+#' foo <- function(x) {
+#'   for(i in 1:10) Sys.sleep(x/10)
+#'   return(x)
+#' }
 #' timed(foo(0.5), 1)
 #' timed(foo(1.5), 1)
-#' }
 #'
 #' @export
 
