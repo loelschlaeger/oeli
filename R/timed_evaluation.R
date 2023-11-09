@@ -3,17 +3,21 @@
 #' @description
 #' This function interrupts an evaluation after a certain number of seconds.
 #'
-#' @details
-#' This function is a wrapper for \code{\link[R.utils]{withTimeout}}.
-#'
 #' @param expression
 #' An R expression to be evaluated.
 #' @param seconds
 #' The number of seconds.
+#' @param on_time_out
+#' Defines what action to take if the evaluation time exceeded, either:
+#' \itemize{
+#'   \item \code{"error"} to throw an error exception
+#'   \item \code{"warning"} to return \code{NULL} along with a warning
+#'   \item \code{"silent"} (the default) to just return \code{NULL}
+#' }
 #'
 #' @return
-#' Either the value of \code{expression} or \code{NULL} if the evaluation time
-#' exceeded \code{seconds} seconds.
+#' The value of \code{expression} or, if the evaluation time exceeded, whatever
+#' is specified for \code{on_time_out}.
 #'
 #' @examples
 #' \dontrun{
@@ -24,8 +28,11 @@
 #'
 #' @export
 
-timed <- function(expression, seconds = Inf) {
+timed <- function(
+    expression, seconds = Inf, on_time_out = "silent"
+  ) {
   checkmate::assert_number(seconds, lower = 0)
+  checkmate::assert_choice(on_time_out, c("error", "warning", "silent"))
   setTimeLimit(cpu = seconds, elapsed = seconds, transient = TRUE)
   on.exit({
     setTimeLimit(cpu = Inf, elapsed = Inf, transient = FALSE)
@@ -34,8 +41,17 @@ timed <- function(expression, seconds = Inf) {
     expression,
     error = function(e) {
       msg <- e$message
-      tl <- grepl("reached elapsed time limit|reached CPU time limit", msg)
-      if (tl) return(NULL) else stop(msg, call. = FALSE)
+      time_out <- grepl("reached elapsed time limit|reached CPU time limit", msg)
+      if (time_out) {
+        if (on_time_out == "error") {
+          stop("time limit exceeded", call. = FALSE)
+        } else if (on_time_out == "warning") {
+          warning("time limit exceeded", call. = FALSE)
+        }
+        return(NULL)
+      } else {
+        stop(msg, call. = FALSE)
+      }
     }
   )
 }

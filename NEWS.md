@@ -12,9 +12,11 @@
 
 * Added functions `test_covariance_matrix()`, `test_correlation_matrix()`, `test_transition_probability_matrix()`, and `test_probability_vector()` (which are the "test" version of the corresponding "assert" functions).
 
-* Added argument `tolerance` for covariance matrix, correlation matrix, transition probability matrix, and probability vector checks to account for machine epsilon and avoid false positives.
+* Added argument `tolerance` for covariance matrix, correlation matrix, transition probability matrix, and probability vector check functions to account for machine epsilon and avoid false positives.
 
 * Added functions `ll_hmm()` and `simulate_hmm()` to compute log-likelihood and simulate data from hidden Markov model.
+
+* Added argument `on_time_out` to function `timed()` that defines what action to take if the evaluation time exceeded (error, warning, or silent).
 
 # oeli 0.2.0
 

@@ -4,22 +4,26 @@
 \alias{timed}
 \title{Interrupt long evaluations}
 \usage{
-timed(expression, seconds = Inf)
+timed(expression, seconds = Inf, on_time_out = "silent")
 }
 \arguments{
 \item{expression}{An R expression to be evaluated.}
 
 \item{seconds}{The number of seconds.}
+
+\item{on_time_out}{Defines what action to take if the evaluation time exceeded, either:
+\itemize{
+\item \code{"error"} to throw an error exception
+\item \code{"warning"} to return \code{NULL} along with a warning
+\item \code{"silent"} (the default) to just return \code{NULL}
+}}
 }
 \value{
-Either the value of \code{expression} or \code{NULL} if the evaluation time
-exceeded \code{seconds} seconds.
+The value of \code{expression} or, if the evaluation time exceeded, whatever
+is specified for \code{on_time_out}.
 }
 \description{
 This function interrupts an evaluation after a certain number of seconds.
-}
-\details{
-This function is a wrapper for \code{\link[R.utils]{withTimeout}}.
 }
 \examples{
 \dontrun{
