@@ -1,5 +1,3 @@
-# These functions help when implementing an R package.
-
 #' Creating and initializing a basic package sticker
 #'
 #' @description

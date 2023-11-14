@@ -46,10 +46,10 @@ Dictionary <- R6::R6Class(
     #' a new \code{Dictionary} object
 
     initialize = function(
-      key_name, alias_name = NULL, value_names = character(),
-      value_assert = alist(), allow_overwrite = TRUE,
-      keys_reserved = character(), alias_choices = NULL,
-      dictionary_name = NULL
+    key_name, alias_name = NULL, value_names = character(),
+    value_assert = alist(), allow_overwrite = TRUE,
+    keys_reserved = character(), alias_choices = NULL,
+    dictionary_name = NULL
     ) {
       checkmate::assert_string(key_name)
       checkmate::assert_string(alias_name, null.ok = TRUE)
@@ -225,7 +225,7 @@ Dictionary <- R6::R6Class(
       }
       if (private$.key_exists(inputs[[private$.key_name]]) &&
           !private$.allow_overwrite
-        ) {
+      ) {
         stop(
           "The key '", inputs[[private$.key_name]], "' already exists.",
           call. = FALSE
@@ -255,4 +255,3 @@ Dictionary <- R6::R6Class(
     }
   )
 )
-

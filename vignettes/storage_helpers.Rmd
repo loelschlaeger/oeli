@@ -1,0 +1,20 @@
+---
+title: "Helpers for storage of data"
+output: rmarkdown::html_vignette
+vignette: >
+  %\VignetteIndexEntry{Helpers for storage of data}
+  %\VignetteEngine{knitr::rmarkdown}
+  %\VignetteEncoding{UTF-8}
+---
+
+```{r, setup, include = FALSE}
+knitr::opts_chunk$set(
+  collapse = TRUE,
+  comment = "#>"
+)
+library(oeli)
+```
+
+## The `Index` object
+
+## The `merge_lists()` function

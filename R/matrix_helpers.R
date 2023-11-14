@@ -1,5 +1,3 @@
-# These functions help when working with matrix-type objects.
-
 #' Print (abbreviated) \code{matrix}
 #'
 #' @description

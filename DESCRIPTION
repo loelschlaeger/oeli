@@ -9,11 +9,14 @@ Authors@R: c(
            )
 Description: Some general utilities (helper functions) that I and maybe others 
     find useful when developing data science software. Functionality includes 
-    argument validation, density calculation and sampling, matrix printing 
-    and indexing, user interaction, and more.
+    argument validation, density calculation, sampling, matrix printing, 
+    user interaction, storage helpers and more. Please see the vignettes for
+    more details.
 License: GPL (>= 3)
 Encoding: UTF-8
 Suggests: 
+    knitr,
+    rmarkdown,
     testthat (>= 3.0.0),
     xml2
 Config/testthat/edition: 3
@@ -35,3 +38,4 @@ LinkingTo:
 URL: https://github.com/loelschlaeger/oeli
 BugReports: https://github.com/loelschlaeger/oeli/issues
 Roxygen: list(markdown = TRUE)
+VignetteBuilder: knitr
