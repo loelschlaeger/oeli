@@ -18,6 +18,8 @@
 
 * Added argument `on_time_out` to function `timed()` that defines what action to take if the evaluation time exceeded (error, warning, or silent).
 
+* Added support to select `identifier = "all"` in `Index` object.
+
 # oeli 0.2.0
 
 * Added function `timed()` which evaluates an expression and interrupts the evaluation after a defined amount of seconds.

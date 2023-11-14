@@ -1,9 +1,6 @@
-test_that("initialization of Index works", {
-  checkmate::expect_r6(Index$new(), "Index")
-})
-
 test_that("basic Index example works", {
   my_index <- Index$new()
+  checkmate::expect_r6(my_index, "Index")
   my_index$
     add(42, c("number", "rational"))$
     add(pi, c("number", "!rational"))$

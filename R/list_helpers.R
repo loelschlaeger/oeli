@@ -21,7 +21,8 @@
 #' case via the method argument.
 #'
 #' @param identifier
-#' a \code{character} \code{vector} with one or more identifiers
+#' a \code{character} \code{vector} with one or more identifiers (the identifier
+#' \code{"all"} is reserved to select all elements)
 #' @param ids
 #' an \code{integer} \code{vector} of one or more ids
 #' @param confirm
@@ -60,7 +61,11 @@
 #' my_index$get("rational")
 #' my_index$get("!rational")
 #' my_index$get(c("text", "!rational"))
-#' my_index$get(ids = 4:5, id_names = TRUE)
+#' my_index$get("all")                        # get all elements
+#'
+#' # 5. Extract elements based on ids:
+#' my_index$get(ids = 4:5)
+#' my_index$get(ids = 4:5, id_names = TRUE)   # add the ids as names
 
 Index <- R6::R6Class(
 
@@ -93,18 +98,24 @@ Index <- R6::R6Class(
     #' invisibly the \code{Index} object
 
     add = function(
-    x, identifier = character(), confirm = interactive() & self$confirm,
-    missing_identifier = self$missing_identifier
+      x, identifier, confirm = interactive() & self$confirm,
+      missing_identifier = self$missing_identifier
     ) {
 
       ### input checks
       if (missing(x)) {
-        stop("Please specify the object 'x' to be added.", call = FALSE)
+        stop("please specify the object 'x' to be added", call = FALSE)
+      }
+      if (missing(identifier)) {
+        stop("please specify at least one entry for 'identifier'", call = FALSE)
       }
       private$check_input(
         identifier = identifier, confirm = confirm,
         missing_identifier = missing_identifier
       )
+      if (any(c("all", "!all") %in% identifier)) {
+        stop("the identifier \"all\" is reserved", call. = FALSE)
+      }
 
       ### inform user about action and request confirmation
       if (confirm) {
@@ -130,10 +141,10 @@ Index <- R6::R6Class(
     #' the selected object(s)
 
     get = function(
-    identifier = character(), ids = integer(),
-    confirm = interactive() & self$confirm,
-    missing_identifier = self$missing_identifier,
-    id_names = FALSE
+      identifier = character(), ids = integer(),
+      confirm = interactive() & self$confirm,
+      missing_identifier = self$missing_identifier,
+      id_names = FALSE
     ) {
 
       ### input checks
@@ -145,13 +156,15 @@ Index <- R6::R6Class(
       ### check for unknown identifier
       if (length(identifier) > 0) {
         identifier <- private$check_identifier_known(identifier)
+      } else if (length(ids) == 0) {
+        stop("please specify either 'identifier' or 'ids'")
       }
 
       ### inform user about action and request confirmation
       if (confirm) {
         private$user_confirm(
-          action = "extract elements", identifier = identifier, ids = ids,
-          complete = FALSE
+          action = "extract", identifier = identifier, ids = ids,
+          missing_identifier = missing_identifier, complete = FALSE
         )
       }
 
@@ -171,9 +184,9 @@ Index <- R6::R6Class(
     #' invisibly the \code{Index} object
 
     remove = function(
-    identifier = character(), ids = integer(),
-    confirm = interactive() & self$confirm,
-    missing_identifier = self$missing_identifier, shift_ids = TRUE
+      identifier = character(), ids = integer(),
+      confirm = interactive() & self$confirm,
+      missing_identifier = self$missing_identifier, shift_ids = TRUE
     ) {
 
       ### input checks
@@ -186,14 +199,15 @@ Index <- R6::R6Class(
       ### check for unknown identifier
       if (length(identifier) > 0) {
         identifier <- private$check_identifier_known(identifier)
+      } else if (length(ids) == 0) {
+        stop("please specify either 'identifier' or 'ids'")
       }
 
       ### inform user about action and request confirmation
       if (confirm) {
         private$user_confirm(
-          action = "remove elements",
-          identifier = identifier, missing_identifier = missing_identifier,
-          complete = FALSE
+          action = "remove", identifier = identifier, ids = ids,
+          missing_identifier = missing_identifier, complete = FALSE
         )
       }
 
@@ -216,8 +230,8 @@ Index <- R6::R6Class(
     #' an \code{integer}
 
     number = function(
-    identifier = character(), missing_identifier = self$missing_identifier,
-    confirm = FALSE
+      identifier = "all", missing_identifier = self$missing_identifier,
+      confirm = FALSE
     ) {
 
       ### input checks
@@ -234,9 +248,8 @@ Index <- R6::R6Class(
       ### inform user about action and request confirmation
       if (confirm) {
         private$user_confirm(
-          action = "count elements",
-          identifier = identifier, missing_identifier = missing_identifier,
-          complete = FALSE
+          action = "count", identifier = identifier,
+          missing_identifier = missing_identifier, complete = FALSE
         )
       }
 
@@ -251,7 +264,7 @@ Index <- R6::R6Class(
     #' an \code{integer} \code{vector}
 
     indices = function(
-    identifier = character(), confirm = interactive() & self$confirm
+      identifier = "all", confirm = interactive() & self$confirm
     ) {
 
       private$check_input(identifier, confirm)
@@ -264,7 +277,7 @@ Index <- R6::R6Class(
       ### inform user about action and request confirmation
       if (confirm) {
         private$user_confirm(
-          action = "get element indices",
+          action = "get indices of",
           identifier = identifier, missing_identifier = missing_identifier,
           complete = FALSE
         )
@@ -285,7 +298,7 @@ Index <- R6::R6Class(
     print = function(...) {
       nelements <- length(private$elements)
       if (nelements > 0) {
-        cat("number of elements:", length(private$elements), "\n")
+        cat("number of elements:", self$number(), "\n")
         cat("identifiers used:", self$identifier, "\n")
       } else {
         cat("no elements saved yet")
@@ -342,7 +355,7 @@ Index <- R6::R6Class(
     missing_default = NA,
 
     check_input = function(
-    identifier = NULL, confirm = NULL, ids = NULL, missing_identifier = NULL
+      identifier = NULL, confirm = NULL, ids = NULL, missing_identifier = NULL
     ) {
 
       ### check 'identifier' input
@@ -375,14 +388,17 @@ Index <- R6::R6Class(
       checkmate::assert_character(
         identifier, any.missing = FALSE, min.len = 1, unique = TRUE
       )
+      if ("all" %in% identifier) {
+        return("all")
+      }
       identifier_translated <- names(private$translate_identifier(identifier))
       unknown <- which(!identifier_translated %in% self$identifier)
       if (length(unknown) > 0) {
         warning(
-          paste(
-            "I do not know the identifier(s)",
-            paste(identifier[unknown], collapse = ", "),
-            "and so I will ignore them."
+          paste0(
+            "I do not know the identifier(s) '",
+            paste(identifier[unknown], collapse = "', '"),
+            "' and hence I will ignore them."
           ),
           call. = FALSE, immediate. = TRUE
         )
@@ -392,30 +408,35 @@ Index <- R6::R6Class(
     },
 
     user_confirm = function(
-    action = character(), identifier = character(), ids = integer(),
-    missing_identifier = self$missing_identifier, complete = TRUE
+      action = character(), identifier = character(), ids = integer(),
+      missing_identifier = self$missing_identifier, complete = TRUE
     ) {
       checkmate::assert_flag(complete)
       cat("You are about to", action)
-      if (length(ids) > 0) {
-        cat(" with ids\n")
-        print(ids)
-        if (length(identifier) > 0) {
-          cat("and ")
-        }
+      if (any(identifier == "all")) {
+        cat(" all elements.\n")
       } else {
-        cat(" ")
-      }
-      if (length(identifier) > 0) {
-        cat("with identifiers:\n")
-        identifier_bool <- private$translate_identifier(identifier)
-        if (complete) {
-          identifier_bool <- private$complete_identifier_bool(
-            identifier_bool = identifier_bool,
-            missing_identifier = missing_identifier
-          )
+        cat(" element(s)")
+        if (length(ids) > 0) {
+          cat(" with ids\n")
+          print(ids)
+          if (length(identifier) > 0) {
+            cat("and ")
+          }
+        } else {
+          cat(" ")
         }
-        print(identifier_bool)
+        if (length(identifier) > 0) {
+          cat("with identifiers:\n")
+          identifier_bool <- private$translate_identifier(identifier)
+          if (complete) {
+            identifier_bool <- private$complete_identifier_bool(
+              identifier_bool = identifier_bool,
+              missing_identifier = missing_identifier
+            )
+          }
+          print(identifier_bool)
+        }
       }
       confirmation <- user_confirm("Is that alright?", default = TRUE)
       if (!confirmation) {
@@ -487,6 +508,9 @@ Index <- R6::R6Class(
     get_ids = function(identifier) {
       if (length(identifier) == 0) {
         return(integer())
+      }
+      if (any(identifier == "all")) {
+        return(seq_along(private$elements))
       }
       identifier_bool <- private$translate_identifier(identifier)
       ids <- apply(
