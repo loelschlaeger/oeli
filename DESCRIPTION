@@ -1,7 +1,7 @@
 Package: oeli
 Type: Package
 Title: Utilities for Developing Data Science Software
-Version: 0.2.0.9005
+Version: 0.2.0.9006
 Authors@R: c(
     person("Lennart", "Oelschl\u00e4ger", 
            email = "oelschlaeger.lennart@gmail.com", 
@@ -10,8 +10,8 @@ Authors@R: c(
 Description: Some general utilities (helper functions) that I and maybe others 
     find useful when developing data science software. Functionality includes 
     argument validation, density calculation, sampling, matrix printing, 
-    user interaction, storage helpers and more. Please see the vignettes for
-    more details.
+    user interaction, storage helpers and more. The vignettes illustrate use 
+    cases.
 License: GPL (>= 3)
 Encoding: UTF-8
 Suggests: 
