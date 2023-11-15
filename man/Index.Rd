@@ -73,6 +73,9 @@ my_index$get(ids = 4:5, id_names = TRUE)   # add the ids as names
 
 \item{\code{missing_identifier}}{setting the default value for not specified
 identifiers (either \code{TRUE}, \code{FALSE}, or \code{NA})}
+
+\item{\code{hide_warnings}}{either \code{TRUE} to hide warnings (for example
+if unknown identifiers are selected) or \code{FALSE} (default), else}
 }
 \if{html}{\out{</div>}}
 }

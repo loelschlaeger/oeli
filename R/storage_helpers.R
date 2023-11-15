@@ -342,6 +342,18 @@ Index <- R6::R6Class(
         checkmate::assert_flag(value, na.ok = TRUE)
         private$missing_default <- value
       }
+    },
+
+    #' @field hide_warnings either \code{TRUE} to hide warnings (for example
+    #' if unknown identifiers are selected) or \code{FALSE} (default), else
+
+    hide_warnings = function(value) {
+      if (missing(value)) {
+        private$.hide_warnings
+      } else {
+        checkmate::assert_flag(value, na.ok = TRUE)
+        private$.hide_warnings <- value
+      }
     }
 
   ),
@@ -353,6 +365,7 @@ Index <- R6::R6Class(
 
     confirm_default = FALSE,
     missing_default = NA,
+    .hide_warnings = FALSE,
 
     check_input = function(
       identifier = NULL, confirm = NULL, ids = NULL, missing_identifier = NULL
@@ -394,14 +407,16 @@ Index <- R6::R6Class(
       identifier_translated <- names(private$translate_identifier(identifier))
       unknown <- which(!identifier_translated %in% self$identifier)
       if (length(unknown) > 0) {
-        warning(
-          paste0(
-            "I do not know the identifier(s) '",
-            paste(identifier[unknown], collapse = "', '"),
-            "' and hence I will ignore them."
-          ),
-          call. = FALSE, immediate. = TRUE
-        )
+        if (!self$hide_warnings) {
+          warning(
+            paste0(
+              "I do not know the identifier(s) '",
+              paste(identifier[unknown], collapse = "', '"),
+              "' and hence I will ignore them."
+            ),
+            call. = FALSE, immediate. = TRUE
+          )
+        }
         identifier <- identifier[-unknown]
       }
       return(identifier)

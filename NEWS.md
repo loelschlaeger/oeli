@@ -18,7 +18,7 @@
 
 * Added argument `on_time_out` to function `timed()` that defines what action to take if the evaluation time exceeded (error, warning, or silent).
 
-* Added support to select `identifier = "all"` in `Index` object.
+* Added support to select `identifier = "all"` in `Index` object and to suppress warnings (if unknown identifiers were selected) (globally) via the `$hide_warnings` field.
 
 # oeli 0.2.0
 
