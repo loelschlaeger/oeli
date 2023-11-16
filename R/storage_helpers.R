@@ -157,7 +157,13 @@ Index <- R6::R6Class(
       if (length(identifier) > 0) {
         identifier <- private$check_identifier_known(identifier)
       } else if (length(ids) == 0) {
-        stop("please specify either 'identifier' or 'ids'")
+        if (!self$hide_warnings) {
+          warning(
+            "please specify either 'identifier' or 'ids'",
+            call. = FALSE, immediate. = TRUE
+          )
+        }
+        return(list())
       }
 
       ### inform user about action and request confirmation
