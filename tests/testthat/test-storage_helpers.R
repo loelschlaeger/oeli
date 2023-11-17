@@ -23,7 +23,18 @@ test_that("basic Index example works", {
     my_index$get(ids = 4:5, id_names = TRUE),
     2
   )
-  my_index$remove(ids = 4, shift_ids = FALSE)
+  expect_equal(
+    my_index$get(c("text", "!text")),
+    list()
+  )
+  expect_equal(
+    my_index$get(c("text", "!text"), logical = "or"),
+    my_index$get("all")
+  )
+  expect_equal(
+    my_index$remove(ids = c(2, 4:5), shift_ids = TRUE)$get("all"),
+    list(42, "fear of black cats")
+  )
 })
 
 test_that("lists can be merged", {

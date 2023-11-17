@@ -25,6 +25,13 @@
 #' \code{"all"} is reserved to select all elements)
 #' @param ids
 #' an \code{integer} \code{vector} of one or more ids
+#' @param logical
+#' in the case that multiple identifiers are selected, how should they be
+#' combined? options are:
+#' - \code{"and"} (the default): the identifiers are combined with logical and
+#'   (all identifiers must be true)
+#' - \code{"or"}: the identifiers are combined with logical or (at least one
+#'   identifier must be true)
 #' @param confirm
 #' either \code{TRUE} to be prompted for confirmation, or \code{FALSE} else
 #' @param missing_identifier
@@ -62,6 +69,8 @@
 #' my_index$get("!rational")
 #' my_index$get(c("text", "!rational"))
 #' my_index$get("all")                        # get all elements
+#' my_index$get(c("text", "!text"))
+#' my_index$get(c("text", "!text"), logical = "or")
 #'
 #' # 5. Extract elements based on ids:
 #' my_index$get(ids = 4:5)
@@ -141,7 +150,7 @@ Index <- R6::R6Class(
     #' the selected object(s)
 
     get = function(
-      identifier = character(), ids = integer(),
+      identifier = character(), ids = integer(), logical = "and",
       confirm = interactive() & self$confirm,
       missing_identifier = self$missing_identifier,
       id_names = FALSE
@@ -150,7 +159,7 @@ Index <- R6::R6Class(
       ### input checks
       private$check_input(
         identifier = identifier, confirm = confirm, ids = ids,
-        missing_identifier = missing_identifier
+        missing_identifier = missing_identifier, logical = logical
       )
 
       ### check for unknown identifier
@@ -170,13 +179,15 @@ Index <- R6::R6Class(
       if (confirm) {
         private$user_confirm(
           action = "extract", identifier = identifier, ids = ids,
-          missing_identifier = missing_identifier, complete = FALSE
+          missing_identifier = missing_identifier, complete = FALSE,
+          logical = logical
         )
       }
 
       ### get elements
       private$get_element(
-        identifier = identifier, ids = ids, id_names = id_names
+        identifier = identifier, ids = ids, id_names = id_names,
+        logical = logical
       )
 
     },
@@ -190,7 +201,7 @@ Index <- R6::R6Class(
     #' invisibly the \code{Index} object
 
     remove = function(
-      identifier = character(), ids = integer(),
+      identifier = character(), ids = integer(), logical = "and",
       confirm = interactive() & self$confirm,
       missing_identifier = self$missing_identifier, shift_ids = TRUE
     ) {
@@ -198,7 +209,7 @@ Index <- R6::R6Class(
       ### input checks
       private$check_input(
         identifier = identifier, confirm = confirm, ids = ids,
-        missing_identifier = missing_identifier
+        missing_identifier = missing_identifier, logical = logical
       )
       checkmate::assert_flag(shift_ids)
 
@@ -213,12 +224,21 @@ Index <- R6::R6Class(
       if (confirm) {
         private$user_confirm(
           action = "remove", identifier = identifier, ids = ids,
-          missing_identifier = missing_identifier, complete = FALSE
+          missing_identifier = missing_identifier, complete = FALSE,
+          logical = logical
         )
       }
 
       ### remove elements
-      ids <- private$merge_ids(ids, private$get_ids(identifier = identifier))
+      if (length(identifier) > 0 && length(ids) > 0) {
+        ids <- private$merge_ids(
+          ids,
+          private$get_ids(identifier = identifier, logical = logical),
+          logical = logical
+        )
+      } else if (length(identifier) > 0) {
+        ids <- private$get_ids(identifier = identifier, logical = logical)
+      }
       if (shift_ids) {
         private$elements[ids] <- NULL
         private$ids <- private$ids[-ids, ]
@@ -237,13 +257,13 @@ Index <- R6::R6Class(
 
     number = function(
       identifier = "all", missing_identifier = self$missing_identifier,
-      confirm = FALSE
+      logical = "and", confirm = FALSE
     ) {
 
       ### input checks
       private$check_input(
         identifier = identifier, missing_identifier = missing_identifier,
-        confirm = confirm
+        confirm = confirm, logical = logical
       )
 
       ### check for unknown identifier
@@ -255,12 +275,13 @@ Index <- R6::R6Class(
       if (confirm) {
         private$user_confirm(
           action = "count", identifier = identifier,
-          missing_identifier = missing_identifier, complete = FALSE
+          missing_identifier = missing_identifier, complete = FALSE,
+          logical = logical
         )
       }
 
       ### perform action
-      length(self$indices(identifier, confirm = confirm))
+      length(self$indices(identifier, confirm = confirm, logical = logical))
 
     },
 
@@ -270,10 +291,13 @@ Index <- R6::R6Class(
     #' an \code{integer} \code{vector}
 
     indices = function(
-      identifier = "all", confirm = interactive() & self$confirm
+      identifier = "all", logical = "and",
+      confirm = interactive() & self$confirm
     ) {
 
-      private$check_input(identifier, confirm)
+      private$check_input(
+        identifier = identifier, logical = logical, confirm = confirm
+      )
 
       ### check for unknown identifier
       if (length(identifier) > 0) {
@@ -285,12 +309,12 @@ Index <- R6::R6Class(
         private$user_confirm(
           action = "get indices of",
           identifier = identifier, missing_identifier = missing_identifier,
-          complete = FALSE
+          complete = FALSE, logical = logical
         )
       }
 
       ### perform action
-      private$get_ids(identifier = identifier)
+      private$get_ids(identifier = identifier, logical = logical)
 
     },
 
@@ -374,14 +398,13 @@ Index <- R6::R6Class(
     .hide_warnings = FALSE,
 
     check_input = function(
-      identifier = NULL, confirm = NULL, ids = NULL, missing_identifier = NULL
+      identifier = NULL, confirm = NULL, ids = NULL, missing_identifier = NULL,
+      logical = NULL
     ) {
 
       ### check 'identifier' input
       if (!is.null(identifier)) {
-        checkmate::assert_character(
-          identifier, any.missing = FALSE, unique = TRUE
-        )
+        checkmate::assert_character(identifier, any.missing = FALSE)
       }
 
       ### check 'confirm' input
@@ -389,11 +412,14 @@ Index <- R6::R6Class(
 
       ### check 'ids' input
       if (!is.null(ids)) {
-        checkmate::assert_integerish(
-          ids, lower = 1, any.missing = FALSE, unique = TRUE
-        )
+        checkmate::assert_integerish(ids, lower = 1, any.missing = FALSE)
       } else if (length(identifier) == 0) {
         stop("need at least one identifier", call. = FALSE)
+      }
+
+      ### check 'logical' input
+      if (!is.null(logical)) {
+        checkmate::assert_choice(logical, choices = c("and", "or"))
       }
 
       ### check 'missing_identifier' input
@@ -404,9 +430,7 @@ Index <- R6::R6Class(
     },
 
     check_identifier_known = function(identifier) {
-      checkmate::assert_character(
-        identifier, any.missing = FALSE, min.len = 1, unique = TRUE
-      )
+      checkmate::assert_character(identifier, any.missing = FALSE, min.len = 1)
       if ("all" %in% identifier) {
         return("all")
       }
@@ -430,7 +454,8 @@ Index <- R6::R6Class(
 
     user_confirm = function(
       action = character(), identifier = character(), ids = integer(),
-      missing_identifier = self$missing_identifier, complete = TRUE
+      missing_identifier = self$missing_identifier, complete = TRUE,
+      logical = "and"
     ) {
       checkmate::assert_flag(complete)
       cat("You are about to", action)
@@ -439,7 +464,11 @@ Index <- R6::R6Class(
       } else {
         cat(" element(s)")
         if (length(ids) > 0) {
-          cat(" with ids\n")
+          if (length(ids) == 1) {
+            cat(" with id\n")
+          } else {
+            cat(" with ids\n")
+          }
           print(ids)
           if (length(identifier) > 0) {
             cat("and ")
@@ -448,7 +477,17 @@ Index <- R6::R6Class(
           cat(" ")
         }
         if (length(identifier) > 0) {
-          cat("with identifiers:\n")
+          if (length(identifier) == 1) {
+            cat("with identifier:\n")
+          } else {
+            if (logical == "and") {
+              cat("with all these identifiers:\n")
+            } else if (logical == "or") {
+              cat("with at least one of these identifiers:\n")
+            } else {
+              stop("error")
+            }
+          }
           identifier_bool <- private$translate_identifier(identifier)
           if (complete) {
             identifier_bool <- private$complete_identifier_bool(
@@ -467,9 +506,7 @@ Index <- R6::R6Class(
     },
 
     add_identifier = function(identifier, missing_identifier) {
-      checkmate::assert_character(
-        identifier, any.missing = FALSE, min.len = 1, unique = TRUE
-      )
+      checkmate::assert_character(identifier, any.missing = FALSE, min.len = 1)
       stopifnot(length(intersect(identifier, self$identifier)) == 0)
       if (nrow(private$ids) == 0) {
         private$ids[1, ] <- NA
@@ -496,12 +533,17 @@ Index <- R6::R6Class(
       length(private$elements) + 1
     },
 
-    get_element = function(identifier, ids, id_names) {
+    get_element = function(identifier, ids, id_names, logical) {
       checkmate::assert_flag(id_names)
-      ids <- private$merge_ids(
-        ids,
-        private$get_ids(identifier = identifier)
-      )
+      if (length(identifier) > 0 && length(ids) > 0) {
+        ids <- private$merge_ids(
+          ids,
+          private$get_ids(identifier = identifier, logical = logical),
+          logical = logical
+        )
+      } else if (length(identifier) > 0) {
+        ids <- private$get_ids(identifier = identifier, logical = logical)
+      }
       structure(
         private$elements[ids],
         names = if (id_names) ids
@@ -526,30 +568,70 @@ Index <- R6::R6Class(
       return(identifier_bool)
     },
 
-    get_ids = function(identifier) {
+    get_ids = function(identifier, logical) {
+
+      ### check for identifier and inverse identifier
+      for (i in identifier) {
+        i_inverse <- ifelse(startsWith(i, "!"), substring(i, first = 2), paste0("!", i))
+        if (i %in% identifier && i_inverse %in% identifier) {
+          if (logical == "and") {
+            identifier <- integer()
+            break
+          } else {
+            identifier <- identifier[-which(identifier %in% c(i, i_inverse))]
+            if (length(identifier) == 0) {
+              identifier <- "all"
+              break
+            }
+          }
+        }
+      }
+
+      ### no identifiers selected
       if (length(identifier) == 0) {
         return(integer())
       }
-      if (any(identifier == "all")) {
-        return(seq_along(private$elements))
+
+      ### all identifiers selected
+      if ("all" %in% identifier) {
+        if (length(identifier) == 1 || logical == "or") {
+          return(seq_along(private$elements))
+        } else {
+          identifier <- identifier[-which(identifier == "all")]
+        }
       }
+
+      ### extract ids
       identifier_bool <- private$translate_identifier(identifier)
+      comparison <- if (logical == "and") {
+        identical
+      } else {
+        function(x, y) any(x == y)
+      }
       ids <- apply(
         private$ids[names(identifier_bool)],
         1,
-        identical,
+        comparison,
         identifier_bool
       )
       sort(unique(which(ids)))
+
     },
 
-    merge_ids = function(...) {
-      ids <- unlist(list(...))
+    merge_ids = function(..., logical) {
+      ids <- list(...)
+      if (logical == "and") {
+        ids <- Reduce(intersect, ids)
+      } else if (logical == "or") {
+        ids <- unique(unlist(ids))
+      } else {
+        stop("error")
+      }
       checkmate::assert_integerish(ids, lower = 1, any.missing = FALSE)
       if (length(ids) == 0) {
         return(integer())
       } else {
-        sort(unique(ids))
+        sort(ids)
       }
     }
 

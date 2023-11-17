@@ -20,6 +20,8 @@
 
 * Added support to select `identifier = "all"` in `Index` object and to suppress warnings (if unknown identifiers were selected) (globally) via the `$hide_warnings` field.
 
+* Added argument `logical` to `Index` object to combine multiple identifiers either with logical and or logical or.
+
 # oeli 0.2.0
 
 * Added function `timed()` which evaluates an expression and interrupts the evaluation after a defined amount of seconds.

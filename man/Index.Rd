@@ -58,6 +58,8 @@ my_index$get("rational")
 my_index$get("!rational")
 my_index$get(c("text", "!rational"))
 my_index$get("all")                        # get all elements
+my_index$get(c("text", "!text"))
+my_index$get(c("text", "!text"), logical = "or")
 
 # 5. Extract elements based on ids:
 my_index$get(ids = 4:5)
@@ -146,6 +148,7 @@ getting elements
 \if{html}{\out{<div class="r">}}\preformatted{Index$get(
   identifier = character(),
   ids = integer(),
+  logical = "and",
   confirm = interactive() & self$confirm,
   missing_identifier = self$missing_identifier,
   id_names = FALSE
@@ -159,6 +162,15 @@ getting elements
 \code{"all"} is reserved to select all elements)}
 
 \item{\code{ids}}{an \code{integer} \code{vector} of one or more ids}
+
+\item{\code{logical}}{in the case that multiple identifiers are selected, how should they be
+combined? options are:
+\itemize{
+\item \code{"and"} (the default): the identifiers are combined with logical and
+(all identifiers must be true)
+\item \code{"or"}: the identifiers are combined with logical or (at least one
+identifier must be true)
+}}
 
 \item{\code{confirm}}{either \code{TRUE} to be prompted for confirmation, or \code{FALSE} else}
 
@@ -183,6 +195,7 @@ removing elements
 \if{html}{\out{<div class="r">}}\preformatted{Index$remove(
   identifier = character(),
   ids = integer(),
+  logical = "and",
   confirm = interactive() & self$confirm,
   missing_identifier = self$missing_identifier,
   shift_ids = TRUE
@@ -196,6 +209,15 @@ removing elements
 \code{"all"} is reserved to select all elements)}
 
 \item{\code{ids}}{an \code{integer} \code{vector} of one or more ids}
+
+\item{\code{logical}}{in the case that multiple identifiers are selected, how should they be
+combined? options are:
+\itemize{
+\item \code{"and"} (the default): the identifiers are combined with logical and
+(all identifiers must be true)
+\item \code{"or"}: the identifiers are combined with logical or (at least one
+identifier must be true)
+}}
 
 \item{\code{confirm}}{either \code{TRUE} to be prompted for confirmation, or \code{FALSE} else}
 
@@ -220,6 +242,7 @@ computing the number of identified elements
 \if{html}{\out{<div class="r">}}\preformatted{Index$number(
   identifier = "all",
   missing_identifier = self$missing_identifier,
+  logical = "and",
   confirm = FALSE
 )}\if{html}{\out{</div>}}
 }
@@ -232,6 +255,15 @@ computing the number of identified elements
 
 \item{\code{missing_identifier}}{the \code{logical} value for not specified identifiers (either \code{NA},
 \code{TRUE}, or \code{FALSE})}
+
+\item{\code{logical}}{in the case that multiple identifiers are selected, how should they be
+combined? options are:
+\itemize{
+\item \code{"and"} (the default): the identifiers are combined with logical and
+(all identifiers must be true)
+\item \code{"or"}: the identifiers are combined with logical or (at least one
+identifier must be true)
+}}
 
 \item{\code{confirm}}{either \code{TRUE} to be prompted for confirmation, or \code{FALSE} else}
 }
@@ -247,7 +279,11 @@ an \code{integer}
 \subsection{Method \code{indices()}}{
 returning indices based on defined identifiers
 \subsection{Usage}{
-\if{html}{\out{<div class="r">}}\preformatted{Index$indices(identifier = "all", confirm = interactive() & self$confirm)}\if{html}{\out{</div>}}
+\if{html}{\out{<div class="r">}}\preformatted{Index$indices(
+  identifier = "all",
+  logical = "and",
+  confirm = interactive() & self$confirm
+)}\if{html}{\out{</div>}}
 }
 
 \subsection{Arguments}{
@@ -255,6 +291,15 @@ returning indices based on defined identifiers
 \describe{
 \item{\code{identifier}}{a \code{character} \code{vector} with one or more identifiers (the identifier
 \code{"all"} is reserved to select all elements)}
+
+\item{\code{logical}}{in the case that multiple identifiers are selected, how should they be
+combined? options are:
+\itemize{
+\item \code{"and"} (the default): the identifiers are combined with logical and
+(all identifiers must be true)
+\item \code{"or"}: the identifiers are combined with logical or (at least one
+identifier must be true)
+}}
 
 \item{\code{confirm}}{either \code{TRUE} to be prompted for confirmation, or \code{FALSE} else}
 }
