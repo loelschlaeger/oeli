@@ -431,11 +431,8 @@ Index <- R6::R6Class(
 
     check_identifier_known = function(identifier) {
       checkmate::assert_character(identifier, any.missing = FALSE, min.len = 1)
-      if ("all" %in% identifier) {
-        return("all")
-      }
       identifier_translated <- names(private$translate_identifier(identifier))
-      unknown <- which(!identifier_translated %in% self$identifier)
+      unknown <- which(!identifier_translated %in% c("all", self$identifier))
       if (length(unknown) > 0) {
         if (!self$hide_warnings) {
           warning(

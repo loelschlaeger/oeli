@@ -28,8 +28,16 @@ test_that("basic Index example works", {
     list()
   )
   expect_equal(
-    my_index$get(c("text", "!text"), logical = "or"),
-    my_index$get("all")
+    my_index$indices(c("text", "!text"), logical = "or"),
+    1:5
+  )
+  expect_equal(
+    my_index$indices(c("all", "!rational"), logical = "or"),
+    1:5
+  )
+  expect_equal(
+    my_index$indices(identifier = c("all", "!rational"), logical = "and"),
+    2:3
   )
   expect_equal(
     my_index$remove(ids = c(2, 4:5), shift_ids = TRUE)$get("all"),
