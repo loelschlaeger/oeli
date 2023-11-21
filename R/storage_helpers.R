@@ -161,15 +161,11 @@ Index <- R6::R6Class(
         identifier = identifier, confirm = confirm, ids = ids,
         missing_identifier = missing_identifier, logical = logical
       )
-
-      ### check for unknown identifier
-      if (length(identifier) > 0) {
-        identifier <- private$check_identifier_known(identifier)
-      } else if (length(ids) == 0) {
+      if (length(identifier) == 0 && length(ids) == 0) {
         if (!self$hide_warnings) {
           warning(
             "please specify either 'identifier' or 'ids'",
-            call. = FALSE, immediate. = TRUE
+            call. = FALSE, immediate. = FALSE
           )
         }
         return(list())
@@ -212,12 +208,14 @@ Index <- R6::R6Class(
         missing_identifier = missing_identifier, logical = logical
       )
       checkmate::assert_flag(shift_ids)
-
-      ### check for unknown identifier
-      if (length(identifier) > 0) {
-        identifier <- private$check_identifier_known(identifier)
-      } else if (length(ids) == 0) {
-        stop("please specify either 'identifier' or 'ids'")
+      if (length(identifier) == 0 && length(ids) == 0) {
+        if (!self$hide_warnings) {
+          warning(
+            "please specify either 'identifier' or 'ids'",
+            call. = FALSE, immediate. = FALSE
+          )
+        }
+        return(list())
       }
 
       ### inform user about action and request confirmation
@@ -266,11 +264,6 @@ Index <- R6::R6Class(
         confirm = confirm, logical = logical
       )
 
-      ### check for unknown identifier
-      if (length(identifier) > 0) {
-        identifier <- private$check_identifier_known(identifier)
-      }
-
       ### inform user about action and request confirmation
       if (confirm) {
         private$user_confirm(
@@ -295,14 +288,10 @@ Index <- R6::R6Class(
       confirm = interactive() & self$confirm
     ) {
 
+      ### input checks
       private$check_input(
         identifier = identifier, logical = logical, confirm = confirm
       )
-
-      ### check for unknown identifier
-      if (length(identifier) > 0) {
-        identifier <- private$check_identifier_known(identifier)
-      }
 
       ### inform user about action and request confirmation
       if (confirm) {
@@ -429,8 +418,9 @@ Index <- R6::R6Class(
 
     },
 
-    check_identifier_known = function(identifier) {
+    check_identifier_known = function(identifier, logical) {
       checkmate::assert_character(identifier, any.missing = FALSE, min.len = 1)
+      checkmate::assert_choice(logical, c("and", "or"))
       identifier_translated <- names(private$translate_identifier(identifier))
       unknown <- which(!identifier_translated %in% c("all", self$identifier))
       if (length(unknown) > 0) {
@@ -438,13 +428,30 @@ Index <- R6::R6Class(
           warning(
             paste0(
               "I do not know the identifier(s) '",
-              paste(identifier[unknown], collapse = "', '"),
-              "' and hence I will ignore them."
+              paste(identifier[unknown], collapse = "', '"), "'."
             ),
-            call. = FALSE, immediate. = TRUE
+            call. = FALSE, immediate. = FALSE
           )
         }
-        identifier <- identifier[-unknown]
+        if (logical == "and") {
+          if (!self$hide_warnings) {
+            warning(
+              "Because 'logical = \"and\", no element is selected.",
+              call. = FALSE, immediate. = FALSE
+            )
+          }
+          return(integer())
+        } else if (logical == "or") {
+          if (!self$hide_warnings) {
+            warning(
+              "Because 'logical = \"or\", I will ignore them.",
+              call. = FALSE, immediate. = FALSE
+            )
+          }
+          identifier <- identifier[-unknown]
+        } else {
+          stop("error")
+        }
       }
       return(identifier)
     },
@@ -566,6 +573,11 @@ Index <- R6::R6Class(
     },
 
     get_ids = function(identifier, logical) {
+
+      ### check for unknown identifier
+      identifier <- private$check_identifier_known(
+        identifier = identifier, logical = logical
+      )
 
       ### check for identifier and inverse identifier
       for (i in identifier) {
