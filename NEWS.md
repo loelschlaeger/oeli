@@ -22,7 +22,7 @@
 
 * Added argument `logical` to `Index` object to combine multiple identifiers either with logical and or logical or.
 
-* Added function `unknown_error()` that handles an unknown error.
+* Added function `unexpected_error()` that handles an unknown error.
 
 # oeli 0.2.0
 

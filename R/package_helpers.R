@@ -95,10 +95,10 @@ basic_package_sticker <- function(package_name, brackets = TRUE) {
   usethis::use_logo(img = filename)
 }
 
-#' Handling of an unknown error
+#' Handling of an unexpected error
 #'
 #' @description
-#' This function reacts to an unknown error by throwing an error and linking
+#' This function reacts to an unexpected error by throwing an error and linking
 #' to a GitHub issues site with the request to submit an issue.
 #'
 #' @param msg
@@ -111,8 +111,8 @@ basic_package_sticker <- function(package_name, brackets = TRUE) {
 #' @return
 #' No return value, but it throws an error.
 
-unknown_error <- function(
-    msg = "We are sorry, an unknown error occured.",
+unexpected_error <- function(
+    msg = "We are sorry, an unexpected error occured.",
     issue_link = "https://github.com/loelschlaeger/oeli/issues"
   ) {
   checkmate::assert_string(msg, min.chars = 1)
