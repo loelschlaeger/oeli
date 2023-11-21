@@ -24,6 +24,10 @@
 
 * Added function `unexpected_error()` that handles an unknown error.
 
+* Added function `group_data_frame()` that groups a `data.frame` according to the values of a column.
+
+* Added function `delete_data_frame_columns()` that deletes columns of a `data.frame`.
+
 # oeli 0.2.0
 
 * Added function `timed()` which evaluates an expression and interrupts the evaluation after a defined amount of seconds.
