@@ -101,6 +101,8 @@ basic_package_sticker <- function(package_name, brackets = TRUE) {
 #' This function reacts to an unknown error by throwing an error and linking
 #' to a GitHub issues site with the request to submit an issue.
 #'
+#' @param msg
+#' A \code{character}, an error message.
 #' @param issue_link
 #' A \code{character}, the URL to a GitHub issues site.
 #'
@@ -109,14 +111,20 @@ basic_package_sticker <- function(package_name, brackets = TRUE) {
 #' @return
 #' No return value, but it throws an error.
 
-unknown_error <- function(issue_link = "https://github.com/loelschlaeger/oeli/issues") {
+unknown_error <- function(
+    msg = "We are sorry, an unknown error occured.",
+    issue_link = "https://github.com/loelschlaeger/oeli/issues"
+  ) {
+  checkmate::assert_string(msg, min.chars = 1)
   checkmate::assert_string(
     issue_link, pattern = "^https://github.com/[[:alpha:]]*/[[:alpha:]]*/issues$"
   )
-  msg <- c(
-    "We are sorry, an unknown error occured.",
-    "i" = paste("Please submit an issue here:", cli::style_hyperlink(issue_link, issue_link))
+  cli::cli_abort(
+    c(
+      msg,
+      "i" = paste("Please submit an issue here:", cli::style_hyperlink(issue_link, issue_link))
+    ),
+    call = NULL
   )
-  cli::cli_abort(msg)
 }
 

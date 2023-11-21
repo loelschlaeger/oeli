@@ -4,9 +4,14 @@
 \alias{unknown_error}
 \title{Handling of an unknown error}
 \usage{
-unknown_error(issue_link = "https://github.com/loelschlaeger/oeli/issues")
+unknown_error(
+  msg = "We are sorry, an unknown error occured.",
+  issue_link = "https://github.com/loelschlaeger/oeli/issues"
+)
 }
 \arguments{
+\item{msg}{A \code{character}, an error message.}
+
 \item{issue_link}{A \code{character}, the URL to a GitHub issues site.}
 }
 \value{

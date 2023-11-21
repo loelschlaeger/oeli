@@ -4,7 +4,10 @@ test_that("handling of an unknown error works", {
     "Assertion on 'issue_link' failed"
   )
   expect_error(
-    unknown_error(issue_link = "https://github.com/loelschlaeger/oeli/issues"),
-    "We are sorry, an unknown error occured."
+    unknown_error(
+      msg = "upps",
+      issue_link = "https://github.com/loelschlaeger/oeli/issues"
+    ),
+    "upps"
   )
 })
