@@ -22,6 +22,8 @@
 
 * Added argument `logical` to `Index` object to combine multiple identifiers either with logical and or logical or.
 
+* Added function `unknown_error()` that handles an unknown error.
+
 # oeli 0.2.0
 
 * Added function `timed()` which evaluates an expression and interrupts the evaluation after a defined amount of seconds.

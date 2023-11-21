@@ -113,10 +113,10 @@ Index <- R6::R6Class(
 
       ### input checks
       if (missing(x)) {
-        stop("please specify the object 'x' to be added", call = FALSE)
+        stop("please specify the object 'x' to be added", call. = FALSE)
       }
       if (missing(identifier)) {
-        stop("please specify at least one entry for 'identifier'", call = FALSE)
+        stop("please specify at least one entry for 'identifier'", call. = FALSE)
       }
       private$check_input(
         identifier = identifier, confirm = confirm,
@@ -450,7 +450,7 @@ Index <- R6::R6Class(
           }
           identifier <- identifier[-unknown]
         } else {
-          stop("error")
+          unknown_error()
         }
       }
       return(identifier)
@@ -489,7 +489,7 @@ Index <- R6::R6Class(
             } else if (logical == "or") {
               cat("with at least one of these identifiers:\n")
             } else {
-              stop("error")
+              unknown_error()
             }
           }
           identifier_bool <- private$translate_identifier(identifier)
@@ -634,7 +634,7 @@ Index <- R6::R6Class(
       } else if (logical == "or") {
         ids <- unique(unlist(ids))
       } else {
-        stop("error")
+        unknown_error()
       }
       checkmate::assert_integerish(ids, lower = 1, any.missing = FALSE)
       if (length(ids) == 0) {
