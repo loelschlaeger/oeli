@@ -12,6 +12,8 @@
 #' Either \code{TRUE} to have curly brackets around the package name (default)
 #' or \code{FALSE} if not.
 #'
+#' @export
+#'
 #' @return
 #' No return value, but it runs \code{\link[usethis]{use_logo}} in the end.
 
@@ -101,6 +103,8 @@ basic_package_sticker <- function(package_name, brackets = TRUE) {
 #'
 #' @param issue_link
 #' A \code{character}, the URL to a GitHub issues site.
+#'
+#' @export
 #'
 #' @return
 #' No return value, but it throws an error.
