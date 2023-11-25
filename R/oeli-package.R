@@ -16,6 +16,7 @@
 #' @importFrom ggplot2 theme_void
 #' @importFrom hexSticker sticker
 #' @importFrom Rcpp evalCpp
+#' @importFrom rprojroot find_package_root_file
 #' @importFrom showtext showtext_auto
 #' @importFrom stats rWishart
 #' @importFrom sysfonts font_add_google
