@@ -30,6 +30,8 @@
 
 * Added function `renv_development_packages()` that creates a file that loads development packages so that `{renv}` can detect and write them to the lockfile.
 
+* Added function `plot_sequence()` that plots a sequence of numbers.
+
 # oeli 0.2.0
 
 * Added function `timed()` which evaluates an expression and interrupts the evaluation after a defined amount of seconds.

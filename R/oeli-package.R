@@ -15,6 +15,7 @@
 #' @importFrom ggplot2 ggplot
 #' @importFrom ggplot2 theme_void
 #' @importFrom hexSticker sticker
+#' @importFrom latex2exp TeX
 #' @importFrom Rcpp evalCpp
 #' @importFrom rprojroot find_package_root_file
 #' @importFrom showtext showtext_auto
