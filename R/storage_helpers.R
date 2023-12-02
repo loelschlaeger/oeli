@@ -1,4 +1,4 @@
-#' Index R6 Object
+#' Storage R6 Object
 #'
 #' @description
 #' Provides a simple indexing interface for list elements based on R6.
@@ -40,9 +40,9 @@
 #'
 #' @return
 #' The output depends on the method:
-#' - \code{$new()} returns an \code{Index} object.
+#' - \code{$new()} returns a \code{Storage} object.
 #' - \code{$add()}, \code{$remove()}, and \code{$print()} invisibly return the
-#'   \code{Index} object (to allow for method chaining)
+#'   \code{Storage} object (to allow for method chaining)
 #' - \code{$get()} returns the requested element(s)
 #' - \code{$number()} returns an \code{integer}
 #' - \code{$indices()} return an \code{integer} \code{vector}
@@ -50,11 +50,11 @@
 #' @export
 #'
 #' @examples
-#' ### 1. Create an `Index` object:
-#' my_index <- Index$new()
+#' ### 1. Create a `Storage` object:
+#' my_storage <- Storage$new()
 #'
 #' # 2. Add elements along with identifiers:
-#' my_index$
+#' my_storage$
 #'   add(42, c("number", "rational"))$
 #'   add(pi, c("number", "!rational"))$
 #'   add("fear of black cats", c("text", "!rational"))$
@@ -62,32 +62,32 @@
 #'   add(mean, "function")
 #'
 #' # 3. What elements are stored?
-#' print(my_index)
+#' print(my_storage)
 #'
 #' # 4. Extract elements based on identifiers:
-#' my_index$get("rational")
-#' my_index$get("!rational")
-#' my_index$get(c("text", "!rational"))
-#' my_index$get("all")                        # get all elements
-#' my_index$get(c("text", "!text"))
-#' my_index$get(c("text", "!text"), logical = "or")
+#' my_storage$get("rational")
+#' my_storage$get("!rational")
+#' my_storage$get(c("text", "!rational"))
+#' my_storage$get("all")                        # get all elements
+#' my_storage$get(c("text", "!text"))
+#' my_storage$get(c("text", "!text"), logical = "or")
 #'
 #' # 5. Extract elements based on ids:
-#' my_index$get(ids = 4:5)
-#' my_index$get(ids = 4:5, id_names = TRUE)   # add the ids as names
+#' my_storage$get(ids = 4:5)
+#' my_storage$get(ids = 4:5, id_names = TRUE)   # add the ids as names
 
-Index <- R6::R6Class(
+Storage <- R6::R6Class(
 
-  classname = "Index",
+  classname = "Storage",
   lock_class = TRUE,
   cloneable = FALSE,
 
   public = list(
 
     #' @description
-    #' initializing an \code{Index} object
+    #' initializing a \code{Storage} object
     #' @return
-    #' a new \code{Index} object
+    #' a new \code{Storage} object
 
     initialize = function() {
 
@@ -104,7 +104,7 @@ Index <- R6::R6Class(
     #' @param x
     #' any object to be saved
     #' @return
-    #' invisibly the \code{Index} object
+    #' invisibly the \code{Storage} object
 
     add = function(
       x, identifier, confirm = interactive() & self$confirm,
@@ -194,7 +194,7 @@ Index <- R6::R6Class(
     #' either \code{TRUE} to shift ids when in-between elements are removed,
     #' or \code{TRUE} to keep the ids
     #' @return
-    #' invisibly the \code{Index} object
+    #' invisibly the \code{Storage} object
 
     remove = function(
       identifier = character(), ids = integer(), logical = "and",
@@ -312,7 +312,7 @@ Index <- R6::R6Class(
     #' @param ...
     #' currently not used
     #' @return
-    #' invisibly the \code{Index} object
+    #' invisibly the \code{Storage} object
 
     print = function(...) {
       nelements <- length(private$elements)
@@ -647,37 +647,6 @@ Index <- R6::R6Class(
   )
 )
 
-#' Merge named lists
-#'
-#' @description
-#' This function merges \code{list}s based on their element names. Elements are
-#' only included in the final output \code{list}, if no former \code{list} has
-#' contributed an element with the same name.
-#'
-#' @param ...
-#' One or more named \code{list}(s).
-#'
-#' @return
-#' A \code{list}.
-#'
-#' @examples
-#' merge_lists(list("a" = 1, "b" = 2), list("b" = 3, "c" = 4))
-#'
-#' @export
-
-merge_lists <- function(...) {
-  inputs <- list(...)
-  lapply(inputs, function(input) checkmate::assert_list(input, names = "unique"))
-  final <- list()
-  for (input in inputs) {
-    for (element in names(input)) {
-      if (!element %in% names(final)) {
-        final[[element]] <- input[[element]]
-      }
-    }
-  }
-  return(final)
-}
 
 
 

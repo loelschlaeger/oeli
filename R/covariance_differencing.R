@@ -1,5 +1,3 @@
-# These functions provide tools for the estimation of covariance matrices.
-
 #' Difference and un-difference covariance matrix
 #'
 #' @description

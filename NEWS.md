@@ -1,4 +1,4 @@
-# oeli development
+# oeli 0.3.0
 
 * Added function `check_date()` which checks if the input has the correct date format.
 
@@ -31,6 +31,10 @@
 * Added function `renv_development_packages()` that creates a file that loads development packages so that `{renv}` can detect and write them to the lockfile.
 
 * Added function `plot_sequence()` that plots a sequence of numbers.
+
+* Renamed `Index` -> `Storage`.
+
+* Initialized a package website with `{pkgdown}` and started to add vignettes.
 
 # oeli 0.2.0
 

@@ -1,7 +1,3 @@
-# These functions provide tools for getting the Cholesky root elements of a
-# covariance matrix and, conversely, building a covariance matrix from its
-# Cholesky root elements.
-
 #' Get Cholesky root elements and build covariance matrix
 #'
 #' @description

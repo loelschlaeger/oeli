@@ -1,4 +1,4 @@
-# My Utilities for Developing R Software <img src="man/figures/logo.png" align="right" height="139" alt="" />
+# My Utilities for Developing R Software <a href="https://loelschlaeger.de/oeli"><img src="man/figures/logo.png" align="right" height="138" /></a>
 
 <!-- badges: start -->
 [![CRAN status](https://www.r-pkg.org/badges/version/oeli)](https://CRAN.R-project.org/package=oeli)
@@ -8,37 +8,41 @@
 
 This R package contains some general utilities that I and maybe others find useful when developing data science software:
 
-- Helpers for argument validation.
+- [argument validation](https://loelschlaeger.de/oeli/docs/articles/argument_validation.html)
 
-- Helpers to calculate density values.
+- calculating density values
 
-- Helpers to work with Cholesky roots.
+- catching exceptions
 
-- Helpers to difference covariance matrices.
+- working with Cholesky roots
 
-- Helpers to work with dates.
+- differencing covariance matrices
 
-- Helpers to create a dictionary.
+- working with data frames
 
-- Helpers to work with functions and its arguments.
+- working with dates
 
-- Helpers to estimate hidden Markov models.
+- creating a dictionary
 
-- Helpers to work with indices.
+- working with functions and their arguments
 
-- Helpers to create Markov chains.
+- estimating hidden Markov models
 
-- Helpers to work with matrices.
+- working with indices
 
-- Helpers to build an R package.
+- working with lists
 
-- Helpers for sampling.
+- creating Markov chains
 
-- Helpers for storage of data.
+- working with matrices
 
-- Helpers for timed evaluations.
+- helpers for building an R package
 
-- Helpers to catch exceptions.
+- sampling from densities
 
-- Helpers for user interaction.
+- [storing data](https://loelschlaeger.de/oeli/docs/articles/storage_helpers.html)
+
+- timed evaluations
+
+- user interactions
 
