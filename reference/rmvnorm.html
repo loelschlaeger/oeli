@@ -94,12 +94,12 @@ a <code>matrix</code> of dimension <code>n</code> times <code>p</code> with samp
     <div class="sourceCode"><pre class="sourceCode r"><code><span class="r-in"><span><span class="va">mean</span> <span class="op">&lt;-</span> <span class="fu"><a href="https://rdrr.io/r/base/c.html" class="external-link">c</a></span><span class="op">(</span><span class="fl">0</span>, <span class="fl">0</span><span class="op">)</span></span></span>
 <span class="r-in"><span><span class="va">Sigma</span> <span class="op">&lt;-</span> <span class="fu"><a href="https://rdrr.io/r/base/diag.html" class="external-link">diag</a></span><span class="op">(</span><span class="fl">2</span><span class="op">)</span></span></span>
 <span class="r-in"><span><span class="fu">rmvnorm</span><span class="op">(</span>n <span class="op">=</span> <span class="fl">3</span>, mean <span class="op">=</span> <span class="va">mean</span>, Sigma <span class="op">=</span> <span class="va">Sigma</span><span class="op">)</span></span></span>
-<span class="r-out co"><span class="r-pr">#&gt;</span>          [,1]       [,2]</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> [1,] 1.226239 -0.3547269</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> [2,] 1.665565 -1.0659413</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> [3,] 1.314146  1.0867550</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span>             [,1]       [,2]</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> [1,] -0.02787394 -0.3857759</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> [2,] -0.69663933  0.1485492</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> [3,] -0.77580606  1.6436623</span>
 <span class="r-in"><span><span class="fu">rmvnorm</span><span class="op">(</span>mean <span class="op">=</span> <span class="va">mean</span>, Sigma <span class="op">=</span> <span class="va">Sigma</span>, log <span class="op">=</span> <span class="cn">TRUE</span><span class="op">)</span></span></span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> [1] 2.1562783 0.2306765</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> [1] 1.446612 2.776917</span>
 <span class="r-in"><span></span></span>
 </code></pre></div>
     </div>
