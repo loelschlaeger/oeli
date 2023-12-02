@@ -8,7 +8,7 @@
 
 This R package contains some general utilities that I and maybe others find useful when developing data science software:
 
-- [argument validation](https://loelschlaeger.de/oeli/docs/articles/argument_validation.html)
+- [argument validation](https://loelschlaeger.de/oeli/articles/argument_validation.html)
 
 - calculating density values
 
@@ -40,7 +40,7 @@ This R package contains some general utilities that I and maybe others find usef
 
 - sampling from densities
 
-- [storing data](https://loelschlaeger.de/oeli/docs/articles/storage_helpers.html)
+- [storing data](https://loelschlaeger.de/oeli/articles/storage_helpers.html)
 
 - timed evaluations
 
