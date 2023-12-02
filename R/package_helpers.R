@@ -18,7 +18,6 @@
 #' No return value, but it runs \code{\link[usethis]{use_logo}} in the end.
 
 basic_package_sticker <- function(package_name, brackets = TRUE) {
-
   ### input checks
   checkmate::assert_string(package_name)
   checkmate::assert_flag(brackets)
@@ -46,7 +45,8 @@ basic_package_sticker <- function(package_name, brackets = TRUE) {
   sticker_file <- hexSticker::sticker(
 
     ### image
-    subplot = ggplot2::ggplot() + ggplot2::theme_void(),
+    subplot = ggplot2::ggplot() +
+      ggplot2::theme_void(),
     s_x = 1,
     s_y = 1,
     s_width = 2,
@@ -86,7 +86,8 @@ basic_package_sticker <- function(package_name, brackets = TRUE) {
     filename = filename,
     asp = 1,
     dpi = 300
-  ); sticker_file
+  )
+  sticker_file
 
   ### message
   message("path:", filename)
@@ -113,11 +114,11 @@ basic_package_sticker <- function(package_name, brackets = TRUE) {
 
 unexpected_error <- function(
     msg = "We are sorry, an unexpected error occured.",
-    issue_link = "https://github.com/loelschlaeger/oeli/issues"
-  ) {
+    issue_link = "https://github.com/loelschlaeger/oeli/issues") {
   checkmate::assert_string(msg, min.chars = 1)
   checkmate::assert_string(
-    issue_link, pattern = "^https://github.com/[[:alpha:]]*/[[:alpha:]]*/issues$"
+    issue_link,
+    pattern = "^https://github.com/[[:alpha:]]*/[[:alpha:]]*/issues$"
   )
   cli::cli_abort(
     c(
@@ -147,9 +148,7 @@ unexpected_error <- function(
 
 renv_development_packages <- function(
     packages = c("covr", "devtools", "DT", "markdown", "R.utils", "yaml"),
-    file_name = "development_packages"
-  ) {
-
+    file_name = "development_packages") {
   is_package <- tryCatch(
     rprojroot::find_package_root_file(),
     error = function(e) FALSE
@@ -182,7 +181,7 @@ renv_development_packages <- function(
       writeLines(
         c(
           paste0("if (!require(\"", package, "\", quietly = TRUE)) {"),
-          paste0("  renv::install(\"",  package, "\", prompt = FALSE)"),
+          paste0("  renv::install(\"", package, "\", prompt = FALSE)"),
           "}"
         ),
         con = file_connection
@@ -193,4 +192,3 @@ renv_development_packages <- function(
   usethis::use_build_ignore(paste0(file_name, ".R"))
   return(invisible(NULL))
 }
-

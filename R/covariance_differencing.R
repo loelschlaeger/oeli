@@ -74,11 +74,10 @@ undiff_cov <- function(cov_diff, ref = 1) {
 #' @rdname diff_cov
 #' @export
 
-delta <- function(ref = 1, dim){
+delta <- function(ref = 1, dim) {
   checkmate::assert_int(dim, lower = 2)
   checkmate::assert_int(ref, lower = 1, upper = dim)
   D <- diag(dim)
   D[, ref] <- -1
   D[-ref, , drop = FALSE]
 }
-

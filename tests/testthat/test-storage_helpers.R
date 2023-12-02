@@ -44,4 +44,3 @@ test_that("basic Storage example works", {
     list(42, "fear of black cats")
   )
 })
-

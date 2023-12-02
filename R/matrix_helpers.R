@@ -46,8 +46,7 @@
 
 print_matrix <- function(
     x, rowdots = 4, coldots = 4, digits = 2, label = NULL, simplify = FALSE,
-    details = !simplify
-) {
+    details = !simplify) {
   checkmate::assert_int(rowdots, lower = 1)
   checkmate::assert_int(coldots, lower = 1)
   checkmate::assert_int(digits)
@@ -58,11 +57,11 @@ print_matrix <- function(
     stopifnot(length(label) == 1)
   }
   add_dots <- function(x, pos) {
-    if (length(x) > pos) c(x[seq_len(pos-1)], "...", x[length(x)]) else x
+    if (length(x) > pos) c(x[seq_len(pos - 1)], "...", x[length(x)]) else x
   }
   if (is.numeric(x)) x <- round(x, digits)
   if (!is.null(label)) cat(label, ": ")
-  if (length(x) == 1){
+  if (length(x) == 1) {
     cat(x)
   } else if (!is.matrix(x)) {
     if (details) {
@@ -97,15 +96,21 @@ print_matrix <- function(
         col_labs <- add_dots(col_labs, 1)
       }
     } else {
-      x2 <- if(nrow(x) == 1) {
+      x2 <- if (nrow(x) == 1) {
         cbind(x[1, 1:coldots, drop = FALSE], x[1, ncol(x), drop = FALSE])
-      } else if(ncol(x) == 1) {
+      } else if (ncol(x) == 1) {
         rbind(x[1:rowdots, 1, drop = FALSE], x[nrow(x), 1, drop = FALSE])
       } else {
-        rbind(cbind(x[1:rowdots, 1:coldots, drop = FALSE],
-                    x[1:rowdots, ncol(x), drop = FALSE]),
-              cbind(x[nrow(x), 1:coldots, drop = FALSE],
-                    x[nrow(x), ncol(x), drop = FALSE]))
+        rbind(
+          cbind(
+            x[1:rowdots, 1:coldots, drop = FALSE],
+            x[1:rowdots, ncol(x), drop = FALSE]
+          ),
+          cbind(
+            x[nrow(x), 1:coldots, drop = FALSE],
+            x[nrow(x), ncol(x), drop = FALSE]
+          )
+        )
       }
       charx <- as.character(x2)
       dim(charx) <- dim(x2)
@@ -123,7 +128,9 @@ print_matrix <- function(
         col_labs <- add_dots(col_labs, pos = coldots)
       } else if (nrow(x) > rowdots + 1 && ncol(x) > coldots + 1) {
         smallx <- t(apply(charx[seq_len(rowdots - 1), , drop = FALSE], 1,
-                          add_dots, pos = coldots))
+          add_dots,
+          pos = coldots
+        ))
         res <- rbind(
           smallx,
           rep("...", ncol(smallx)),
@@ -138,10 +145,13 @@ print_matrix <- function(
     }
     if (simplify) {
       cat(paste("[", paste(apply(res, 1, paste, collapse = " "),
-                           collapse = "; "), "]"))
+        collapse = "; "
+      ), "]"))
     } else {
-      prmatrix(res, rowlab = row_labs, collab = col_labs, quote = FALSE,
-               right = TRUE)
+      prmatrix(res,
+        rowlab = row_labs, collab = col_labs, quote = FALSE,
+        right = TRUE
+      )
     }
   }
   return(invisible(x))
@@ -184,4 +194,3 @@ matrix_indices <- function(x, prefix = "", exclude_diagonal = FALSE) {
   indices <- apply(indices, 1, paste, collapse = "")
   paste0(prefix, indices)
 }
-

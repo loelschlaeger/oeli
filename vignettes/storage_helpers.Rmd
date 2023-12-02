@@ -36,12 +36,12 @@ print(my_storage)
 my_storage$get("rational")
 my_storage$get("!rational")
 my_storage$get(c("text", "!rational"))
-my_storage$get("all")                        # get all elements
+my_storage$get("all") # get all elements
 my_storage$get(c("text", "!text"))
 my_storage$get(c("text", "!text"), logical = "or")
 
 # 5. Extract elements based on ids:
 my_storage$get(ids = 4:5)
-my_storage$get(ids = 4:5, id_names = TRUE)   # add the ids as names
+my_storage$get(ids = 4:5, id_names = TRUE) # add the ids as names
 ```
 

@@ -38,7 +38,7 @@ test_that("Multivariate normal density can be computed", {
 test_that("(Inverse-) Wishart density can be computed", {
   x <- diag(2)
   df <- 4
-  scale <- matrix(c(1,0.2,0.2,2), 2, 2)
+  scale <- matrix(c(1, 0.2, 0.2, 2), 2, 2)
   factor <- 1000
   expect_equal(
     round(dwishart(x = x, df = df, scale = scale, log = FALSE, inv = FALSE) * factor) / factor,
@@ -61,4 +61,3 @@ test_that("(Inverse-) Wishart density can be computed", {
     "Assertion on 'df' failed: Element 1 is not >= 2."
   )
 })
-

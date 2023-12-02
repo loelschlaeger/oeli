@@ -28,7 +28,7 @@ A \code{ggplot2} object.
 This function plots a sequence of numbers.
 }
 \examples{
-definition <- function(n) ifelse(n \%in\% factorial(1:10), 1, 1/n)
+definition <- function(n) ifelse(n \%in\% factorial(1:10), 1, 1 / n)
 plot_sequence(definition)
 
 }

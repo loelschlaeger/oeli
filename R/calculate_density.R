@@ -58,4 +58,3 @@ dwishart <- function(x, df, scale, log = FALSE, inv = FALSE) {
   checkmate::assert_flag(inv)
   dwishart_cpp(x, df, scale, log, inv)
 }
-

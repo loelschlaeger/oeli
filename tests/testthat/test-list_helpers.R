@@ -16,4 +16,3 @@ test_that("lists can be merged", {
     list(a = 1, b = 2, c = 4, d = 5)
   )
 })
-

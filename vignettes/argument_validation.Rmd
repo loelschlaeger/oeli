@@ -19,7 +19,7 @@ library("oeli")
 
 ```{r}
 match_arg(
-  arg = "lo", 
+  arg = "lo",
   choices = c("loooong", "else"),
   several.ok = FALSE,
   none.ok = FALSE
@@ -54,7 +54,8 @@ check_correlation_matrix(
 
 ```{r}
 check_probability_vector(
-  1:5 / sum(1:5), len = 4
+  1:5 / sum(1:5),
+  len = 4
 )
 ```
 

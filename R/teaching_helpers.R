@@ -17,15 +17,13 @@
 #' A \code{ggplot2} object.
 #'
 #' @examples
-#' definition <- function(n) ifelse(n %in% factorial(1:10), 1, 1/n)
+#' definition <- function(n) ifelse(n %in% factorial(1:10), 1, 1 / n)
 #' plot_sequence(definition)
 #'
 #' @export
 
 plot_sequence <- function(
-    definition = function(n) 1/n, start = 1, end = 100, limits = numeric()
-  ) {
-
+    definition = function(n) 1 / n, start = 1, end = 100, limits = numeric()) {
   ### input checks
   checkmate::assert_function(definition, args = "n")
   checkmate::assert_int(start, lower = 0)
@@ -45,7 +43,7 @@ plot_sequence <- function(
     x_limit <- ggplot2::scale_x_continuous()
   }
   plot <- ggplot2::ggplot(
-    data = data,ggplot2::aes(x = indices, y = sequence, group = 1)
+    data = data, ggplot2::aes(x = indices, y = sequence, group = 1)
   ) +
     ggplot2::geom_point() +
     ggplot2::geom_line() +
@@ -58,4 +56,3 @@ plot_sequence <- function(
   ### return plot
   return(plot)
 }
-

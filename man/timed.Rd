@@ -28,7 +28,7 @@ Note the limitations documented in \code{\link[base]{setTimeLimit}}.
 }
 \examples{
 foo <- function(x) {
-  for(i in 1:10) Sys.sleep(x/10)
+  for (i in 1:10) Sys.sleep(x / 10)
   return(x)
 }
 timed(foo(0.5), 1)
