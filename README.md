@@ -1,4 +1,4 @@
-# My Utilities for Developing R Software <a href="https://loelschlaeger.de/oeli"><img src="man/figures/logo.png" align="right" height="138" /></a>
+# My Utilities for Developing R Software <a href="https://loelschlaeger.de/oeli/"><img src="man/figures/logo.png" align="right" height="138" /></a>
 
 <!-- badges: start -->
 [![CRAN status](https://www.r-pkg.org/badges/version/oeli)](https://CRAN.R-project.org/package=oeli)
