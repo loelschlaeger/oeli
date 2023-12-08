@@ -118,14 +118,18 @@
     },
     "Rcpp": {
       "Package": "Rcpp",
-      "Version": "1.0.11",
-      "Source": "Repository",
-      "Repository": "RSPM",
+      "Version": "1.0.11.6",
+      "Source": "GitHub",
+      "RemoteType": "github",
+      "RemoteHost": "api.github.com",
+      "RemoteUsername": "RcppCore",
+      "RemoteRepo": "Rcpp",
+      "RemoteRef": "master",
       "Requirements": [
         "methods",
         "utils"
       ],
-      "Hash": "ae6cbbe1492f4de79c45fce06f967ce8"
+      "Hash": "76a92803f4f5a2dabe21026a4113cd24"
     },
     "RcppArmadillo": {
       "Package": "RcppArmadillo",

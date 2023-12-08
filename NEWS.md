@@ -1,3 +1,7 @@
+# oeli 0.3.1
+
+* Fixed https://github.com/RcppCore/Rcpp/issues/1287.
+
 # oeli 0.3.0
 
 * Added function `check_date()` which checks if the input has the correct date format.

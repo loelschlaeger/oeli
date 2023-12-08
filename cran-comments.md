@@ -1,1 +1,1 @@
-This package update will break the {optimizeR} package, the maintainers of the affected packages (that is actually only me).
+Fixed the problems shown on <https://cran.r-project.org/web/checks/check_results_oeli.html>.
