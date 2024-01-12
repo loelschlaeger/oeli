@@ -25,6 +25,26 @@ test_that("names of function arguments can be extracted", {
     function_arguments(f, with_ellipsis = FALSE),
     character()
   )
+  f <- function (x, a = 20, b = 0.2, c = 2 * pi) {
+    -a * exp(-b * sqrt(mean(x^2))) - exp(mean(cos(c * x))) +
+      a + exp(1)
+  }
+  expect_equal(
+    function_arguments(f, with_default = TRUE, with_ellipsis = TRUE),
+    c("x", "a", "b", "c")
+  )
+  expect_equal(
+    function_arguments(f, with_default = TRUE, with_ellipsis = FALSE),
+    c("x", "a", "b", "c")
+  )
+  expect_equal(
+    function_arguments(f, with_default = FALSE, with_ellipsis = TRUE),
+    c("x")
+  )
+  expect_equal(
+    function_arguments(f, with_default = FALSE, with_ellipsis = FALSE),
+    c("x")
+  )
 })
 
 test_that("default values of a function can be returned", {

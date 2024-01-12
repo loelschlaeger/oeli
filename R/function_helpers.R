@@ -32,7 +32,7 @@ function_arguments <- function(f, with_default = TRUE, with_ellipsis = TRUE) {
   }
   if (!with_default) {
     args <- args[sapply(seq_along(args), function(n) {
-      !nzchar(args[[n]]) & is.name(args[[n]])
+      any(!nzchar(args[[n]]) & is.name(args[[n]]))
     })]
   }
   if (!with_ellipsis) {
