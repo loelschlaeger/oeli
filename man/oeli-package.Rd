@@ -4,7 +4,7 @@
 \name{oeli-package}
 \alias{oeli}
 \alias{oeli-package}
-\title{oeli: Utilities for Developing Data Science Software}
+\title{oeli: My Utilities for Developing Data Science Software}
 \description{
 \if{html}{\figure{logo.png}{options: style='float: right' alt='logo' width='120'}}
 
@@ -14,6 +14,7 @@ Some general utilities (helper functions) that I and maybe others find useful wh
 Useful links:
 \itemize{
   \item \url{https://github.com/loelschlaeger/oeli}
+  \item \url{http://loelschlaeger.de/oeli/}
   \item Report bugs at \url{https://github.com/loelschlaeger/oeli/issues}
 }
 

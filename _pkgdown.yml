@@ -1,0 +1,12 @@
+template:
+  bootstrap: 5
+  bootswatch: simplex
+
+url: http://loelschlaeger.de/oeli/
+
+home:
+  title: Utilities for Developing R Software
+
+authors:
+  Lennart Oelschläger:
+    href: https://loelschlaeger.de

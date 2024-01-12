@@ -62,8 +62,7 @@ stationary_distribution <- function(tpm, soft_fail = FALSE) {
 #' @export
 
 simulate_markov_chain <- function(
-    Gamma, T, delta = stationary_distribution(Gamma)
-) {
+    Gamma, T, delta = stationary_distribution(Gamma)) {
   assert_transition_probability_matrix(Gamma)
   checkmate::assert_int(T, lower = 1)
   assert_probability_vector(delta, len = nrow(Gamma))

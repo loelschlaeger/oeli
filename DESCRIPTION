@@ -1,7 +1,7 @@
 Package: oeli
 Type: Package
-Title: Utilities for Developing Data Science Software
-Version: 0.2.0.9009
+Title: My Utilities for Developing Data Science Software
+Version: 0.3.1
 Authors@R: c(
     person("Lennart", "Oelschl\u00e4ger", 
            email = "oelschlaeger.lennart@gmail.com", 
@@ -26,7 +26,9 @@ Imports:
     cli,
     ggplot2,
     hexSticker,
+    latex2exp,
     Rcpp,
+    rprojroot,
     showtext,
     stats,
     sysfonts,
@@ -35,7 +37,7 @@ LinkingTo:
     Rcpp,
     RcppArmadillo,
     testthat
-URL: https://github.com/loelschlaeger/oeli
+URL: https://github.com/loelschlaeger/oeli, http://loelschlaeger.de/oeli/
 BugReports: https://github.com/loelschlaeger/oeli/issues
 Roxygen: list(markdown = TRUE)
 VignetteBuilder: knitr

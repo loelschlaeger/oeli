@@ -1,4 +1,8 @@
-# oeli development
+# oeli 0.3.1
+
+* Fixed https://github.com/RcppCore/Rcpp/issues/1287.
+
+# oeli 0.3.0
 
 * Added function `check_date()` which checks if the input has the correct date format.
 
@@ -21,6 +25,20 @@
 * Added support to select `identifier = "all"` in `Index` object and to suppress warnings (if unknown identifiers were selected) (globally) via the `$hide_warnings` field.
 
 * Added argument `logical` to `Index` object to combine multiple identifiers either with logical and or logical or.
+
+* Added function `unexpected_error()` that handles an unknown error.
+
+* Added function `group_data_frame()` that groups a `data.frame` according to the values of a column.
+
+* Added function `delete_data_frame_columns()` that deletes columns of a `data.frame`.
+
+* Added function `renv_development_packages()` that creates a file that loads development packages so that `{renv}` can detect and write them to the lockfile.
+
+* Added function `plot_sequence()` that plots a sequence of numbers.
+
+* Renamed `Index` -> `Storage`.
+
+* Initialized a package website with `{pkgdown}` and started to add vignettes.
 
 # oeli 0.2.0
 

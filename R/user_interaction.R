@@ -16,7 +16,7 @@
 #'
 #' @export
 
-user_confirm <- function (question = "Question?", default = FALSE) {
+user_confirm <- function(question = "Question?", default = FALSE) {
   checkmate::assert_flag(default)
   if (!interactive()) {
     return(default)
@@ -44,4 +44,3 @@ user_confirm <- function (question = "Question?", default = FALSE) {
     cli::cli_inform("Please enter 'y' or 'n'.")
   }
 }
-

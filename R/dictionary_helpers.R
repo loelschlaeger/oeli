@@ -33,41 +33,42 @@
 #' @export
 
 Dictionary <- R6::R6Class(
-
   classname = "Dictionary",
   lock_class = TRUE,
   cloneable = FALSE,
-
   public = list(
 
     #' @description
     #' initializing a \code{Dictionary} object
     #' @return
     #' a new \code{Dictionary} object
-
     initialize = function(
-    key_name, alias_name = NULL, value_names = character(),
-    value_assert = alist(), allow_overwrite = TRUE,
-    keys_reserved = character(), alias_choices = NULL,
-    dictionary_name = NULL
-    ) {
+        key_name, alias_name = NULL, value_names = character(),
+        value_assert = alist(), allow_overwrite = TRUE,
+        keys_reserved = character(), alias_choices = NULL,
+        dictionary_name = NULL) {
       checkmate::assert_string(key_name)
       checkmate::assert_string(alias_name, null.ok = TRUE)
       checkmate::assert_character(
-        value_names, any.missing = FALSE, unique = TRUE
+        value_names,
+        any.missing = FALSE, unique = TRUE
       )
       checkmate::assert_list(
-        value_assert, types = "call", any.missing = FALSE
+        value_assert,
+        types = "call", any.missing = FALSE
       )
       checkmate::assert_names(
-        names(value_assert), type = "unique", subset.of = value_names
+        names(value_assert),
+        type = "unique", subset.of = value_names
       )
       checkmate::assert_flag(allow_overwrite)
       checkmate::assert_character(
-        keys_reserved, any.missing = FALSE, unique = TRUE
+        keys_reserved,
+        any.missing = FALSE, unique = TRUE
       )
       checkmate::assert_character(
-        alias_choices, any.missing = FALSE, unique = TRUE, null.ok = TRUE
+        alias_choices,
+        any.missing = FALSE, unique = TRUE, null.ok = TRUE
       )
       checkmate::assert_string(dictionary_name, null.ok = TRUE)
       private$.key_name <- key_name
@@ -154,7 +155,7 @@ Dictionary <- R6::R6Class(
     #' invisibly the \code{Dictionary} object
 
     print = function() {
-      cat("<Dictionary>", private$.dictionary_name,"\n")
+      cat("<Dictionary>", private$.dictionary_name, "\n")
       if (length(self$keys) == 0) {
         cat("No elements contained.")
       } else {
@@ -163,14 +164,11 @@ Dictionary <- R6::R6Class(
       }
       invisible(self)
     }
-
   ),
-
   active = list(
 
     #' @field keys
     #' A \code{character} \code{vector} of available keys.
-
     keys = function(value) {
       if (missing(value)) {
         names(private$.storage)
@@ -189,11 +187,8 @@ Dictionary <- R6::R6Class(
         stop("read only")
       }
     }
-
   ),
-
   private = list(
-
     .storage = list(),
     .alias_list = list(),
     .key_name = NA_character_,
@@ -205,16 +200,17 @@ Dictionary <- R6::R6Class(
     .keys_reserved = character(),
     .alias_choices = NULL,
     .dictionary_name = NULL,
-
     .check_inputs = function(inputs) {
       input_names_required <- c(private$.key_name, private$.value_names)
       checkmate::assert_names(
-        names(inputs), subset.of = c(input_names_required, private$.alias_name)
+        names(inputs),
+        subset.of = c(input_names_required, private$.alias_name)
       )
       checkmate::assert_string(inputs[[private$.key_name]])
       if (private$.alias_activated && !is.null(private$.alias_choices)) {
         checkmate::assert_subset(
-          inputs[[private$.alias_name]], choices = private$.alias_choices
+          inputs[[private$.alias_name]],
+          choices = private$.alias_choices
         )
       }
       if (inputs[[private$.key_name]] %in% private$.keys_reserved) {
@@ -224,7 +220,7 @@ Dictionary <- R6::R6Class(
         )
       }
       if (private$.key_exists(inputs[[private$.key_name]]) &&
-          !private$.allow_overwrite
+        !private$.allow_overwrite
       ) {
         stop(
           "The key '", inputs[[private$.key_name]], "' already exists.",
@@ -239,7 +235,6 @@ Dictionary <- R6::R6Class(
         }
       }
     },
-
     .add_to_storage = function(inputs) {
       key <- inputs[[private$.key_name]]
       private$.storage[[key]] <- inputs[private$.value_names]
@@ -249,7 +244,6 @@ Dictionary <- R6::R6Class(
         }
       }
     },
-
     .key_exists = function(key) {
       key %in% self$keys
     }

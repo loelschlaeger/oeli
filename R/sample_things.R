@@ -140,13 +140,12 @@ sample_transition_probability_matrix <- function(dim, state_persistent = TRUE) {
 #' @export
 
 sample_covariance_matrix <- function(
-    dim, df = dim, scale = diag(dim), diag = FALSE
-) {
+    dim, df = dim, scale = diag(dim), diag = FALSE) {
   checkmate::assert_count(dim, positive = TRUE)
   checkmate::assert_int(df, lower = dim)
   assert_covariance_matrix(scale, dim = dim)
   checkmate::assert_flag(diag)
-  cov <- solve(stats::rWishart(1, df = df, Sigma = scale)[,,1])
+  cov <- solve(stats::rWishart(1, df = df, Sigma = scale)[, , 1])
   if (diag) cov[row(cov) != col(cov)] <- 0
   assert_covariance_matrix(cov)
   return(cov)

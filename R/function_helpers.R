@@ -102,9 +102,9 @@ function_body <- function(fun, braces = FALSE, nchar = getOption("width") - 4) {
   checkmate::assert_flag(braces)
   checkmate::assert_int(nchar, lower = 3)
   out <- deparse1(body(fun))
-  if (!braces) out <- gsub("^[{]|[}]$","", out)
+  if (!braces) out <- gsub("^[{]|[}]$", "", out)
   out <- trimws(gsub("\\s+", " ", out))
-  if (nchar(out) > nchar) out <- paste0(strtrim(out, nchar - 3), '...')
+  if (nchar(out) > nchar) out <- paste0(strtrim(out, nchar - 3), "...")
   out
 }
 
@@ -132,9 +132,10 @@ function_body <- function(fun, braces = FALSE, nchar = getOption("width") - 4) {
 
 variable_name <- function(variable, fallback = "unnamed") {
   argument_name <- deparse(
-    eval.parent(substitute(substitute(variable))), width.cutoff = 500L
+    eval.parent(substitute(substitute(variable))),
+    width.cutoff = 500L
   )
-  if(!checkmate::test_string(argument_name)) {
+  if (!checkmate::test_string(argument_name)) {
     checkmate::assert_string(fallback)
     argument_name <- fallback
   }

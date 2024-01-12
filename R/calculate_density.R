@@ -1,6 +1,3 @@
-# These functions calculate density values. They base on C++ implementation
-# but provide additional input checks.
-
 #' @inherit ddirichlet_cpp title description return
 #' @inheritParams ddirichlet_cpp
 #'
@@ -61,4 +58,3 @@ dwishart <- function(x, df, scale, log = FALSE, inv = FALSE) {
   checkmate::assert_flag(inv)
   dwishart_cpp(x, df, scale, log, inv)
 }
-

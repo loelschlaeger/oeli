@@ -1,0 +1,61 @@
+---
+title: "Helpers for argument validation"
+output: rmarkdown::html_vignette
+vignette: >
+  %\VignetteIndexEntry{Helpers for argument validation}
+  %\VignetteEngine{knitr::rmarkdown}
+  %\VignetteEncoding{UTF-8}
+---
+
+```{r, setup, include = FALSE}
+knitr::opts_chunk$set(
+  collapse = TRUE,
+  comment = "#>"
+)
+library("oeli")
+```
+
+## The `match_arg()` function
+
+```{r}
+match_arg(
+  arg = "lo",
+  choices = c("loooong", "else"),
+  several.ok = FALSE,
+  none.ok = FALSE
+)
+```
+
+## The `check_covariance_matrix()` function
+
+```{r}
+check_covariance_matrix(
+  matrix(c(1, 2, 2, 1), nrow = 2) * -1
+)
+```
+
+## The `check_correlation_matrix()` function
+
+```{r}
+check_correlation_matrix(
+  matrix(c(1, 0, 0, 0), nrow = 2)
+)
+```
+
+## The `check_transition_probability_matrix()` function
+
+```{r}
+check_correlation_matrix(
+  matrix(c(1, 1, 0, 1), nrow = 2)
+)
+```
+
+## The `check_probability_vector()` function
+
+```{r}
+check_probability_vector(
+  1:5 / sum(1:5),
+  len = 4
+)
+```
+

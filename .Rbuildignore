@@ -8,3 +8,7 @@
 ^dev_pkgs\.R$
 ^CRAN-SUBMISSION$
 ^cran-comments\.md$
+^development_packages\.R$
+^_pkgdown\.yml$
+^docs$
+^pkgdown$

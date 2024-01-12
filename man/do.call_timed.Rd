@@ -25,7 +25,10 @@ This function is a wrapper for \code{\link[base]{do.call}}.
 }
 \examples{
 \dontrun{
-what <- function(s) { Sys.sleep(s); return(s) }
+what <- function(s) {
+  Sys.sleep(s)
+  return(s)
+}
 args <- list(s = 1)
 do.call_timed(what = what, args = args)
 }

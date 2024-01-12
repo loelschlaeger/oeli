@@ -22,7 +22,7 @@
 #'
 #' @examples
 #' foo <- function(x) {
-#'   for(i in 1:10) Sys.sleep(x/10)
+#'   for (i in 1:10) Sys.sleep(x / 10)
 #'   return(x)
 #' }
 #' timed(foo(0.5), 1)
@@ -31,8 +31,7 @@
 #' @export
 
 timed <- function(
-    expression, seconds = Inf, on_time_out = "silent"
-  ) {
+    expression, seconds = Inf, on_time_out = "silent") {
   checkmate::assert_number(seconds, lower = 0)
   checkmate::assert_choice(on_time_out, c("error", "warning", "silent"))
   setTimeLimit(cpu = seconds, elapsed = seconds, transient = TRUE)
@@ -79,7 +78,10 @@ timed <- function(
 #'
 #' @examples
 #' \dontrun{
-#' what <- function(s) { Sys.sleep(s); return(s) }
+#' what <- function(s) {
+#'   Sys.sleep(s)
+#'   return(s)
+#' }
 #' args <- list(s = 1)
 #' do.call_timed(what = what, args = args)
 #' }

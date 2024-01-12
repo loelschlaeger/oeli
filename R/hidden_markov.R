@@ -36,7 +36,7 @@ ll_hmm <- function(theta, data, states, sdd, neg = FALSE, ...) {
   par <- as.list.parameter(theta, hmm = hmm, ...)
   Tp <- length(data)
   allprobs <- matrix(1, nrow = length(data), ncol = hmm$states)
-  for (s in seq_len(ncol(allprobs))){
+  for (s in seq_len(ncol(allprobs))) {
     allprobs[, s] <- sdd_call(
       sdd = hmm$sdd, par_sdd = par$parameter_sdd[[s]], mode = "density",
       x = data
@@ -45,7 +45,7 @@ ll_hmm <- function(theta, data, states, sdd, neg = FALSE, ...) {
   foo <- par$init %*% diag(allprobs[1, ])
   llk <- log(sum(foo))
   phi <- foo / sum(foo)
-  for(t in seq_len(Tp)[-1]){
+  for (t in seq_len(Tp)[-1]) {
     foo <- phi %*% par$tpm %*% diag(allprobs[t, ])
     llk <- llk + log(sum(foo))
     phi <- foo / sum(foo)
@@ -169,7 +169,7 @@ sdds_dictionary <- Dictionary$new(
     "rng" = checkmate::assert_function(),
     "parameter_names" = checkmate::assert_character(any.missing = FALSE, unique = TRUE),
     "parameter_lower_bound" = checkmate::assert_numeric(any.missing = FALSE),
-    "parameter_upper_bound"= checkmate::assert_numeric(any.missing = FALSE)
+    "parameter_upper_bound" = checkmate::assert_numeric(any.missing = FALSE)
   ),
   allow_overwrite = FALSE,
   dictionary_name = "Available state-dependent distributions"
@@ -215,7 +215,8 @@ sdds_dictionary <- Dictionary$new(
 
 sdd_call <- function(sdd, par_sdd, mode, ...) {
   checkmate::assert_choice(
-    mode, choice = c("density", "distribution", "quantile", "rng")
+    mode,
+    choice = c("density", "distribution", "quantile", "rng")
   )
   what <- sdd[[mode]]
   checkmate::assert_function(x = what)
