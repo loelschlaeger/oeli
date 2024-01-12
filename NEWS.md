@@ -1,3 +1,7 @@
+# oeli development
+
+* Fixed bug in `function_arguments()`.
+
 # oeli 0.3.1
 
 * Fixed https://github.com/RcppCore/Rcpp/issues/1287.
