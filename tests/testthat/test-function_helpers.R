@@ -25,7 +25,7 @@ test_that("names of function arguments can be extracted", {
     function_arguments(f, with_ellipsis = FALSE),
     character()
   )
-  f <- function (x, a = 20, b = 0.2, c = 2 * pi) {
+  f <- function(x, a = 20, b = 0.2, c = 2 * pi) {
     -a * exp(-b * sqrt(mean(x^2))) - exp(mean(cos(c * x))) +
       a + exp(1)
   }

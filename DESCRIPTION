@@ -1,7 +1,7 @@
 Package: oeli
 Type: Package
 Title: My Utilities for Developing Data Science Software
-Version: 0.3.1.9000
+Version: 0.3.2
 Authors@R: c(
     person("Lennart", "Oelschl\u00e4ger", 
            email = "oelschlaeger.lennart@gmail.com", 
@@ -20,7 +20,7 @@ Suggests:
     testthat (>= 3.0.0),
     xml2
 Config/testthat/edition: 3
-RoxygenNote: 7.2.3
+RoxygenNote: 7.3.0
 Imports: 
     checkmate,
     cli,
