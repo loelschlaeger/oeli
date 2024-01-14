@@ -10,7 +10,7 @@
     
     <a class="navbar-brand me-2" href="../index.html">oeli</a>
 
-    <small class="nav-text text-muted me-auto" data-bs-toggle="tooltip" data-bs-placement="bottom" title="">0.3.1.9000</small>
+    <small class="nav-text text-muted me-auto" data-bs-toggle="tooltip" data-bs-placement="bottom" title="">0.3.2</small>
 
     
     <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbar" aria-controls="navbar" aria-expanded="false" aria-label="Toggle navigation">
@@ -94,12 +94,12 @@ a <code>matrix</code> of dimension <code>n</code> times <code>p</code> with samp
     <div class="sourceCode"><pre class="sourceCode r"><code><span class="r-in"><span><span class="va">mean</span> <span class="op">&lt;-</span> <span class="fu"><a href="https://rdrr.io/r/base/c.html" class="external-link">c</a></span><span class="op">(</span><span class="fl">0</span>, <span class="fl">0</span><span class="op">)</span></span></span>
 <span class="r-in"><span><span class="va">Sigma</span> <span class="op">&lt;-</span> <span class="fu"><a href="https://rdrr.io/r/base/diag.html" class="external-link">diag</a></span><span class="op">(</span><span class="fl">2</span><span class="op">)</span></span></span>
 <span class="r-in"><span><span class="fu">rmvnorm</span><span class="op">(</span>n <span class="op">=</span> <span class="fl">3</span>, mean <span class="op">=</span> <span class="va">mean</span>, Sigma <span class="op">=</span> <span class="va">Sigma</span><span class="op">)</span></span></span>
-<span class="r-out co"><span class="r-pr">#&gt;</span>            [,1]      [,2]</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> [1,]  1.0845849 0.6843550</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> [2,] -0.7060558 0.8741677</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> [3,] -0.5518076 0.4727184</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span>            [,1]        [,2]</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> [1,]  1.6833072 -1.67618560</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> [2,]  0.7784530 -0.07089282</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> [3,] -0.6221067 -0.75665604</span>
 <span class="r-in"><span><span class="fu">rmvnorm</span><span class="op">(</span>mean <span class="op">=</span> <span class="va">mean</span>, Sigma <span class="op">=</span> <span class="va">Sigma</span>, log <span class="op">=</span> <span class="cn">TRUE</span><span class="op">)</span></span></span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> [1] 1.2265564 0.9314683</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> [1] 4.411914 2.433293</span>
 <span class="r-in"><span></span></span>
 </code></pre></div>
     </div>
