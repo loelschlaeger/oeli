@@ -1,8 +1,12 @@
 # oeli development
 
-* Fixed bug in `function_arguments()`.
-
 * Fixed bug in checks for matrices by checking for `NA`, `NaN` and infinite values.
+
+* Incrementing RoxygenNote to 7.3.0.
+
+# oeli 0.3.2
+
+* Fixed bug in `function_arguments()`.
 
 # oeli 0.3.1
 

@@ -42,11 +42,10 @@ Dictionary <- R6::R6Class(
     #' initializing a \code{Dictionary} object
     #' @return
     #' a new \code{Dictionary} object
-    initialize = function(
-        key_name, alias_name = NULL, value_names = character(),
-        value_assert = alist(), allow_overwrite = TRUE,
-        keys_reserved = character(), alias_choices = NULL,
-        dictionary_name = NULL) {
+    initialize = function(key_name, alias_name = NULL, value_names = character(),
+                          value_assert = alist(), allow_overwrite = TRUE,
+                          keys_reserved = character(), alias_choices = NULL,
+                          dictionary_name = NULL) {
       checkmate::assert_string(key_name)
       checkmate::assert_string(alias_name, null.ok = TRUE)
       checkmate::assert_character(
