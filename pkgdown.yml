@@ -4,7 +4,7 @@ pkgdown_sha: ~
 articles:
   argument_validation: argument_validation.html
   storage_helpers: storage_helpers.html
-last_built: 2024-01-15T14:30Z
+last_built: 2024-01-15T14:32Z
 urls:
   reference: http://loelschlaeger.de/oeli/reference
   article: http://loelschlaeger.de/oeli/articles
