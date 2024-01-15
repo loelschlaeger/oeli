@@ -2,6 +2,8 @@
 
 * Fixed bug in `function_arguments()`.
 
+* Fixed bug in checks for matrices by checking for `NA`, `NaN` and infinite values.
+
 # oeli 0.3.1
 
 * Fixed https://github.com/RcppCore/Rcpp/issues/1287.

@@ -90,6 +90,15 @@ check_covariance_matrix <- function(
   if (nrow(x) != ncol(x)) {
     return("Must be square")
   }
+  if (any(is.na(x))) {
+    return("Must not have NA values")
+  }
+  if (any(is.nan(x))) {
+    return("Must not have NaN values")
+  }
+  if (any(!is.finite(x))) {
+    return("Must not have infinite values")
+  }
   if (any(abs(x - t(x)) > tolerance)) {
     return("Must be symmetric")
   }
@@ -149,6 +158,15 @@ check_correlation_matrix <- function(
   }
   if (nrow(x) != ncol(x)) {
     return("Must be square")
+  }
+  if (any(is.na(x))) {
+    return("Must not have NA values")
+  }
+  if (any(is.nan(x))) {
+    return("Must not have NaN values")
+  }
+  if (any(!is.finite(x))) {
+    return("Must not have infinite values")
   }
   if (any(abs(x - t(x)) > tolerance)) {
     return("Must be symmetric")
@@ -213,6 +231,15 @@ check_transition_probability_matrix <- function(
   if (nrow(x) != ncol(x)) {
     return("Must be square")
   }
+  if (any(is.na(x))) {
+    return("Must not have NA values")
+  }
+  if (any(is.nan(x))) {
+    return("Must not have NaN values")
+  }
+  if (any(!is.finite(x))) {
+    return("Must not have infinite values")
+  }
   if (any(x < 0 | x > 1)) {
     return("Must have values between 0 and 1")
   }
@@ -272,6 +299,15 @@ check_probability_vector <- function(
   res2 <- checkmate::check_numeric(x, lower = 0, upper = 1)
   if (!isTRUE(res2)) {
     return(res2)
+  }
+  if (any(is.na(x))) {
+    return("Must not have NA values")
+  }
+  if (any(is.nan(x))) {
+    return("Must not have NaN values")
+  }
+  if (any(!is.finite(x))) {
+    return("Must not have infinite values")
   }
   if (abs(sum(x) - 1) > tolerance) {
     return("Must add up to 1")
