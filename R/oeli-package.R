@@ -3,6 +3,8 @@
 "_PACKAGE"
 
 ## usethis namespace: start
+#' @importFrom benchmarkme get_cpu
+#' @importFrom benchmarkme get_ram
 #' @importFrom checkmate assert_character
 #' @importFrom checkmate assert_count
 #' @importFrom checkmate assert_flag
