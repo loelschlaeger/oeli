@@ -192,3 +192,33 @@ renv_development_packages <- function(
   usethis::use_build_ignore(paste0(file_name, ".R"))
   return(invisible(NULL))
 }
+
+#' General system level information
+#'
+#' @description
+#' This function returns a \code{list} of general system level information.
+#'
+#' @export
+#'
+#' @return
+#' A \code{list} with elements:
+#' \itemize{
+#'   \item \code{maschine}, the model name of the device
+#'   \item \code{cores}, the number of cores
+#'   \item \code{RAM}, the size of the RAM
+#'   \item \code{OS}, the operating system
+#'   \item \code{r_version}, the R version used
+#' }
+
+system_information <- function() {
+  cpu <- benchmarkme::get_cpu()
+  list(
+    "machine" = cpu$model_name,
+    "cores" = cpu$no_of_cores,
+    "RAM" = benchmarkme::get_ram(),
+    "OS" = .Platform$OS.type,
+    "r_version" = paste(R.version$major, R.version$minor, sep = ".")
+  )
+}
+
+

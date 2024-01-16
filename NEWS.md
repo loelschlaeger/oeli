@@ -4,6 +4,8 @@
 
 * Incrementing RoxygenNote to 7.3.0.
 
+* Added the function `system_information()` that returns some general system level information.
+
 # oeli 0.3.2
 
 * Fixed bug in `function_arguments()`.
