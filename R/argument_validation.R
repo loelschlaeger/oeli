@@ -93,9 +93,6 @@ check_covariance_matrix <- function(
   if (any(is.na(x))) {
     return("Must not have NA values")
   }
-  if (any(is.nan(x))) {
-    return("Must not have NaN values")
-  }
   if (any(!is.finite(x))) {
     return("Must not have infinite values")
   }
@@ -161,9 +158,6 @@ check_correlation_matrix <- function(
   }
   if (any(is.na(x))) {
     return("Must not have NA values")
-  }
-  if (any(is.nan(x))) {
-    return("Must not have NaN values")
   }
   if (any(!is.finite(x))) {
     return("Must not have infinite values")
@@ -234,9 +228,6 @@ check_transition_probability_matrix <- function(
   if (any(is.na(x))) {
     return("Must not have NA values")
   }
-  if (any(is.nan(x))) {
-    return("Must not have NaN values")
-  }
   if (any(!is.finite(x))) {
     return("Must not have infinite values")
   }
@@ -300,15 +291,6 @@ check_probability_vector <- function(
   if (!isTRUE(res2)) {
     return(res2)
   }
-  if (any(is.na(x))) {
-    return("Must not have NA values")
-  }
-  if (any(is.nan(x))) {
-    return("Must not have NaN values")
-  }
-  if (any(!is.finite(x))) {
-    return("Must not have infinite values")
-  }
   if (abs(sum(x) - 1) > tolerance) {
     return("Must add up to 1")
   }
@@ -331,4 +313,51 @@ assert_probability_vector <- checkmate::makeAssertionFunction(
 
 test_probability_vector <- checkmate::makeTestFunction(
   check_probability_vector
+)
+
+#' Check if an argument is a list of lists
+#'
+#' @description
+#' This function checks whether the input is a list that contains list elements.
+#'
+#' @param x
+#' Object to check.
+#'
+#' @inheritParams checkmate::check_list
+#'
+#' @return
+#' Compare to \code{\link[checkmate]{check_list}}.
+#'
+#' @export
+
+check_list_of_lists <- function(
+    x, len = NULL
+  ) {
+  res <- checkmate::check_list(x, len = len)
+  if (!isTRUE(res)) {
+    return(res)
+  }
+  for (i in seq_along(x)) {
+    res <- checkmate::check_list(x[[i]], len = len)
+    if (!isTRUE(res)) {
+      return(paste("Check for element", i, "failed:", res))
+    }
+  }
+  return(TRUE)
+}
+
+#' @rdname check_list_of_lists
+#' @inheritParams checkmate::assert_list
+#' @export
+
+assert_list_of_lists <- checkmate::makeAssertionFunction(
+  check_list_of_lists
+)
+
+#' @rdname check_list_of_lists
+#' @inheritParams checkmate::assert_list
+#' @export
+
+test_list_of_lists <- checkmate::makeTestFunction(
+  check_list_of_lists
 )

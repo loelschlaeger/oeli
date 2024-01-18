@@ -4,7 +4,9 @@
 
 * Incrementing RoxygenNote to 7.3.0.
 
-* Added the function `system_information()` that returns some general system level information.
+* Added function `system_information()` that returns some general system level information.
+
+* Added functions `check_list_of_lists()`, `test_list_of_lists()`, and `assert_list_of_lists()`.
 
 # oeli 0.3.2
 

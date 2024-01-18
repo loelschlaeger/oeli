@@ -72,6 +72,20 @@ test_that("check for covariance matrix works", {
   # Test a matrix with the correct dimensions
   matrix_with_correct_dimensions <- diag(2)
   expect_silent(assert_covariance_matrix(matrix_with_correct_dimensions, dim = 2))
+
+  # Test a matrix with NAs
+  matrix_with_nas <- matrix(c(1, NA, NA, 2), 2, 2)
+  expect_error(
+    assert_covariance_matrix(matrix_with_nas),
+    "Assertion on 'matrix_with_nas' failed: Must not have NA values."
+  )
+
+  # Test a matrix with infinite values
+  matrix_with_inf <- matrix(c(1, Inf, Inf, 2), 2, 2)
+  expect_error(
+    assert_covariance_matrix(matrix_with_inf),
+    "Assertion on 'matrix_with_inf' failed: Must not have infinite values."
+  )
 })
 
 test_that("check for correlation matrix works", {
@@ -120,6 +134,20 @@ test_that("check for correlation matrix works", {
   # Test a matrix with the correct dimensions
   matrix_with_correct_dimensions <- diag(2)
   expect_silent(assert_correlation_matrix(matrix_with_correct_dimensions, dim = 2))
+
+  # Test a matrix with NAs
+  matrix_with_nas <- matrix(c(1, NA, NA, 1), 2, 2)
+  expect_error(
+    assert_correlation_matrix(matrix_with_nas),
+    "Assertion on 'matrix_with_nas' failed: Must not have NA values."
+  )
+
+  # Test a matrix with infinite values
+  matrix_with_inf <- matrix(c(1, Inf, Inf, 1), 2, 2)
+  expect_error(
+    assert_correlation_matrix(matrix_with_inf),
+    "Assertion on 'matrix_with_inf' failed: Must not have infinite values."
+  )
 })
 
 test_that("check for transition probability matrix works", {
@@ -173,6 +201,20 @@ test_that("check for transition probability matrix works", {
   expect_true(
     test_transition_probability_matrix(matrix_rounding_issues)
   )
+
+  # Test a matrix with NAs
+  matrix_with_nas <- matrix(c(0.5, NA, NA, 0.5), 2, 2)
+  expect_error(
+    assert_transition_probability_matrix(matrix_with_nas),
+    "Assertion on 'matrix_with_nas' failed: Must not have NA values."
+  )
+
+  # Test a matrix with infinite values
+  matrix_with_inf <- matrix(c(0.5, Inf, Inf, 0.5), 2, 2)
+  expect_error(
+    assert_transition_probability_matrix(matrix_with_inf),
+    "Assertion on 'matrix_with_inf' failed: Must not have infinite values."
+  )
 })
 
 test_that("check for probability vector works", {
@@ -208,3 +250,26 @@ test_that("check for probability vector works", {
   vector_with_correct_length <- 1:5 / sum(1:5)
   expect_silent(assert_probability_vector(vector_with_correct_length, len = 5))
 })
+
+test_that("check for list of lists works", {
+  # Test an empty list
+  empty_list <- list()
+  expect_true(test_list_of_lists(empty_list))
+  expect_error(
+    assert_list_of_lists(empty_list, len = 1),
+    "Assertion on 'empty_list' failed: Must have length 1, but has length 0."
+  )
+
+  # Test a list with non-list elements
+  non_list_elements <- list(1, 2)
+  expect_error(
+    assert_list_of_lists(non_list_elements),
+    "Assertion on 'non_list_elements' failed: Check for element 1 failed: Must be of type 'list', not 'double'."
+  )
+
+  # Test a list with only list elements
+  only_list_elements <- list(list(), list(1))
+  expect_true(test_list_of_lists(only_list_elements))
+})
+
+
