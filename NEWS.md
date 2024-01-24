@@ -8,6 +8,8 @@
 
 * Added functions `check_list_of_lists()`, `test_list_of_lists()`, and `assert_list_of_lists()`.
 
+* Added functions `check_numeric_vector()`, `test_numeric_vector()`, and `assert_numeric_vector()`.
+
 # oeli 0.3.2
 
 * Fixed bug in `function_arguments()`.
