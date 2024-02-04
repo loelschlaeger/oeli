@@ -18,6 +18,6 @@ only included in the final output \code{list}, if no former \code{list} has
 contributed an element with the same name.
 }
 \examples{
-merge_lists(list("a" = 1, "b" = 2), list("b" = 3, "c" = 4))
+merge_lists(list("a" = 1, "b" = 2), list("b" = 3, "c" = 4, "d" = NULL))
 
 }

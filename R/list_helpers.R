@@ -12,7 +12,7 @@
 #' A \code{list}.
 #'
 #' @examples
-#' merge_lists(list("a" = 1, "b" = 2), list("b" = 3, "c" = 4))
+#' merge_lists(list("a" = 1, "b" = 2), list("b" = 3, "c" = 4, "d" = NULL))
 #'
 #' @export
 
@@ -23,7 +23,7 @@ merge_lists <- function(...) {
   for (input in inputs) {
     for (element in names(input)) {
       if (!element %in% names(final)) {
-        final[[element]] <- input[[element]]
+        final[element] <- input[element]
       }
     }
   }

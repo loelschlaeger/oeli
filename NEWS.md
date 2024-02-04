@@ -10,6 +10,8 @@
 
 * Added functions `check_numeric_vector()`, `test_numeric_vector()`, and `assert_numeric_vector()`.
 
+* Fixed a bug in `merge_lists()`, where `NULL` elements got erroneously ignored.
+
 # oeli 0.3.2
 
 * Fixed bug in `function_arguments()`.
