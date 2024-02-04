@@ -1,8 +1,8 @@
-# oeli development
+# oeli 0.4.0
 
 * Fixed bug in checks for matrices by checking for `NA`, `NaN` and infinite values.
 
-* Incrementing RoxygenNote to 7.3.0.
+* Increment RoxygenNote to 7.3.0.
 
 * Added function `system_information()` that returns some general system level information.
 
