@@ -10,7 +10,7 @@
     
     <a class="navbar-brand me-2" href="../index.html">oeli</a>
 
-    <small class="nav-text text-muted me-auto" data-bs-toggle="tooltip" data-bs-placement="bottom" title="">0.4.0</small>
+    <small class="nav-text text-muted me-auto" data-bs-toggle="tooltip" data-bs-placement="bottom" title="">0.4.1</small>
 
     
     <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbar" aria-controls="navbar" aria-expanded="false" aria-label="Toggle navigation">
@@ -25,6 +25,7 @@
   <a href="#" class="nav-link dropdown-toggle" data-bs-toggle="dropdown" role="button" aria-expanded="false" aria-haspopup="true" id="dropdown-articles">Articles</a>
   <div class="dropdown-menu" aria-labelledby="dropdown-articles">
     <a class="dropdown-item" href="../articles/argument_validation.html">Helpers for argument validation</a>
+    <a class="dropdown-item" href="../articles/matrix_helpers.html">Helpers for working with matrices</a>
     <a class="dropdown-item" href="../articles/storage_helpers.html">Helpers for storage of data</a>
   </div>
 </li>
@@ -52,7 +53,12 @@
     </div>
 
     <div class="section level2">
-<h2 class="pkg-version" data-toc-text="0.4.0" id="oeli-040">oeli 0.4.0<a class="anchor" aria-label="anchor" href="#oeli-040"></a></h2>
+<h2 class="pkg-version" data-toc-text="0.4.1" id="oeli-041">oeli 0.4.1<a class="anchor" aria-label="anchor" href="#oeli-041"></a></h2>
+<ul><li><p>Removed HMM code and <code>plot_sequence()</code> function (both do not really fit in this package).</p></li>
+<li><p>Added more vignettes to illustrate use cases.</p></li>
+</ul></div>
+    <div class="section level2">
+<h2 class="pkg-version" data-toc-text="0.4.0" id="oeli-040">oeli 0.4.0<a class="anchor" aria-label="anchor" href="#oeli-040"></a></h2><p class="text-muted">CRAN release: 2024-02-04</p>
 <ul><li><p>Fixed bug in checks for matrices by checking for <code>NA</code>, <code>NaN</code> and infinite values.</p></li>
 <li><p>Increment RoxygenNote to 7.3.0.</p></li>
 <li><p>Added function <code><a href="../reference/system_information.html">system_information()</a></code> that returns some general system level information.</p></li>
@@ -77,7 +83,7 @@
 <li><p>Added function <code><a href="../reference/sample_transition_probability_matrix.html">sample_transition_probability_matrix()</a></code> which samples a transition probability matrix.</p></li>
 <li><p>Added functions <code><a href="../reference/check_covariance_matrix.html">test_covariance_matrix()</a></code>, <code><a href="../reference/check_correlation_matrix.html">test_correlation_matrix()</a></code>, <code><a href="../reference/check_transition_probability_matrix.html">test_transition_probability_matrix()</a></code>, and <code><a href="../reference/check_probability_vector.html">test_probability_vector()</a></code> (which are the “test” version of the corresponding “assert” functions).</p></li>
 <li><p>Added argument <code>tolerance</code> for covariance matrix, correlation matrix, transition probability matrix, and probability vector check functions to account for machine epsilon and avoid false positives.</p></li>
-<li><p>Added functions <code><a href="../reference/ll_hmm.html">ll_hmm()</a></code> and <code><a href="../reference/simulate_hmm.html">simulate_hmm()</a></code> to compute log-likelihood and simulate data from hidden Markov model.</p></li>
+<li><p>Added functions <code>ll_hmm()</code> and <code>simulate_hmm()</code> to compute log-likelihood and simulate data from hidden Markov model.</p></li>
 <li><p>Added argument <code>on_time_out</code> to function <code><a href="../reference/timed.html">timed()</a></code> that defines what action to take if the evaluation time exceeded (error, warning, or silent).</p></li>
 <li><p>Added support to select <code>identifier = "all"</code> in <code>Index</code> object and to suppress warnings (if unknown identifiers were selected) (globally) via the <code>$hide_warnings</code> field.</p></li>
 <li><p>Added argument <code>logical</code> to <code>Index</code> object to combine multiple identifiers either with logical and or logical or.</p></li>
@@ -85,7 +91,7 @@
 <li><p>Added function <code><a href="../reference/group_data_frame.html">group_data_frame()</a></code> that groups a <code>data.frame</code> according to the values of a column.</p></li>
 <li><p>Added function <code><a href="../reference/delete_data_frame_columns.html">delete_data_frame_columns()</a></code> that deletes columns of a <code>data.frame</code>.</p></li>
 <li><p>Added function <code><a href="../reference/renv_development_packages.html">renv_development_packages()</a></code> that creates a file that loads development packages so that <a href="https://rstudio.github.io/renv/" class="external-link">renv</a> can detect and write them to the lockfile.</p></li>
-<li><p>Added function <code><a href="../reference/plot_sequence.html">plot_sequence()</a></code> that plots a sequence of numbers.</p></li>
+<li><p>Added function <code>plot_sequence()</code> that plots a sequence of numbers.</p></li>
 <li><p>Renamed <code>Index</code> -&gt; <code>Storage</code>.</p></li>
 <li><p>Initialized a package website with <a href="https://pkgdown.r-lib.org" class="external-link">pkgdown</a> and started to add vignettes.</p></li>
 </ul></div>
