@@ -49,6 +49,7 @@
   <a href="#" class="nav-link dropdown-toggle" data-bs-toggle="dropdown" role="button" aria-expanded="false" aria-haspopup="true" id="dropdown-articles">Articles</a>
   <div class="dropdown-menu" aria-labelledby="dropdown-articles">
     <a class="dropdown-item" href="../articles/argument_validation.html">Helpers for argument validation</a>
+    <a class="dropdown-item" href="../articles/data_frame_helpers.html">Helpers for working with data frames</a>
     <a class="dropdown-item" href="../articles/matrix_helpers.html">Helpers for working with matrices</a>
     <a class="dropdown-item" href="../articles/storage_helpers.html">Helpers for storage of data</a>
   </div>
@@ -106,11 +107,11 @@ abbreviated) <code>matrix</code>:</p>
 <span><span class="fu"><a href="../reference/print_matrix.html">print_matrix</a></span><span class="op">(</span>x <span class="op">=</span> <span class="fu"><a href="https://rdrr.io/r/base/matrix.html" class="external-link">matrix</a></span><span class="op">(</span><span class="fu"><a href="https://rdrr.io/r/stats/Normal.html" class="external-link">rnorm</a></span><span class="op">(</span><span class="fl">99</span><span class="op">)</span>, ncol <span class="op">=</span> <span class="fl">1</span><span class="op">)</span>, label <span class="op">=</span> <span class="st">"single column matrix"</span><span class="op">)</span></span>
 <span><span class="co">#&gt; single column matrix : 99 x 1 matrix of doubles </span></span>
 <span><span class="co">#&gt;        [,1]</span></span>
-<span><span class="co">#&gt; [1,]  -0.01</span></span>
-<span><span class="co">#&gt; [2,]  -1.89</span></span>
-<span><span class="co">#&gt; [3,]  -0.75</span></span>
+<span><span class="co">#&gt; [1,]   0.91</span></span>
+<span><span class="co">#&gt; [2,]  -1.28</span></span>
+<span><span class="co">#&gt; [3,]   1.12</span></span>
 <span><span class="co">#&gt; ...     ...</span></span>
-<span><span class="co">#&gt; [99,] -0.15</span></span>
+<span><span class="co">#&gt; [99,] -0.11</span></span>
 <span><span class="fu"><a href="../reference/print_matrix.html">print_matrix</a></span><span class="op">(</span>x <span class="op">=</span> <span class="fu"><a href="https://rdrr.io/r/base/matrix.html" class="external-link">matrix</a></span><span class="op">(</span><span class="fl">1</span><span class="op">:</span><span class="fl">100</span>, nrow <span class="op">=</span> <span class="fl">1</span><span class="op">)</span>, label <span class="op">=</span> <span class="st">"single row matrix"</span><span class="op">)</span></span>
 <span><span class="co">#&gt; single row matrix : 1 x 100 matrix of doubles </span></span>
 <span><span class="co">#&gt;      [,1] [,2] [,3] ... [,100]</span></span>
