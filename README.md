@@ -46,3 +46,22 @@ This R package contains some general utilities that I and maybe others find usef
 
 - user interactions
 
+
+argument_validation.R
+calculate_density.R
+catching_exceptions.R
+cholesky_root.R
+covariance_differencing.R
+data_frame_helpers.R
+date_helpers.R
+dictionary_helpers.R
+function_helpers.R
+index_helpers.R
+list_helpers.R
+markov_chain.R
+package_helpers.R
+sample_things.R
+storage_helpers.R
+timed_evaluation.R
+user_interaction.R
+
