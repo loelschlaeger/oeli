@@ -1,3 +1,9 @@
+# oeli 0.4.1
+
+* Removed HMM code and `plot_sequence()` function (both do not really fit in this package).
+
+* Added more vignettes to illustrate use cases.
+
 # oeli 0.4.0
 
 * Fixed bug in checks for matrices by checking for `NA`, `NaN` and infinite values.

@@ -34,7 +34,7 @@ This R package contains some general utilities that I and maybe others find usef
 
 - creating Markov chains
 
-- working with matrices
+- [working with matrices](https://loelschlaeger.de/oeli/articles/matrix_helpers.html)
 
 - helpers for building an R package
 
