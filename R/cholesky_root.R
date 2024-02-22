@@ -50,7 +50,8 @@ chol_2_cov <- function(chol) {
   cov %*% t(cov)
 }
 
-#' @keywords internal
+#' @rdname cov_2_chol
+#' @export
 
 unique_chol <- function(chol) {
   checkmate::assert_vector(chol, any.missing = FALSE)

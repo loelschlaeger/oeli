@@ -15,6 +15,7 @@
 #'
 #' @examples
 #' check_date(date = "2000-01-01")
+
 check_date <- function(date) {
   date <- try(as.Date(date, format = "%Y-%m-%d"), silent = TRUE)
   if (inherits(date, "try-error") || anyNA(date)) {
@@ -39,6 +40,7 @@ check_date <- function(date) {
 #' @examples
 #' find_closest_year(as.Date("2022-07-15"))
 #' find_closest_year(as.Date("2022-01-01"))
+
 find_closest_year <- function(date) {
   year <- as.numeric(format(date, "%Y"))
   ifelse(

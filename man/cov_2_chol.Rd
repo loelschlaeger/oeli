@@ -3,11 +3,14 @@
 \name{cov_2_chol}
 \alias{cov_2_chol}
 \alias{chol_2_cov}
+\alias{unique_chol}
 \title{Get Cholesky root elements and build covariance matrix}
 \usage{
 cov_2_chol(cov, unique = TRUE)
 
 chol_2_cov(chol)
+
+unique_chol(chol)
 }
 \arguments{
 \item{cov}{A covariance \code{matrix} of dimension \code{dim}.}
