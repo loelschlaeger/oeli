@@ -10,40 +10,34 @@ This R package contains some general utilities that I and maybe others find usef
 
 - [argument validation](https://loelschlaeger.de/oeli/articles/argument_validation.html)
 
-- calculating density values
-
-- catching exceptions
-
-- working with Cholesky roots
-
-- differencing covariance matrices
-
-- [working with data frames](https://loelschlaeger.de/oeli/articles/data_frame_helpers.html)
-
-- working with dates
-
-- creating a dictionary
-
-- working with functions and their arguments
-
-- estimating hidden Markov models
-
-- working with indices
-
-- working with lists
-
-- creating Markov chains
-
-- [working with matrices](https://loelschlaeger.de/oeli/articles/matrix_helpers.html)
-
-- helpers for building an R package
-
-- sampling from densities
-
-- [storing data](https://loelschlaeger.de/oeli/articles/storage_helpers.html)
+- user interaction
 
 - timed evaluations
 
-- user interactions
+- calculating density values and sampling from densities
+
+- catching exceptions
+
+- working with data common objects such as
+
+  - [data frames](https://loelschlaeger.de/oeli/articles/data_frame_helpers.html)
+  
+  - [matrices](https://loelschlaeger.de/oeli/articles/matrix_helpers.html)
+  
+  - [vectors](https://loelschlaeger.de/oeli/articles/vector_helpers.html)
+
+  - dates
+  
+  - functions and their arguments
+  
+  - lists  
+  
+- [storing data](https://loelschlaeger.de/oeli/articles/storage_helpers.html)
+
+- helpers for building an R package
+
+
+
+
 
 

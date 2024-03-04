@@ -1,3 +1,7 @@
+# oeli development
+
+* Added function `chunk_vector()` to split a vector into chunks.
+
 # oeli 0.4.1
 
 * Removed HMM code and `plot_sequence()` function (both do not really fit in this package).

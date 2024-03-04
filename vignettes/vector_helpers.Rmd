@@ -1,0 +1,45 @@
+---
+title: "Helpers for working with vectors"
+output: rmarkdown::html_vignette
+vignette: >
+  %\VignetteIndexEntry{Helpers for working with vectors}
+  %\VignetteEngine{knitr::rmarkdown}
+  %\VignetteEncoding{UTF-8}
+---
+
+```{r, setup, include = FALSE}
+knitr::opts_chunk$set(
+  collapse = TRUE,
+  comment = "#>"
+)
+library("oeli")
+```
+
+## Split vector into chunks
+
+Say we want to split a vector into three chunks of equal size:
+
+```{r, chunk vectors type 1}
+x <- 1:6
+chunk_vector(x, n = 3)
+```
+
+Alternatively, we can split `x` into chunks of size `n = 3` by setting `type = 2`:
+
+```{r, chunk vectors type 2}
+chunk_vector(x, n = 3, type = 2)
+```
+
+Both somehow also works if `n` is not a multiple of `length(x)`:
+
+```{r, chunk vectors uneven}
+x <- 1:7
+chunk_vector(x, n = 3)
+chunk_vector(x, n = 3, type = 2)
+```
+
+To prevent such "odd" cases, set `strict = TRUE`:
+
+```{r, chunk vectors strict}
+try(chunk_vector(1:7, n = 3, strict = TRUE))
+```
