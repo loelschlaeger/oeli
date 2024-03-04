@@ -22,6 +22,9 @@
     <loc>http://loelschlaeger.de/oeli/articles/storage_helpers.html</loc>
   </url>
   <url>
+    <loc>http://loelschlaeger.de/oeli/articles/vector_helpers.html</loc>
+  </url>
+  <url>
     <loc>http://loelschlaeger.de/oeli/authors.html</loc>
   </url>
   <url>
@@ -59,6 +62,9 @@
   </url>
   <url>
     <loc>http://loelschlaeger.de/oeli/reference/check_transition_probability_matrix.html</loc>
+  </url>
+  <url>
+    <loc>http://loelschlaeger.de/oeli/reference/chunk_vector.html</loc>
   </url>
   <url>
     <loc>http://loelschlaeger.de/oeli/reference/cov_2_chol.html</loc>
