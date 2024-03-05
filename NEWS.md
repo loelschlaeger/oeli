@@ -2,6 +2,8 @@
 
 * Added function `chunk_vector()` to split a vector into chunks.
 
+* Added function `insert_matrix_column()` to add a column to a matrix.
+
 # oeli 0.4.1
 
 * Removed HMM code and `plot_sequence()` function (both do not really fit in this package).
