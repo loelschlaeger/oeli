@@ -7,16 +7,47 @@
 #' @param n
 #' An \code{integer}, the matrix dimension.
 #'
+#' @param triangular
+#' If \code{NULL} (default), all elements of the matrix are considered. If
+#' \code{"lower"} (\code{"upper"}), only the lower- (upper-) triangular matrix
+#' is considered.
+#'
 #' @return
 #' An \code{integer} \code{vector}.
 #'
 #' @examples
-#' n <- 4
+#' # indices of diagonal elements
+#' n <- 3
 #' matrix(1:n^2, n, n)
 #' matrix_diagonal_indices(n)
 #'
+#' # indices of diagonal elements of lower-triangular matrix
+#' L <- matrix(0, n, n)
+#' L[lower.tri(L, diag=TRUE)] <- 1:((n * (n + 1)) / 2)
+#' L
+#' matrix_diagonal_indices(n, triangular = "lower")
+#'
+#' # indices of diagonal elements of upper-triangular matrix
+#' U <- matrix(0, n, n)
+#' U[upper.tri(U, diag=TRUE)] <- 1:((n * (n + 1)) / 2)
+#' U
+#' matrix_diagonal_indices(n, triangular = "upper")
+#'
 #' @export
 
-matrix_diagonal_indices <- function(n) {
-  which(diag(n) == 1)
+matrix_diagonal_indices <- function(n, triangular = NULL) {
+  checkmate::assert_int(n, lower = 1)
+  if (is.null(triangular)) {
+    M <- matrix(1:n^2, n, n)
+  } else {
+    M <- matrix(0, n, n)
+    triangular <- match_arg(triangular, c("lower", "upper"))
+    if (triangular == "lower") {
+      ind <- lower.tri(M, diag = TRUE)
+    } else {
+      ind <- upper.tri(M, diag = TRUE)
+    }
+    M[ind] <- 1:((n * (n + 1)) / 2)
+  }
+  diag(M)
 }
