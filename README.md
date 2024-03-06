@@ -34,7 +34,7 @@ This R package contains some general utilities that I and maybe others find usef
   
 - [storing data](https://loelschlaeger.de/oeli/articles/storage_helpers.html)
 
-- helpers for building an R package
+- [helpers for building an R package](https://loelschlaeger.de/oeli/articles/package_helpers.html)
 
 
 
