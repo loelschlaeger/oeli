@@ -19,3 +19,6 @@ A \code{list} with elements:
 \description{
 This function returns a \code{list} of general system level information.
 }
+\examples{
+system_information()
+}

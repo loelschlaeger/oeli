@@ -4,6 +4,8 @@
 
 * Added function `insert_matrix_column()` to add a column to a matrix.
 
+* Renamed `basic_package_sticker()` -> `package_logo()` and added a demo.
+
 # oeli 0.4.1
 
 * Removed HMM code and `plot_sequence()` function (both do not really fit in this package).
