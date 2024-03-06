@@ -19,6 +19,9 @@
     <loc>http://loelschlaeger.de/oeli/articles/matrix_helpers.html</loc>
   </url>
   <url>
+    <loc>http://loelschlaeger.de/oeli/articles/package_helpers.html</loc>
+  </url>
+  <url>
     <loc>http://loelschlaeger.de/oeli/articles/storage_helpers.html</loc>
   </url>
   <url>
@@ -38,9 +41,6 @@
   </url>
   <url>
     <loc>http://loelschlaeger.de/oeli/reference/Storage.html</loc>
-  </url>
-  <url>
-    <loc>http://loelschlaeger.de/oeli/reference/basic_package_sticker.html</loc>
   </url>
   <url>
     <loc>http://loelschlaeger.de/oeli/reference/check_correlation_matrix.html</loc>
@@ -124,6 +124,9 @@
     <loc>http://loelschlaeger.de/oeli/reference/match_numerics.html</loc>
   </url>
   <url>
+    <loc>http://loelschlaeger.de/oeli/reference/matrix_diagonal_indices.html</loc>
+  </url>
+  <url>
     <loc>http://loelschlaeger.de/oeli/reference/matrix_indices.html</loc>
   </url>
   <url>
@@ -131,6 +134,9 @@
   </url>
   <url>
     <loc>http://loelschlaeger.de/oeli/reference/oeli-package.html</loc>
+  </url>
+  <url>
+    <loc>http://loelschlaeger.de/oeli/reference/package_logo.html</loc>
   </url>
   <url>
     <loc>http://loelschlaeger.de/oeli/reference/permutations.html</loc>
