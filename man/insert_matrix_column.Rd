@@ -9,8 +9,9 @@ insert_matrix_column(A, x, p)
 \arguments{
 \item{A}{A \code{matrix}.}
 
-\item{x}{A \code{numeric} \code{vector} of length \code{nrow(A)}, the column to be
-added.}
+\item{x}{A \code{vector} of length \code{nrow(A)}, the column to be added.
+
+Can also be a single value.}
 
 \item{p}{An \code{integer}, the position where to add the column:
 \itemize{
@@ -18,7 +19,9 @@ added.}
 \item \code{p = ncol(A)} appends the column right
 \item \code{p = n} inserts the column between the \code{n}-th and
 \code{(n + 1)}-th column of \code{A}.
-}}
+}
+
+Can also be a \code{vector} of multiple positions.}
 }
 \value{
 A \code{matrix}.
@@ -28,9 +31,16 @@ This function adds a column to a matrix.
 }
 \examples{
 A <- diag(3)
-x <- numeric(3)
+x <- 1:3
 insert_matrix_column(A, x, 0)
 insert_matrix_column(A, x, 1)
 insert_matrix_column(A, x, 2)
 insert_matrix_column(A, x, 3)
+
+### also single value
+x <- 2
+insert_matrix_column(A, x, 0)
+
+### also multiple positions
+insert_matrix_column(A, x, 0:3)
 }
