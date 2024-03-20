@@ -43,4 +43,7 @@ insert_matrix_column(A, x, 0)
 
 ### also multiple positions
 insert_matrix_column(A, x, 0:3)
+
+### also trivial case
+insert_matrix_column(matrix(nrow = 0, ncol = 0), integer(), integer())
 }

@@ -39,17 +39,23 @@
 #'
 #' ### also multiple positions
 #' insert_matrix_column(A, x, 0:3)
+#'
+#' ### also trivial case
+#' insert_matrix_column(matrix(nrow = 0, ncol = 0), integer(), integer())
 
 insert_matrix_column <- function(A, x, p) {
-  checkmate::assert_matrix(A, min.rows = 1, min.cols = 1)
+  checkmate::assert_matrix(A)
   n <- ncol(A)
-  checkmate::assert_atomic_vector(x, min.len = 1)
+  checkmate::assert_atomic_vector(x)
   stopifnot(
     "'x' must be of length 1 or nrow(A)" = length(x) == 1 || length(x) == nrow(A)
   )
   checkmate::assert_integerish(
-    p, lower = 0, upper = n, unique = TRUE, min.len = 1, max.len = n + 1
+    p, lower = 0, upper = n, unique = TRUE, max.len = n + 1
   )
+  if (length(p) == 0) {
+    return(A)
+  }
   p <- sort(p)
   for (i in seq_along(p)) {
     if (p[i] == 0) {
