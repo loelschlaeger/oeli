@@ -1,7 +1,7 @@
-#' Add a column to a matrix
+#' Insert column in matrix
 #'
 #' @description
-#' This function adds a column to a matrix.
+#' This function inserts a column into a matrix.
 #'
 #' @param A
 #' A \code{matrix}.
