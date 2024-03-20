@@ -20,6 +20,9 @@ check_numeric_vector <- function(
     unique = FALSE, sorted = FALSE, names = NULL, typed.missing = FALSE,
     null.ok = FALSE
 ) {
+  if (isTRUE(null.ok) && is.null(x)) {
+    return(TRUE)
+  }
   res1 <- checkmate::check_atomic_vector(
     x, any.missing = any.missing, all.missing = all.missing, len = len,
     min.len = min.len, max.len = max.len, unique = unique, names = names

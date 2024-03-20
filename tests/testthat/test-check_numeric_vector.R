@@ -1,4 +1,4 @@
-test_that("check for probability vector works", {
+test_that("check for numeric vector works", {
   # Test a non-numeric vector
   non_numeric_vector <- letters[1:9]
   expect_error(
@@ -18,5 +18,13 @@ test_that("check for probability vector works", {
   expect_error(
     assert_numeric_vector(vector_with_bad_class),
     "Assertion on 'vector_with_bad_class' failed: Must be of type 'atomic vector', not 'matrix'."
+  )
+
+  # Test NULL
+  expect_true(
+    test_numeric_vector(NULL, null.ok = TRUE)
+  )
+  expect_false(
+    test_numeric_vector(NULL, null.ok = FALSE)
   )
 })

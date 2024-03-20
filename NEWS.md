@@ -10,6 +10,8 @@
 
 * Added function `matrix_diagonal_indices()` that returns the indices of the diagonal elements of a quadratic matrix.
 
+* Fixed bug in `check_numeric_vector()`: `null.ok` did not work.
+
 # oeli 0.4.1
 
 * Removed HMM code and `plot_sequence()` function (both do not really fit in this package).
