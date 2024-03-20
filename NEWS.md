@@ -4,6 +4,8 @@
 
 * Added function `insert_matrix_column()` to add a column to a matrix.
 
+* Added function `insert_vector_entry()` to add a entry to a vector.
+
 * Renamed `basic_package_sticker()` -> `package_logo()` and added a demo.
 
 * Added function `matrix_diagonal_indices()` that returns the indices of the diagonal elements of a quadratic matrix.
