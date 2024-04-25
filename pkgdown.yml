@@ -1,5 +1,5 @@
 pandoc: 3.1.11
-pkgdown: 2.0.7
+pkgdown: 2.0.9
 pkgdown_sha: ~
 articles:
   argument_validation: argument_validation.html
@@ -8,7 +8,7 @@ articles:
   package_helpers: package_helpers.html
   storage_helpers: storage_helpers.html
   vector_helpers: vector_helpers.html
-last_built: 2024-03-20T19:32Z
+last_built: 2024-04-25T07:17Z
 urls:
   reference: http://loelschlaeger.de/oeli/reference
   article: http://loelschlaeger.de/oeli/articles
