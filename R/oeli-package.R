@@ -24,5 +24,6 @@
 #' @importFrom stats rWishart
 #' @importFrom sysfonts font_add_google
 #' @importFrom usethis use_logo
+#' @importFrom utils combn
 ## usethis namespace: end
 NULL

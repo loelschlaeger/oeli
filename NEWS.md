@@ -12,6 +12,8 @@
 
 * Fixed bug in `check_numeric_vector()`: `null.ok` did not work.
 
+* Added function `subsets()` that generates subsets of a vector.
+
 # oeli 0.4.1
 
 * Removed HMM code and `plot_sequence()` function (both do not really fit in this package).
