@@ -1,4 +1,4 @@
-# oeli development
+# oeli 0.5.0
 
 * Added function `chunk_vector()` to split a vector into chunks.
 
