@@ -33,7 +33,7 @@
     
     <a class="navbar-brand me-2" href="../index.html">oeli</a>
 
-    <small class="nav-text text-muted me-auto" data-bs-toggle="tooltip" data-bs-placement="bottom" title="">0.4.1.9005</small>
+    <small class="nav-text text-muted me-auto" data-bs-toggle="tooltip" data-bs-placement="bottom" title="">0.5.0</small>
 
     
     <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbar" aria-controls="navbar" aria-expanded="false" aria-label="Toggle navigation">
@@ -108,8 +108,9 @@
 <span><span class="co">#&gt; 7       7</span></span>
 <span><span class="co">#&gt; 8       8</span></span>
 <span><span class="co">#&gt; 9       9</span></span>
-<span><span class="co">#&gt; 10     10</span></span>
-<span><span class="fu"><a href="../reference/delete_data_frame_columns.html">delete_data_frame_columns</a></span><span class="op">(</span>df <span class="op">=</span> <span class="va">df</span>, column_names <span class="op">=</span> <span class="st">"number"</span><span class="op">)</span></span>
+<span><span class="co">#&gt; 10     10</span></span></code></pre></div>
+<div class="sourceCode" id="cb2"><pre class="downlit sourceCode r">
+<code class="sourceCode R"><span><span class="fu"><a href="../reference/delete_data_frame_columns.html">delete_data_frame_columns</a></span><span class="op">(</span>df <span class="op">=</span> <span class="va">df</span>, column_names <span class="op">=</span> <span class="st">"number"</span><span class="op">)</span></span>
 <span><span class="co">#&gt;    label</span></span>
 <span><span class="co">#&gt; 1      A</span></span>
 <span><span class="co">#&gt; 2      B</span></span>
@@ -120,14 +121,15 @@
 <span><span class="co">#&gt; 7      A</span></span>
 <span><span class="co">#&gt; 8      B</span></span>
 <span><span class="co">#&gt; 9      A</span></span>
-<span><span class="co">#&gt; 10     B</span></span>
-<span><span class="fu"><a href="../reference/delete_data_frame_columns.html">delete_data_frame_columns</a></span><span class="op">(</span>df <span class="op">=</span> <span class="va">df</span>, column_names <span class="op">=</span> <span class="fu"><a href="https://rdrr.io/r/base/c.html" class="external-link">c</a></span><span class="op">(</span><span class="st">"label"</span>, <span class="st">"number"</span><span class="op">)</span><span class="op">)</span></span>
+<span><span class="co">#&gt; 10     B</span></span></code></pre></div>
+<div class="sourceCode" id="cb3"><pre class="downlit sourceCode r">
+<code class="sourceCode R"><span><span class="fu"><a href="../reference/delete_data_frame_columns.html">delete_data_frame_columns</a></span><span class="op">(</span>df <span class="op">=</span> <span class="va">df</span>, column_names <span class="op">=</span> <span class="fu"><a href="https://rdrr.io/r/base/c.html" class="external-link">c</a></span><span class="op">(</span><span class="st">"label"</span>, <span class="st">"number"</span><span class="op">)</span><span class="op">)</span></span>
 <span><span class="co">#&gt; data frame with 0 columns and 10 rows</span></span></code></pre></div>
 </div>
 <div class="section level2">
 <h2 id="group-a-data-frame">Group a data.frame<a class="anchor" aria-label="anchor" href="#group-a-data-frame"></a>
 </h2>
-<div class="sourceCode" id="cb2"><pre class="downlit sourceCode r">
+<div class="sourceCode" id="cb4"><pre class="downlit sourceCode r">
 <code class="sourceCode R"><span><span class="va">df</span> <span class="op">&lt;-</span> <span class="fu"><a href="https://rdrr.io/r/base/data.frame.html" class="external-link">data.frame</a></span><span class="op">(</span><span class="st">"label"</span> <span class="op">=</span> <span class="fu"><a href="https://rdrr.io/r/base/c.html" class="external-link">c</a></span><span class="op">(</span><span class="st">"A"</span>, <span class="st">"B"</span><span class="op">)</span>, <span class="st">"number"</span> <span class="op">=</span> <span class="fl">1</span><span class="op">:</span><span class="fl">10</span><span class="op">)</span></span>
 <span><span class="fu"><a href="../reference/group_data_frame.html">group_data_frame</a></span><span class="op">(</span>df <span class="op">=</span> <span class="va">df</span>, by <span class="op">=</span> <span class="st">"label"</span><span class="op">)</span></span>
 <span><span class="co">#&gt; $A</span></span>
@@ -144,8 +146,9 @@
 <span><span class="co">#&gt; 4      B      4</span></span>
 <span><span class="co">#&gt; 6      B      6</span></span>
 <span><span class="co">#&gt; 8      B      8</span></span>
-<span><span class="co">#&gt; 10     B     10</span></span>
-<span><span class="fu"><a href="../reference/group_data_frame.html">group_data_frame</a></span><span class="op">(</span>df <span class="op">=</span> <span class="va">df</span>, by <span class="op">=</span> <span class="st">"label"</span>, keep_by <span class="op">=</span> <span class="cn">FALSE</span><span class="op">)</span></span>
+<span><span class="co">#&gt; 10     B     10</span></span></code></pre></div>
+<div class="sourceCode" id="cb5"><pre class="downlit sourceCode r">
+<code class="sourceCode R"><span><span class="fu"><a href="../reference/group_data_frame.html">group_data_frame</a></span><span class="op">(</span>df <span class="op">=</span> <span class="va">df</span>, by <span class="op">=</span> <span class="st">"label"</span>, keep_by <span class="op">=</span> <span class="cn">FALSE</span><span class="op">)</span></span>
 <span><span class="co">#&gt; $A</span></span>
 <span><span class="co">#&gt;   number</span></span>
 <span><span class="co">#&gt; 1      1</span></span>
