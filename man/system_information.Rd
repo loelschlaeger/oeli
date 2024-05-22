@@ -11,9 +11,9 @@ A \code{list} with elements:
 \itemize{
 \item \code{maschine}, the model name of the device
 \item \code{cores}, the number of cores
-\item \code{RAM}, the size of the RAM
-\item \code{OS}, the operating system
-\item \code{r_version}, the R version used
+\item \code{ram}, the size of the RAM
+\item \code{os}, the operating system
+\item \code{rversion}, the R version used
 }
 }
 \description{

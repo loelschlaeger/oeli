@@ -14,6 +14,8 @@
 
 * Added function `subsets()` that generates subsets of a vector.
 
+* Fixed bug in `system_information()`: do not fail if information cannot be retrieved.
+
 # oeli 0.4.1
 
 * Removed HMM code and `plot_sequence()` function (both do not really fit in this package).
