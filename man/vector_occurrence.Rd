@@ -13,8 +13,8 @@ vector_occurrence(x, type = "first")
 }
 \value{
 An \code{integer} \code{vector}, the positions of the unique vector elements.
-The ordering corresponds to \code{unique(x)}, i.e., the $i$-th element in
-the output is the (first or last) occurrence of the $i$-th element from
+The ordering corresponds to \code{unique(x)}, i.e., the \eqn{i}-th element in
+the output is the (first or last) occurrence of the \eqn{i}-th element from
 \code{unique(x)}.
 }
 \description{
