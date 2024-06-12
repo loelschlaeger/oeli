@@ -1,3 +1,7 @@
+# oeli development
+
+* Added function `vector_occurrence()` to find the positions of first or last occurrence of unique vector elements.
+
 # oeli 0.5.0
 
 * Added function `chunk_vector()` to split a vector into chunks.

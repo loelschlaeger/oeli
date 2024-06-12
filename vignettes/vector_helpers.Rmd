@@ -59,3 +59,23 @@ To prevent such "odd" cases, set `strict = TRUE`:
 ```{r, chunk vectors strict}
 try(chunk_vector(1:7, n = 3, strict = TRUE))
 ```
+
+## Find the indices of first or last occurrence of unique vector elements
+
+Say we want to find the positions of first or last occurrence of the unique elements of the following vector:
+
+```{r, vector occurrence}
+x <- c(1, 1, 1, 2, 2, 2, 3, 3, 3)
+vector_occurrence(x, "first")
+vector_occurrence(x, "last")
+```
+
+The returned positions correspond to 
+
+```{r, vector occurrence unique}
+unique(x)
+```
+
+
+
+
