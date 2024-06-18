@@ -1,4 +1,4 @@
-# oeli development
+# oeli 0.5.1
 
 * Added function `vector_occurrence()` to find the positions of first or last occurrence of unique vector elements.
 

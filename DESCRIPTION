@@ -1,7 +1,7 @@
 Package: oeli
 Type: Package
 Title: My Utilities for Developing Data Science Software
-Version: 0.5.0.9000
+Version: 0.5.1
 Authors@R: c(
     person("Lennart", "Oelschl\u00e4ger", 
            email = "oelschlaeger.lennart@gmail.com", 
