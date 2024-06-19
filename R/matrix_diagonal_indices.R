@@ -49,5 +49,5 @@ matrix_diagonal_indices <- function(n, triangular = NULL) {
     }
     M[ind] <- 1:((n * (n + 1)) / 2)
   }
-  diag(M)
+  as.integer(diag(M))
 }
