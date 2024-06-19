@@ -1,3 +1,7 @@
+# oeli 0.5.2
+
+* Added function `identical_structure()` to check if two objects have the identical structure.
+
 # oeli 0.5.1
 
 * Added function `vector_occurrence()` to find the positions of first or last occurrence of unique vector elements.

@@ -1,0 +1,13 @@
+test_that("check for identical structures works", {
+  expect_true(identical_structure(1, 2))
+  expect_true(identical_structure(list(1), list(2)))
+  expect_false(identical_structure(list(1), list()))
+  x <- structure(1, class = c("a", "b"))
+  y <- structure(1, class = c("b", "a"))
+  expect_false(identical_structure(x, y))
+  x <- list(list(1, 2, "3"))
+  y <- list(list(1, 2, 3))
+  expect_false(identical_structure(x, y))
+  x <- list(1, 2, 3)
+  expect_false(identical_structure(x, y))
+})
