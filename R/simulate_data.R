@@ -1,18 +1,79 @@
-simulate_data <- function(
-    names = c("A", "B", "C"),
+#' Simulate regressor values
+#'
+#' @description
+#' This function simulates regressor values from various marginal distributions
+#' with custom correlations.
+#'
+#' @details
+#' TODO
+#'
+#' @param labels (`character()`)\cr
+#' Unique labels for the regressors.
+#'
+#' @param n (`integer(1)`)\cr
+#' The number of values per regressor.
+#'
+#' @param marginals  (`list()`)\cr
+#' Optionally marginal distributions for the regressors. If not specified,
+#' standard normal distributions are used. Each list entry must be named
+#' according to a regressor label, and the following distributions can be
+#' specified:
+#'
+#'
+#'
+#' @param correlation (`matrix()`)\cr
+#' A correlation matrix of dimension \code{length(labels)}, where the
+#' \code{(i, j)}-th entry defines the correlation between regressor
+#' \code{labels[i]} and \code{labels[j]}.
+#'
+#' @param verbose (`logical(1)`)\cr
+#' Whether to print information about the simulated regressors.
+#'
+#' @return
+#' A \code{data.frame} with \code{n} rows and \code{length(labels)} columns.
+#'
+#' @export
+
+simulate_regressors <- function(
+    labels = c("A", "B", "C"),
     n = 100,
     marginals = list(),
-    correlation = diag(length(names)),
+    correlation = diag(length(labels)),
     verbose = FALSE
   ) {
 
   ### input checks
+  input_check_response(
+    checkmate::check_character(
+      labels, min.chars = 1, any.missing = FALSE, min.len = 1, unique = TRUE
+    ),
+    "labels"
+  )
+  input_check_response(
+    checkmate::check_count(n, positive = TRUE),
+    "n"
+  )
+  input_check_response(
+    checkmate::check_list(
+      marginals, types = list(), any.missing = FALSE,
+    ),
+    "marginals"
+  )
+  input_check_response(
+    checkmate::check_list(
+      marginals, types = list(), any.missing = FALSE,
+    ),
+    "marginals"
+  )
 
+  p <- length(labels)
 
   ### draw data
   if (length(marginals) == 0) {
-    ### no marginals specified, so draw from multivariate normal
 
+    ### no marginals specified, so draw from multivariate normal
+    data <- rmvnorm(n = n, rep(0, p), correlation)
+    colnames(data) <- labels
 
   } else {
     ### marginals specified
@@ -112,7 +173,7 @@ simulate_data <- function(
 #   A$Poisson_variables,
 #   A$Neg_Bin_variables
 # )
-
+#
 
 
 
