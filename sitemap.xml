@@ -67,6 +67,9 @@
     <loc>http://loelschlaeger.de/oeli/reference/chunk_vector.html</loc>
   </url>
   <url>
+    <loc>http://loelschlaeger.de/oeli/reference/correlated_regressors.html</loc>
+  </url>
+  <url>
     <loc>http://loelschlaeger.de/oeli/reference/cov_2_chol.html</loc>
   </url>
   <url>
@@ -175,6 +178,9 @@
     <loc>http://loelschlaeger.de/oeli/reference/rwishart_cpp.html</loc>
   </url>
   <url>
+    <loc>http://loelschlaeger.de/oeli/reference/sample_correlation_matrix.html</loc>
+  </url>
+  <url>
     <loc>http://loelschlaeger.de/oeli/reference/sample_covariance_matrix.html</loc>
   </url>
   <url>
@@ -182,9 +188,6 @@
   </url>
   <url>
     <loc>http://loelschlaeger.de/oeli/reference/simulate_markov_chain.html</loc>
-  </url>
-  <url>
-    <loc>http://loelschlaeger.de/oeli/reference/simulate_regressors.html</loc>
   </url>
   <url>
     <loc>http://loelschlaeger.de/oeli/reference/stationary_distribution.html</loc>
