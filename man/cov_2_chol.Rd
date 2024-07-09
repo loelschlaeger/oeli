@@ -35,3 +35,9 @@ chol <- cov_2_chol(cov)
 all.equal(cov, chol_2_cov(chol))
 
 }
+\seealso{
+Other matrix helper: 
+\code{\link{chunk_vector}()},
+\code{\link{diff_cov}()}
+}
+\concept{matrix helper}

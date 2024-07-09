@@ -63,6 +63,7 @@ assert_correlation_matrix <- checkmate::makeAssertionFunction(
 #' @rdname check_correlation_matrix
 #' @inheritParams checkmate::test_matrix
 #' @export
+
 test_correlation_matrix <- checkmate::makeTestFunction(
   check_correlation_matrix
 )

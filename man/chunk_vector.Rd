@@ -32,4 +32,11 @@ x <- 1:12
 chunk_vector(x, n = 3, type = 1)
 chunk_vector(x, n = 3, type = 2)
 try(chunk_vector(x, n = 5, strict = TRUE))
+
 }
+\seealso{
+Other matrix helper: 
+\code{\link{cov_2_chol}()},
+\code{\link{diff_cov}()}
+}
+\concept{matrix helper}

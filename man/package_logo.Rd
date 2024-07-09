@@ -21,7 +21,8 @@ This function creates a basic R package logo. The logo has a white
 background and the package name (with or without curly brackets) in the
 center. The font size for the package name is scaled such that it fits inside
 the logo. Type \code{?oeli} to see an example.
-
+}
+\details{
 The function optionally calls \code{\link[usethis]{use_logo}} if
 \code{use_logo = TRUE} to set up the logo for a package.
 }

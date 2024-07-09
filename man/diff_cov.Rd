@@ -60,3 +60,9 @@ delta(ref = k, dim = n)
 undiff_cov(Sigma_diff, ref = k)
 
 }
+\seealso{
+Other matrix helper: 
+\code{\link{chunk_vector}()},
+\code{\link{cov_2_chol}()}
+}
+\concept{matrix helper}

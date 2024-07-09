@@ -1,5 +1,3 @@
-# These functions help to evaluate an expression which potentially will
-
 #' Try an expression silently
 #'
 #' @description

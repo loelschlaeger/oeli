@@ -30,6 +30,7 @@ Imports:
     Rcpp,
     rprojroot,
     showtext,
+    SimMultiCorrData,
     stats,
     sysfonts,
     usethis,

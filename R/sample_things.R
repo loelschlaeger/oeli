@@ -145,7 +145,7 @@ sample_covariance_matrix <- function(
   checkmate::assert_int(df, lower = dim)
   assert_covariance_matrix(scale, dim = dim)
   checkmate::assert_flag(diag)
-  cov <- solve(stats::rWishart(1, df = df, Sigma = scale)[, , 1])
+  cov <- rwishart(df = df, scale = scale, inv = TRUE)
   if (diag) cov[row(cov) != col(cov)] <- 0
   assert_covariance_matrix(cov)
   return(cov)

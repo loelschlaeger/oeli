@@ -48,6 +48,8 @@
 #' undiff_cov(Sigma_diff, ref = k)
 #'
 #' @export
+#'
+#' @family matrix helper
 
 diff_cov <- function(cov, ref = 1) {
   assert_covariance_matrix(cov)

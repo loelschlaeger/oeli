@@ -95,7 +95,7 @@ correlated_regressors <- function(
     prefix = "Element names of input {var_name} are bad:"
   )
   input_check_response(
-    oeli::check_correlation_matrix(
+    check_correlation_matrix(
       correlation, dim = P
     ),
     "correlation"
@@ -265,7 +265,7 @@ correlated_regressors <- function(
     }
     if (n > 1) {
       cat("Deviation of empirical correlation from requested:\n")
-      print(round(summary(as.numeric(cor(data) - correlation)), 4))
+      print(round(summary(as.numeric(stats::cor(data) - correlation)), 4))
     }
   }
   as.data.frame(data)

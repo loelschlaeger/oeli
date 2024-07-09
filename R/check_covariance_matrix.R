@@ -60,6 +60,7 @@ assert_covariance_matrix <- checkmate::makeAssertionFunction(
 #' @rdname check_covariance_matrix
 #' @inheritParams checkmate::test_matrix
 #' @export
+
 test_covariance_matrix <- checkmate::makeTestFunction(
   check_covariance_matrix
 )

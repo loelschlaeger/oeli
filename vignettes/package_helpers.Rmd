@@ -10,16 +10,45 @@ vignette: >
 ```{r, setup, include = FALSE}
 knitr::opts_chunk$set(
   collapse = TRUE,
-  comment = "#>"
+  comment = "#>",
+  fig.align = 'center', 
+  fig.dim = c(7, 7), 
+  out.width = "50%"
 )
+#devtools::load_all()
 library("oeli")
+```
+
+This vignette demonstrates helper functions for building an R package.
+
+## Response to an input check
+
+The `input_check_response()` function standardizes responses to input checks, ensuring consistency.
+
+```{r, input_check_response, error = TRUE}
+x <- "1"
+y <- 1
+
+### check is successful
+input_check_response(
+  check = checkmate::check_character(x),
+  var_name = "x",
+  error = TRUE
+)
+
+### standardized check response
+input_check_response(
+  check = checkmate::check_character(y),
+  var_name = "y",
+  error = TRUE
+)
 ```
 
 ## Create a package logo
 
 The `package_logo()` function makes it easy to create a very basic package logo. Setting `use_logo = TRUE` will run `usethis::use_logo()` to set up the logo for your package.
 
-```{r, create logo, fig.align = 'center', fig.dim = c(7, 7), out.width = "50%"}
+```{r, create logo}
 package_logo(
   package_name = "package",
   brackets = TRUE,

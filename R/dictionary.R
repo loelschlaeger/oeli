@@ -3,32 +3,38 @@
 #' @description
 #' Provides a simple key-value interface based on R6.
 #'
-#' @param key_name
-#' A single \code{character}, the name for the key variable.
-#' @param alias_name
-#' Optionally a single \code{character}, the name for the alias variable.
-#' Can also be \code{NULL} (default) for no alias.
-#' @param value_names
-#' A \code{character} (\code{vector}), the names of the values connected to a
-#' key.
-#' @param value_assert
-#' A \code{alist} with check functions for supplied values. For each element
-#' in \code{value_names}, \code{values_assert} *can* have an identically named
-#' element of the form \code{checkmate::assert_*(...)}, where \code{...} can be
-#' any arguments for the assertion function except for the \code{x} argument.
-#' @param allow_overwrite
-#' Either \code{TRUE} (default) to allow overwriting existing keys with new
-#' values, or \code{FALSE} else. Duplicate keys are never allowed.
-#' @param keys_reserved
-#' A \code{character} (\code{vector}) of names that must not be used as keys.
-#' @param alias_choices
-#' Optionally a \code{character} \code{vector} of possible values for the alias.
-#' Can also be \code{NULL}, then all alias values are allowed.
-#' @param dictionary_name
-#' Optionally a single \code{character}, a name for the dictionary.
-#' @param key
-#' A single \code{character}, a value for the key variable \code{key_name}.
-#' Use the \code{$keys} method for available keys.
+#' @param key_name (`character(1)`)\cr
+#' The name for the key variable.
+#'
+#' @param alias_name (`NULL` or `character(1)`)\cr
+#' Optionally the name for the alias variable.
+#'
+#' @param value_names (`character()`)\cr
+#' The names of the values connected to a key.
+#'
+#' @param value_assert (`alist()`)\cr
+#' For each element in \code{value_names}, \code{values_assert} *can* have an
+#' identically named element of the form \code{checkmate::assert_*(...)}, where
+#' \code{...} can be any argument for the assertion function except for the
+#' \code{x} argument.
+#'
+#' @param allow_overwrite (`logical(1)`)\cr
+#' Allow overwriting existing keys with new values?
+#' Duplicate keys are never allowed.
+#'
+#' @param keys_reserved (`character()`)\cr
+#' Names that must not be used as keys.
+#'
+#' @param alias_choices (`NULL` or `character()`)\cr
+#' Optionally possible values for the alias. Can also be \code{NULL}, then all
+#' alias values are allowed.
+#'
+#' @param dictionary_name (`NULL` or `character()`)\cr
+#' Optionally the name for the dictionary.
+#'
+#' @param key (`character(1)`)\cr
+#' A value for the key variable \code{key_name}. Use the \code{$keys} method for
+#' available keys.
 #'
 #' @export
 
@@ -39,13 +45,17 @@ Dictionary <- R6::R6Class(
   public = list(
 
     #' @description
-    #' initializing a \code{Dictionary} object
-    #' @return
-    #' a new \code{Dictionary} object
-    initialize = function(key_name, alias_name = NULL, value_names = character(),
-                          value_assert = alist(), allow_overwrite = TRUE,
-                          keys_reserved = character(), alias_choices = NULL,
-                          dictionary_name = NULL) {
+    #' Initializing a new \code{Dictionary} object.
+    initialize = function(
+      key_name,
+      alias_name = NULL,
+      value_names = character(),
+      value_assert = alist(),
+      allow_overwrite = TRUE,
+      keys_reserved = character(),
+      alias_choices = NULL,
+      dictionary_name = NULL
+    ) {
       checkmate::assert_string(key_name)
       checkmate::assert_string(alias_name, null.ok = TRUE)
       checkmate::assert_character(
@@ -86,7 +96,7 @@ Dictionary <- R6::R6Class(
     },
 
     #' @description
-    #' adding an element
+    #' Adding an element to the dictionary.
     #' @param ...
     #' Values for
     #' - the key variable \code{key_name} (must be a single \code{character}),
@@ -94,8 +104,6 @@ Dictionary <- R6::R6Class(
     #'   \code{character} \code{vector}),
     #' - all the variables specified for \code{value_names} (if any, they must
     #'   comply to the \code{value_assert} checks).
-    #' @return
-    #' invisibly the \code{Dictionary} object
 
     add = function(...) {
       inputs <- list(...)
@@ -105,14 +113,12 @@ Dictionary <- R6::R6Class(
     },
 
     #' @description
-    #' getting elements
+    #' Getting elements from the dictionary.
     #' @param value
     #' Optionally a single \code{character}, one of the elements in
     #' \code{value_names}, selecting the required value.
     #' Can also be \code{NULL} (default) for all values connected to the
     #' \code{key}, returned as a \code{list}.
-    #' @return
-    #' the selected value
 
     get = function(key, value = NULL) {
       if (!private$.key_exists(key)) {
@@ -130,9 +136,7 @@ Dictionary <- R6::R6Class(
     },
 
     #' @description
-    #' removing elements (and associated alias, if any)
-    #' @return
-    #' invisibly the \code{Dictionary} object
+    #' Removing elements from the dictionary (and associated alias, if any).
 
     remove = function(key) {
       if (!private$.key_exists(key)) {
@@ -149,9 +153,7 @@ Dictionary <- R6::R6Class(
     },
 
     #' @description
-    #' printing details of the dictionary
-    #' @return
-    #' invisibly the \code{Dictionary} object
+    #' Printing details of the dictionary.
 
     print = function() {
       cat("<Dictionary>", private$.dictionary_name, "\n")
@@ -166,8 +168,8 @@ Dictionary <- R6::R6Class(
   ),
   active = list(
 
-    #' @field keys
-    #' A \code{character} \code{vector} of available keys.
+    #' @field keys (`character()`)\cr
+    #' Available keys.
     keys = function(value) {
       if (missing(value)) {
         names(private$.storage)
@@ -176,8 +178,8 @@ Dictionary <- R6::R6Class(
       }
     },
 
-    #' @field alias
-    #' A \code{list} of available keys per alias value.
+    #' @field alias (`list()`)\cr
+    #' Available keys per alias value.
 
     alias = function(value) {
       if (missing(value)) {
@@ -187,6 +189,7 @@ Dictionary <- R6::R6Class(
       }
     }
   ),
+
   private = list(
     .storage = list(),
     .alias_list = list(),
@@ -199,6 +202,7 @@ Dictionary <- R6::R6Class(
     .keys_reserved = character(),
     .alias_choices = NULL,
     .dictionary_name = NULL,
+
     .check_inputs = function(inputs) {
       input_names_required <- c(private$.key_name, private$.value_names)
       checkmate::assert_names(
@@ -234,6 +238,7 @@ Dictionary <- R6::R6Class(
         }
       }
     },
+
     .add_to_storage = function(inputs) {
       key <- inputs[[private$.key_name]]
       private$.storage[[key]] <- inputs[private$.value_names]
@@ -243,6 +248,7 @@ Dictionary <- R6::R6Class(
         }
       }
     },
+
     .key_exists = function(key) {
       key %in% self$keys
     }
