@@ -19,7 +19,6 @@
 <url><loc>http://loelschlaeger.de/oeli/reference/correlated_regressors.html</loc></url>
 <url><loc>http://loelschlaeger.de/oeli/reference/cov_2_chol.html</loc></url>
 <url><loc>http://loelschlaeger.de/oeli/reference/ddirichlet.html</loc></url>
-<url><loc>http://loelschlaeger.de/oeli/reference/ddirichlet_cpp.html</loc></url>
 <url><loc>http://loelschlaeger.de/oeli/reference/delete_data_frame_columns.html</loc></url>
 <url><loc>http://loelschlaeger.de/oeli/reference/diff_cov.html</loc></url>
 <url><loc>http://loelschlaeger.de/oeli/reference/dmvnorm.html</loc></url>
@@ -46,8 +45,6 @@
 <url><loc>http://loelschlaeger.de/oeli/reference/package_logo.html</loc></url>
 <url><loc>http://loelschlaeger.de/oeli/reference/permutations.html</loc></url>
 <url><loc>http://loelschlaeger.de/oeli/reference/print_matrix.html</loc></url>
-<url><loc>http://loelschlaeger.de/oeli/reference/rdirichlet.html</loc></url>
-<url><loc>http://loelschlaeger.de/oeli/reference/rdirichlet_cpp.html</loc></url>
 <url><loc>http://loelschlaeger.de/oeli/reference/renv_development_packages.html</loc></url>
 <url><loc>http://loelschlaeger.de/oeli/reference/rmvnorm.html</loc></url>
 <url><loc>http://loelschlaeger.de/oeli/reference/rmvnorm_cpp.html</loc></url>

@@ -32,7 +32,7 @@
 <div class="row">
   <main id="main" class="col-md-9"><div class="page-header">
       <img src="../logo.png" class="logo" alt=""><h1>Draw from Wishart distribution</h1>
-      <small class="dont-index">Source: <a href="https://github.com/loelschlaeger/oeli/blob/master/R/sample_things.R" class="external-link"><code>R/sample_things.R</code></a></small>
+      <small class="dont-index">Source: <a href="https://github.com/loelschlaeger/oeli/blob/master/R/wishart.R" class="external-link"><code>R/wishart.R</code></a></small>
       <div class="d-none name"><code>rwishart.Rd</code></div>
     </div>
 
@@ -76,12 +76,12 @@ By default, <code>inv = FALSE</code>.</p></dd>
 <span class="r-in"><span><span class="va">scale</span> <span class="op">&lt;-</span> <span class="fu"><a href="https://rdrr.io/r/base/diag.html" class="external-link">diag</a></span><span class="op">(</span><span class="fl">2</span><span class="op">)</span></span></span>
 <span class="r-in"><span><span class="fu">rwishart</span><span class="op">(</span>df <span class="op">=</span> <span class="va">df</span>, scale <span class="op">=</span> <span class="va">scale</span><span class="op">)</span></span></span>
 <span class="r-out co"><span class="r-pr">#&gt;</span>            [,1]       [,2]</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> [1,]  0.3610582 -0.1480955</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> [2,] -0.1480955  0.2590515</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> [1,] 0.25820754 0.06473893</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> [2,] 0.06473893 0.64457097</span>
 <span class="r-in"><span><span class="fu">rwishart</span><span class="op">(</span>df <span class="op">=</span> <span class="va">df</span>, scale <span class="op">=</span> <span class="va">scale</span>, inv <span class="op">=</span> <span class="cn">TRUE</span><span class="op">)</span></span></span>
-<span class="r-out co"><span class="r-pr">#&gt;</span>           [,1]      [,2]</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> [1,]  8.554834 -3.598276</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> [2,] -3.598276  7.461303</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span>          [,1]     [,2]</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> [1,] 7.041411 1.778317</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> [2,] 1.778317 3.289277</span>
 <span class="r-in"><span></span></span>
 </code></pre></div>
     </div>
