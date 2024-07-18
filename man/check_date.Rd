@@ -20,3 +20,5 @@ This function checks if the input \code{date} has the format
 \examples{
 check_date(date = "2000-01-01")
 }
+\concept{date helpers}
+\keyword{validation}

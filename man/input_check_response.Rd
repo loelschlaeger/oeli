@@ -60,5 +60,9 @@ input_check_response(
 }
 
 }
+\seealso{
+Other package helpers: 
+\code{\link{Dictionary}}
+}
 \concept{package helpers}
 \keyword{packaging}

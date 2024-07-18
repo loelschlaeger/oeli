@@ -31,8 +31,10 @@ the heuristic implemented in \code{\link[checkmate]{vname}}.}
 Collection to store assertion messages. See \code{\link[checkmate]{AssertCollection}}.}
 }
 \value{
-Compare to \code{\link[checkmate]{check_list}}.
+Same as documented in \code{\link[checkmate]{check_list}}.
 }
 \description{
 This function checks whether the input is a list that contains list elements.
 }
+\concept{list helpers}
+\keyword{validation}

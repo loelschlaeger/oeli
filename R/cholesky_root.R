@@ -22,9 +22,9 @@
 #' chol <- cov_2_chol(cov)
 #' all.equal(cov, chol_2_cov(chol))
 #'
+#' @keywords transformation
+#' @family matrix helpers
 #' @export
-#'
-#' @family matrix helper
 
 cov_2_chol <- function(cov, unique = TRUE) {
   assert_covariance_matrix(cov)

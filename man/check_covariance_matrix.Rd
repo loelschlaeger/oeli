@@ -33,9 +33,18 @@ the heuristic implemented in \code{\link[checkmate]{vname}}.}
 Collection to store assertion messages. See \code{\link[checkmate]{AssertCollection}}.}
 }
 \value{
-Compare to \code{\link[checkmate]{check_matrix}}.
+Same as documented in \code{\link[checkmate]{check_matrix}}.
 }
 \description{
 This function checks whether the input is a symmetric, real matrix that
 fulfills the covariance matrix properties.
 }
+\seealso{
+Other matrix helpers: 
+\code{\link{check_correlation_matrix}()},
+\code{\link{check_transition_probability_matrix}()},
+\code{\link{cov_2_chol}()},
+\code{\link{diff_cov}()}
+}
+\concept{matrix helpers}
+\keyword{validation}

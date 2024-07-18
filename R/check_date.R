@@ -11,6 +11,8 @@
 #' \code{as.Date(date)} if \code{date} has the format \code{"YYYY-MM-DD"}.
 #' Otherwise, the function throws an error.
 #'
+#' @keywords validation
+#' @family date helpers
 #' @export
 #'
 #' @examples

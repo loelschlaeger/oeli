@@ -70,5 +70,6 @@ marginals <- list(
 )
 correlation <- sample_correlation_matrix(length(labels))
 verbose <- TRUE
-
 }
+\concept{simulation helpers}
+\keyword{simulation}

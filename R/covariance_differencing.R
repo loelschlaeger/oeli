@@ -33,6 +33,10 @@
 #' add \eqn{1} to each matrix entry to make the result a proper covariance
 #' matrix.
 #'
+#' @keywords transformation
+#' @family matrix helpers
+#' @export
+#'
 #' @examples
 #' n <- 3
 #' Sigma <- sample_covariance_matrix(dim = n)
@@ -46,10 +50,6 @@
 #'
 #' # un-difference Sigma
 #' undiff_cov(Sigma_diff, ref = k)
-#'
-#' @export
-#'
-#' @family matrix helper
 
 diff_cov <- function(cov, ref = 1) {
   assert_covariance_matrix(cov)

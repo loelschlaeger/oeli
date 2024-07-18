@@ -24,6 +24,17 @@ BEGIN_RCPP
     return rcpp_result_gen;
 END_RCPP
 }
+// rdirichlet_cpp
+arma::vec rdirichlet_cpp(arma::vec const& concentration);
+RcppExport SEXP _oeli_rdirichlet_cpp(SEXP concentrationSEXP) {
+BEGIN_RCPP
+    Rcpp::RObject rcpp_result_gen;
+    Rcpp::RNGScope rcpp_rngScope_gen;
+    Rcpp::traits::input_parameter< arma::vec const& >::type concentration(concentrationSEXP);
+    rcpp_result_gen = Rcpp::wrap(rdirichlet_cpp(concentration));
+    return rcpp_result_gen;
+END_RCPP
+}
 // dmvnorm_cpp
 double dmvnorm_cpp(arma::vec const& x, arma::vec const& mean, arma::mat const& Sigma, bool log);
 RcppExport SEXP _oeli_dmvnorm_cpp(SEXP xSEXP, SEXP meanSEXP, SEXP SigmaSEXP, SEXP logSEXP) {
@@ -35,32 +46,6 @@ BEGIN_RCPP
     Rcpp::traits::input_parameter< arma::mat const& >::type Sigma(SigmaSEXP);
     Rcpp::traits::input_parameter< bool >::type log(logSEXP);
     rcpp_result_gen = Rcpp::wrap(dmvnorm_cpp(x, mean, Sigma, log));
-    return rcpp_result_gen;
-END_RCPP
-}
-// dwishart_cpp
-double dwishart_cpp(arma::mat const& x, int const& df, arma::mat const& scale, bool log, bool inv);
-RcppExport SEXP _oeli_dwishart_cpp(SEXP xSEXP, SEXP dfSEXP, SEXP scaleSEXP, SEXP logSEXP, SEXP invSEXP) {
-BEGIN_RCPP
-    Rcpp::RObject rcpp_result_gen;
-    Rcpp::RNGScope rcpp_rngScope_gen;
-    Rcpp::traits::input_parameter< arma::mat const& >::type x(xSEXP);
-    Rcpp::traits::input_parameter< int const& >::type df(dfSEXP);
-    Rcpp::traits::input_parameter< arma::mat const& >::type scale(scaleSEXP);
-    Rcpp::traits::input_parameter< bool >::type log(logSEXP);
-    Rcpp::traits::input_parameter< bool >::type inv(invSEXP);
-    rcpp_result_gen = Rcpp::wrap(dwishart_cpp(x, df, scale, log, inv));
-    return rcpp_result_gen;
-END_RCPP
-}
-// rdirichlet_cpp
-arma::vec rdirichlet_cpp(arma::vec concentration);
-RcppExport SEXP _oeli_rdirichlet_cpp(SEXP concentrationSEXP) {
-BEGIN_RCPP
-    Rcpp::RObject rcpp_result_gen;
-    Rcpp::RNGScope rcpp_rngScope_gen;
-    Rcpp::traits::input_parameter< arma::vec >::type concentration(concentrationSEXP);
-    rcpp_result_gen = Rcpp::wrap(rdirichlet_cpp(concentration));
     return rcpp_result_gen;
 END_RCPP
 }
@@ -107,6 +92,21 @@ BEGIN_RCPP
     return rcpp_result_gen;
 END_RCPP
 }
+// dwishart_cpp
+double dwishart_cpp(arma::mat const& x, int const& df, arma::mat const& scale, bool log, bool inv);
+RcppExport SEXP _oeli_dwishart_cpp(SEXP xSEXP, SEXP dfSEXP, SEXP scaleSEXP, SEXP logSEXP, SEXP invSEXP) {
+BEGIN_RCPP
+    Rcpp::RObject rcpp_result_gen;
+    Rcpp::RNGScope rcpp_rngScope_gen;
+    Rcpp::traits::input_parameter< arma::mat const& >::type x(xSEXP);
+    Rcpp::traits::input_parameter< int const& >::type df(dfSEXP);
+    Rcpp::traits::input_parameter< arma::mat const& >::type scale(scaleSEXP);
+    Rcpp::traits::input_parameter< bool >::type log(logSEXP);
+    Rcpp::traits::input_parameter< bool >::type inv(invSEXP);
+    rcpp_result_gen = Rcpp::wrap(dwishart_cpp(x, df, scale, log, inv));
+    return rcpp_result_gen;
+END_RCPP
+}
 // rwishart_cpp
 arma::mat rwishart_cpp(double df, arma::mat const& scale, bool inv);
 RcppExport SEXP _oeli_rwishart_cpp(SEXP dfSEXP, SEXP scaleSEXP, SEXP invSEXP) {
@@ -125,12 +125,12 @@ RcppExport SEXP run_testthat_tests(SEXP);
 
 static const R_CallMethodDef CallEntries[] = {
     {"_oeli_ddirichlet_cpp", (DL_FUNC) &_oeli_ddirichlet_cpp, 3},
-    {"_oeli_dmvnorm_cpp", (DL_FUNC) &_oeli_dmvnorm_cpp, 4},
-    {"_oeli_dwishart_cpp", (DL_FUNC) &_oeli_dwishart_cpp, 5},
     {"_oeli_rdirichlet_cpp", (DL_FUNC) &_oeli_rdirichlet_cpp, 1},
+    {"_oeli_dmvnorm_cpp", (DL_FUNC) &_oeli_dmvnorm_cpp, 4},
     {"_oeli_rmvnorm_cpp", (DL_FUNC) &_oeli_rmvnorm_cpp, 3},
     {"_oeli_rtnorm_cpp", (DL_FUNC) &_oeli_rtnorm_cpp, 5},
     {"_oeli_rttnorm_cpp", (DL_FUNC) &_oeli_rttnorm_cpp, 5},
+    {"_oeli_dwishart_cpp", (DL_FUNC) &_oeli_dwishart_cpp, 5},
     {"_oeli_rwishart_cpp", (DL_FUNC) &_oeli_rwishart_cpp, 3},
     {"run_testthat_tests", (DL_FUNC) &run_testthat_tests, 1},
     {NULL, NULL, 0}

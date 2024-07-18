@@ -34,9 +34,16 @@ the heuristic implemented in \code{\link[checkmate]{vname}}.}
 Collection to store assertion messages. See \code{\link[checkmate]{AssertCollection}}.}
 }
 \value{
-Compare to \code{\link[checkmate]{check_numeric}}.
+Same as documented in \code{\link[checkmate]{check_numeric}}.
 }
 \description{
 This function checks whether the input is a real vector with non-negative
 entries that add up to one.
 }
+\seealso{
+Other vector helpers: 
+\code{\link{check_numeric_vector}()},
+\code{\link{chunk_vector}()}
+}
+\concept{vector helpers}
+\keyword{validation}

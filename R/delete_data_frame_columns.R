@@ -11,13 +11,15 @@
 #' @return
 #' The input \code{df} without the columns defined by \code{column_names}.
 #'
+#' @keywords transformation
+#' @family data.frame helpers
+#' @export
+#'
 #' @examples
 #' df <- data.frame("label" = c("A", "B"), "number" = 1:10)
 #' delete_data_frame_columns(df = df, column_names = "label")
 #' delete_data_frame_columns(df = df, column_names = "number")
 #' delete_data_frame_columns(df = df, column_names = c("label", "number"))
-#'
-#' @export
 
 delete_data_frame_columns <- function(df, column_names) {
   checkmate::assert_data_frame(df)

@@ -41,9 +41,18 @@ the heuristic implemented in \code{\link[checkmate]{vname}}.}
 Collection to store assertion messages. See \code{\link[checkmate]{AssertCollection}}.}
 }
 \value{
-Compare to \code{\link[checkmate]{check_matrix}}.
+Same as documented in \code{\link[checkmate]{check_matrix}}.
 }
 \description{
 This function checks whether the input is a quadratic, real matrix with
 elements between 0 and 1 and row sums equal to 1.
 }
+\seealso{
+Other matrix helpers: 
+\code{\link{check_correlation_matrix}()},
+\code{\link{check_covariance_matrix}()},
+\code{\link{cov_2_chol}()},
+\code{\link{diff_cov}()}
+}
+\concept{matrix helpers}
+\keyword{validation}

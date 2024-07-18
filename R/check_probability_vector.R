@@ -13,8 +13,10 @@
 #' @inheritParams checkmate::check_numeric
 #'
 #' @return
-#' Compare to \code{\link[checkmate]{check_numeric}}.
+#' Same as documented in \code{\link[checkmate]{check_numeric}}.
 #'
+#' @keywords validation
+#' @family vector helpers
 #' @export
 
 check_probability_vector <- function(

@@ -22,5 +22,6 @@ df <- data.frame("label" = c("A", "B"), "number" = 1:10)
 delete_data_frame_columns(df = df, column_names = "label")
 delete_data_frame_columns(df = df, column_names = "number")
 delete_data_frame_columns(df = df, column_names = c("label", "number"))
-
 }
+\concept{data.frame helpers}
+\keyword{transformation}

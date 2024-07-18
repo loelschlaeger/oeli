@@ -36,6 +36,8 @@
 #' A value for the key variable \code{key_name}. Use the \code{$keys} method for
 #' available keys.
 #'
+#' @keywords indexing
+#' @family package helpers
 #' @export
 
 Dictionary <- R6::R6Class(

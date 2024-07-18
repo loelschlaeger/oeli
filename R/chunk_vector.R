@@ -22,6 +22,8 @@
 #' @return
 #' A \code{list}.
 #'
+#' @keywords transformation
+#' @family vector helpers
 #' @export
 #'
 #' @examples
@@ -29,8 +31,6 @@
 #' chunk_vector(x, n = 3, type = 1)
 #' chunk_vector(x, n = 3, type = 2)
 #' try(chunk_vector(x, n = 5, strict = TRUE))
-#'
-#' @family matrix helper
 
 chunk_vector <- function(x, n, type = 1, strict = FALSE) {
   checkmate::assert_atomic_vector(x)

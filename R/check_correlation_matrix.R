@@ -14,8 +14,10 @@
 #' A non-negative \code{numeric} tolerance value.
 #'
 #' @return
-#' Compare to \code{\link[checkmate]{check_matrix}}.
+#' Same as documented in \code{\link[checkmate]{check_matrix}}.
 #'
+#' @keywords validation
+#' @family matrix helpers
 #' @export
 
 check_correlation_matrix <- function(

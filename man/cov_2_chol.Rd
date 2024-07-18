@@ -36,8 +36,11 @@ all.equal(cov, chol_2_cov(chol))
 
 }
 \seealso{
-Other matrix helper: 
-\code{\link{chunk_vector}()},
+Other matrix helpers: 
+\code{\link{check_correlation_matrix}()},
+\code{\link{check_covariance_matrix}()},
+\code{\link{check_transition_probability_matrix}()},
 \code{\link{diff_cov}()}
 }
-\concept{matrix helper}
+\concept{matrix helpers}
+\keyword{transformation}

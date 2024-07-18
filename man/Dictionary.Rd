@@ -6,6 +6,12 @@
 \description{
 Provides a simple key-value interface based on R6.
 }
+\seealso{
+Other package helpers: 
+\code{\link{input_check_response}()}
+}
+\concept{package helpers}
+\keyword{indexing}
 \section{Active bindings}{
 \if{html}{\out{<div class="r6-active-bindings">}}
 \describe{

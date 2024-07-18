@@ -14,8 +14,10 @@
 #' A non-negative \code{numeric} tolerance value.
 #'
 #' @return
-#' Compare to \code{\link[checkmate]{check_matrix}}.
+#' Same as documented in \code{\link[checkmate]{check_matrix}}.
 #'
+#' @keywords validation
+#' @family matrix helpers
 #' @export
 
 check_transition_probability_matrix <- function(
@@ -60,6 +62,7 @@ assert_transition_probability_matrix <- checkmate::makeAssertionFunction(
 #' @rdname check_transition_probability_matrix
 #' @inheritParams checkmate::test_matrix
 #' @export
+
 test_transition_probability_matrix <- checkmate::makeTestFunction(
   check_transition_probability_matrix
 )

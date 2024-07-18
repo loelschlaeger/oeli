@@ -58,11 +58,13 @@ delta(ref = k, dim = n)
 
 # un-difference Sigma
 undiff_cov(Sigma_diff, ref = k)
-
 }
 \seealso{
-Other matrix helper: 
-\code{\link{chunk_vector}()},
+Other matrix helpers: 
+\code{\link{check_correlation_matrix}()},
+\code{\link{check_covariance_matrix}()},
+\code{\link{check_transition_probability_matrix}()},
 \code{\link{cov_2_chol}()}
 }
-\concept{matrix helper}
+\concept{matrix helpers}
+\keyword{transformation}

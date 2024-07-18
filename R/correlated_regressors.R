@@ -45,6 +45,10 @@
 #' @return
 #' A \code{data.frame} with \code{n} rows and \code{length(labels)} columns.
 #'
+#' @keywords simulation
+#' @family simulation helpers
+#' @export
+#'
 #' @examples
 #' set.seed(1)
 #' labels <- c("P", "C", "N1", "N2", "U")
@@ -57,9 +61,6 @@
 #' )
 #' correlation <- sample_correlation_matrix(length(labels))
 #' verbose <- TRUE
-#'
-#' @export
-
 correlated_regressors <- function(
     labels,
     n = 100,

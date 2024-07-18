@@ -9,8 +9,10 @@
 #' @inheritParams checkmate::check_list
 #'
 #' @return
-#' Compare to \code{\link[checkmate]{check_list}}.
+#' Same as documented in \code{\link[checkmate]{check_list}}.
 #'
+#' @keywords validation
+#' @family list helpers
 #' @export
 
 check_list_of_lists <- function(
