@@ -1,0 +1,21 @@
+---
+title: "Helpers for working with dates"
+output: rmarkdown::html_vignette
+vignette: >
+  %\VignetteIndexEntry{Helpers for working with dates}
+  %\VignetteEngine{knitr::rmarkdown}
+  %\VignetteEncoding{UTF-8}
+---
+
+```{r, setup, include = FALSE}
+knitr::opts_chunk$set(
+  collapse = TRUE,
+  comment = "#>",
+  fig.align = 'center', 
+  fig.dim = c(7, 7), 
+  out.width = "50%"
+)
+#devtools::load_all()
+library("oeli")
+```
+
