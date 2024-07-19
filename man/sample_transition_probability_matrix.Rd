@@ -7,9 +7,11 @@
 sample_transition_probability_matrix(dim, state_persistent = TRUE)
 }
 \arguments{
-\item{dim}{An \code{integer}, the matrix dimension.}
+\item{dim}{[\code{integer(1)}]\cr
+The dimension.}
 
-\item{state_persistent}{Set to \code{TRUE} (default) to put more probability on the diagonal.}
+\item{state_persistent}{[\code{logical(1)}]\cr
+Put more probability on the diagonal?}
 }
 \value{
 A transition probability \code{matrix}.
@@ -20,5 +22,20 @@ that fulfills the properties of a transition probability matrix.
 }
 \examples{
 sample_transition_probability_matrix(dim = 3)
-
 }
+\seealso{
+Other matrix helpers: 
+\code{\link{check_correlation_matrix}()},
+\code{\link{check_covariance_matrix}()},
+\code{\link{check_transition_probability_matrix}()},
+\code{\link{cov_2_chol}()},
+\code{\link{diff_cov}()},
+\code{\link{insert_matrix_column}()},
+\code{\link{matrix_diagonal_indices}()},
+\code{\link{matrix_indices}()},
+\code{\link{sample_correlation_matrix}()},
+\code{\link{sample_covariance_matrix}()},
+\code{\link{stationary_distribution}()}
+}
+\concept{matrix helpers}
+\keyword{simulation}

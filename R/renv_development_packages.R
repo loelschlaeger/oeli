@@ -4,20 +4,24 @@
 #' This function creates a file that loads development packages so that
 #' \code{{renv}} can detect and write them to the lockfile.
 #'
-#' @param packages
-#' A \code{character} \code{vector} of package names.
-#' @param file_name
-#' A single \code{character}, the name for the \code{.R} file.
+#' @param packages \[`character()`\]\cr
+#' Package names.
 #'
-#' @export
+#' @param file_name \[`character(1)`\]\cr
+#' The name for the \code{.R} file.
 #'
 #' @return
 #' No return value, but it writes a file to the project root and adds an
 #' entry to the \code{.Rbuildignore} file.
+#'
+#' @export
+#' @keywords packaging
+#' @family package helpers
 
 renv_development_packages <- function(
     packages = c("covr", "devtools", "DT", "markdown", "R.utils", "yaml"),
-    file_name = "development_packages") {
+    file_name = "development_packages"
+  ) {
   is_package <- tryCatch(
     rprojroot::find_package_root_file(),
     error = function(e) FALSE

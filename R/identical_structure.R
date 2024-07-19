@@ -6,22 +6,24 @@
 #'   dimension
 #' - but does *not* include concrete values or attributes.
 #'
-#' @param x,y
+#' @param x,y \[`any`\]\cr
 #' Two objects.
 #'
 #' @return
 #' Either \code{TRUE} if \code{x} and \code{y} have the same structure, and
 #' \code{FALSE}, else.
+#'
+#' @keywords validation
+#' @family package helpers
+#' @export
+#'
+#' @references
+#' Inspired by \url{https://stackoverflow.com/a/45548885/15157768}.
 #
 #' @examples
 #' identical_structure(integer(1), 1L)
 #' identical_structure(diag(2), matrix(rnorm(4), 2, 2))
 #' identical_structure(diag(2), data.frame(diag(2)))
-#'
-#' @references
-#' Inspired by \url{https://stackoverflow.com/a/45548885/15157768}.
-#'
-#' @export
 
 identical_structure <- function(x, y) {
   compare_type <- function(x, y) {

@@ -7,12 +7,14 @@
 matrix_indices(x, prefix = "", exclude_diagonal = FALSE)
 }
 \arguments{
-\item{x}{A \code{matrix}.}
+\item{x}{[\code{matrix}]\cr
+A \code{matrix}.}
 
-\item{prefix}{A \code{character} as prefix for the indices.}
+\item{prefix}{[\code{character(1)}]\cr
+A prefix for the indices.}
 
-\item{exclude_diagonal}{Either \code{TRUE} to exclude indices where row equals column, or
-\code{FALSE} to include those.}
+\item{exclude_diagonal}{[\code{logical(1)}]\cr
+Exclude indices where row equals column?}
 }
 \value{
 A \code{character} \code{vector}.
@@ -25,5 +27,20 @@ M <- diag(3)
 matrix_indices(M)
 matrix_indices(M, "M_")
 matrix_indices(M, "M_", TRUE)
-
 }
+\seealso{
+Other matrix helpers: 
+\code{\link{check_correlation_matrix}()},
+\code{\link{check_covariance_matrix}()},
+\code{\link{check_transition_probability_matrix}()},
+\code{\link{cov_2_chol}()},
+\code{\link{diff_cov}()},
+\code{\link{insert_matrix_column}()},
+\code{\link{matrix_diagonal_indices}()},
+\code{\link{sample_correlation_matrix}()},
+\code{\link{sample_covariance_matrix}()},
+\code{\link{sample_transition_probability_matrix}()},
+\code{\link{stationary_distribution}()}
+}
+\concept{matrix helpers}
+\keyword{indexing}

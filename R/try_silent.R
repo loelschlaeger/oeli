@@ -7,20 +7,22 @@
 #' @details
 #' This function is a wrapper for \code{\link[base]{try}}.
 #'
-#' @param expr
-#' An R expression to try.
+#' @param expr \[`expression`\]\cr
+#' An R expression to be evaluated.
 #'
 #' @return
 #' Either the value of \code{expr} or in case of a failure an object of class
 #' \code{fail}, which contains the error message.
+#'
+#' @keywords functional
+#' @family function helpers
+#' @export
 #'
 #' @examples
 #' \dontrun{
 #' try_silent(1 + 1)
 #' try_silent(1 + "1")
 #' }
-#'
-#' @export
 
 try_silent <- function(expr) {
   out <- suppressWarnings(try(expr, silent = TRUE))

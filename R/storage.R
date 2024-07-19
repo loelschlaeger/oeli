@@ -20,23 +20,26 @@
 #' through the \code{$confirm} field or customized separately for each specific
 #' case via the method argument.
 #'
-#' @param identifier
-#' a \code{character} \code{vector} with one or more identifiers (the identifier
-#' \code{"all"} is reserved to select all elements)
-#' @param ids
-#' an \code{integer} \code{vector} of one or more ids
-#' @param logical
-#' in the case that multiple identifiers are selected, how should they be
-#' combined? options are:
+#' @param identifier \[`character()`\]\cr
+#' Pne or more identifiers (the identifier \code{"all"} is reserved to select
+#' all elements).
+#'
+#' @param ids \[`integer()`\]\cr
+#' One or more ids.
+#'
+#' @param logical \[`character(1)`\]\cr
+#' In the case that multiple identifiers are selected, how should they be
+#' combined? Options are:
 #' - \code{"and"} (the default): the identifiers are combined with logical and
-#'   (all identifiers must be true)
+#'   (all identifiers must be `TRUE`)
 #' - \code{"or"}: the identifiers are combined with logical or (at least one
-#'   identifier must be true)
-#' @param confirm
-#' either \code{TRUE} to be prompted for confirmation, or \code{FALSE} else
-#' @param missing_identifier
-#' the \code{logical} value for not specified identifiers (either \code{NA},
-#' \code{TRUE}, or \code{FALSE})
+#'   identifier must be `TRUE`)
+#'
+#' @param confirm \[`logical(1)`\]\cr
+#' Prompted for confirmation?
+#'
+#' @param missing_identifier \[`logical(1)` | NA\]\cr
+#' The value for not specified identifiers.
 #'
 #' @return
 #' The output depends on the method:
@@ -47,6 +50,8 @@
 #' - \code{$number()} returns an \code{integer}
 #' - \code{$indices()} return an \code{integer} \code{vector}
 #'
+#' @keywords indexing
+#' @family package helpers
 #' @export
 #'
 #' @examples
@@ -75,6 +80,7 @@
 #' # 5. Extract elements based on ids:
 #' my_storage$get(ids = 4:5)
 #' my_storage$get(ids = 4:5, id_names = TRUE) # add the ids as names
+
 Storage <- R6::R6Class(
   classname = "Storage",
   lock_class = TRUE,
@@ -82,9 +88,7 @@ Storage <- R6::R6Class(
   public = list(
 
     #' @description
-    #' initializing a \code{Storage} object
-    #' @return
-    #' a new \code{Storage} object
+    #' Initializing a \code{Storage} object.
     initialize = function() {
       ### elements are saved in a list
       private$elements <- list()
@@ -94,12 +98,9 @@ Storage <- R6::R6Class(
     },
 
     #' @description
-    #' adding an element
-    #' @param x
-    #' any object to be saved
-    #' @return
-    #' invisibly the \code{Storage} object
-
+    #' Adding an element.
+    #' @param x \[`any()`\]\cr
+    #' An object to be saved.
     add = function(x, identifier, confirm = interactive() & self$confirm,
                    missing_identifier = self$missing_identifier) {
       ### input checks
@@ -132,17 +133,15 @@ Storage <- R6::R6Class(
     },
 
     #' @description
-    #' getting elements
-    #' @param id_names
-    #' either \code{TRUE} to name the elements according to their ids or
-    #' \code{FALSE} if not
-    #' @return
-    #' the selected object(s)
-
-    get = function(identifier = character(), ids = integer(), logical = "and",
-                   confirm = interactive() & self$confirm,
-                   missing_identifier = self$missing_identifier,
-                   id_names = FALSE) {
+    #' Getting elements.
+    #' @param id_names \[`logical(1)`\]\cr
+    #' Name the elements according to their ids?
+    get = function(
+      identifier = character(), ids = integer(), logical = "and",
+      confirm = interactive() & self$confirm,
+      missing_identifier = self$missing_identifier,
+      id_names = FALSE
+    ) {
       ### input checks
       private$check_input(
         identifier = identifier, confirm = confirm, ids = ids,
@@ -176,15 +175,13 @@ Storage <- R6::R6Class(
 
     #' @description
     #' removing elements
-    #' @param shift_ids
-    #' either \code{TRUE} to shift ids when in-between elements are removed,
-    #' or \code{TRUE} to keep the ids
-    #' @return
-    #' invisibly the \code{Storage} object
-
-    remove = function(identifier = character(), ids = integer(), logical = "and",
-                      confirm = interactive() & self$confirm,
-                      missing_identifier = self$missing_identifier, shift_ids = TRUE) {
+    #' @param shift_ids \[`logical(1)`\]\cr
+    #' Shift ids when in-between elements are removed?
+    remove = function(
+      identifier = character(), ids = integer(), logical = "and",
+      confirm = interactive() & self$confirm,
+      missing_identifier = self$missing_identifier, shift_ids = TRUE
+    ) {
       ### input checks
       private$check_input(
         identifier = identifier, confirm = confirm, ids = ids,
@@ -231,12 +228,11 @@ Storage <- R6::R6Class(
     },
 
     #' @description
-    #' computing the number of identified elements
-    #' @return
-    #' an \code{integer}
-
-    number = function(identifier = "all", missing_identifier = self$missing_identifier,
-                      logical = "and", confirm = FALSE) {
+    #' Computing the number of identified elements.
+    number = function(
+      identifier = "all", missing_identifier = self$missing_identifier,
+      logical = "and", confirm = FALSE
+    ) {
       ### input checks
       private$check_input(
         identifier = identifier, missing_identifier = missing_identifier,
@@ -257,12 +253,11 @@ Storage <- R6::R6Class(
     },
 
     #' @description
-    #' returning indices based on defined identifiers
-    #' @return
-    #' an \code{integer} \code{vector}
-
-    indices = function(identifier = "all", logical = "and",
-                       confirm = interactive() & self$confirm) {
+    #' Returning indices based on defined identifiers.
+    indices = function(
+      identifier = "all", logical = "and",
+      confirm = interactive() & self$confirm)
+    {
       ### input checks
       private$check_input(
         identifier = identifier, logical = logical, confirm = confirm
@@ -282,12 +277,9 @@ Storage <- R6::R6Class(
     },
 
     #' @description
-    #' printing details of the saved elements
+    #' Printing details of the saved elements.
     #' @param ...
-    #' currently not used
-    #' @return
-    #' invisibly the \code{Storage} object
-
+    #' Currently not used.
     print = function(...) {
       nelements <- length(private$elements)
       if (nelements > 0) {
@@ -301,7 +293,8 @@ Storage <- R6::R6Class(
   ),
   active = list(
 
-    #' @field identifier a \code{character} \code{vector}, the identifiers used
+    #' @field identifier \[`character()`\]\cr
+    #' The identifiers used.
     identifier = function(value) {
       if (missing(value)) {
         colnames(private$ids)
@@ -310,9 +303,8 @@ Storage <- R6::R6Class(
       }
     },
 
-    #' @field confirm setting the default value for confirmations (either
-    #' \code{TRUE} or \code{FALSE})
-
+    #' @field confirm \[`logical(1)`\]\cr
+    #' The default value for confirmations.
     confirm = function(value) {
       if (missing(value)) {
         private$confirm_default
@@ -322,9 +314,8 @@ Storage <- R6::R6Class(
       }
     },
 
-    #' @field missing_identifier setting the default value for not specified
-    #' identifiers (either \code{TRUE}, \code{FALSE}, or \code{NA})
-
+    #' @field missing_identifier \[`logical(1)`\]\cr
+    #' The default value for not specified identifiers.
     missing_identifier = function(value) {
       if (missing(value)) {
         private$missing_default
@@ -334,9 +325,8 @@ Storage <- R6::R6Class(
       }
     },
 
-    #' @field hide_warnings either \code{TRUE} to hide warnings (for example
-    #' if unknown identifiers are selected) or \code{FALSE} (default), else
-
+    #' @field hide_warnings \[`logical(1)`\]\cr
+    #' Hide warnings (for example if unknown identifiers are selected)?
     hide_warnings = function(value) {
       if (missing(value)) {
         private$.hide_warnings

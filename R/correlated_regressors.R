@@ -7,13 +7,13 @@
 #' @details
 #' TODO
 #'
-#' @param labels (`character()`)\cr
+#' @param labels \[`character()`\]\cr
 #' Unique labels for the regressors.
 #'
-#' @param n (`integer(1)`)\cr
+#' @param n \[`integer(1)`\]\cr
 #' The number of values per regressor.
 #'
-#' @param marginals  (`list()`)\cr
+#' @param marginals \[`list()`\]\cr
 #' Optionally marginal distributions for regressors. If not specified,
 #' standard normal marginal distributions are used.
 #'
@@ -34,12 +34,12 @@
 #'   }
 #' }
 #'
-#' @param correlation (`matrix()`)\cr
+#' @param correlation \[`matrix()`\]\cr
 #' A correlation matrix of dimension \code{length(labels)}, where the
 #' \code{(p, q)}-th entry defines the correlation between regressor
 #' \code{labels[p]} and \code{labels[q]}.
 #'
-#' @param verbose (`logical(1)`)\cr
+#' @param verbose \[`logical(1)`\]\cr
 #' Whether to print information about the simulated regressors.
 #'
 #' @return
@@ -61,6 +61,7 @@
 #' )
 #' correlation <- sample_correlation_matrix(length(labels))
 #' verbose <- TRUE
+
 correlated_regressors <- function(
     labels,
     n = 100,

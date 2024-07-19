@@ -3,23 +3,27 @@
 #' @description
 #' This function simulates a Markov chain.
 #'
-#' @param Gamma
-#' A transition probability \code{matrix}.
-#' @param T
-#' An \code{integer}, the length of the Markov chain.
-#' @param delta
-#' A \code{numeric} probability vector, the initial distribution.
-#' If not specified, \code{delta} is set to the stationary distribution of
-#' \code{Gamma}.
+#' @param Gamma \[`matrix()`\]\cr
+#' A transition probability matrix.
+#'
+#' @param T \[`integer(1)`\]\cr
+#' The length of the Markov chain.
+#'
+#' @param delta \[`numeric()`\]\cr
+#' A probability vector, the initial distribution.
+#'
+#' By default, \code{delta} is the stationary distribution of \code{Gamma}.
 #'
 #' @return
 #' A \code{numeric} vector of length \code{T} with states.
 #'
+#' @keywords simulation
+#' @family simulation helpers
+#' @export
+#'
 #' @examples
 #' Gamma <- sample_transition_probability_matrix(dim = 3)
 #' simulate_markov_chain(Gamma = Gamma, T = 10)
-#'
-#' @export
 
 simulate_markov_chain <- function(
     Gamma, T, delta = oeli::stationary_distribution(Gamma)

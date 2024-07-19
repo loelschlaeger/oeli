@@ -4,16 +4,17 @@
 #' This function matches function arguments and is a modified version of
 #' \code{\link[base]{match.arg}}.
 #'
-#' @param arg
-#' A \code{character} (vector), the function argument.
-#' @param choices
-#' A \code{character} (vector) of allowed values for \code{arg}.
-#' @param several.ok
-#' Either \code{TRUE} if \code{arg} is allowed to have more than one element,
-#' or \code{FALSE} else.
-#' @param none.ok
-#' Either \code{TRUE} if \code{arg} is allowed to have zero elements,
-#' or \code{FALSE} else.
+#' @param arg \[`character()`\]\cr
+#' The function argument.
+#'
+#' @param choices \[`character()`\]\cr
+#' Allowed values for \code{arg}.
+#'
+#' @param several.ok \[`logical(1)`\]\cr
+#' Is \code{arg} allowed to have more than one element?
+#'
+#' @param none.ok \[`logical(1)`\]\cr
+#' Is \code{arg} allowed to have zero elements?
 #'
 #' @return
 #' The un-abbreviated version of the exact or unique partial match if there is
@@ -25,6 +26,8 @@
 #' \code{character(0)} is returned.
 #'
 #' @export
+#' @keywords packaging
+#' @family package helpers
 
 match_arg <- function(arg, choices, several.ok = FALSE, none.ok = FALSE) {
   checkmate::assert_character(arg)

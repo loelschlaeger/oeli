@@ -4,16 +4,20 @@
 #' This function returns the indices of the diagonal elements of a quadratic
 #' matrix.
 #'
-#' @param n
-#' An \code{integer}, the matrix dimension.
+#' @param n \[`integer(1)`\]\cr
+#' The matrix dimension.
 #'
-#' @param triangular
+#' @param triangular \[`NULL` or `character(1)`\]\cr
 #' If \code{NULL} (default), all elements of the matrix are considered. If
 #' \code{"lower"} (\code{"upper"}), only the lower- (upper-) triangular matrix
 #' is considered.
 #'
 #' @return
 #' An \code{integer} \code{vector}.
+#'
+#' @export
+#' @keywords indexing
+#' @family matrix helpers
 #'
 #' @examples
 #' # indices of diagonal elements
@@ -32,8 +36,6 @@
 #' U[upper.tri(U, diag=TRUE)] <- 1:((n * (n + 1)) / 2)
 #' U
 #' matrix_diagonal_indices(n, triangular = "upper")
-#'
-#' @export
 
 matrix_diagonal_indices <- function(n, triangular = NULL) {
   checkmate::assert_int(n, lower = 1)

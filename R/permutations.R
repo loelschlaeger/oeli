@@ -6,17 +6,19 @@
 #' @references
 #' Modified version of <https://stackoverflow.com/a/20199902/15157768>.
 #'
-#' @param x
+#' @param x \[`atomic()`\]\cr
 #' Any \code{vector}.
 #'
 #' @return
 #' A \code{list} of all permutations of \code{x}.
 #'
+#' @export
+#' @keywords indexing
+#' @family vector helpers
+#'
 #' @examples
 #' permutations(1:3)
 #' permutations(LETTERS[1:3])
-#'
-#' @export
 
 permutations <- function(x) {
   checkmate::assert_atomic_vector(x, min.len = 1)

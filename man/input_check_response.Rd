@@ -12,20 +12,19 @@ input_check_response(
 )
 }
 \arguments{
-\item{check}{(\code{TRUE} or \code{character()})\cr
-Either \code{TRUE} if the check was successful, or an error message else.
+\item{check}{[\code{TRUE} | \code{character(1)}]\cr
+Matches the return value of the \verb{check*} functions from the \code{{checkmate}}
+package, i.e., either \code{TRUE} if the check was successful, or an error message
+else.}
 
-This input type matches the return value of the \verb{check*} functions from the
-\code{{checkmate}} package.}
-
-\item{var_name}{(\code{NULL} or \code{character(1)})\cr
+\item{var_name}{[\code{NULL} | \code{character(1)}]\cr
 Optionally specifies the name of the input being checked. This name will be
 used as the default value for the \code{prefix} argument.}
 
-\item{error}{(\code{logical(1)})\cr
-If \code{check} is not \code{TRUE}, throw an error or return \code{FALSE}?}
+\item{error}{[\code{logical(1)}]\cr
+If \code{check} is not \code{TRUE}, throw an error?}
 
-\item{prefix}{(\code{character(1)})\cr
+\item{prefix}{[\code{character(1)}]\cr
 A prefix for the thrown error message, if \code{check} is not \code{TRUE} and
 \code{error} is \code{TRUE}.}
 }
@@ -37,7 +36,8 @@ A prefix for the thrown error message, if \code{check} is not \code{TRUE} and
 }
 }
 \description{
-Provides standardized responses to input checks, ensuring consistency.
+This function provides standardized responses to input checks, ensuring
+consistency.
 }
 \examples{
 x <- "1"
@@ -58,11 +58,19 @@ input_check_response(
   error = TRUE
 )
 }
-
 }
 \seealso{
 Other package helpers: 
-\code{\link{Dictionary}}
+\code{\link{Dictionary}},
+\code{\link{Storage}},
+\code{\link{identical_structure}()},
+\code{\link{match_arg}()},
+\code{\link{package_logo}()},
+\code{\link{print_matrix}()},
+\code{\link{renv_development_packages}()},
+\code{\link{system_information}()},
+\code{\link{unexpected_error}()},
+\code{\link{user_confirm}()}
 }
 \concept{package helpers}
 \keyword{packaging}

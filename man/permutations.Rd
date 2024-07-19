@@ -7,7 +7,8 @@
 permutations(x)
 }
 \arguments{
-\item{x}{Any \code{vector}.}
+\item{x}{[\code{atomic()}]\cr
+Any \code{vector}.}
 }
 \value{
 A \code{list} of all permutations of \code{x}.
@@ -18,8 +19,18 @@ This function creates all permutations of a given \code{vector}.
 \examples{
 permutations(1:3)
 permutations(LETTERS[1:3])
-
 }
 \references{
 Modified version of \url{https://stackoverflow.com/a/20199902/15157768}.
 }
+\seealso{
+Other vector helpers: 
+\code{\link{check_numeric_vector}()},
+\code{\link{check_probability_vector}()},
+\code{\link{chunk_vector}()},
+\code{\link{insert_vector_entry}()},
+\code{\link{match_numerics}()},
+\code{\link{vector_occurrence}()}
+}
+\concept{vector helpers}
+\keyword{indexing}

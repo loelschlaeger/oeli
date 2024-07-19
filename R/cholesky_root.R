@@ -4,17 +4,20 @@
 #' These functions compute the Cholesky root elements of a covariance matrix
 #' and, conversely, build a covariance matrix from its Cholesky root elements.
 #'
-#' @param cov
-#' A covariance \code{matrix} of dimension \code{dim}.
-#' @param chol
-#' A \code{numeric} \code{vector} of Cholesky root elements.
-#' @param unique
+#' @param cov \[`matrix()`\]\cr
+#' A covariance matrix.
+#'
+#' @param chol \[`numeric()`\]\cr
+#' Cholesky root elements.
+#'
+#' @param unique \[`logical(1)`\]\cr
 #' Set to \code{TRUE} to ensure that the Cholesky decomposition is unique
 #' by restricting the diagonal elements to be positive.
 #'
 #' @return
 #' For \code{\link{cov_2_chol}} a \code{numeric} \code{vector} of Cholesky root
 #' elements.
+#'
 #' For \code{\link{chol_2_cov}} a covariance \code{matrix}.
 #'
 #' @examples

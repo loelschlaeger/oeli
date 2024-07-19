@@ -4,15 +4,16 @@
 #' These functions difference and un-difference a covariance matrix with respect
 #' to row \code{ref}.
 #'
-#' @param cov,cov_diff
-#' A (differenced) covariance \code{matrix} of dimension \code{dim}
+#' @param cov,cov_diff \[`matrix()`\]\cr
+#' A (differenced) covariance matrix of dimension \code{dim}
 #' (or \code{dim} - 1, respectively).
-#' @param ref
-#' An \code{integer} between \code{1} and \code{dim}, the reference row for
+#'
+#' @param ref \[`integer(1)`\]\cr
+#' The reference row between \code{1} and \code{dim} for
 #' differencing that maps \code{cov} to \code{cov_diff}, see details.
-#' By default, \code{ref = 1}.
-#' @param dim
-#' An \code{integer}, the dimension.
+#'
+#' @param dim \[`integer(1)`\]\cr
+#' The matrix dimension.
 #'
 #' @return
 #' A (differenced or un-differenced) covariance \code{matrix}.

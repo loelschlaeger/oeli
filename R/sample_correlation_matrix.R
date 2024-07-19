@@ -5,22 +5,26 @@
 #' from an inverse Wishart distribution and transforming it to a correlation
 #' matrix.
 #'
-#' @param dim
-#' An \code{integer}, the dimension.
-#' @param df
-#' An \code{integer} greater or equal \code{dim}, the degrees of freedom of
-#' the inverse Wishart distribution.
-#' @param scale
-#' A covariance \code{matrix} of dimension \code{dim}, the scale matrix of the
-#' inverse Wishart distribution.
+#' @param dim \[`integer(1)`\]\cr
+#' The dimension.
+#'
+#' @param df \[`integer(1)`\]\cr
+#' The degrees of freedom of the inverse Wishart distribution greater or equal
+#' \code{dim}.
+#'
+#' @param scale \[`matrix()`\]\cr
+#' The scale covariance matrix of the inverse Wishart distribution of dimension
+#' \code{dim}.
 #'
 #' @return
 #' A correlation \code{matrix}.
 #'
+#' @keywords simulation
+#' @family matrix helpers
+#' @export
+#'
 #' @examples
 #' sample_correlation_matrix(dim = 3)
-#'
-#' @export
 
 sample_correlation_matrix <- function(
     dim, df = dim, scale = diag(dim)

@@ -11,10 +11,12 @@
 #' @return
 #' A \code{list}.
 #'
+#' @export
+#' @keywords transformation
+#' @family list helpers
+#'
 #' @examples
 #' merge_lists(list("a" = 1, "b" = 2), list("b" = 3, "c" = 4, "d" = NULL))
-#'
-#' @export
 
 merge_lists <- function(...) {
   inputs <- list(...)

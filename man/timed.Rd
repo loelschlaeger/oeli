@@ -7,11 +7,14 @@
 timed(expression, seconds = Inf, on_time_out = "silent")
 }
 \arguments{
-\item{expression}{An R expression to be evaluated.}
+\item{expression}{[\code{expression}]\cr
+An R expression to be evaluated.}
 
-\item{seconds}{The number of seconds.}
+\item{seconds}{[\code{numeric(1)}]\cr
+The number of seconds.}
 
-\item{on_time_out}{Defines what action to take if the evaluation time exceeded, either:
+\item{on_time_out}{[\code{character(1)}]\cr
+Defines what action to take if the evaluation time exceeded, either:
 \itemize{
 \item \code{"error"} to throw an error exception
 \item \code{"warning"} to return \code{NULL} along with a warning
@@ -33,5 +36,15 @@ foo <- function(x) {
 }
 timed(foo(0.5), 1)
 timed(foo(1.5), 1)
-
 }
+\seealso{
+Other function helpers: 
+\code{\link{do.call_timed}()},
+\code{\link{function_arguments}()},
+\code{\link{function_body}()},
+\code{\link{function_defaults}()},
+\code{\link{try_silent}()},
+\code{\link{variable_name}()}
+}
+\concept{function helpers}
+\keyword{simulation}

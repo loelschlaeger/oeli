@@ -7,9 +7,11 @@
 matrix_diagonal_indices(n, triangular = NULL)
 }
 \arguments{
-\item{n}{An \code{integer}, the matrix dimension.}
+\item{n}{[\code{integer(1)}]\cr
+The matrix dimension.}
 
-\item{triangular}{If \code{NULL} (default), all elements of the matrix are considered. If
+\item{triangular}{[\code{NULL} or \code{character(1)}]\cr
+If \code{NULL} (default), all elements of the matrix are considered. If
 \code{"lower"} (\code{"upper"}), only the lower- (upper-) triangular matrix
 is considered.}
 }
@@ -37,5 +39,20 @@ U <- matrix(0, n, n)
 U[upper.tri(U, diag=TRUE)] <- 1:((n * (n + 1)) / 2)
 U
 matrix_diagonal_indices(n, triangular = "upper")
-
 }
+\seealso{
+Other matrix helpers: 
+\code{\link{check_correlation_matrix}()},
+\code{\link{check_covariance_matrix}()},
+\code{\link{check_transition_probability_matrix}()},
+\code{\link{cov_2_chol}()},
+\code{\link{diff_cov}()},
+\code{\link{insert_matrix_column}()},
+\code{\link{matrix_indices}()},
+\code{\link{sample_correlation_matrix}()},
+\code{\link{sample_covariance_matrix}()},
+\code{\link{sample_transition_probability_matrix}()},
+\code{\link{stationary_distribution}()}
+}
+\concept{matrix helpers}
+\keyword{indexing}

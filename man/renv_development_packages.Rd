@@ -10,9 +10,11 @@ renv_development_packages(
 )
 }
 \arguments{
-\item{packages}{A \code{character} \code{vector} of package names.}
+\item{packages}{[\code{character()}]\cr
+Package names.}
 
-\item{file_name}{A single \code{character}, the name for the \code{.R} file.}
+\item{file_name}{[\code{character(1)}]\cr
+The name for the \code{.R} file.}
 }
 \value{
 No return value, but it writes a file to the project root and adds an
@@ -22,3 +24,18 @@ entry to the \code{.Rbuildignore} file.
 This function creates a file that loads development packages so that
 \code{{renv}} can detect and write them to the lockfile.
 }
+\seealso{
+Other package helpers: 
+\code{\link{Dictionary}},
+\code{\link{Storage}},
+\code{\link{identical_structure}()},
+\code{\link{input_check_response}()},
+\code{\link{match_arg}()},
+\code{\link{package_logo}()},
+\code{\link{print_matrix}()},
+\code{\link{system_information}()},
+\code{\link{unexpected_error}()},
+\code{\link{user_confirm}()}
+}
+\concept{package helpers}
+\keyword{packaging}

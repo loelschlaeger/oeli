@@ -7,15 +7,19 @@
 sample_covariance_matrix(dim, df = dim, scale = diag(dim), diag = FALSE)
 }
 \arguments{
-\item{dim}{An \code{integer}, the dimension.}
+\item{dim}{[\code{integer(1)}]\cr
+The dimension.}
 
-\item{df}{An \code{integer} greater or equal \code{dim}, the degrees of freedom of
-the inverse Wishart distribution.}
+\item{df}{[\code{integer(1)}]\cr
+The degrees of freedom of the inverse Wishart distribution greater or equal
+\code{dim}.}
 
-\item{scale}{A covariance \code{matrix} of dimension \code{dim}, the scale matrix of the
-inverse Wishart distribution.}
+\item{scale}{[\code{matrix()}]\cr
+The scale covariance matrix of the inverse Wishart distribution of dimension
+\code{dim}.}
 
-\item{diag}{Set to \code{TRUE} for a diagonal matrix.}
+\item{diag}{[\code{logical(1)}]\cr
+Diagonal matrix?}
 }
 \value{
 A covariance \code{matrix}.
@@ -26,5 +30,20 @@ distribution.
 }
 \examples{
 sample_covariance_matrix(dim = 3)
-
 }
+\seealso{
+Other matrix helpers: 
+\code{\link{check_correlation_matrix}()},
+\code{\link{check_covariance_matrix}()},
+\code{\link{check_transition_probability_matrix}()},
+\code{\link{cov_2_chol}()},
+\code{\link{diff_cov}()},
+\code{\link{insert_matrix_column}()},
+\code{\link{matrix_diagonal_indices}()},
+\code{\link{matrix_indices}()},
+\code{\link{sample_correlation_matrix}()},
+\code{\link{sample_transition_probability_matrix}()},
+\code{\link{stationary_distribution}()}
+}
+\concept{matrix helpers}
+\keyword{simulation}

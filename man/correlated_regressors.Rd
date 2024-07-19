@@ -13,13 +13,13 @@ correlated_regressors(
 )
 }
 \arguments{
-\item{labels}{(\code{character()})\cr
+\item{labels}{[\code{character()}]\cr
 Unique labels for the regressors.}
 
-\item{n}{(\code{integer(1)})\cr
+\item{n}{[\code{integer(1)}]\cr
 The number of values per regressor.}
 
-\item{marginals}{(\code{list()})\cr
+\item{marginals}{[\code{list()}]\cr
 Optionally marginal distributions for regressors. If not specified,
 standard normal marginal distributions are used.
 
@@ -40,12 +40,12 @@ following distributions are currently supported (TODO: if you need another, repo
 }
 }}
 
-\item{correlation}{(\code{matrix()})\cr
+\item{correlation}{[\code{matrix()}]\cr
 A correlation matrix of dimension \code{length(labels)}, where the
 \code{(p, q)}-th entry defines the correlation between regressor
 \code{labels[p]} and \code{labels[q]}.}
 
-\item{verbose}{(\code{logical(1)})\cr
+\item{verbose}{[\code{logical(1)}]\cr
 Whether to print information about the simulated regressors.}
 }
 \value{
@@ -70,6 +70,14 @@ marginals <- list(
 )
 correlation <- sample_correlation_matrix(length(labels))
 verbose <- TRUE
+}
+\seealso{
+Other simulation helpers: 
+\code{\link{ddirichlet_cpp}()},
+\code{\link{dmvnorm_cpp}()},
+\code{\link{dtnorm_cpp}()},
+\code{\link{dwishart_cpp}()},
+\code{\link{simulate_markov_chain}()}
 }
 \concept{simulation helpers}
 \keyword{simulation}

@@ -7,9 +7,8 @@
 match_numerics(x, y)
 }
 \arguments{
-\item{x}{A \code{numeric} vector.}
-
-\item{y}{Another \code{numeric} vector of the same length as \code{x}.}
+\item{x, y}{[\code{numeric()}]\cr
+Two vectors of the same length.}
 }
 \value{
 An \code{integer} vector of length \code{length(x)} with the positions of
@@ -23,5 +22,15 @@ This function matches the indices of two numeric vectors as good as possible
 x <- c(-1, 0, 1)
 y <- c(0.1, 1.5, -1.2)
 match_numerics(x, y)
-
 }
+\seealso{
+Other vector helpers: 
+\code{\link{check_numeric_vector}()},
+\code{\link{check_probability_vector}()},
+\code{\link{chunk_vector}()},
+\code{\link{insert_vector_entry}()},
+\code{\link{permutations}()},
+\code{\link{vector_occurrence}()}
+}
+\concept{vector helpers}
+\keyword{indexing}

@@ -3,12 +3,14 @@
 #' @description
 #' This function takes a date as input and returns the closest year.
 #'
-#' @param date
-#' A \code{date} in the format of \code{"YYYY-MM-DD"}.
+#' @param date \[`character(1)`\]\cr
+#' The date in format \code{"YYYY-MM-DD"}.
 #'
 #' @return
 #' An \code{integer}, the closest year to the input date.
 #'
+#' @keywords indexing
+#' @family date helpers
 #' @export
 #'
 #' @examples

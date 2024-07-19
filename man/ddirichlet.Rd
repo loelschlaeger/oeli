@@ -16,37 +16,50 @@ ddirichlet(x, concentration, log = FALSE)
 rdirichlet(n = 1, concentration)
 }
 \arguments{
-\item{x}{A \code{numeric}, a weight vector of length \code{p}.
-Each vector element must be between \code{0} and \code{1}.
-The sum of the vector elements must be \code{1}.}
+\item{x}{[\code{numeric()}]\cr
+A probability vector.}
 
-\item{concentration}{A \code{numeric}, the concentration vector of length \code{p}.}
+\item{concentration}{[\code{numeric()}]\cr
+A concentration vector of the same length as \code{x}.}
 
-\item{log}{A \code{logical}, if \code{TRUE} the logarithm of the density value is
-returned.
-By default, \code{log = FALSE}.}
+\item{log}{[\code{logical(1)}]\cr
+Return the logarithm of the density value?}
 
-\item{n}{An \code{integer}, the number of samples.}
+\item{n}{[\code{integer(1)}]\cr
+The number of samples.}
 }
 \value{
-TODO If \code{n = 1} a \code{vector} of length \code{p}, else
+For \code{ddirichlet()}: The density value.
+
+For \code{rdirichlet()}: If \code{n = 1} a \code{vector} of length \code{p}, else
 a \code{matrix} of dimension \code{n} times \code{p} with samples as rows.
-A \code{numeric}, the density value.
 }
 \description{
-This function computes the density of a Dirichlet distribution.
-}
-\details{
-TODO input checks
+The function \code{ddirichlet()} computes the density of a Dirichlet distribution.
+
+The function \code{rdirichlet()} samples from a Dirichlet distribution.
+
+The functions with suffix \verb{_cpp} perform no input checks, hence are faster.
 }
 \examples{
 x <- c(0.5, 0.3, 0.2)
 concentration <- 1:3
+
+# compute density
 ddirichlet(x = x, concentration = concentration)
 ddirichlet(x = x, concentration = concentration, log = TRUE)
 
+# sample
 rdirichlet(concentration = 1:3)
 rdirichlet(n = 4, concentration = 1:2)
 }
-\concept{distribution helpers}
+\seealso{
+Other simulation helpers: 
+\code{\link{correlated_regressors}()},
+\code{\link{dmvnorm_cpp}()},
+\code{\link{dtnorm_cpp}()},
+\code{\link{dwishart_cpp}()},
+\code{\link{simulate_markov_chain}()}
+}
+\concept{simulation helpers}
 \keyword{distribution}

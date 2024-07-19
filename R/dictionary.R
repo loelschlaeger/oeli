@@ -3,42 +3,45 @@
 #' @description
 #' Provides a simple key-value interface based on R6.
 #'
-#' @param key_name (`character(1)`)\cr
+#' @param key_name \[`character(1)`\]\cr
 #' The name for the key variable.
 #'
-#' @param alias_name (`NULL` or `character(1)`)\cr
+#' @param alias_name \[`NULL` | `character(1)`\]\cr
 #' Optionally the name for the alias variable.
 #'
-#' @param value_names (`character()`)\cr
+#' @param value_names \[`character(0)`\]\cr
 #' The names of the values connected to a key.
 #'
-#' @param value_assert (`alist()`)\cr
+#' @param value_assert \[`alist(1)`\]\cr
 #' For each element in \code{value_names}, \code{values_assert} *can* have an
 #' identically named element of the form \code{checkmate::assert_*(...)}, where
 #' \code{...} can be any argument for the assertion function except for the
 #' \code{x} argument.
 #'
-#' @param allow_overwrite (`logical(1)`)\cr
+#' @param allow_overwrite \[`logical(1)`\]\cr
 #' Allow overwriting existing keys with new values?
 #' Duplicate keys are never allowed.
 #'
-#' @param keys_reserved (`character()`)\cr
+#' @param keys_reserved \[`character()`\]\cr
 #' Names that must not be used as keys.
 #'
-#' @param alias_choices (`NULL` or `character()`)\cr
+#' @param alias_choices \[`NULL` or `character()`\]\cr
 #' Optionally possible values for the alias. Can also be \code{NULL}, then all
 #' alias values are allowed.
 #'
-#' @param dictionary_name (`NULL` or `character()`)\cr
+#' @param dictionary_name \[`NULL` or `character()`\]\cr
 #' Optionally the name for the dictionary.
 #'
-#' @param key (`character(1)`)\cr
+#' @param key \[`character(1)`\]\cr
 #' A value for the key variable \code{key_name}. Use the \code{$keys} method for
 #' available keys.
 #'
 #' @keywords indexing
 #' @family package helpers
 #' @export
+#'
+#' @examples
+#' # TODO
 
 Dictionary <- R6::R6Class(
   classname = "Dictionary",
@@ -116,9 +119,8 @@ Dictionary <- R6::R6Class(
 
     #' @description
     #' Getting elements from the dictionary.
-    #' @param value
-    #' Optionally a single \code{character}, one of the elements in
-    #' \code{value_names}, selecting the required value.
+    #' @param value \[`NULL` | `character(1)`\]\cr
+    #' One of the elements in \code{value_names}, selecting the required value.
     #' Can also be \code{NULL} (default) for all values connected to the
     #' \code{key}, returned as a \code{list}.
 
@@ -170,7 +172,7 @@ Dictionary <- R6::R6Class(
   ),
   active = list(
 
-    #' @field keys (`character()`)\cr
+    #' @field keys \[`character()`\]\cr
     #' Available keys.
     keys = function(value) {
       if (missing(value)) {
@@ -180,7 +182,7 @@ Dictionary <- R6::R6Class(
       }
     },
 
-    #' @field alias (`list()`)\cr
+    #' @field alias \[`list()`\]\cr
     #' Available keys per alias value.
 
     alias = function(value) {

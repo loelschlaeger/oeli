@@ -3,26 +3,25 @@
 #' @description
 #' This function inserts a value into a vector.
 #'
-#' @param v
+#' @param v \[`atomic()`\]\cr
 #' A \code{vector}.
 #'
-#' @param x
-#' A single value (i.e., an \code{atomic} \code{vector} of length 1), the entry
-#' to be added.
+#' @param x \[`atomic(1)`\]\cr
+#' The entry to be added.
 #'
-#' @param p
-#' An \code{integer}, the position where to add the entry:
+#' @param p \[`integer())`\]\cr
+#' The position(s) where to add the value, one or more of:
 #' - \code{p = 0} appends the value left
 #' - \code{p = length(v)} appends the value right
 #' - \code{p = n} inserts the value between the \code{n}-th and
 #'   \code{(n + 1)}-th entry of \code{v}.
 #'
-#' Can also be a \code{vector} of multiple positions.
-#'
 #' @return
 #' A \code{vector}.
 #'
 #' @export
+#' @keywords transformation
+#' @family vector helpers
 #'
 #' @examples
 #' v <- 1:3

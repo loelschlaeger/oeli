@@ -7,7 +7,8 @@
 identical_structure(x, y)
 }
 \arguments{
-\item{x, y}{Two objects.}
+\item{x, y}{[\code{any}]\cr
+Two objects.}
 }
 \value{
 Either \code{TRUE} if \code{x} and \code{y} have the same structure, and
@@ -25,8 +26,22 @@ dimension
 identical_structure(integer(1), 1L)
 identical_structure(diag(2), matrix(rnorm(4), 2, 2))
 identical_structure(diag(2), data.frame(diag(2)))
-
 }
 \references{
 Inspired by \url{https://stackoverflow.com/a/45548885/15157768}.
 }
+\seealso{
+Other package helpers: 
+\code{\link{Dictionary}},
+\code{\link{Storage}},
+\code{\link{input_check_response}()},
+\code{\link{match_arg}()},
+\code{\link{package_logo}()},
+\code{\link{print_matrix}()},
+\code{\link{renv_development_packages}()},
+\code{\link{system_information}()},
+\code{\link{unexpected_error}()},
+\code{\link{user_confirm}()}
+}
+\concept{package helpers}
+\keyword{validation}

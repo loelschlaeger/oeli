@@ -6,32 +6,33 @@
 #' @references
 #' This function is a modified version of \code{ramify::pprint()}.
 #'
-#' @param x
-#' A \code{numeric} or \code{character} (\code{vector} or \code{matrix}).
-#' @param rowdots
-#' An \code{integer}, the row number which is replaced by \code{...}.
-#' By default, \code{rowdots = 4}.
-#' @param coldots
-#' An \code{integer}, the column number which is replaced by \code{...}.
-#' By default, \code{coldots = 4}.
-#' @param digits
-#' An \code{integer}, the number of printed decimal places.
-#' Only relevant if input \code{x} is numeric.
-#' By default, \code{digits = 2}.
-#' @param label
-#' A \code{character}, a label for \code{x}.
-#' Only printed if \code{simplify = FALSE}.
-#' By default, \code{label = NULL}, i.e., no label.
-#' @param simplify
-#' A \code{logical}, set to \code{TRUE} to simplify the output.
-#' By default, \code{simplify = FALSE}.
-#' @param details
-#' A \code{logical}, set to \code{TRUE} to print the type and
-#' dimension of \code{x}.
-#' By default, \code{details = !simplify}.
+#' @param x \[`atomic()` | `matrix`\]\cr
+#' The object to be printed.
+#'
+#' @param rowdots \[`integer(1)`\]\cr
+#' The row number which is replaced by \code{...}.
+#'
+#' @param coldots \[`integer(1)`\]\cr
+#' The column number which is replaced by \code{...}.
+#'
+#' @param digits \[`integer(1)`\]\cr
+#' The number of printed decimal places if input \code{x} is \code{numeric}.
+#'
+#' @param label \[`character(1)`\]\cr
+#' A label for \code{x}. Only printed if \code{simplify = FALSE}.
+#'
+#' @param simplify \[`logical(1)`\]\cr
+#' Simplify the output?
+#'
+#' @param details \[`logical(1)`\]\cr
+#' Print the type and dimension of \code{x}?
 #'
 #' @return
 #' Invisibly returns \code{x}.
+#'
+#' @export
+#' @keywords packaging
+#' @family package helpers
 #'
 #' @examples
 #' print_matrix(x = 1, label = "single numeric")
@@ -41,12 +42,11 @@
 #' print_matrix(x = matrix(1:100, nrow = 1), label = "single row matrix")
 #' print_matrix(x = matrix(LETTERS[1:24], ncol = 6), label = "big matrix")
 #' print_matrix(x = diag(5), coldots = 2, rowdots = 2, simplify = TRUE)
-#'
-#' @export
 
 print_matrix <- function(
     x, rowdots = 4, coldots = 4, digits = 2, label = NULL, simplify = FALSE,
-    details = !simplify) {
+    details = !simplify
+  ) {
   checkmate::assert_int(rowdots, lower = 1)
   checkmate::assert_int(coldots, lower = 1)
   checkmate::assert_int(digits)

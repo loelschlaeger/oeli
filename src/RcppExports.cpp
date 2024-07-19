@@ -62,6 +62,38 @@ BEGIN_RCPP
     return rcpp_result_gen;
 END_RCPP
 }
+// dtnorm_cpp
+double dtnorm_cpp(double x, double mean, double sd, double point, bool above, bool log);
+RcppExport SEXP _oeli_dtnorm_cpp(SEXP xSEXP, SEXP meanSEXP, SEXP sdSEXP, SEXP pointSEXP, SEXP aboveSEXP, SEXP logSEXP) {
+BEGIN_RCPP
+    Rcpp::RObject rcpp_result_gen;
+    Rcpp::RNGScope rcpp_rngScope_gen;
+    Rcpp::traits::input_parameter< double >::type x(xSEXP);
+    Rcpp::traits::input_parameter< double >::type mean(meanSEXP);
+    Rcpp::traits::input_parameter< double >::type sd(sdSEXP);
+    Rcpp::traits::input_parameter< double >::type point(pointSEXP);
+    Rcpp::traits::input_parameter< bool >::type above(aboveSEXP);
+    Rcpp::traits::input_parameter< bool >::type log(logSEXP);
+    rcpp_result_gen = Rcpp::wrap(dtnorm_cpp(x, mean, sd, point, above, log));
+    return rcpp_result_gen;
+END_RCPP
+}
+// dttnorm_cpp
+double dttnorm_cpp(double x, double mean, double sd, double lower, double upper, bool log);
+RcppExport SEXP _oeli_dttnorm_cpp(SEXP xSEXP, SEXP meanSEXP, SEXP sdSEXP, SEXP lowerSEXP, SEXP upperSEXP, SEXP logSEXP) {
+BEGIN_RCPP
+    Rcpp::RObject rcpp_result_gen;
+    Rcpp::RNGScope rcpp_rngScope_gen;
+    Rcpp::traits::input_parameter< double >::type x(xSEXP);
+    Rcpp::traits::input_parameter< double >::type mean(meanSEXP);
+    Rcpp::traits::input_parameter< double >::type sd(sdSEXP);
+    Rcpp::traits::input_parameter< double >::type lower(lowerSEXP);
+    Rcpp::traits::input_parameter< double >::type upper(upperSEXP);
+    Rcpp::traits::input_parameter< bool >::type log(logSEXP);
+    rcpp_result_gen = Rcpp::wrap(dttnorm_cpp(x, mean, sd, lower, upper, log));
+    return rcpp_result_gen;
+END_RCPP
+}
 // rtnorm_cpp
 double rtnorm_cpp(double mean, double sd, double point, bool above, bool log);
 RcppExport SEXP _oeli_rtnorm_cpp(SEXP meanSEXP, SEXP sdSEXP, SEXP pointSEXP, SEXP aboveSEXP, SEXP logSEXP) {
@@ -128,6 +160,8 @@ static const R_CallMethodDef CallEntries[] = {
     {"_oeli_rdirichlet_cpp", (DL_FUNC) &_oeli_rdirichlet_cpp, 1},
     {"_oeli_dmvnorm_cpp", (DL_FUNC) &_oeli_dmvnorm_cpp, 4},
     {"_oeli_rmvnorm_cpp", (DL_FUNC) &_oeli_rmvnorm_cpp, 3},
+    {"_oeli_dtnorm_cpp", (DL_FUNC) &_oeli_dtnorm_cpp, 6},
+    {"_oeli_dttnorm_cpp", (DL_FUNC) &_oeli_dttnorm_cpp, 6},
     {"_oeli_rtnorm_cpp", (DL_FUNC) &_oeli_rtnorm_cpp, 5},
     {"_oeli_rttnorm_cpp", (DL_FUNC) &_oeli_rttnorm_cpp, 5},
     {"_oeli_dwishart_cpp", (DL_FUNC) &_oeli_dwishart_cpp, 5},

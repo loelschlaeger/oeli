@@ -3,10 +3,11 @@
 #' @description
 #' This function deletes columns of a \code{data.frame} by name.
 #'
-#' @param df
+#' @param df \[`data.frame`\]\cr
 #' A \code{data.frame}.
-#' @param column_names
-#' A \code{character} (\code{vector}), the name(s) of a column of \code{df} to group by.
+#'
+#' @param column_names \[`character()`\]\cr
+#' The name(s) of column(s) of \code{df} to delete.
 #'
 #' @return
 #' The input \code{df} without the columns defined by \code{column_names}.

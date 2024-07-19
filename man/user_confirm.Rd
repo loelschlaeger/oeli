@@ -7,10 +7,11 @@
 user_confirm(question = "Question?", default = FALSE)
 }
 \arguments{
-\item{question}{A \code{character}, the binary question to ask. It should end with a
-question mark.}
+\item{question}{[\code{character(1)}]\cr
+The binary question to ask. It should end with a question mark.}
 
-\item{default}{Either \code{TRUE} or \code{FALSE} (default), the default decision.}
+\item{default}{[\code{logical(1)}]\cr
+The default decision.}
 }
 \value{
 Either \code{TRUE} or \code{FALSE}.
@@ -18,3 +19,18 @@ Either \code{TRUE} or \code{FALSE}.
 \description{
 This function asks in an interactive question a binary question.
 }
+\seealso{
+Other package helpers: 
+\code{\link{Dictionary}},
+\code{\link{Storage}},
+\code{\link{identical_structure}()},
+\code{\link{input_check_response}()},
+\code{\link{match_arg}()},
+\code{\link{package_logo}()},
+\code{\link{print_matrix}()},
+\code{\link{renv_development_packages}()},
+\code{\link{system_information}()},
+\code{\link{unexpected_error}()}
+}
+\concept{package helpers}
+\keyword{validation}

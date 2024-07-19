@@ -7,11 +7,12 @@
 stationary_distribution(tpm, soft_fail = FALSE)
 }
 \arguments{
-\item{tpm}{A transition probability \code{matrix}.}
+\item{tpm}{[\code{matrix()}]\cr
+A transition probability matrix.}
 
-\item{soft_fail}{Either \code{TRUE} to return the discrete uniform distribution if the
-computation of the stationary distribution fails for some reason, or
-\code{FALSE} to throw an error.}
+\item{soft_fail}{[\code{logical(1)}]\cr
+Return the discrete uniform distribution if the computation of the stationary
+distribution fails for some reason? Else, throw an error.}
 }
 \value{
 A \code{numeric} vector.
@@ -24,5 +25,20 @@ transition probability matrix.
 tpm <- matrix(0.05, nrow = 3, ncol = 3)
 diag(tpm) <- 0.9
 stationary_distribution(tpm)
-
 }
+\seealso{
+Other matrix helpers: 
+\code{\link{check_correlation_matrix}()},
+\code{\link{check_covariance_matrix}()},
+\code{\link{check_transition_probability_matrix}()},
+\code{\link{cov_2_chol}()},
+\code{\link{diff_cov}()},
+\code{\link{insert_matrix_column}()},
+\code{\link{matrix_diagonal_indices}()},
+\code{\link{matrix_indices}()},
+\code{\link{sample_correlation_matrix}()},
+\code{\link{sample_covariance_matrix}()},
+\code{\link{sample_transition_probability_matrix}()}
+}
+\concept{matrix helpers}
+\keyword{transformation}

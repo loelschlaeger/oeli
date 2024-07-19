@@ -4,24 +4,20 @@
 #' This function samples a covariance matrix from an inverse Wishart
 #' distribution.
 #'
-#' @param dim
-#' An \code{integer}, the dimension.
-#' @param df
-#' An \code{integer} greater or equal \code{dim}, the degrees of freedom of
-#' the inverse Wishart distribution.
-#' @param scale
-#' A covariance \code{matrix} of dimension \code{dim}, the scale matrix of the
-#' inverse Wishart distribution.
-#' @param diag
-#' Set to \code{TRUE} for a diagonal matrix.
+#' @inheritParams sample_correlation_matrix
+#'
+#' @param diag \[`logical(1)`\]\cr
+#' Diagonal matrix?
 #'
 #' @return
 #' A covariance \code{matrix}.
 #'
+#' @keywords simulation
+#' @family matrix helpers
+#' @export
+#'
 #' @examples
 #' sample_covariance_matrix(dim = 3)
-#'
-#' @export
 
 sample_covariance_matrix <- function(
     dim, df = dim, scale = diag(dim), diag = FALSE) {

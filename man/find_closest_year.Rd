@@ -7,7 +7,8 @@
 find_closest_year(date)
 }
 \arguments{
-\item{date}{A \code{date} in the format of \code{"YYYY-MM-DD"}.}
+\item{date}{[\code{character(1)}]\cr
+The date in format \code{"YYYY-MM-DD"}.}
 }
 \value{
 An \code{integer}, the closest year to the input date.
@@ -19,3 +20,9 @@ This function takes a date as input and returns the closest year.
 find_closest_year(as.Date("2022-07-15"))
 find_closest_year(as.Date("2022-01-01"))
 }
+\seealso{
+Other date helpers: 
+\code{\link{check_date}()}
+}
+\concept{date helpers}
+\keyword{indexing}

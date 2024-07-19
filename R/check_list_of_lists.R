@@ -3,9 +3,6 @@
 #' @description
 #' This function checks whether the input is a list that contains list elements.
 #'
-#' @param x
-#' Object to check.
-#'
 #' @inheritParams checkmate::check_list
 #'
 #' @return
@@ -15,9 +12,7 @@
 #' @family list helpers
 #' @export
 
-check_list_of_lists <- function(
-    x, len = NULL
-) {
+check_list_of_lists <- function(x, len = NULL) {
   res <- checkmate::check_list(x, len = len)
   if (!isTRUE(res)) {
     return(res)

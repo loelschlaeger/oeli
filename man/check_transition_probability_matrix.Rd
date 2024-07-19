@@ -27,11 +27,14 @@ test_transition_probability_matrix(
 )
 }
 \arguments{
-\item{x}{Object to check.}
+\item{x}{[any]\cr
+Object to check.}
 
-\item{dim}{An \code{integer}, the matrix dimension.}
+\item{dim}{[\code{integer(1)}]\cr
+The matrix dimension.}
 
-\item{tolerance}{A non-negative \code{numeric} tolerance value.}
+\item{tolerance}{[\code{numeric(1)}]\cr
+A non-negative tolerance value.}
 
 \item{.var.name}{[\code{character(1)}]\cr
 Name of the checked object to print in assertions. Defaults to
@@ -52,7 +55,14 @@ Other matrix helpers:
 \code{\link{check_correlation_matrix}()},
 \code{\link{check_covariance_matrix}()},
 \code{\link{cov_2_chol}()},
-\code{\link{diff_cov}()}
+\code{\link{diff_cov}()},
+\code{\link{insert_matrix_column}()},
+\code{\link{matrix_diagonal_indices}()},
+\code{\link{matrix_indices}()},
+\code{\link{sample_correlation_matrix}()},
+\code{\link{sample_covariance_matrix}()},
+\code{\link{sample_transition_probability_matrix}()},
+\code{\link{stationary_distribution}()}
 }
 \concept{matrix helpers}
 \keyword{validation}

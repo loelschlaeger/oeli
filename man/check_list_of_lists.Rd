@@ -18,7 +18,8 @@ assert_list_of_lists(
 test_list_of_lists(x, len = NULL)
 }
 \arguments{
-\item{x}{Object to check.}
+\item{x}{[any]\cr
+Object to check.}
 
 \item{len}{[\code{integer(1)}]\cr
 Exact expected length of \code{x}.}
@@ -35,6 +36,10 @@ Same as documented in \code{\link[checkmate]{check_list}}.
 }
 \description{
 This function checks whether the input is a list that contains list elements.
+}
+\seealso{
+Other list helpers: 
+\code{\link{merge_lists}()}
 }
 \concept{list helpers}
 \keyword{validation}

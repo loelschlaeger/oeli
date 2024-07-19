@@ -15,28 +15,26 @@ print_matrix(
 )
 }
 \arguments{
-\item{x}{A \code{numeric} or \code{character} (\code{vector} or \code{matrix}).}
+\item{x}{[\code{atomic()} | \code{matrix}]\cr
+The object to be printed.}
 
-\item{rowdots}{An \code{integer}, the row number which is replaced by \code{...}.
-By default, \code{rowdots = 4}.}
+\item{rowdots}{[\code{integer(1)}]\cr
+The row number which is replaced by \code{...}.}
 
-\item{coldots}{An \code{integer}, the column number which is replaced by \code{...}.
-By default, \code{coldots = 4}.}
+\item{coldots}{[\code{integer(1)}]\cr
+The column number which is replaced by \code{...}.}
 
-\item{digits}{An \code{integer}, the number of printed decimal places.
-Only relevant if input \code{x} is numeric.
-By default, \code{digits = 2}.}
+\item{digits}{[\code{integer(1)}]\cr
+The number of printed decimal places if input \code{x} is \code{numeric}.}
 
-\item{label}{A \code{character}, a label for \code{x}.
-Only printed if \code{simplify = FALSE}.
-By default, \code{label = NULL}, i.e., no label.}
+\item{label}{[\code{character(1)}]\cr
+A label for \code{x}. Only printed if \code{simplify = FALSE}.}
 
-\item{simplify}{A \code{logical}, set to \code{TRUE} to simplify the output.
-By default, \code{simplify = FALSE}.}
+\item{simplify}{[\code{logical(1)}]\cr
+Simplify the output?}
 
-\item{details}{A \code{logical}, set to \code{TRUE} to print the type and
-dimension of \code{x}.
-By default, \code{details = !simplify}.}
+\item{details}{[\code{logical(1)}]\cr
+Print the type and dimension of \code{x}?}
 }
 \value{
 Invisibly returns \code{x}.
@@ -52,8 +50,22 @@ print_matrix(x = matrix(rnorm(99), ncol = 1), label = "single column matrix")
 print_matrix(x = matrix(1:100, nrow = 1), label = "single row matrix")
 print_matrix(x = matrix(LETTERS[1:24], ncol = 6), label = "big matrix")
 print_matrix(x = diag(5), coldots = 2, rowdots = 2, simplify = TRUE)
-
 }
 \references{
 This function is a modified version of \code{ramify::pprint()}.
 }
+\seealso{
+Other package helpers: 
+\code{\link{Dictionary}},
+\code{\link{Storage}},
+\code{\link{identical_structure}()},
+\code{\link{input_check_response}()},
+\code{\link{match_arg}()},
+\code{\link{package_logo}()},
+\code{\link{renv_development_packages}()},
+\code{\link{system_information}()},
+\code{\link{unexpected_error}()},
+\code{\link{user_confirm}()}
+}
+\concept{package helpers}
+\keyword{packaging}

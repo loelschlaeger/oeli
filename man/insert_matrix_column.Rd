@@ -7,21 +7,22 @@
 insert_matrix_column(A, x, p)
 }
 \arguments{
-\item{A}{A \code{matrix}.}
+\item{A}{[\code{matrix()}]\cr
+A \code{matrix}.}
 
-\item{x}{A \code{vector} of length \code{nrow(A)}, the column to be added.
+\item{x}{[\code{atomic()}]\cr
+The column to be added, of length \code{nrow(A)}.
 
 Can also be a single value.}
 
-\item{p}{An \code{integer}, the position where to add the column:
+\item{p}{[\verb{integer())}]\cr
+The position(s) where to add the column, one or more of:
 \itemize{
 \item \code{p = 0} appends the column left
 \item \code{p = ncol(A)} appends the column right
 \item \code{p = n} inserts the column between the \code{n}-th and
 \code{(n + 1)}-th column of \code{A}.
-}
-
-Can also be a \code{vector} of multiple positions.}
+}}
 }
 \value{
 A \code{matrix}.
@@ -47,3 +48,19 @@ insert_matrix_column(A, x, 0:3)
 ### also trivial case
 insert_matrix_column(matrix(nrow = 0, ncol = 0), integer(), integer())
 }
+\seealso{
+Other matrix helpers: 
+\code{\link{check_correlation_matrix}()},
+\code{\link{check_covariance_matrix}()},
+\code{\link{check_transition_probability_matrix}()},
+\code{\link{cov_2_chol}()},
+\code{\link{diff_cov}()},
+\code{\link{matrix_diagonal_indices}()},
+\code{\link{matrix_indices}()},
+\code{\link{sample_correlation_matrix}()},
+\code{\link{sample_covariance_matrix}()},
+\code{\link{sample_transition_probability_matrix}()},
+\code{\link{stationary_distribution}()}
+}
+\concept{matrix helpers}
+\keyword{transformation}

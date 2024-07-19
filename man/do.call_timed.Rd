@@ -7,9 +7,7 @@
 do.call_timed(what, args, units = "secs")
 }
 \arguments{
-\item{what}{Passed to \code{\link[base]{do.call}}.}
-
-\item{args}{Passed to \code{\link[base]{do.call}}.}
+\item{what, args}{Passed to \code{\link[base]{do.call}}.}
 
 \item{units}{Passed to \code{\link[base]{difftime}}.}
 }
@@ -18,7 +16,7 @@ A list of the two elements \code{"result"} (the results of the \code{do.call}
 call) and \code{"time"} (the computation time).
 }
 \description{
-This function measures the computation time of a \code{do.call} call.
+This function measures the computation time of a call.
 }
 \details{
 This function is a wrapper for \code{\link[base]{do.call}}.
@@ -32,5 +30,15 @@ what <- function(s) {
 args <- list(s = 1)
 do.call_timed(what = what, args = args)
 }
-
 }
+\seealso{
+Other function helpers: 
+\code{\link{function_arguments}()},
+\code{\link{function_body}()},
+\code{\link{function_defaults}()},
+\code{\link{timed}()},
+\code{\link{try_silent}()},
+\code{\link{variable_name}()}
+}
+\concept{function helpers}
+\keyword{simulation}

@@ -4,10 +4,10 @@
 #' This function finds the positions of first or last occurrence of unique
 #' vector elements.
 #'
-#' @param x
+#' @param x \[`atomic()`\]\cr
 #' A \code{vector}.
 #'
-#' @param type
+#' @param type \[`character(1)`\]\cr
 #' Either \code{"first"} for the first or \code{"last"} for the last occurrence.
 #'
 #' @return
@@ -16,6 +16,8 @@
 #' the output is the (first or last) occurrence of the \eqn{i}-th element from
 #' \code{unique(x)}.
 #'
+#' @keywords indexing
+#' @family vector helpers
 #' @export
 #'
 #' @examples

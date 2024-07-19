@@ -7,13 +7,16 @@
 simulate_markov_chain(Gamma, T, delta = oeli::stationary_distribution(Gamma))
 }
 \arguments{
-\item{Gamma}{A transition probability \code{matrix}.}
+\item{Gamma}{[\code{matrix()}]\cr
+A transition probability matrix.}
 
-\item{T}{An \code{integer}, the length of the Markov chain.}
+\item{T}{[\code{integer(1)}]\cr
+The length of the Markov chain.}
 
-\item{delta}{A \code{numeric} probability vector, the initial distribution.
-If not specified, \code{delta} is set to the stationary distribution of
-\code{Gamma}.}
+\item{delta}{[\code{numeric()}]\cr
+A probability vector, the initial distribution.
+
+By default, \code{delta} is the stationary distribution of \code{Gamma}.}
 }
 \value{
 A \code{numeric} vector of length \code{T} with states.
@@ -24,5 +27,14 @@ This function simulates a Markov chain.
 \examples{
 Gamma <- sample_transition_probability_matrix(dim = 3)
 simulate_markov_chain(Gamma = Gamma, T = 10)
-
 }
+\seealso{
+Other simulation helpers: 
+\code{\link{correlated_regressors}()},
+\code{\link{ddirichlet_cpp}()},
+\code{\link{dmvnorm_cpp}()},
+\code{\link{dtnorm_cpp}()},
+\code{\link{dwishart_cpp}()}
+}
+\concept{simulation helpers}
+\keyword{simulation}

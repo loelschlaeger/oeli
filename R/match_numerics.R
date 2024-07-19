@@ -4,23 +4,21 @@
 #' This function matches the indices of two numeric vectors as good as possible
 #' (that means with the smallest possible sum of deviations).
 #'
-#' @param x
-#' A \code{numeric} vector.
-#' @param y
-#' Another \code{numeric} vector of the same length as \code{x}.
+#' @param x,y \[`numeric()`\]\cr
+#' Two vectors of the same length.
 #'
 #' @return
 #' An \code{integer} vector of length \code{length(x)} with the positions of
 #' \code{y} in \code{x}.
 #'
-#' @importFrom stats dist
+#' @export
+#' @keywords indexing
+#' @family vector helpers
 #'
 #' @examples
 #' x <- c(-1, 0, 1)
 #' y <- c(0.1, 1.5, -1.2)
 #' match_numerics(x, y)
-#'
-#' @export
 
 match_numerics <- function(x, y) {
   checkmate::assert_atomic_vector(x)

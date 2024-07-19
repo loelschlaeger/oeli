@@ -4,8 +4,8 @@
 #' This function checks if the input \code{date} has the format
 #' \code{"YYYY-MM-DD"}.
 #'
-#' @param date
-#' A \code{character}, specifying a date in format \code{"YYYY-MM-DD"}.
+#' @param date \[`character(1)`\]\cr
+#' The date in format \code{"YYYY-MM-DD"}.
 #'
 #' @return
 #' \code{as.Date(date)} if \code{date} has the format \code{"YYYY-MM-DD"}.

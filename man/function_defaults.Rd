@@ -7,10 +7,13 @@
 function_defaults(f, exclude = NULL)
 }
 \arguments{
-\item{f}{A \code{function}.}
+\item{f}{[\code{function}]\cr
+A \code{function}.}
 
-\item{exclude}{A \code{character} of argument names to exclude. Can be \code{NULL} (default)
-to not exclude any argument names.}
+\item{exclude}{[\code{NULL} | \code{character()}]\cr
+Argument names to exclude.
+
+Can be \code{NULL} (default) to not exclude any argument names.}
 }
 \value{
 A named \code{list}.
@@ -22,5 +25,15 @@ This function returns the default function arguments (if any).
 f <- function(a, b = 1, c = "", ...) { }
 function_defaults(f)
 function_defaults(f, exclude = "b")
-
 }
+\seealso{
+Other function helpers: 
+\code{\link{do.call_timed}()},
+\code{\link{function_arguments}()},
+\code{\link{function_body}()},
+\code{\link{timed}()},
+\code{\link{try_silent}()},
+\code{\link{variable_name}()}
+}
+\concept{function helpers}
+\keyword{functional}

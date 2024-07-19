@@ -1,22 +1,22 @@
 #' Response to an input check
 #'
 #' @description
-#' Provides standardized responses to input checks, ensuring consistency.
+#' This function provides standardized responses to input checks, ensuring
+#' consistency.
 #'
-#' @param check (`TRUE` or `character()`)\cr
-#' Either `TRUE` if the check was successful, or an error message else.
+#' @param check \[`TRUE` | `character(1)`\]\cr
+#' Matches the return value of the `check*` functions from the `{checkmate}`
+#' package, i.e., either `TRUE` if the check was successful, or an error message
+#' else.
 #'
-#' This input type matches the return value of the `check*` functions from the
-#' `{checkmate}` package.
-#'
-#' @param var_name (`NULL` or `character(1)`)\cr
+#' @param var_name \[`NULL` | `character(1)`\]\cr
 #' Optionally specifies the name of the input being checked. This name will be
 #' used as the default value for the `prefix` argument.
 #'
-#' @param error (`logical(1)`)\cr
-#' If `check` is not `TRUE`, throw an error or return `FALSE`?
+#' @param error \[`logical(1)`\]\cr
+#' If `check` is not `TRUE`, throw an error?
 #'
-#' @param prefix (`character(1)`)\cr
+#' @param prefix \[`character(1)`\]\cr
 #' A prefix for the thrown error message, if `check` is not `TRUE` and
 #' `error` is `TRUE`.
 #'
@@ -25,6 +25,10 @@
 #'
 #' - If `error` is `TRUE`, throws an error.
 #' - If `error` is `FALSE`, returns `FALSE`.
+#'
+#' @export
+#' @keywords packaging
+#' @family package helpers
 #'
 #' @examples
 #' x <- "1"
@@ -45,10 +49,6 @@
 #'   error = TRUE
 #' )
 #' }
-#'
-#' @export
-#' @keywords packaging
-#' @family package helpers
 
 input_check_response <- function(
     check, var_name = NULL, error = TRUE, prefix = "Input {var_name} is bad:"

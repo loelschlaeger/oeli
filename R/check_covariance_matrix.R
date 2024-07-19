@@ -4,14 +4,13 @@
 #' This function checks whether the input is a symmetric, real matrix that
 #' fulfills the covariance matrix properties.
 #'
-#' @param x
-#' Object to check.
+#' @inheritParams checkmate::check_matrix
 #'
-#' @param dim
-#' An \code{integer}, the matrix dimension.
+#' @param dim \[`integer(1)`\]\cr
+#' The matrix dimension.
 #'
-#' @param tolerance
-#' A non-negative \code{numeric} tolerance value.
+#' @param tolerance \[`numeric(1)`\]\cr
+#' A non-negative tolerance value.
 #'
 #' @return
 #' Same as documented in \code{\link[checkmate]{check_matrix}}.
@@ -19,9 +18,13 @@
 #' @keywords validation
 #' @family matrix helpers
 #' @export
+#'
+#' @examples
+#' # TODO
 
 check_covariance_matrix <- function(
-    x, dim = NULL, tolerance = sqrt(.Machine$double.eps)) {
+    x, dim = NULL, tolerance = sqrt(.Machine$double.eps)
+  ) {
   checkmate::assert_number(tolerance, lower = 0)
   res <- checkmate::check_matrix(x, mode = "numeric")
   if (!isTRUE(res)) {

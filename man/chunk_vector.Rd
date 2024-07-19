@@ -7,14 +7,21 @@
 chunk_vector(x, n, type = 1, strict = FALSE)
 }
 \arguments{
-\item{x}{A \code{vector}.}
+\item{x}{[atomic()`]\cr
+A vector of elements.}
 
-\item{n}{An \code{integer} smaller or equal \code{length(x)}.}
+\item{n}{[\code{integer(1)}]\cr
+A number smaller or equal \code{length(x)}.}
 
-\item{type}{Either \code{1} (default) to split \code{x} into \code{n} chunks of equal
-size or \code{2} to split \code{x} into chunks of size \code{n}.}
+\item{type}{[\code{1} | \code{2}]\cr
+Either
+\itemize{
+\item \code{1} (default) to split \code{x} into \code{n} chunks of equal size,
+\item or \code{2} to split \code{x} into chunks of size \code{n}.
+}}
 
-\item{strict}{Set to \code{TRUE} to fail if \code{length(x)} is not a multiple of \code{n},
+\item{strict}{[\code{logical(1)}]\cr
+Set to \code{TRUE} to fail if \code{length(x)} is not a multiple of \code{n},
 or \code{FALSE} (default), else.}
 }
 \value{
@@ -36,7 +43,11 @@ try(chunk_vector(x, n = 5, strict = TRUE))
 \seealso{
 Other vector helpers: 
 \code{\link{check_numeric_vector}()},
-\code{\link{check_probability_vector}()}
+\code{\link{check_probability_vector}()},
+\code{\link{insert_vector_entry}()},
+\code{\link{match_numerics}()},
+\code{\link{permutations}()},
+\code{\link{vector_occurrence}()}
 }
 \concept{vector helpers}
 \keyword{transformation}

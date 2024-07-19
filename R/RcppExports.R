@@ -3,178 +3,60 @@
 
 #' @rdname ddirichlet
 #' @export
-#'
 ddirichlet_cpp <- function(x, concentration, log = FALSE) {
     .Call(`_oeli_ddirichlet_cpp`, x, concentration, log)
 }
 
 #' @rdname ddirichlet
 #' @export
-#'
 rdirichlet_cpp <- function(concentration) {
     .Call(`_oeli_rdirichlet_cpp`, concentration)
 }
 
-#' Compute density of multivariate normal distribution
-#'
-#' @description
-#' This function computes the density of a multivariate normal distribution.
-#'
-#' @details
-#' This function performs no input checks. See \code{\link{dmvnorm}}
-#' for the version with input checks.
-#'
-#' @param x
-#' A \code{numeric}, a quantile vector of length \code{p}.
-#' @param mean
-#' A \code{numeric}, the mean vector of length \code{p}.
-#' @param Sigma
-#' A \code{matrix}, the covariance matrix of dimension \code{p} x \code{p}.
-#' @param log
-#' A \code{logical}, if \code{TRUE} the logarithm of the density value is
-#' returned.
-#' By default, \code{log = FALSE}.
-#'
-#' @return
-#' A \code{numeric}, the density value.
-#'
-#' @keywords internal
-#'
+#' @rdname dmvnorm
+#' @export
 dmvnorm_cpp <- function(x, mean, Sigma, log = FALSE) {
     .Call(`_oeli_dmvnorm_cpp`, x, mean, Sigma, log)
 }
 
-#' Draw from multivariate normal distribution
-#'
-#' @description
-#' This function draws from a multivariate normal distribution.
-#'
-#' @details
-#' The function builds upon the following fact:
-#' If \eqn{\epsilon = (\epsilon_1,\dots,\epsilon_p)},
-#' where each \eqn{\epsilon_i} is drawn independently from a standard normal
-#' distribution, then \eqn{\mu + L\epsilon} is a draw from the \eqn{p}-variate
-#' normal distribution \eqn{N(\mu,\Sigma)}, where \eqn{L} is the lower
-#' triangular factor of the Choleski decomposition of \eqn{\Sigma}.
-#'
-#' This function performs no input checks. See \code{\link{rmvnorm}}
-#' for the version with input checks.
-#'
-#' @inheritParams dmvnorm_cpp
-#' @param log
-#' A \code{logical}, if \code{TRUE} the draw is taken from the log-normal
-#' distribution.
-#' By default, \code{log = FALSE}.
-#'
-#' @return
-#' A column vector of length \code{p}, the random draw.
-#'
-#' @keywords internal
-#'
+#' @rdname dmvnorm
+#' @export
 rmvnorm_cpp <- function(mean, Sigma, log = FALSE) {
     .Call(`_oeli_rmvnorm_cpp`, mean, Sigma, log)
 }
 
-#' Draw from univariate truncated normal
-#'
-#' @description
-#' \code{rtnorm_cpp} draws from a one-sided truncated univariate normal
-#' distribution.
-#' \code{rttnorm_cpp} draws from a two-sided truncated univariate normal
-#' distribution.
-#'
-#' @details
-#' These function performs no input checks.
-#'
-#' @param mean
-#' A \code{numeric}, the mean.
-#' @param sd
-#' A \code{numeric}, the standard deviation.
-#' @param point
-#' A \code{numeric}, the truncation point.
-#' @param above
-#' A \code{logical}, if \code{TRUE} truncation from above and if \code{FALSE}
-#' truncation from below.
-#' @param log
-#' A \code{logical}, if \code{TRUE} the draw is taken from the log-normal
-#' distribution.
-#' By default, \code{log = FALSE}.
-#'
-#' @return
-#' A \code{numeric}, the random draw.
-#'
-#' @keywords internal
-#'
+#' @rdname dtnorm
+#' @export
+dtnorm_cpp <- function(x, mean, sd, point, above, log = FALSE) {
+    .Call(`_oeli_dtnorm_cpp`, x, mean, sd, point, above, log)
+}
+
+#' @rdname dtnorm
+#' @export
+dttnorm_cpp <- function(x, mean, sd, lower, upper, log = FALSE) {
+    .Call(`_oeli_dttnorm_cpp`, x, mean, sd, lower, upper, log)
+}
+
+#' @rdname dtnorm
+#' @export
 rtnorm_cpp <- function(mean, sd, point, above, log = FALSE) {
     .Call(`_oeli_rtnorm_cpp`, mean, sd, point, above, log)
 }
 
-#' @rdname rtnorm_cpp
-#' @param lower
-#' A \code{numeric}, the lower truncation point.
-#' @param upper
-#' A \code{numeric}, the upper truncation point.
-#'
+#' @rdname dtnorm
+#' @export
 rttnorm_cpp <- function(mean, sd, lower, upper, log = FALSE) {
     .Call(`_oeli_rttnorm_cpp`, mean, sd, lower, upper, log)
 }
 
-#' Compute density of (Inverse-) Wishart distribution
-#'
-#' @description
-#' This function computes the density of the (Inverse-) Wishart distribution.
-#'
-#' @details
-#' This function performs no input checks. See \code{\link{dwishart}}
-#' for the version with input checks.
-#'
-#' @param x
-#' A \code{matrix}, a covariance matrix of dimension \code{p} x \code{p}.
-#' @param df
-#' An \code{integer}, the degrees of freedom.
-#' Must be greater or equal \code{p}.
-#' @param scale
-#' A \code{matrix}, the scale matrix of dimension \code{p} x \code{p}.
-#' Must be a covariance matrix.
-#' @param log
-#' A \code{logical}, if \code{TRUE} the logarithm of the density value is
-#' returned.
-#' By default, \code{log = FALSE}.
-#' @param inv
-#' A \code{logical}, if \code{TRUE} the density of the Inverse-Wishart
-#' distribution is returned.
-#' By default, \code{inv = FALSE}.
-#'
-#' @return
-#' A \code{numeric}, the density value.
-#'
-#' @keywords internal
-#'
+#' @rdname dwishart
+#' @export
 dwishart_cpp <- function(x, df, scale, log = FALSE, inv = FALSE) {
     .Call(`_oeli_dwishart_cpp`, x, df, scale, log, inv)
 }
 
-#' Draw from Wishart distribution
-#'
-#' @description
-#' This function draws from a Wishart or Inverse-Wishart distribution.
-#'
-#' @details
-#' The Wishart distribution is a generalization to multiple dimensions of the
-#' gamma distributions and draws from the space of covariance matrices.
-#' Its expectation is \code{df * scale}, and its variance increases both in
-#' \code{df} and in the values of \code{scale}.
-#'
-#' This function performs no input checks. See \code{\link{rwishart}}
-#' for the version with input checks.
-#'
-#' @inheritParams dwishart_cpp
-#'
-#' @return
-#' A \code{matrix}, the random draw.
-#'
-#' @keywords internal
-#'
+#' @rdname dwishart
+#' @export
 rwishart_cpp <- function(df, scale, inv = FALSE) {
     .Call(`_oeli_rwishart_cpp`, df, scale, inv)
 }

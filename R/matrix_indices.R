@@ -3,24 +3,27 @@
 #' @description
 #' This function returns \code{matrix} indices as \code{character}.
 #'
-#' @param x
+#' @param x \[`matrix`\]\cr
 #' A \code{matrix}.
-#' @param prefix
-#' A \code{character} as prefix for the indices.
-#' @param exclude_diagonal
-#' Either \code{TRUE} to exclude indices where row equals column, or
-#' \code{FALSE} to include those.
+#'
+#' @param prefix \[`character(1)`\]\cr
+#' A prefix for the indices.
+#'
+#' @param exclude_diagonal \[`logical(1)`\]\cr
+#' Exclude indices where row equals column?
 #'
 #' @return
 #' A \code{character} \code{vector}.
+#'
+#' @export
+#' @keywords indexing
+#' @family matrix helpers
 #'
 #' @examples
 #' M <- diag(3)
 #' matrix_indices(M)
 #' matrix_indices(M, "M_")
 #' matrix_indices(M, "M_", TRUE)
-#'
-#' @export
 
 matrix_indices <- function(x, prefix = "", exclude_diagonal = FALSE) {
   checkmate::assert_matrix(x)

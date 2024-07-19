@@ -13,14 +13,16 @@ undiff_cov(cov_diff, ref = 1)
 delta(ref = 1, dim)
 }
 \arguments{
-\item{cov, cov_diff}{A (differenced) covariance \code{matrix} of dimension \code{dim}
+\item{cov, cov_diff}{[\code{matrix()}]\cr
+A (differenced) covariance matrix of dimension \code{dim}
 (or \code{dim} - 1, respectively).}
 
-\item{ref}{An \code{integer} between \code{1} and \code{dim}, the reference row for
-differencing that maps \code{cov} to \code{cov_diff}, see details.
-By default, \code{ref = 1}.}
+\item{ref}{[\code{integer(1)}]\cr
+The reference row between \code{1} and \code{dim} for
+differencing that maps \code{cov} to \code{cov_diff}, see details.}
 
-\item{dim}{An \code{integer}, the dimension.}
+\item{dim}{[\code{integer(1)}]\cr
+The matrix dimension.}
 }
 \value{
 A (differenced or un-differenced) covariance \code{matrix}.
@@ -64,7 +66,14 @@ Other matrix helpers:
 \code{\link{check_correlation_matrix}()},
 \code{\link{check_covariance_matrix}()},
 \code{\link{check_transition_probability_matrix}()},
-\code{\link{cov_2_chol}()}
+\code{\link{cov_2_chol}()},
+\code{\link{insert_matrix_column}()},
+\code{\link{matrix_diagonal_indices}()},
+\code{\link{matrix_indices}()},
+\code{\link{sample_correlation_matrix}()},
+\code{\link{sample_covariance_matrix}()},
+\code{\link{sample_transition_probability_matrix}()},
+\code{\link{stationary_distribution}()}
 }
 \concept{matrix helpers}
 \keyword{transformation}

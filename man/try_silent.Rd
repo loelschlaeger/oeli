@@ -7,7 +7,8 @@
 try_silent(expr)
 }
 \arguments{
-\item{expr}{An R expression to try.}
+\item{expr}{[\code{expression}]\cr
+An R expression to be evaluated.}
 }
 \value{
 Either the value of \code{expr} or in case of a failure an object of class
@@ -25,5 +26,15 @@ This function is a wrapper for \code{\link[base]{try}}.
 try_silent(1 + 1)
 try_silent(1 + "1")
 }
-
 }
+\seealso{
+Other function helpers: 
+\code{\link{do.call_timed}()},
+\code{\link{function_arguments}()},
+\code{\link{function_body}()},
+\code{\link{function_defaults}()},
+\code{\link{timed}()},
+\code{\link{variable_name}()}
+}
+\concept{function helpers}
+\keyword{functional}

@@ -10,14 +10,31 @@ unexpected_error(
 )
 }
 \arguments{
-\item{msg}{A \code{character}, an error message.}
+\item{msg}{[\code{character(1)}]\cr
+An error message.}
 
-\item{issue_link}{A \code{character}, the URL to a GitHub issues site.}
+\item{issue_link}{[\code{character(1)}]\cr
+The URL to an issues site.}
 }
 \value{
 No return value, but it throws an error.
 }
 \description{
 This function reacts to an unexpected error by throwing an error and linking
-to a GitHub issues site with the request to submit an issue.
+to an issue site with the request to submit an issue.
 }
+\seealso{
+Other package helpers: 
+\code{\link{Dictionary}},
+\code{\link{Storage}},
+\code{\link{identical_structure}()},
+\code{\link{input_check_response}()},
+\code{\link{match_arg}()},
+\code{\link{package_logo}()},
+\code{\link{print_matrix}()},
+\code{\link{renv_development_packages}()},
+\code{\link{system_information}()},
+\code{\link{user_confirm}()}
+}
+\concept{package helpers}
+\keyword{packaging}

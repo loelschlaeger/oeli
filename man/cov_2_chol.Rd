@@ -13,16 +13,20 @@ chol_2_cov(chol)
 unique_chol(chol)
 }
 \arguments{
-\item{cov}{A covariance \code{matrix} of dimension \code{dim}.}
+\item{cov}{[\code{matrix()}]\cr
+A covariance matrix.}
 
-\item{unique}{Set to \code{TRUE} to ensure that the Cholesky decomposition is unique
+\item{unique}{[\code{logical(1)}]\cr
+Set to \code{TRUE} to ensure that the Cholesky decomposition is unique
 by restricting the diagonal elements to be positive.}
 
-\item{chol}{A \code{numeric} \code{vector} of Cholesky root elements.}
+\item{chol}{[\code{numeric()}]\cr
+Cholesky root elements.}
 }
 \value{
 For \code{\link{cov_2_chol}} a \code{numeric} \code{vector} of Cholesky root
 elements.
+
 For \code{\link{chol_2_cov}} a covariance \code{matrix}.
 }
 \description{
@@ -40,7 +44,14 @@ Other matrix helpers:
 \code{\link{check_correlation_matrix}()},
 \code{\link{check_covariance_matrix}()},
 \code{\link{check_transition_probability_matrix}()},
-\code{\link{diff_cov}()}
+\code{\link{diff_cov}()},
+\code{\link{insert_matrix_column}()},
+\code{\link{matrix_diagonal_indices}()},
+\code{\link{matrix_indices}()},
+\code{\link{sample_correlation_matrix}()},
+\code{\link{sample_covariance_matrix}()},
+\code{\link{sample_transition_probability_matrix}()},
+\code{\link{stationary_distribution}()}
 }
 \concept{matrix helpers}
 \keyword{transformation}

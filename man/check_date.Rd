@@ -7,7 +7,8 @@
 check_date(date)
 }
 \arguments{
-\item{date}{A \code{character}, specifying a date in format \code{"YYYY-MM-DD"}.}
+\item{date}{[\code{character(1)}]\cr
+The date in format \code{"YYYY-MM-DD"}.}
 }
 \value{
 \code{as.Date(date)} if \code{date} has the format \code{"YYYY-MM-DD"}.
@@ -19,6 +20,10 @@ This function checks if the input \code{date} has the format
 }
 \examples{
 check_date(date = "2000-01-01")
+}
+\seealso{
+Other date helpers: 
+\code{\link{find_closest_year}()}
 }
 \concept{date helpers}
 \keyword{validation}

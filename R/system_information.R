@@ -1,11 +1,7 @@
-
-
 #' General system level information
 #'
 #' @description
 #' This function returns a \code{list} of general system level information.
-#'
-#' @export
 #'
 #' @return
 #' A \code{list} with elements:
@@ -16,6 +12,10 @@
 #'   \item \code{os}, the operating system
 #'   \item \code{rversion}, the R version used
 #' }
+#'
+#' @keywords validation
+#' @family package helpers
+#' @export
 #'
 #' @examples
 #' system_information()

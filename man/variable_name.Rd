@@ -7,9 +7,11 @@
 variable_name(variable, fallback = "unnamed")
 }
 \arguments{
-\item{variable}{Any object.}
+\item{variable}{[\code{any}]\cr
+Any object.}
 
-\item{fallback}{A \code{character}, a fallback if for some reason the actual variable name
+\item{fallback}{[\code{character(1)}]\cr
+A fallback name if for some reason the actual variable name
 (which must be a single \code{character}) cannot be determined.}
 }
 \value{
@@ -23,5 +25,15 @@ This function tries to determine the name of a variable passed to a
 variable_name(a)
 f <- function(x) variable_name(x)
 f(x = a)
-
 }
+\seealso{
+Other function helpers: 
+\code{\link{do.call_timed}()},
+\code{\link{function_arguments}()},
+\code{\link{function_body}()},
+\code{\link{function_defaults}()},
+\code{\link{timed}()},
+\code{\link{try_silent}()}
+}
+\concept{function helpers}
+\keyword{functional}

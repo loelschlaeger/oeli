@@ -3,15 +3,17 @@
 #' @description
 #' This function asks in an interactive question a binary question.
 #'
-#' @param question
-#' A \code{character}, the binary question to ask. It should end with a
-#' question mark.
-#' @param default
-#' Either \code{TRUE} or \code{FALSE} (default), the default decision.
+#' @param question \[`character(1)`\]\cr
+#' The binary question to ask. It should end with a question mark.
+#'
+#' @param default \[`logical(1)`\]\cr
+#' The default decision.
 #'
 #' @return
 #' Either \code{TRUE} or \code{FALSE}.
 #'
+#' @keywords validation
+#' @family package helpers
 #' @export
 
 user_confirm <- function(question = "Question?", default = FALSE) {

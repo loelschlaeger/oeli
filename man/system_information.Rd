@@ -22,3 +22,18 @@ This function returns a \code{list} of general system level information.
 \examples{
 system_information()
 }
+\seealso{
+Other package helpers: 
+\code{\link{Dictionary}},
+\code{\link{Storage}},
+\code{\link{identical_structure}()},
+\code{\link{input_check_response}()},
+\code{\link{match_arg}()},
+\code{\link{package_logo}()},
+\code{\link{print_matrix}()},
+\code{\link{renv_development_packages}()},
+\code{\link{unexpected_error}()},
+\code{\link{user_confirm}()}
+}
+\concept{package helpers}
+\keyword{validation}

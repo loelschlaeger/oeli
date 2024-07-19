@@ -7,20 +7,20 @@
 insert_vector_entry(v, x, p)
 }
 \arguments{
-\item{v}{A \code{vector}.}
+\item{v}{[\code{atomic()}]\cr
+A \code{vector}.}
 
-\item{x}{A single value (i.e., an \code{atomic} \code{vector} of length 1), the entry
-to be added.}
+\item{x}{[\code{atomic(1)}]\cr
+The entry to be added.}
 
-\item{p}{An \code{integer}, the position where to add the entry:
+\item{p}{[\verb{integer())}]\cr
+The position(s) where to add the value, one or more of:
 \itemize{
 \item \code{p = 0} appends the value left
 \item \code{p = length(v)} appends the value right
 \item \code{p = n} inserts the value between the \code{n}-th and
 \code{(n + 1)}-th entry of \code{v}.
-}
-
-Can also be a \code{vector} of multiple positions.}
+}}
 }
 \value{
 A \code{vector}.
@@ -42,3 +42,14 @@ insert_vector_entry(v, x, 0:3)
 ### also trivial case
 insert_vector_entry(integer(), integer(), integer())
 }
+\seealso{
+Other vector helpers: 
+\code{\link{check_numeric_vector}()},
+\code{\link{check_probability_vector}()},
+\code{\link{chunk_vector}()},
+\code{\link{match_numerics}()},
+\code{\link{permutations}()},
+\code{\link{vector_occurrence}()}
+}
+\concept{vector helpers}
+\keyword{transformation}

@@ -7,13 +7,14 @@
 function_arguments(f, with_default = TRUE, with_ellipsis = TRUE)
 }
 \arguments{
-\item{f}{A \code{function}.}
+\item{f}{[\code{function}]\cr
+A \code{function}.}
 
-\item{with_default}{Either \code{TRUE} to include function arguments that have default values,
-or \code{FALSE} else.}
+\item{with_default}{[\code{logical(1)}]\cr
+Include function arguments that have default values?}
 
-\item{with_ellipsis}{Either \code{TRUE} to include the \code{"..."} argument if present,
-or \code{FALSE} else.}
+\item{with_ellipsis}{[\code{logical(1)}]\cr
+Include the \code{"..."} argument if present?}
 }
 \value{
 A \code{character} vector.
@@ -26,5 +27,15 @@ f <- function(a, b = 1, c = "", ...) { }
 function_arguments(f)
 function_arguments(f, with_default = FALSE)
 function_arguments(f, with_ellipsis = FALSE)
-
 }
+\seealso{
+Other function helpers: 
+\code{\link{do.call_timed}()},
+\code{\link{function_body}()},
+\code{\link{function_defaults}()},
+\code{\link{timed}()},
+\code{\link{try_silent}()},
+\code{\link{variable_name}()}
+}
+\concept{function helpers}
+\keyword{functional}

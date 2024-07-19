@@ -4,20 +4,20 @@
 #' This function returns a random, squared matrix of dimension \code{dim}
 #' that fulfills the properties of a transition probability matrix.
 #'
-#' @param dim
-#' An \code{integer}, the matrix dimension.
-#' @param state_persistent
-#' Set to \code{TRUE} (default) to put more probability on the diagonal.
+#' @inheritParams sample_correlation_matrix
+#'
+#' @param state_persistent \[`logical(1)`\]\cr
+#' Put more probability on the diagonal?
 #'
 #' @return
 #' A transition probability \code{matrix}.
 #'
-#' @importFrom stats runif
+#' @keywords simulation
+#' @family matrix helpers
+#' @export
 #'
 #' @examples
 #' sample_transition_probability_matrix(dim = 3)
-#'
-#' @export
 
 sample_transition_probability_matrix <- function(dim, state_persistent = TRUE) {
   checkmate::assert_int(dim, lower = 1)

@@ -3,27 +3,27 @@
 #' @description
 #' This function inserts a column into a matrix.
 #'
-#' @param A
+#' @param A \[`matrix()`\]\cr
 #' A \code{matrix}.
 #'
-#' @param x
-#' A \code{vector} of length \code{nrow(A)}, the column to be added.
+#' @param x \[`atomic()`\]\cr
+#' The column to be added, of length \code{nrow(A)}.
 #'
 #' Can also be a single value.
 #'
-#' @param p
-#' An \code{integer}, the position where to add the column:
+#' @param p \[`integer())`\]\cr
+#' The position(s) where to add the column, one or more of:
 #' - \code{p = 0} appends the column left
 #' - \code{p = ncol(A)} appends the column right
 #' - \code{p = n} inserts the column between the \code{n}-th and
 #'   \code{(n + 1)}-th column of \code{A}.
 #'
-#' Can also be a \code{vector} of multiple positions.
-#'
 #' @return
 #' A \code{matrix}.
 #'
 #' @export
+#' @keywords transformation
+#' @family matrix helpers
 #'
 #' @examples
 #' A <- diag(3)

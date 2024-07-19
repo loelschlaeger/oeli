@@ -10,19 +10,21 @@
 #' The function optionally calls \code{\link[usethis]{use_logo}} if
 #' \code{use_logo = TRUE} to set up the logo for a package.
 #'
-#' @param package_name
-#' A \code{character}, the package name.
+#' @param package_name \[`character(1)`\]\cr
+#' The package name.
 #'
-#' @param brackets
-#' Set to \code{TRUE} (default) to have curly brackets around the package name.
+#' @param brackets \[`logical(1)`\]\cr
+#' Curly brackets around the package name?
 #'
-#' @param use_logo
-#' Set to \code{TRUE} to run \code{\link[usethis]{use_logo}} in the end.
-#'
-#' @export
+#' @param use_logo \[`logical(1)`\]\cr
+#' Run \code{\link[usethis]{use_logo}} in the end?
 #'
 #' @return
 #' A \code{ggplot} object.
+#'
+#' @export
+#' @keywords packaging
+#' @family package helpers
 #'
 #' @examples
 #' package_logo("my_package", brackets = TRUE, use_logo = FALSE)

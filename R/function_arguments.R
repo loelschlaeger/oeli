@@ -3,25 +3,27 @@
 #' @description
 #' This function returns the names of function arguments.
 #'
-#' @param f
+#' @param f \[`function`\]\cr
 #' A \code{function}.
-#' @param with_default
-#' Either \code{TRUE} to include function arguments that have default values,
-#' or \code{FALSE} else.
-#' @param with_ellipsis
-#' Either \code{TRUE} to include the \code{"..."} argument if present,
-#' or \code{FALSE} else.
+#'
+#' @param with_default \[`logical(1)`\]\cr
+#' Include function arguments that have default values?
+#'
+#' @param with_ellipsis \[`logical(1)`\]\cr
+#' Include the \code{"..."} argument if present?
 #'
 #' @return
 #' A \code{character} vector.
+#'
+#' @keywords functional
+#' @family function helpers
+#' @export
 #'
 #' @examples
 #' f <- function(a, b = 1, c = "", ...) { }
 #' function_arguments(f)
 #' function_arguments(f, with_default = FALSE)
 #' function_arguments(f, with_ellipsis = FALSE)
-#'
-#' @export
 
 function_arguments <- function(f, with_default = TRUE, with_ellipsis = TRUE) {
   checkmate::assert_function(f)

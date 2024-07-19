@@ -4,21 +4,24 @@
 #' This function tries to determine the name of a variable passed to a
 #' \code{function}.
 #'
-#' @param variable
+#' @param variable \[`any`\]\cr
 #' Any object.
-#' @param fallback
-#' A \code{character}, a fallback if for some reason the actual variable name
+#'
+#' @param fallback \[`character(1)`\]\cr
+#' A fallback name if for some reason the actual variable name
 #' (which must be a single \code{character}) cannot be determined.
 #'
 #' @return
 #' A \code{character}, the variable name.
 #'
+#' @keywords functional
+#' @family function helpers
+#' @export
+#'
 #' @examples
 #' variable_name(a)
 #' f <- function(x) variable_name(x)
 #' f(x = a)
-#'
-#' @export
 
 variable_name <- function(variable, fallback = "unnamed") {
   argument_name <- deparse(

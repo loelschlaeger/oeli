@@ -1,39 +1,43 @@
 #' Dirichlet distribution
 #'
 #' @description
-#' This function computes the density of a Dirichlet distribution.
+#' The function `ddirichlet()` computes the density of a Dirichlet distribution.
 #'
-#' @details
-#' TODO input checks
+#' The function `rdirichlet()` samples from a Dirichlet distribution.
 #'
-#' @param x
-#' A \code{numeric}, a weight vector of length \code{p}.
-#' Each vector element must be between \code{0} and \code{1}.
-#' The sum of the vector elements must be \code{1}.
-#' @param concentration
-#' A \code{numeric}, the concentration vector of length \code{p}.
-#' @param log
-#' A \code{logical}, if \code{TRUE} the logarithm of the density value is
-#' returned.
-#' By default, \code{log = FALSE}.
-#' @param n
-#' An \code{integer}, the number of samples.
+#' The functions with suffix `_cpp` perform no input checks, hence are faster.
+#'
+#' @param x \[`numeric()`\]\cr
+#' A probability vector.
+#'
+#' @param concentration \[`numeric()`\]\cr
+#' A concentration vector of the same length as `x`.
+#'
+#' @param log \[`logical(1)`\]\cr
+#' Return the logarithm of the density value?
+#'
+#' @param n \[`integer(1)`\]\cr
+#' The number of samples.
 #'
 #' @return
-#' TODO If \code{n = 1} a \code{vector} of length \code{p}, else
+#' For `ddirichlet()`: The density value.
+#'
+#' For `rdirichlet()`: If \code{n = 1} a \code{vector} of length \code{p}, else
 #' a \code{matrix} of dimension \code{n} times \code{p} with samples as rows.
-#' A \code{numeric}, the density value.
 #'
 #' @keywords distribution
-#' @family distribution helpers
+#' @family simulation helpers
 #' @export
 #'
 #' @examples
 #' x <- c(0.5, 0.3, 0.2)
 #' concentration <- 1:3
+#'
+#' # compute density
 #' ddirichlet(x = x, concentration = concentration)
 #' ddirichlet(x = x, concentration = concentration, log = TRUE)
 #'
+#' # sample
 #' rdirichlet(concentration = 1:3)
 #' rdirichlet(n = 4, concentration = 1:2)
 

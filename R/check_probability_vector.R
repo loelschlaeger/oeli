@@ -4,11 +4,8 @@
 #' This function checks whether the input is a real vector with non-negative
 #' entries that add up to one.
 #'
-#' @param x
-#' Object to check.
-#'
-#' @param tolerance
-#' A non-negative \code{numeric} tolerance value.
+#' @param tolerance \[`numeric(1)`\]\cr
+#' A non-negative tolerance value.
 #'
 #' @inheritParams checkmate::check_numeric
 #'

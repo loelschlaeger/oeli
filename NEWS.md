@@ -1,3 +1,7 @@
+# oeli 0.6.0
+
+* Added functions `dtnorm()` and `dttnorm()` to calculate the density of a (two-sided) truncated normal distribution.
+
 # oeli 0.5.2
 
 * Added function `identical_structure()` to check if two objects have the identical structure.

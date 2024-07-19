@@ -6,19 +6,31 @@
 \description{
 Provides a simple key-value interface based on R6.
 }
+\examples{
+# TODO
+}
 \seealso{
 Other package helpers: 
-\code{\link{input_check_response}()}
+\code{\link{Storage}},
+\code{\link{identical_structure}()},
+\code{\link{input_check_response}()},
+\code{\link{match_arg}()},
+\code{\link{package_logo}()},
+\code{\link{print_matrix}()},
+\code{\link{renv_development_packages}()},
+\code{\link{system_information}()},
+\code{\link{unexpected_error}()},
+\code{\link{user_confirm}()}
 }
 \concept{package helpers}
 \keyword{indexing}
 \section{Active bindings}{
 \if{html}{\out{<div class="r6-active-bindings">}}
 \describe{
-\item{\code{keys}}{(\code{character()})\cr
+\item{\code{keys}}{[\code{character()}]\cr
 Available keys.}
 
-\item{\code{alias}}{(\code{list()})\cr
+\item{\code{alias}}{[\code{list()}]\cr
 Available keys per alias value.}
 }
 \if{html}{\out{</div>}}
@@ -54,33 +66,33 @@ Initializing a new \code{Dictionary} object.
 \subsection{Arguments}{
 \if{html}{\out{<div class="arguments">}}
 \describe{
-\item{\code{key_name}}{(\code{character(1)})\cr
+\item{\code{key_name}}{[\code{character(1)}]\cr
 The name for the key variable.}
 
-\item{\code{alias_name}}{(\code{NULL} or \code{character(1)})\cr
+\item{\code{alias_name}}{[\code{NULL} | \code{character(1)}]\cr
 Optionally the name for the alias variable.}
 
-\item{\code{value_names}}{(\code{character()})\cr
+\item{\code{value_names}}{[\code{character(0)}]\cr
 The names of the values connected to a key.}
 
-\item{\code{value_assert}}{(\code{alist()})\cr
+\item{\code{value_assert}}{[\code{alist(1)}]\cr
 For each element in \code{value_names}, \code{values_assert} \emph{can} have an
 identically named element of the form \code{checkmate::assert_*(...)}, where
 \code{...} can be any argument for the assertion function except for the
 \code{x} argument.}
 
-\item{\code{allow_overwrite}}{(\code{logical(1)})\cr
+\item{\code{allow_overwrite}}{[\code{logical(1)}]\cr
 Allow overwriting existing keys with new values?
 Duplicate keys are never allowed.}
 
-\item{\code{keys_reserved}}{(\code{character()})\cr
+\item{\code{keys_reserved}}{[\code{character()}]\cr
 Names that must not be used as keys.}
 
-\item{\code{alias_choices}}{(\code{NULL} or \code{character()})\cr
+\item{\code{alias_choices}}{[\code{NULL} or \code{character()}]\cr
 Optionally possible values for the alias. Can also be \code{NULL}, then all
 alias values are allowed.}
 
-\item{\code{dictionary_name}}{(\code{NULL} or \code{character()})\cr
+\item{\code{dictionary_name}}{[\code{NULL} or \code{character()}]\cr
 Optionally the name for the dictionary.}
 }
 \if{html}{\out{</div>}}
@@ -122,12 +134,12 @@ Getting elements from the dictionary.
 \subsection{Arguments}{
 \if{html}{\out{<div class="arguments">}}
 \describe{
-\item{\code{key}}{(\code{character(1)})\cr
+\item{\code{key}}{[\code{character(1)}]\cr
 A value for the key variable \code{key_name}. Use the \code{$keys} method for
 available keys.}
 
-\item{\code{value}}{Optionally a single \code{character}, one of the elements in
-\code{value_names}, selecting the required value.
+\item{\code{value}}{[\code{NULL} | \code{character(1)}]\cr
+One of the elements in \code{value_names}, selecting the required value.
 Can also be \code{NULL} (default) for all values connected to the
 \code{key}, returned as a \code{list}.}
 }
@@ -146,7 +158,7 @@ Removing elements from the dictionary (and associated alias, if any).
 \subsection{Arguments}{
 \if{html}{\out{<div class="arguments">}}
 \describe{
-\item{\code{key}}{(\code{character(1)})\cr
+\item{\code{key}}{[\code{character(1)}]\cr
 A value for the key variable \code{key_name}. Use the \code{$keys} method for
 available keys.}
 }

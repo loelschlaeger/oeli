@@ -7,9 +7,11 @@
 vector_occurrence(x, type = "first")
 }
 \arguments{
-\item{x}{A \code{vector}.}
+\item{x}{[\code{atomic()}]\cr
+A \code{vector}.}
 
-\item{type}{Either \code{"first"} for the first or \code{"last"} for the last occurrence.}
+\item{type}{[\code{character(1)}]\cr
+Either \code{"first"} for the first or \code{"last"} for the last occurrence.}
 }
 \value{
 An \code{integer} \code{vector}, the positions of the unique vector elements.
@@ -27,3 +29,14 @@ unique(x)
 vector_occurrence(x, "first")
 vector_occurrence(x, "last")
 }
+\seealso{
+Other vector helpers: 
+\code{\link{check_numeric_vector}()},
+\code{\link{check_probability_vector}()},
+\code{\link{chunk_vector}()},
+\code{\link{insert_vector_entry}()},
+\code{\link{match_numerics}()},
+\code{\link{permutations}()}
+}
+\concept{vector helpers}
+\keyword{indexing}

@@ -7,15 +7,17 @@
 match_arg(arg, choices, several.ok = FALSE, none.ok = FALSE)
 }
 \arguments{
-\item{arg}{A \code{character} (vector), the function argument.}
+\item{arg}{[\code{character()}]\cr
+The function argument.}
 
-\item{choices}{A \code{character} (vector) of allowed values for \code{arg}.}
+\item{choices}{[\code{character()}]\cr
+Allowed values for \code{arg}.}
 
-\item{several.ok}{Either \code{TRUE} if \code{arg} is allowed to have more than one element,
-or \code{FALSE} else.}
+\item{several.ok}{[\code{logical(1)}]\cr
+Is \code{arg} allowed to have more than one element?}
 
-\item{none.ok}{Either \code{TRUE} if \code{arg} is allowed to have zero elements,
-or \code{FALSE} else.}
+\item{none.ok}{[\code{logical(1)}]\cr
+Is \code{arg} allowed to have zero elements?}
 }
 \value{
 The un-abbreviated version of the exact or unique partial match if there is
@@ -30,3 +32,18 @@ When \code{none.ok} is \code{TRUE} and \code{arg} has zero elements,
 This function matches function arguments and is a modified version of
 \code{\link[base]{match.arg}}.
 }
+\seealso{
+Other package helpers: 
+\code{\link{Dictionary}},
+\code{\link{Storage}},
+\code{\link{identical_structure}()},
+\code{\link{input_check_response}()},
+\code{\link{package_logo}()},
+\code{\link{print_matrix}()},
+\code{\link{renv_development_packages}()},
+\code{\link{system_information}()},
+\code{\link{unexpected_error}()},
+\code{\link{user_confirm}()}
+}
+\concept{package helpers}
+\keyword{packaging}

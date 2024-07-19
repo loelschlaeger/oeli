@@ -7,11 +7,14 @@
 package_logo(package_name, brackets = TRUE, use_logo = FALSE)
 }
 \arguments{
-\item{package_name}{A \code{character}, the package name.}
+\item{package_name}{[\code{character(1)}]\cr
+The package name.}
 
-\item{brackets}{Set to \code{TRUE} (default) to have curly brackets around the package name.}
+\item{brackets}{[\code{logical(1)}]\cr
+Curly brackets around the package name?}
 
-\item{use_logo}{Set to \code{TRUE} to run \code{\link[usethis]{use_logo}} in the end.}
+\item{use_logo}{[\code{logical(1)}]\cr
+Run \code{\link[usethis]{use_logo}} in the end?}
 }
 \value{
 A \code{ggplot} object.
@@ -29,3 +32,18 @@ The function optionally calls \code{\link[usethis]{use_logo}} if
 \examples{
 package_logo("my_package", brackets = TRUE, use_logo = FALSE)
 }
+\seealso{
+Other package helpers: 
+\code{\link{Dictionary}},
+\code{\link{Storage}},
+\code{\link{identical_structure}()},
+\code{\link{input_check_response}()},
+\code{\link{match_arg}()},
+\code{\link{print_matrix}()},
+\code{\link{renv_development_packages}()},
+\code{\link{system_information}()},
+\code{\link{unexpected_error}()},
+\code{\link{user_confirm}()}
+}
+\concept{package helpers}
+\keyword{packaging}

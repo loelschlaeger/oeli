@@ -19,12 +19,14 @@ assert_probability_vector(
 test_probability_vector(x, len = NULL, tolerance = sqrt(.Machine$double.eps))
 }
 \arguments{
-\item{x}{Object to check.}
+\item{x}{[any]\cr
+Object to check.}
 
 \item{len}{[\code{integer(1)}]\cr
 Exact expected length of \code{x}.}
 
-\item{tolerance}{A non-negative \code{numeric} tolerance value.}
+\item{tolerance}{[\code{numeric(1)}]\cr
+A non-negative tolerance value.}
 
 \item{.var.name}{[\code{character(1)}]\cr
 Name of the checked object to print in assertions. Defaults to
@@ -43,7 +45,11 @@ entries that add up to one.
 \seealso{
 Other vector helpers: 
 \code{\link{check_numeric_vector}()},
-\code{\link{chunk_vector}()}
+\code{\link{chunk_vector}()},
+\code{\link{insert_vector_entry}()},
+\code{\link{match_numerics}()},
+\code{\link{permutations}()},
+\code{\link{vector_occurrence}()}
 }
 \concept{vector helpers}
 \keyword{validation}

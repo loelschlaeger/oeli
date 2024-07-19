@@ -60,7 +60,8 @@ test_numeric_vector(
 )
 }
 \arguments{
-\item{x}{Object to check.}
+\item{x}{[any]\cr
+Object to check.}
 
 \item{lower}{[\code{numeric(1)}]\cr
 Lower value all elements of \code{x} must be greater than or equal to.}
@@ -124,7 +125,11 @@ This function checks whether the input is a numeric vector.
 \seealso{
 Other vector helpers: 
 \code{\link{check_probability_vector}()},
-\code{\link{chunk_vector}()}
+\code{\link{chunk_vector}()},
+\code{\link{insert_vector_entry}()},
+\code{\link{match_numerics}()},
+\code{\link{permutations}()},
+\code{\link{vector_occurrence}()}
 }
 \concept{vector helpers}
 \keyword{validation}

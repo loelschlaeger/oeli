@@ -3,21 +3,25 @@
 #' @description
 #' This function returns the default function arguments (if any).
 #'
-#' @param f
+#' @param f \[`function`\]\cr
 #' A \code{function}.
-#' @param exclude
-#' A \code{character} of argument names to exclude. Can be \code{NULL} (default)
-#' to not exclude any argument names.
+#'
+#' @param exclude \[`NULL` | `character()`\]\cr
+#' Argument names to exclude.
+#'
+#' Can be \code{NULL} (default) to not exclude any argument names.
 #'
 #' @return
 #' A named \code{list}.
+#'
+#' @keywords functional
+#' @family function helpers
+#' @export
 #'
 #' @examples
 #' f <- function(a, b = 1, c = "", ...) { }
 #' function_defaults(f)
 #' function_defaults(f, exclude = "b")
-#'
-#' @export
 
 function_defaults <- function(f, exclude = NULL) {
   checkmate::assert_function(f)

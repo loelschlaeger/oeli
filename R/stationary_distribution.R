@@ -4,22 +4,24 @@
 #' This function computes the stationary distribution corresponding to a
 #' transition probability matrix.
 #'
-#' @param tpm
-#' A transition probability \code{matrix}.
-#' @param soft_fail
-#' Either \code{TRUE} to return the discrete uniform distribution if the
-#' computation of the stationary distribution fails for some reason, or
-#' \code{FALSE} to throw an error.
+#' @param tpm \[`matrix()`\]\cr
+#' A transition probability matrix.
+#'
+#' @param soft_fail \[`logical(1)`\]\cr
+#' Return the discrete uniform distribution if the computation of the stationary
+#' distribution fails for some reason? Else, throw an error.
 #'
 #' @return
 #' A \code{numeric} vector.
+#'
+#' @keywords transformation
+#' @family matrix helpers
+#' @export
 #'
 #' @examples
 #' tpm <- matrix(0.05, nrow = 3, ncol = 3)
 #' diag(tpm) <- 0.9
 #' stationary_distribution(tpm)
-#'
-#' @export
 
 stationary_distribution <- function(tpm, soft_fail = FALSE) {
   assert_transition_probability_matrix(tpm)

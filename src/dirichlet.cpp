@@ -3,10 +3,9 @@
 
 //' @rdname ddirichlet
 //' @export
-//'
 // [[Rcpp::export]]
 double ddirichlet_cpp(
-   arma::vec const& x, arma::vec const& concentration, bool log = false
+  arma::vec const& x, arma::vec const& concentration, bool log = false
 ) {
  int p = x.size();
  double P = 1.0;
@@ -25,9 +24,10 @@ double ddirichlet_cpp(
 
 //' @rdname ddirichlet
 //' @export
-//'
 // [[Rcpp::export]]
-arma::vec rdirichlet_cpp(arma::vec const& concentration) {
+arma::vec rdirichlet_cpp(
+  arma::vec const& concentration
+) {
  int p = concentration.size();
  arma::vec draw = arma::zeros<arma::vec>(p);
  double sum_term = 0;

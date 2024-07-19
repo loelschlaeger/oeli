@@ -3,9 +3,6 @@
 #' @description
 #' This function checks whether the input is a numeric vector.
 #'
-#' @param x
-#' Object to check.
-#'
 #' @inheritParams checkmate::check_numeric
 #' @inheritParams checkmate::check_atomic_vector
 #'
