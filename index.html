@@ -88,7 +88,7 @@
 <p>The package includes helpers for different tasks and objects. Below are some demos. Clicking the headings will take you to the corresponding vignette, where you’ll find a documentation on all the helpers currently available in that category.</p>
 <div class="section level3">
 <h3 id="dataframe-helpers">
-<a href="https://loelschlaeger.de/oeli/articles/package_helpers.html" class="external-link"><code>data.frame</code> helpers</a><a class="anchor" aria-label="anchor" href="#dataframe-helpers"></a>
+<a href="https://loelschlaeger.de/oeli/articles/dataframe_helpers.html" class="external-link"><code>data.frame</code> helpers</a><a class="anchor" aria-label="anchor" href="#dataframe-helpers"></a>
 </h3>
 <p>The <code><a href="reference/group_data_frame.html">group_data_frame()</a></code> function groups a given <code>data.frame</code> based on the values in a specified column:</p>
 <div class="sourceCode" id="cb2"><pre class="downlit sourceCode r">
@@ -179,11 +179,11 @@
 <span><span class="fu"><a href="reference/print_matrix.html">print_matrix</a></span><span class="op">(</span><span class="va">x</span>, rowdots <span class="op">=</span> <span class="fl">4</span>, coldots <span class="op">=</span> <span class="fl">4</span>, digits <span class="op">=</span> <span class="fl">2</span>, label <span class="op">=</span> <span class="st">"what a big matrix"</span><span class="op">)</span></span>
 <span><span class="co">#&gt; what a big matrix : 100 x 100 matrix of doubles </span></span>
 <span><span class="co">#&gt;         [,1] [,2]  [,3] ... [,100]</span></span>
-<span><span class="co">#&gt; [1,]    0.16 0.28  0.97 ...  -0.47</span></span>
-<span><span class="co">#&gt; [2,]    1.08    1  0.99 ...   2.59</span></span>
-<span><span class="co">#&gt; [3,]   -0.06 1.14 -0.99 ...  -0.02</span></span>
+<span><span class="co">#&gt; [1,]    0.25  0.4  0.43 ...  -0.72</span></span>
+<span><span class="co">#&gt; [2,]   -0.26 1.76 -0.28 ...   0.87</span></span>
+<span><span class="co">#&gt; [3,]    -1.5 0.25   1.1 ...   1.45</span></span>
 <span><span class="co">#&gt; ...      ...  ...   ... ...    ...</span></span>
-<span><span class="co">#&gt; [100,]  1.37  1.4 -1.68 ...   1.06</span></span></code></pre></div>
+<span><span class="co">#&gt; [100,]  0.12 0.37 -0.52 ...   0.82</span></span></code></pre></div>
 </div>
 <div class="section level3">
 <h3 id="simulation-helpers">
@@ -193,11 +193,11 @@
 <div class="sourceCode" id="cb9"><pre class="downlit sourceCode r">
 <code class="sourceCode R"><span><span class="va">Gamma</span> <span class="op">&lt;-</span> <span class="fu"><a href="reference/sample_transition_probability_matrix.html">sample_transition_probability_matrix</a></span><span class="op">(</span>dim <span class="op">=</span> <span class="fl">3</span><span class="op">)</span></span>
 <span><span class="fu"><a href="reference/simulate_markov_chain.html">simulate_markov_chain</a></span><span class="op">(</span>Gamma <span class="op">=</span> <span class="va">Gamma</span>, T <span class="op">=</span> <span class="fl">20</span><span class="op">)</span></span>
-<span><span class="co">#&gt;  [1] 2 3 2 2 2 2 1 2 2 1 3 1 2 2 1 1 2 2 1 1</span></span></code></pre></div>
+<span><span class="co">#&gt;  [1] 3 3 3 3 3 3 3 3 3 3 3 3 3 3 3 3 3 3 3 3</span></span></code></pre></div>
 </div>
 <div class="section level3">
 <h3 id="vector-helpers">
-<a href="https://loelschlaeger.de/oeli/articles/package_helpers.html" class="external-link"><code>vector</code> helpers</a><a class="anchor" aria-label="anchor" href="#vector-helpers"></a>
+<a href="https://loelschlaeger.de/oeli/articles/vector_helpers.html" class="external-link"><code>vector</code> helpers</a><a class="anchor" aria-label="anchor" href="#vector-helpers"></a>
 </h3>
 <p>Create all possible permutations:</p>
 <div class="sourceCode" id="cb10"><pre class="downlit sourceCode r">
