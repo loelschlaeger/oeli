@@ -59,20 +59,25 @@ splits a vector into chunks of size n (type = 2).
 
 
 <dl><dt id="arg-x">x<a class="anchor" aria-label="anchor" href="#arg-x"></a></dt>
-<dd><p>A <code>vector</code>.</p></dd>
+<dd><p>[atomic()`]<br>
+A vector of elements.</p></dd>
 
 
 <dt id="arg-n">n<a class="anchor" aria-label="anchor" href="#arg-n"></a></dt>
-<dd><p>An <code>integer</code> smaller or equal <code>length(x)</code>.</p></dd>
+<dd><p>[<code>integer(1)</code>]<br>
+A number smaller or equal <code>length(x)</code>.</p></dd>
 
 
 <dt id="arg-type">type<a class="anchor" aria-label="anchor" href="#arg-type"></a></dt>
-<dd><p>Either <code>1</code> (default) to split <code>x</code> into <code>n</code> chunks of equal
-size or <code>2</code> to split <code>x</code> into chunks of size <code>n</code>.</p></dd>
+<dd><p>[<code>1</code> | <code>2</code>]<br>
+Either</p><ul><li><p><code>1</code> (default) to split <code>x</code> into <code>n</code> chunks of equal size,</p></li>
+<li><p>or <code>2</code> to split <code>x</code> into chunks of size <code>n</code>.</p></li>
+</ul></dd>
 
 
 <dt id="arg-strict">strict<a class="anchor" aria-label="anchor" href="#arg-strict"></a></dt>
-<dd><p>Set to <code>TRUE</code> to fail if <code>length(x)</code> is not a multiple of <code>n</code>,
+<dd><p>[<code>logical(1)</code>]<br>
+Set to <code>TRUE</code> to fail if <code>length(x)</code> is not a multiple of <code>n</code>,
 or <code>FALSE</code> (default), else.</p></dd>
 
 </dl></div>
@@ -84,7 +89,11 @@ or <code>FALSE</code> (default), else.</p></dd>
     <h2 id="see-also">See also<a class="anchor" aria-label="anchor" href="#see-also"></a></h2>
     <div class="dont-index"><p>Other vector helpers:
 <code><a href="check_numeric_vector.html">check_numeric_vector</a>()</code>,
-<code><a href="check_probability_vector.html">check_probability_vector</a>()</code></p></div>
+<code><a href="check_probability_vector.html">check_probability_vector</a>()</code>,
+<code><a href="insert_vector_entry.html">insert_vector_entry</a>()</code>,
+<code><a href="match_numerics.html">match_numerics</a>()</code>,
+<code><a href="permutations.html">permutations</a>()</code>,
+<code><a href="vector_occurrence.html">vector_occurrence</a>()</code></p></div>
     </div>
 
     <div class="section level2">

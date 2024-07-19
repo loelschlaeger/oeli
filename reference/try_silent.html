@@ -53,7 +53,8 @@ error message if the execution failed.</p>
 
 
 <dl><dt id="arg-expr">expr<a class="anchor" aria-label="anchor" href="#arg-expr"></a></dt>
-<dd><p>An R expression to try.</p></dd>
+<dd><p>[<code>expression</code>]<br>
+An R expression to be evaluated.</p></dd>
 
 </dl></div>
     <div class="section level2">
@@ -65,6 +66,16 @@ error message if the execution failed.</p>
     <h2 id="details">Details<a class="anchor" aria-label="anchor" href="#details"></a></h2>
     <p>This function is a wrapper for <code><a href="https://rdrr.io/r/base/try.html" class="external-link">try</a></code>.</p>
     </div>
+    <div class="section level2">
+    <h2 id="see-also">See also<a class="anchor" aria-label="anchor" href="#see-also"></a></h2>
+    <div class="dont-index"><p>Other function helpers:
+<code><a href="do.call_timed.html">do.call_timed</a>()</code>,
+<code><a href="function_arguments.html">function_arguments</a>()</code>,
+<code><a href="function_body.html">function_body</a>()</code>,
+<code><a href="function_defaults.html">function_defaults</a>()</code>,
+<code><a href="timed.html">timed</a>()</code>,
+<code><a href="variable_name.html">variable_name</a>()</code></p></div>
+    </div>
 
     <div class="section level2">
     <h2 id="ref-examples">Examples<a class="anchor" aria-label="anchor" href="#ref-examples"></a></h2>
@@ -72,7 +83,6 @@ error message if the execution failed.</p>
 <span class="r-in"><span><span class="fu">try_silent</span><span class="op">(</span><span class="fl">1</span> <span class="op">+</span> <span class="fl">1</span><span class="op">)</span></span></span>
 <span class="r-in"><span><span class="fu">try_silent</span><span class="op">(</span><span class="fl">1</span> <span class="op">+</span> <span class="st">"1"</span><span class="op">)</span></span></span>
 <span class="r-in"><span><span class="op">}</span> <span class="co"># }</span></span></span>
-<span class="r-in"><span></span></span>
 </code></pre></div>
     </div>
   </main><aside class="col-md-3"><nav id="toc" aria-label="Table of contents"><h2>On this page</h2>

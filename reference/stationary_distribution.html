@@ -53,18 +53,34 @@ transition probability matrix.</p>
 
 
 <dl><dt id="arg-tpm">tpm<a class="anchor" aria-label="anchor" href="#arg-tpm"></a></dt>
-<dd><p>A transition probability <code>matrix</code>.</p></dd>
+<dd><p>[<code><a href="https://rdrr.io/r/base/matrix.html" class="external-link">matrix()</a></code>]<br>
+A transition probability matrix.</p></dd>
 
 
 <dt id="arg-soft-fail">soft_fail<a class="anchor" aria-label="anchor" href="#arg-soft-fail"></a></dt>
-<dd><p>Either <code>TRUE</code> to return the discrete uniform distribution if the
-computation of the stationary distribution fails for some reason, or
-<code>FALSE</code> to throw an error.</p></dd>
+<dd><p>[<code>logical(1)</code>]<br>
+Return the discrete uniform distribution if the computation of the stationary
+distribution fails for some reason? Else, throw an error.</p></dd>
 
 </dl></div>
     <div class="section level2">
     <h2 id="value">Value<a class="anchor" aria-label="anchor" href="#value"></a></h2>
     <p>A <code>numeric</code> vector.</p>
+    </div>
+    <div class="section level2">
+    <h2 id="see-also">See also<a class="anchor" aria-label="anchor" href="#see-also"></a></h2>
+    <div class="dont-index"><p>Other matrix helpers:
+<code><a href="check_correlation_matrix.html">check_correlation_matrix</a>()</code>,
+<code><a href="check_covariance_matrix.html">check_covariance_matrix</a>()</code>,
+<code><a href="check_transition_probability_matrix.html">check_transition_probability_matrix</a>()</code>,
+<code><a href="cov_2_chol.html">cov_2_chol</a>()</code>,
+<code><a href="diff_cov.html">diff_cov</a>()</code>,
+<code><a href="insert_matrix_column.html">insert_matrix_column</a>()</code>,
+<code><a href="matrix_diagonal_indices.html">matrix_diagonal_indices</a>()</code>,
+<code><a href="matrix_indices.html">matrix_indices</a>()</code>,
+<code><a href="sample_correlation_matrix.html">sample_correlation_matrix</a>()</code>,
+<code><a href="sample_covariance_matrix.html">sample_covariance_matrix</a>()</code>,
+<code><a href="sample_transition_probability_matrix.html">sample_transition_probability_matrix</a>()</code></p></div>
     </div>
 
     <div class="section level2">
@@ -73,7 +89,6 @@ computation of the stationary distribution fails for some reason, or
 <span class="r-in"><span><span class="fu"><a href="https://rdrr.io/r/base/diag.html" class="external-link">diag</a></span><span class="op">(</span><span class="va">tpm</span><span class="op">)</span> <span class="op">&lt;-</span> <span class="fl">0.9</span></span></span>
 <span class="r-in"><span><span class="fu">stationary_distribution</span><span class="op">(</span><span class="va">tpm</span><span class="op">)</span></span></span>
 <span class="r-out co"><span class="r-pr">#&gt;</span> [1] 0.3333333 0.3333333 0.3333333</span>
-<span class="r-in"><span></span></span>
 </code></pre></div>
     </div>
   </main><aside class="col-md-3"><nav id="toc" aria-label="Table of contents"><h2>On this page</h2>

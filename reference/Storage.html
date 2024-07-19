@@ -78,24 +78,39 @@ through the <code>$confirm</code> field or customized separately for each specif
 case via the method argument.</p>
     </div>
     <div class="section level2">
+    <h2 id="see-also">See also<a class="anchor" aria-label="anchor" href="#see-also"></a></h2>
+    <div class="dont-index"><p>Other package helpers:
+<code><a href="Dictionary.html">Dictionary</a></code>,
+<code><a href="identical_structure.html">identical_structure</a>()</code>,
+<code><a href="input_check_response.html">input_check_response</a>()</code>,
+<code><a href="match_arg.html">match_arg</a>()</code>,
+<code><a href="package_logo.html">package_logo</a>()</code>,
+<code><a href="print_matrix.html">print_matrix</a>()</code>,
+<code><a href="renv_development_packages.html">renv_development_packages</a>()</code>,
+<code><a href="system_information.html">system_information</a>()</code>,
+<code><a href="unexpected_error.html">unexpected_error</a>()</code>,
+<code><a href="user_confirm.html">user_confirm</a>()</code></p></div>
+    </div>
+    <div class="section level2">
     <h2 id="active-bindings">Active bindings<a class="anchor" aria-label="anchor" href="#active-bindings"></a></h2>
     <p></p><div class="r6-active-bindings"><dl><dt><code>identifier</code></dt>
-<dd><p>a <code>character</code> <code>vector</code>, the identifiers used</p></dd>
+<dd><p>[<code><a href="https://rdrr.io/r/base/character.html" class="external-link">character()</a></code>]<br>
+The identifiers used.</p></dd>
 
 
 <dt><code>confirm</code></dt>
-<dd><p>setting the default value for confirmations (either
-<code>TRUE</code> or <code>FALSE</code>)</p></dd>
+<dd><p>[<code>logical(1)</code>]<br>
+The default value for confirmations.</p></dd>
 
 
 <dt><code>missing_identifier</code></dt>
-<dd><p>setting the default value for not specified
-identifiers (either <code>TRUE</code>, <code>FALSE</code>, or <code>NA</code>)</p></dd>
+<dd><p>[<code>logical(1)</code>]<br>
+The default value for not specified identifiers.</p></dd>
 
 
 <dt><code>hide_warnings</code></dt>
-<dd><p>either <code>TRUE</code> to hide warnings (for example
-if unknown identifiers are selected) or <code>FALSE</code> (default), else</p></dd>
+<dd><p>[<code>logical(1)</code>]<br>
+Hide warnings (for example if unknown identifiers are selected)?</p></dd>
 
 
 </dl><p></p></div>
@@ -115,19 +130,15 @@ if unknown identifiers are selected) or <code>FALSE</code> (default), else</p></
 <li><p><a href="#method-Storage-print"><code>Storage$print()</code></a></p></li>
 </ul></div><p></p><hr><a id="method-Storage-new"></a><div class="section">
 <h3 id="method-new-">Method <code>new()</code><a class="anchor" aria-label="anchor" href="#method-new-"></a></h3>
-<p>initializing a <code>Storage</code> object</p><div class="section">
+<p>Initializing a <code>Storage</code> object.</p><div class="section">
 <h4 id="usage">Usage<a class="anchor" aria-label="anchor" href="#usage"></a></h4>
 <p></p><div class="r"><div class="sourceCode"><pre><code><span><span class="va"><a href="../reference/Storage.html">Storage</a></span><span class="op">$</span><span class="fu">new</span><span class="op">(</span><span class="op">)</span></span></code></pre></div><p></p></div>
 </div>
 
-<div class="section">
-<h4 id="returns">Returns<a class="anchor" aria-label="anchor" href="#returns"></a></h4>
-<p>a new <code>Storage</code> object</p>
-</div>
 
 </div><p></p><hr><a id="method-Storage-add"></a><div class="section">
 <h3 id="method-add-">Method <code>add()</code><a class="anchor" aria-label="anchor" href="#method-add-"></a></h3>
-<p>adding an element</p><div class="section">
+<p>Adding an element.</p><div class="section">
 <h4 id="usage-1">Usage<a class="anchor" aria-label="anchor" href="#usage-1"></a></h4>
 <p></p><div class="r"><div class="sourceCode"><pre><code><span><span class="va">Storage</span><span class="op">$</span><span class="fu">add</span><span class="op">(</span></span>
 <span>  <span class="va">x</span>,</span>
@@ -140,33 +151,32 @@ if unknown identifiers are selected) or <code>FALSE</code> (default), else</p></
 <div class="section">
 <h4 id="arguments">Arguments<a class="anchor" aria-label="anchor" href="#arguments"></a></h4>
 <p></p><div class="arguments"><dl><dt><code>x</code></dt>
-<dd><p>any object to be saved</p></dd>
+<dd><p>[<code><a href="https://rdrr.io/r/base/any.html" class="external-link">any()</a></code>]<br>
+An object to be saved.</p></dd>
 
 
 <dt><code>identifier</code></dt>
-<dd><p>a <code>character</code> <code>vector</code> with one or more identifiers (the identifier
-<code>"all"</code> is reserved to select all elements)</p></dd>
+<dd><p>[<code><a href="https://rdrr.io/r/base/character.html" class="external-link">character()</a></code>]<br>
+Pne or more identifiers (the identifier <code>"all"</code> is reserved to select
+all elements).</p></dd>
 
 
 <dt><code>confirm</code></dt>
-<dd><p>either <code>TRUE</code> to be prompted for confirmation, or <code>FALSE</code> else</p></dd>
+<dd><p>[<code>logical(1)</code>]<br>
+Prompted for confirmation?</p></dd>
 
 
 <dt><code>missing_identifier</code></dt>
-<dd><p>the <code>logical</code> value for not specified identifiers (either <code>NA</code>,
-<code>TRUE</code>, or <code>FALSE</code>)</p></dd>
+<dd><p>[<code>logical(1)</code> | NA]<br>
+The value for not specified identifiers.</p></dd>
 
 
 </dl><p></p></div>
 </div>
-<div class="section">
-<h4 id="returns-1">Returns<a class="anchor" aria-label="anchor" href="#returns-1"></a></h4>
-<p>invisibly the <code>Storage</code> object</p>
-</div>
 
 </div><p></p><hr><a id="method-Storage-get"></a><div class="section">
 <h3 id="method-get-">Method <code><a href="https://rdrr.io/r/base/get.html" class="external-link">get()</a></code><a class="anchor" aria-label="anchor" href="#method-get-"></a></h3>
-<p>getting elements</p><div class="section">
+<p>Getting elements.</p><div class="section">
 <h4 id="usage-2">Usage<a class="anchor" aria-label="anchor" href="#usage-2"></a></h4>
 <p></p><div class="r"><div class="sourceCode"><pre><code><span><span class="va">Storage</span><span class="op">$</span><span class="fu">get</span><span class="op">(</span></span>
 <span>  identifier <span class="op">=</span> <span class="fu"><a href="https://rdrr.io/r/base/character.html" class="external-link">character</a></span><span class="op">(</span><span class="op">)</span>,</span>
@@ -181,42 +191,42 @@ if unknown identifiers are selected) or <code>FALSE</code> (default), else</p></
 <div class="section">
 <h4 id="arguments-1">Arguments<a class="anchor" aria-label="anchor" href="#arguments-1"></a></h4>
 <p></p><div class="arguments"><dl><dt><code>identifier</code></dt>
-<dd><p>a <code>character</code> <code>vector</code> with one or more identifiers (the identifier
-<code>"all"</code> is reserved to select all elements)</p></dd>
+<dd><p>[<code><a href="https://rdrr.io/r/base/character.html" class="external-link">character()</a></code>]<br>
+Pne or more identifiers (the identifier <code>"all"</code> is reserved to select
+all elements).</p></dd>
 
 
 <dt><code>ids</code></dt>
-<dd><p>an <code>integer</code> <code>vector</code> of one or more ids</p></dd>
+<dd><p>[<code><a href="https://rdrr.io/r/base/integer.html" class="external-link">integer()</a></code>]<br>
+One or more ids.</p></dd>
 
 
 <dt><code>logical</code></dt>
-<dd><p>in the case that multiple identifiers are selected, how should they be
-combined? options are:</p><ul><li><p><code>"and"</code> (the default): the identifiers are combined with logical and
-(all identifiers must be true)</p></li>
+<dd><p>[<code>character(1)</code>]<br>
+In the case that multiple identifiers are selected, how should they be
+combined? Options are:</p><ul><li><p><code>"and"</code> (the default): the identifiers are combined with logical and
+(all identifiers must be <code>TRUE</code>)</p></li>
 <li><p><code>"or"</code>: the identifiers are combined with logical or (at least one
-identifier must be true)</p></li>
+identifier must be <code>TRUE</code>)</p></li>
 </ul></dd>
 
 
 <dt><code>confirm</code></dt>
-<dd><p>either <code>TRUE</code> to be prompted for confirmation, or <code>FALSE</code> else</p></dd>
+<dd><p>[<code>logical(1)</code>]<br>
+Prompted for confirmation?</p></dd>
 
 
 <dt><code>missing_identifier</code></dt>
-<dd><p>the <code>logical</code> value for not specified identifiers (either <code>NA</code>,
-<code>TRUE</code>, or <code>FALSE</code>)</p></dd>
+<dd><p>[<code>logical(1)</code> | NA]<br>
+The value for not specified identifiers.</p></dd>
 
 
 <dt><code>id_names</code></dt>
-<dd><p>either <code>TRUE</code> to name the elements according to their ids or
-<code>FALSE</code> if not</p></dd>
+<dd><p>[<code>logical(1)</code>]<br>
+Name the elements according to their ids?</p></dd>
 
 
 </dl><p></p></div>
-</div>
-<div class="section">
-<h4 id="returns-2">Returns<a class="anchor" aria-label="anchor" href="#returns-2"></a></h4>
-<p>the selected object(s)</p>
 </div>
 
 </div><p></p><hr><a id="method-Storage-remove"></a><div class="section">
@@ -236,47 +246,47 @@ identifier must be true)</p></li>
 <div class="section">
 <h4 id="arguments-2">Arguments<a class="anchor" aria-label="anchor" href="#arguments-2"></a></h4>
 <p></p><div class="arguments"><dl><dt><code>identifier</code></dt>
-<dd><p>a <code>character</code> <code>vector</code> with one or more identifiers (the identifier
-<code>"all"</code> is reserved to select all elements)</p></dd>
+<dd><p>[<code><a href="https://rdrr.io/r/base/character.html" class="external-link">character()</a></code>]<br>
+Pne or more identifiers (the identifier <code>"all"</code> is reserved to select
+all elements).</p></dd>
 
 
 <dt><code>ids</code></dt>
-<dd><p>an <code>integer</code> <code>vector</code> of one or more ids</p></dd>
+<dd><p>[<code><a href="https://rdrr.io/r/base/integer.html" class="external-link">integer()</a></code>]<br>
+One or more ids.</p></dd>
 
 
 <dt><code>logical</code></dt>
-<dd><p>in the case that multiple identifiers are selected, how should they be
-combined? options are:</p><ul><li><p><code>"and"</code> (the default): the identifiers are combined with logical and
-(all identifiers must be true)</p></li>
+<dd><p>[<code>character(1)</code>]<br>
+In the case that multiple identifiers are selected, how should they be
+combined? Options are:</p><ul><li><p><code>"and"</code> (the default): the identifiers are combined with logical and
+(all identifiers must be <code>TRUE</code>)</p></li>
 <li><p><code>"or"</code>: the identifiers are combined with logical or (at least one
-identifier must be true)</p></li>
+identifier must be <code>TRUE</code>)</p></li>
 </ul></dd>
 
 
 <dt><code>confirm</code></dt>
-<dd><p>either <code>TRUE</code> to be prompted for confirmation, or <code>FALSE</code> else</p></dd>
+<dd><p>[<code>logical(1)</code>]<br>
+Prompted for confirmation?</p></dd>
 
 
 <dt><code>missing_identifier</code></dt>
-<dd><p>the <code>logical</code> value for not specified identifiers (either <code>NA</code>,
-<code>TRUE</code>, or <code>FALSE</code>)</p></dd>
+<dd><p>[<code>logical(1)</code> | NA]<br>
+The value for not specified identifiers.</p></dd>
 
 
 <dt><code>shift_ids</code></dt>
-<dd><p>either <code>TRUE</code> to shift ids when in-between elements are removed,
-or <code>TRUE</code> to keep the ids</p></dd>
+<dd><p>[<code>logical(1)</code>]<br>
+Shift ids when in-between elements are removed?</p></dd>
 
 
 </dl><p></p></div>
 </div>
-<div class="section">
-<h4 id="returns-3">Returns<a class="anchor" aria-label="anchor" href="#returns-3"></a></h4>
-<p>invisibly the <code>Storage</code> object</p>
-</div>
 
 </div><p></p><hr><a id="method-Storage-number"></a><div class="section">
 <h3 id="method-number-">Method <code>number()</code><a class="anchor" aria-label="anchor" href="#method-number-"></a></h3>
-<p>computing the number of identified elements</p><div class="section">
+<p>Computing the number of identified elements.</p><div class="section">
 <h4 id="usage-4">Usage<a class="anchor" aria-label="anchor" href="#usage-4"></a></h4>
 <p></p><div class="r"><div class="sourceCode"><pre><code><span><span class="va">Storage</span><span class="op">$</span><span class="fu">number</span><span class="op">(</span></span>
 <span>  identifier <span class="op">=</span> <span class="st">"all"</span>,</span>
@@ -289,38 +299,37 @@ or <code>TRUE</code> to keep the ids</p></dd>
 <div class="section">
 <h4 id="arguments-3">Arguments<a class="anchor" aria-label="anchor" href="#arguments-3"></a></h4>
 <p></p><div class="arguments"><dl><dt><code>identifier</code></dt>
-<dd><p>a <code>character</code> <code>vector</code> with one or more identifiers (the identifier
-<code>"all"</code> is reserved to select all elements)</p></dd>
+<dd><p>[<code><a href="https://rdrr.io/r/base/character.html" class="external-link">character()</a></code>]<br>
+Pne or more identifiers (the identifier <code>"all"</code> is reserved to select
+all elements).</p></dd>
 
 
 <dt><code>missing_identifier</code></dt>
-<dd><p>the <code>logical</code> value for not specified identifiers (either <code>NA</code>,
-<code>TRUE</code>, or <code>FALSE</code>)</p></dd>
+<dd><p>[<code>logical(1)</code> | NA]<br>
+The value for not specified identifiers.</p></dd>
 
 
 <dt><code>logical</code></dt>
-<dd><p>in the case that multiple identifiers are selected, how should they be
-combined? options are:</p><ul><li><p><code>"and"</code> (the default): the identifiers are combined with logical and
-(all identifiers must be true)</p></li>
+<dd><p>[<code>character(1)</code>]<br>
+In the case that multiple identifiers are selected, how should they be
+combined? Options are:</p><ul><li><p><code>"and"</code> (the default): the identifiers are combined with logical and
+(all identifiers must be <code>TRUE</code>)</p></li>
 <li><p><code>"or"</code>: the identifiers are combined with logical or (at least one
-identifier must be true)</p></li>
+identifier must be <code>TRUE</code>)</p></li>
 </ul></dd>
 
 
 <dt><code>confirm</code></dt>
-<dd><p>either <code>TRUE</code> to be prompted for confirmation, or <code>FALSE</code> else</p></dd>
+<dd><p>[<code>logical(1)</code>]<br>
+Prompted for confirmation?</p></dd>
 
 
 </dl><p></p></div>
 </div>
-<div class="section">
-<h4 id="returns-4">Returns<a class="anchor" aria-label="anchor" href="#returns-4"></a></h4>
-<p>an <code>integer</code></p>
-</div>
 
 </div><p></p><hr><a id="method-Storage-indices"></a><div class="section">
 <h3 id="method-indices-">Method <code>indices()</code><a class="anchor" aria-label="anchor" href="#method-indices-"></a></h3>
-<p>returning indices based on defined identifiers</p><div class="section">
+<p>Returning indices based on defined identifiers.</p><div class="section">
 <h4 id="usage-5">Usage<a class="anchor" aria-label="anchor" href="#usage-5"></a></h4>
 <p></p><div class="r"><div class="sourceCode"><pre><code><span><span class="va">Storage</span><span class="op">$</span><span class="fu">indices</span><span class="op">(</span></span>
 <span>  identifier <span class="op">=</span> <span class="st">"all"</span>,</span>
@@ -332,33 +341,32 @@ identifier must be true)</p></li>
 <div class="section">
 <h4 id="arguments-4">Arguments<a class="anchor" aria-label="anchor" href="#arguments-4"></a></h4>
 <p></p><div class="arguments"><dl><dt><code>identifier</code></dt>
-<dd><p>a <code>character</code> <code>vector</code> with one or more identifiers (the identifier
-<code>"all"</code> is reserved to select all elements)</p></dd>
+<dd><p>[<code><a href="https://rdrr.io/r/base/character.html" class="external-link">character()</a></code>]<br>
+Pne or more identifiers (the identifier <code>"all"</code> is reserved to select
+all elements).</p></dd>
 
 
 <dt><code>logical</code></dt>
-<dd><p>in the case that multiple identifiers are selected, how should they be
-combined? options are:</p><ul><li><p><code>"and"</code> (the default): the identifiers are combined with logical and
-(all identifiers must be true)</p></li>
+<dd><p>[<code>character(1)</code>]<br>
+In the case that multiple identifiers are selected, how should they be
+combined? Options are:</p><ul><li><p><code>"and"</code> (the default): the identifiers are combined with logical and
+(all identifiers must be <code>TRUE</code>)</p></li>
 <li><p><code>"or"</code>: the identifiers are combined with logical or (at least one
-identifier must be true)</p></li>
+identifier must be <code>TRUE</code>)</p></li>
 </ul></dd>
 
 
 <dt><code>confirm</code></dt>
-<dd><p>either <code>TRUE</code> to be prompted for confirmation, or <code>FALSE</code> else</p></dd>
+<dd><p>[<code>logical(1)</code>]<br>
+Prompted for confirmation?</p></dd>
 
 
 </dl><p></p></div>
 </div>
-<div class="section">
-<h4 id="returns-5">Returns<a class="anchor" aria-label="anchor" href="#returns-5"></a></h4>
-<p>an <code>integer</code> <code>vector</code></p>
-</div>
 
 </div><p></p><hr><a id="method-Storage-print"></a><div class="section">
 <h3 id="method-print-">Method <code><a href="https://rdrr.io/r/base/print.html" class="external-link">print()</a></code><a class="anchor" aria-label="anchor" href="#method-print-"></a></h3>
-<p>printing details of the saved elements</p><div class="section">
+<p>Printing details of the saved elements.</p><div class="section">
 <h4 id="usage-6">Usage<a class="anchor" aria-label="anchor" href="#usage-6"></a></h4>
 <p></p><div class="r"><div class="sourceCode"><pre><code><span><span class="va">Storage</span><span class="op">$</span><span class="fu">print</span><span class="op">(</span><span class="va">...</span><span class="op">)</span></span></code></pre></div><p></p></div>
 </div>
@@ -366,14 +374,10 @@ identifier must be true)</p></li>
 <div class="section">
 <h4 id="arguments-5">Arguments<a class="anchor" aria-label="anchor" href="#arguments-5"></a></h4>
 <p></p><div class="arguments"><dl><dt><code>...</code></dt>
-<dd><p>currently not used</p></dd>
+<dd><p>Currently not used.</p></dd>
 
 
 </dl><p></p></div>
-</div>
-<div class="section">
-<h4 id="returns-6">Returns<a class="anchor" aria-label="anchor" href="#returns-6"></a></h4>
-<p>invisibly the <code>Storage</code> object</p>
 </div>
 
 </div>
@@ -433,7 +437,7 @@ identifier must be true)</p></li>
 <span class="r-out co"><span class="r-pr">#&gt;</span> [[5]]</span>
 <span class="r-out co"><span class="r-pr">#&gt;</span> function (x, ...) </span>
 <span class="r-out co"><span class="r-pr">#&gt;</span> UseMethod("mean")</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> &lt;bytecode: 0x55ffefb60ce8&gt;</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> &lt;bytecode: 0x55f280c49d28&gt;</span>
 <span class="r-out co"><span class="r-pr">#&gt;</span> &lt;environment: namespace:base&gt;</span>
 <span class="r-out co"><span class="r-pr">#&gt;</span> </span>
 <span class="r-in"><span><span class="va">my_storage</span><span class="op">$</span><span class="fu">get</span><span class="op">(</span><span class="fu"><a href="https://rdrr.io/r/base/c.html" class="external-link">c</a></span><span class="op">(</span><span class="st">"text"</span>, <span class="st">"!text"</span><span class="op">)</span><span class="op">)</span></span></span>
@@ -454,7 +458,7 @@ identifier must be true)</p></li>
 <span class="r-out co"><span class="r-pr">#&gt;</span> [[5]]</span>
 <span class="r-out co"><span class="r-pr">#&gt;</span> function (x, ...) </span>
 <span class="r-out co"><span class="r-pr">#&gt;</span> UseMethod("mean")</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> &lt;bytecode: 0x55ffefb60ce8&gt;</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> &lt;bytecode: 0x55f280c49d28&gt;</span>
 <span class="r-out co"><span class="r-pr">#&gt;</span> &lt;environment: namespace:base&gt;</span>
 <span class="r-out co"><span class="r-pr">#&gt;</span> </span>
 <span class="r-in"><span></span></span>
@@ -466,7 +470,7 @@ identifier must be true)</p></li>
 <span class="r-out co"><span class="r-pr">#&gt;</span> [[2]]</span>
 <span class="r-out co"><span class="r-pr">#&gt;</span> function (x, ...) </span>
 <span class="r-out co"><span class="r-pr">#&gt;</span> UseMethod("mean")</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> &lt;bytecode: 0x55ffefb60ce8&gt;</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> &lt;bytecode: 0x55f280c49d28&gt;</span>
 <span class="r-out co"><span class="r-pr">#&gt;</span> &lt;environment: namespace:base&gt;</span>
 <span class="r-out co"><span class="r-pr">#&gt;</span> </span>
 <span class="r-in"><span><span class="va">my_storage</span><span class="op">$</span><span class="fu">get</span><span class="op">(</span>ids <span class="op">=</span> <span class="fl">4</span><span class="op">:</span><span class="fl">5</span>, id_names <span class="op">=</span> <span class="cn">TRUE</span><span class="op">)</span> <span class="co"># add the ids as names</span></span></span>
@@ -476,7 +480,7 @@ identifier must be true)</p></li>
 <span class="r-out co"><span class="r-pr">#&gt;</span> $`5`</span>
 <span class="r-out co"><span class="r-pr">#&gt;</span> function (x, ...) </span>
 <span class="r-out co"><span class="r-pr">#&gt;</span> UseMethod("mean")</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> &lt;bytecode: 0x55ffefb60ce8&gt;</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> &lt;bytecode: 0x55f280c49d28&gt;</span>
 <span class="r-out co"><span class="r-pr">#&gt;</span> &lt;environment: namespace:base&gt;</span>
 <span class="r-out co"><span class="r-pr">#&gt;</span> </span>
 </code></pre></div>

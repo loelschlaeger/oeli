@@ -57,18 +57,20 @@ to row <code>ref</code>.</p>
 
 
 <dl><dt id="arg-cov-cov-diff">cov, cov_diff<a class="anchor" aria-label="anchor" href="#arg-cov-cov-diff"></a></dt>
-<dd><p>A (differenced) covariance <code>matrix</code> of dimension <code>dim</code>
+<dd><p>[<code><a href="https://rdrr.io/r/base/matrix.html" class="external-link">matrix()</a></code>]<br>
+A (differenced) covariance matrix of dimension <code>dim</code>
 (or <code>dim</code> - 1, respectively).</p></dd>
 
 
 <dt id="arg-ref">ref<a class="anchor" aria-label="anchor" href="#arg-ref"></a></dt>
-<dd><p>An <code>integer</code> between <code>1</code> and <code>dim</code>, the reference row for
-differencing that maps <code>cov</code> to <code>cov_diff</code>, see details.
-By default, <code>ref = 1</code>.</p></dd>
+<dd><p>[<code>integer(1)</code>]<br>
+The reference row between <code>1</code> and <code>dim</code> for
+differencing that maps <code>cov</code> to <code>cov_diff</code>, see details.</p></dd>
 
 
 <dt id="arg-dim">dim<a class="anchor" aria-label="anchor" href="#arg-dim"></a></dt>
-<dd><p>An <code>integer</code>, the dimension.</p></dd>
+<dd><p>[<code>integer(1)</code>]<br>
+The matrix dimension.</p></dd>
 
 </dl></div>
     <div class="section level2">
@@ -97,7 +99,14 @@ matrix.</p>
 <code><a href="check_correlation_matrix.html">check_correlation_matrix</a>()</code>,
 <code><a href="check_covariance_matrix.html">check_covariance_matrix</a>()</code>,
 <code><a href="check_transition_probability_matrix.html">check_transition_probability_matrix</a>()</code>,
-<code><a href="cov_2_chol.html">cov_2_chol</a>()</code></p></div>
+<code><a href="cov_2_chol.html">cov_2_chol</a>()</code>,
+<code><a href="insert_matrix_column.html">insert_matrix_column</a>()</code>,
+<code><a href="matrix_diagonal_indices.html">matrix_diagonal_indices</a>()</code>,
+<code><a href="matrix_indices.html">matrix_indices</a>()</code>,
+<code><a href="sample_correlation_matrix.html">sample_correlation_matrix</a>()</code>,
+<code><a href="sample_covariance_matrix.html">sample_covariance_matrix</a>()</code>,
+<code><a href="sample_transition_probability_matrix.html">sample_transition_probability_matrix</a>()</code>,
+<code><a href="stationary_distribution.html">stationary_distribution</a>()</code></p></div>
     </div>
 
     <div class="section level2">

@@ -50,21 +50,38 @@
 
 
 <dl><dt id="arg-x">x<a class="anchor" aria-label="anchor" href="#arg-x"></a></dt>
-<dd><p>A <code>matrix</code>.</p></dd>
+<dd><p>[<code>matrix</code>]<br>
+A <code>matrix</code>.</p></dd>
 
 
 <dt id="arg-prefix">prefix<a class="anchor" aria-label="anchor" href="#arg-prefix"></a></dt>
-<dd><p>A <code>character</code> as prefix for the indices.</p></dd>
+<dd><p>[<code>character(1)</code>]<br>
+A prefix for the indices.</p></dd>
 
 
 <dt id="arg-exclude-diagonal">exclude_diagonal<a class="anchor" aria-label="anchor" href="#arg-exclude-diagonal"></a></dt>
-<dd><p>Either <code>TRUE</code> to exclude indices where row equals column, or
-<code>FALSE</code> to include those.</p></dd>
+<dd><p>[<code>logical(1)</code>]<br>
+Exclude indices where row equals column?</p></dd>
 
 </dl></div>
     <div class="section level2">
     <h2 id="value">Value<a class="anchor" aria-label="anchor" href="#value"></a></h2>
     <p>A <code>character</code> <code>vector</code>.</p>
+    </div>
+    <div class="section level2">
+    <h2 id="see-also">See also<a class="anchor" aria-label="anchor" href="#see-also"></a></h2>
+    <div class="dont-index"><p>Other matrix helpers:
+<code><a href="check_correlation_matrix.html">check_correlation_matrix</a>()</code>,
+<code><a href="check_covariance_matrix.html">check_covariance_matrix</a>()</code>,
+<code><a href="check_transition_probability_matrix.html">check_transition_probability_matrix</a>()</code>,
+<code><a href="cov_2_chol.html">cov_2_chol</a>()</code>,
+<code><a href="diff_cov.html">diff_cov</a>()</code>,
+<code><a href="insert_matrix_column.html">insert_matrix_column</a>()</code>,
+<code><a href="matrix_diagonal_indices.html">matrix_diagonal_indices</a>()</code>,
+<code><a href="sample_correlation_matrix.html">sample_correlation_matrix</a>()</code>,
+<code><a href="sample_covariance_matrix.html">sample_covariance_matrix</a>()</code>,
+<code><a href="sample_transition_probability_matrix.html">sample_transition_probability_matrix</a>()</code>,
+<code><a href="stationary_distribution.html">stationary_distribution</a>()</code></p></div>
     </div>
 
     <div class="section level2">
@@ -76,7 +93,6 @@
 <span class="r-out co"><span class="r-pr">#&gt;</span> [1] "M_11" "M_21" "M_31" "M_12" "M_22" "M_32" "M_13" "M_23" "M_33"</span>
 <span class="r-in"><span><span class="fu">matrix_indices</span><span class="op">(</span><span class="va">M</span>, <span class="st">"M_"</span>, <span class="cn">TRUE</span><span class="op">)</span></span></span>
 <span class="r-out co"><span class="r-pr">#&gt;</span> [1] "M_21" "M_31" "M_12" "M_32" "M_13" "M_23"</span>
-<span class="r-in"><span></span></span>
 </code></pre></div>
     </div>
   </main><aside class="col-md-3"><nav id="toc" aria-label="Table of contents"><h2>On this page</h2>

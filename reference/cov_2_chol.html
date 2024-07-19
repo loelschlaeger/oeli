@@ -57,23 +57,26 @@ and, conversely, build a covariance matrix from its Cholesky root elements.</p>
 
 
 <dl><dt id="arg-cov">cov<a class="anchor" aria-label="anchor" href="#arg-cov"></a></dt>
-<dd><p>A covariance <code>matrix</code> of dimension <code>dim</code>.</p></dd>
+<dd><p>[<code><a href="https://rdrr.io/r/base/matrix.html" class="external-link">matrix()</a></code>]<br>
+A covariance matrix.</p></dd>
 
 
 <dt id="arg-unique">unique<a class="anchor" aria-label="anchor" href="#arg-unique"></a></dt>
-<dd><p>Set to <code>TRUE</code> to ensure that the Cholesky decomposition is unique
+<dd><p>[<code>logical(1)</code>]<br>
+Set to <code>TRUE</code> to ensure that the Cholesky decomposition is unique
 by restricting the diagonal elements to be positive.</p></dd>
 
 
 <dt id="arg-chol">chol<a class="anchor" aria-label="anchor" href="#arg-chol"></a></dt>
-<dd><p>A <code>numeric</code> <code>vector</code> of Cholesky root elements.</p></dd>
+<dd><p>[<code><a href="https://rdrr.io/r/base/numeric.html" class="external-link">numeric()</a></code>]<br>
+Cholesky root elements.</p></dd>
 
 </dl></div>
     <div class="section level2">
     <h2 id="value">Value<a class="anchor" aria-label="anchor" href="#value"></a></h2>
     <p>For <code>cov_2_chol</code> a <code>numeric</code> <code>vector</code> of Cholesky root
-elements.
-For <code>chol_2_cov</code> a covariance <code>matrix</code>.</p>
+elements.</p>
+<p>For <code>chol_2_cov</code> a covariance <code>matrix</code>.</p>
     </div>
     <div class="section level2">
     <h2 id="see-also">See also<a class="anchor" aria-label="anchor" href="#see-also"></a></h2>
@@ -81,7 +84,14 @@ For <code>chol_2_cov</code> a covariance <code>matrix</code>.</p>
 <code><a href="check_correlation_matrix.html">check_correlation_matrix</a>()</code>,
 <code><a href="check_covariance_matrix.html">check_covariance_matrix</a>()</code>,
 <code><a href="check_transition_probability_matrix.html">check_transition_probability_matrix</a>()</code>,
-<code><a href="diff_cov.html">diff_cov</a>()</code></p></div>
+<code><a href="diff_cov.html">diff_cov</a>()</code>,
+<code><a href="insert_matrix_column.html">insert_matrix_column</a>()</code>,
+<code><a href="matrix_diagonal_indices.html">matrix_diagonal_indices</a>()</code>,
+<code><a href="matrix_indices.html">matrix_indices</a>()</code>,
+<code><a href="sample_correlation_matrix.html">sample_correlation_matrix</a>()</code>,
+<code><a href="sample_covariance_matrix.html">sample_covariance_matrix</a>()</code>,
+<code><a href="sample_transition_probability_matrix.html">sample_transition_probability_matrix</a>()</code>,
+<code><a href="stationary_distribution.html">stationary_distribution</a>()</code></p></div>
     </div>
 
     <div class="section level2">

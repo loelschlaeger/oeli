@@ -50,23 +50,33 @@
 
 
 <dl><dt id="arg-fun">fun<a class="anchor" aria-label="anchor" href="#arg-fun"></a></dt>
-<dd><p>A <code>function</code>.</p></dd>
+<dd><p>[<code>function</code>]<br>
+A <code>function</code>.</p></dd>
 
 
 <dt id="arg-braces">braces<a class="anchor" aria-label="anchor" href="#arg-braces"></a></dt>
-<dd><p>Either <code>FALSE</code> (default) to remove <code>"{"</code> and <code>"}"</code>
-at start and end (if any), or <code>TRUE</code> if not.</p></dd>
+<dd><p>[<code>logical(1)</code>]<br>
+Remove <code>"{"</code> and <code>"}"</code> at start and end (if any)?</p></dd>
 
 
 <dt id="arg-nchar">nchar<a class="anchor" aria-label="anchor" href="#arg-nchar"></a></dt>
-<dd><p>An <code>integer</code>, the maximum number of characters before abbreviation.
-Must be at least <code>3</code>.
-By default, <code>nchar = getOption("width") - 4</code>.</p></dd>
+<dd><p>[<code>integer(1)</code>]<br>
+The maximum number of characters before abbreviation, at least <code>3</code>.</p></dd>
 
 </dl></div>
     <div class="section level2">
     <h2 id="value">Value<a class="anchor" aria-label="anchor" href="#value"></a></h2>
     <p>A <code>character</code>, the body of <code>f</code>.</p>
+    </div>
+    <div class="section level2">
+    <h2 id="see-also">See also<a class="anchor" aria-label="anchor" href="#see-also"></a></h2>
+    <div class="dont-index"><p>Other function helpers:
+<code><a href="do.call_timed.html">do.call_timed</a>()</code>,
+<code><a href="function_arguments.html">function_arguments</a>()</code>,
+<code><a href="function_defaults.html">function_defaults</a>()</code>,
+<code><a href="timed.html">timed</a>()</code>,
+<code><a href="try_silent.html">try_silent</a>()</code>,
+<code><a href="variable_name.html">variable_name</a>()</code></p></div>
     </div>
 
     <div class="section level2">
@@ -78,7 +88,6 @@ By default, <code>nchar = getOption("width") - 4</code>.</p></dd>
 <span class="r-out co"><span class="r-pr">#&gt;</span> [1] "{ if (!is.numeric(x) &amp;&amp; !is.complex(x) &amp;&amp; !is.logical(x)) { warning(\"argu..."</span>
 <span class="r-in"><span><span class="fu">function_body</span><span class="op">(</span><span class="va">fun</span>, nchar <span class="op">=</span> <span class="fl">30</span><span class="op">)</span></span></span>
 <span class="r-out co"><span class="r-pr">#&gt;</span> [1] "if (!is.numeric(x) &amp;&amp; !is.c..."</span>
-<span class="r-in"><span></span></span>
 </code></pre></div>
     </div>
   </main><aside class="col-md-3"><nav id="toc" aria-label="Table of contents"><h2>On this page</h2>

@@ -50,25 +50,43 @@
 
 
 <dl><dt id="arg-a">A<a class="anchor" aria-label="anchor" href="#arg-a"></a></dt>
-<dd><p>A <code>matrix</code>.</p></dd>
+<dd><p>[<code><a href="https://rdrr.io/r/base/matrix.html" class="external-link">matrix()</a></code>]<br>
+A <code>matrix</code>.</p></dd>
 
 
 <dt id="arg-x">x<a class="anchor" aria-label="anchor" href="#arg-x"></a></dt>
-<dd><p>A <code>vector</code> of length <code>nrow(A)</code>, the column to be added.</p>
+<dd><p>[<code>atomic()</code>]<br>
+The column to be added, of length <code>nrow(A)</code>.</p>
 <p>Can also be a single value.</p></dd>
 
 
 <dt id="arg-p">p<a class="anchor" aria-label="anchor" href="#arg-p"></a></dt>
-<dd><p>An <code>integer</code>, the position where to add the column:</p><ul><li><p><code>p = 0</code> appends the column left</p></li>
+<dd><p>[<code>integer())</code>]<br>
+The position(s) where to add the column, one or more of:</p><ul><li><p><code>p = 0</code> appends the column left</p></li>
 <li><p><code>p = ncol(A)</code> appends the column right</p></li>
 <li><p><code>p = n</code> inserts the column between the <code>n</code>-th and
 <code>(n + 1)</code>-th column of <code>A</code>.</p></li>
-</ul><p>Can also be a <code>vector</code> of multiple positions.</p></dd>
+</ul></dd>
 
 </dl></div>
     <div class="section level2">
     <h2 id="value">Value<a class="anchor" aria-label="anchor" href="#value"></a></h2>
     <p>A <code>matrix</code>.</p>
+    </div>
+    <div class="section level2">
+    <h2 id="see-also">See also<a class="anchor" aria-label="anchor" href="#see-also"></a></h2>
+    <div class="dont-index"><p>Other matrix helpers:
+<code><a href="check_correlation_matrix.html">check_correlation_matrix</a>()</code>,
+<code><a href="check_covariance_matrix.html">check_covariance_matrix</a>()</code>,
+<code><a href="check_transition_probability_matrix.html">check_transition_probability_matrix</a>()</code>,
+<code><a href="cov_2_chol.html">cov_2_chol</a>()</code>,
+<code><a href="diff_cov.html">diff_cov</a>()</code>,
+<code><a href="matrix_diagonal_indices.html">matrix_diagonal_indices</a>()</code>,
+<code><a href="matrix_indices.html">matrix_indices</a>()</code>,
+<code><a href="sample_correlation_matrix.html">sample_correlation_matrix</a>()</code>,
+<code><a href="sample_covariance_matrix.html">sample_covariance_matrix</a>()</code>,
+<code><a href="sample_transition_probability_matrix.html">sample_transition_probability_matrix</a>()</code>,
+<code><a href="stationary_distribution.html">stationary_distribution</a>()</code></p></div>
     </div>
 
     <div class="section level2">

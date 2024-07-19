@@ -50,25 +50,37 @@
 
 
 <dl><dt id="arg-v">v<a class="anchor" aria-label="anchor" href="#arg-v"></a></dt>
-<dd><p>A <code>vector</code>.</p></dd>
+<dd><p>[<code>atomic()</code>]<br>
+A <code>vector</code>.</p></dd>
 
 
 <dt id="arg-x">x<a class="anchor" aria-label="anchor" href="#arg-x"></a></dt>
-<dd><p>A single value (i.e., an <code>atomic</code> <code>vector</code> of length 1), the entry
-to be added.</p></dd>
+<dd><p>[<code>atomic(1)</code>]<br>
+The entry to be added.</p></dd>
 
 
 <dt id="arg-p">p<a class="anchor" aria-label="anchor" href="#arg-p"></a></dt>
-<dd><p>An <code>integer</code>, the position where to add the entry:</p><ul><li><p><code>p = 0</code> appends the value left</p></li>
+<dd><p>[<code>integer())</code>]<br>
+The position(s) where to add the value, one or more of:</p><ul><li><p><code>p = 0</code> appends the value left</p></li>
 <li><p><code>p = length(v)</code> appends the value right</p></li>
 <li><p><code>p = n</code> inserts the value between the <code>n</code>-th and
 <code>(n + 1)</code>-th entry of <code>v</code>.</p></li>
-</ul><p>Can also be a <code>vector</code> of multiple positions.</p></dd>
+</ul></dd>
 
 </dl></div>
     <div class="section level2">
     <h2 id="value">Value<a class="anchor" aria-label="anchor" href="#value"></a></h2>
     <p>A <code>vector</code>.</p>
+    </div>
+    <div class="section level2">
+    <h2 id="see-also">See also<a class="anchor" aria-label="anchor" href="#see-also"></a></h2>
+    <div class="dont-index"><p>Other vector helpers:
+<code><a href="check_numeric_vector.html">check_numeric_vector</a>()</code>,
+<code><a href="check_probability_vector.html">check_probability_vector</a>()</code>,
+<code><a href="chunk_vector.html">chunk_vector</a>()</code>,
+<code><a href="match_numerics.html">match_numerics</a>()</code>,
+<code><a href="permutations.html">permutations</a>()</code>,
+<code><a href="vector_occurrence.html">vector_occurrence</a>()</code></p></div>
     </div>
 
     <div class="section level2">

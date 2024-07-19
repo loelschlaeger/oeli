@@ -59,17 +59,17 @@ with custom correlations.</p>
 
 
 <dl><dt id="arg-labels">labels<a class="anchor" aria-label="anchor" href="#arg-labels"></a></dt>
-<dd><p>(<code><a href="https://rdrr.io/r/base/character.html" class="external-link">character()</a></code>)<br>
+<dd><p>[<code><a href="https://rdrr.io/r/base/character.html" class="external-link">character()</a></code>]<br>
 Unique labels for the regressors.</p></dd>
 
 
 <dt id="arg-n">n<a class="anchor" aria-label="anchor" href="#arg-n"></a></dt>
-<dd><p>(<code>integer(1)</code>)<br>
+<dd><p>[<code>integer(1)</code>]<br>
 The number of values per regressor.</p></dd>
 
 
 <dt id="arg-marginals">marginals<a class="anchor" aria-label="anchor" href="#arg-marginals"></a></dt>
-<dd><p>(<code><a href="https://rdrr.io/r/base/list.html" class="external-link">list()</a></code>)<br>
+<dd><p>[<code><a href="https://rdrr.io/r/base/list.html" class="external-link">list()</a></code>]<br>
 Optionally marginal distributions for regressors. If not specified,
 standard normal marginal distributions are used.</p>
 <p>Each list entry must be named according to a regressor label, and the
@@ -90,14 +90,14 @@ following distributions are currently supported (TODO: if you need another, repo
 
 
 <dt id="arg-correlation">correlation<a class="anchor" aria-label="anchor" href="#arg-correlation"></a></dt>
-<dd><p>(<code><a href="https://rdrr.io/r/base/matrix.html" class="external-link">matrix()</a></code>)<br>
+<dd><p>[<code><a href="https://rdrr.io/r/base/matrix.html" class="external-link">matrix()</a></code>]<br>
 A correlation matrix of dimension <code>length(labels)</code>, where the
 <code>(p, q)</code>-th entry defines the correlation between regressor
 <code>labels[p]</code> and <code>labels[q]</code>.</p></dd>
 
 
 <dt id="arg-verbose">verbose<a class="anchor" aria-label="anchor" href="#arg-verbose"></a></dt>
-<dd><p>(<code>logical(1)</code>)<br>
+<dd><p>[<code>logical(1)</code>]<br>
 Whether to print information about the simulated regressors.</p></dd>
 
 </dl></div>
@@ -108,6 +108,15 @@ Whether to print information about the simulated regressors.</p></dd>
     <div class="section level2">
     <h2 id="details">Details<a class="anchor" aria-label="anchor" href="#details"></a></h2>
     <p>TODO</p>
+    </div>
+    <div class="section level2">
+    <h2 id="see-also">See also<a class="anchor" aria-label="anchor" href="#see-also"></a></h2>
+    <div class="dont-index"><p>Other simulation helpers:
+<code><a href="ddirichlet.html">ddirichlet_cpp</a>()</code>,
+<code><a href="dmvnorm.html">dmvnorm_cpp</a>()</code>,
+<code><a href="dtnorm.html">dtnorm_cpp</a>()</code>,
+<code><a href="dwishart.html">dwishart_cpp</a>()</code>,
+<code><a href="simulate_markov_chain.html">simulate_markov_chain</a>()</code></p></div>
     </div>
 
     <div class="section level2">

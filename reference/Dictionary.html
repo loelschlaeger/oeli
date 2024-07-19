@@ -44,17 +44,26 @@
     <div class="section level2">
     <h2 id="see-also">See also<a class="anchor" aria-label="anchor" href="#see-also"></a></h2>
     <div class="dont-index"><p>Other package helpers:
-<code><a href="input_check_response.html">input_check_response</a>()</code></p></div>
+<code><a href="Storage.html">Storage</a></code>,
+<code><a href="identical_structure.html">identical_structure</a>()</code>,
+<code><a href="input_check_response.html">input_check_response</a>()</code>,
+<code><a href="match_arg.html">match_arg</a>()</code>,
+<code><a href="package_logo.html">package_logo</a>()</code>,
+<code><a href="print_matrix.html">print_matrix</a>()</code>,
+<code><a href="renv_development_packages.html">renv_development_packages</a>()</code>,
+<code><a href="system_information.html">system_information</a>()</code>,
+<code><a href="unexpected_error.html">unexpected_error</a>()</code>,
+<code><a href="user_confirm.html">user_confirm</a>()</code></p></div>
     </div>
     <div class="section level2">
     <h2 id="active-bindings">Active bindings<a class="anchor" aria-label="anchor" href="#active-bindings"></a></h2>
     <p></p><div class="r6-active-bindings"><dl><dt><code>keys</code></dt>
-<dd><p>(<code><a href="https://rdrr.io/r/base/character.html" class="external-link">character()</a></code>)<br>
+<dd><p>[<code><a href="https://rdrr.io/r/base/character.html" class="external-link">character()</a></code>]<br>
 Available keys.</p></dd>
 
 
 <dt><code>alias</code></dt>
-<dd><p>(<code><a href="https://rdrr.io/r/base/list.html" class="external-link">list()</a></code>)<br>
+<dd><p>[<code><a href="https://rdrr.io/r/base/list.html" class="external-link">list()</a></code>]<br>
 Available keys per alias value.</p></dd>
 
 
@@ -90,22 +99,22 @@ Available keys per alias value.</p></dd>
 <div class="section">
 <h4 id="arguments">Arguments<a class="anchor" aria-label="anchor" href="#arguments"></a></h4>
 <p></p><div class="arguments"><dl><dt><code>key_name</code></dt>
-<dd><p>(<code>character(1)</code>)<br>
+<dd><p>[<code>character(1)</code>]<br>
 The name for the key variable.</p></dd>
 
 
 <dt><code>alias_name</code></dt>
-<dd><p>(<code>NULL</code> or <code>character(1)</code>)<br>
+<dd><p>[<code>NULL</code> | <code>character(1)</code>]<br>
 Optionally the name for the alias variable.</p></dd>
 
 
 <dt><code>value_names</code></dt>
-<dd><p>(<code><a href="https://rdrr.io/r/base/character.html" class="external-link">character()</a></code>)<br>
+<dd><p>[<code>character(0)</code>]<br>
 The names of the values connected to a key.</p></dd>
 
 
 <dt><code>value_assert</code></dt>
-<dd><p>(<code><a href="https://rdrr.io/r/base/list.html" class="external-link">alist()</a></code>)<br>
+<dd><p>[<code>alist(1)</code>]<br>
 For each element in <code>value_names</code>, <code>values_assert</code> <em>can</em> have an
 identically named element of the form <code>checkmate::assert_*(...)</code>, where
 <code>...</code> can be any argument for the assertion function except for the
@@ -113,24 +122,24 @@ identically named element of the form <code>checkmate::assert_*(...)</code>, whe
 
 
 <dt><code>allow_overwrite</code></dt>
-<dd><p>(<code>logical(1)</code>)<br>
+<dd><p>[<code>logical(1)</code>]<br>
 Allow overwriting existing keys with new values?
 Duplicate keys are never allowed.</p></dd>
 
 
 <dt><code>keys_reserved</code></dt>
-<dd><p>(<code><a href="https://rdrr.io/r/base/character.html" class="external-link">character()</a></code>)<br>
+<dd><p>[<code><a href="https://rdrr.io/r/base/character.html" class="external-link">character()</a></code>]<br>
 Names that must not be used as keys.</p></dd>
 
 
 <dt><code>alias_choices</code></dt>
-<dd><p>(<code>NULL</code> or <code><a href="https://rdrr.io/r/base/character.html" class="external-link">character()</a></code>)<br>
+<dd><p>[<code>NULL</code> or <code><a href="https://rdrr.io/r/base/character.html" class="external-link">character()</a></code>]<br>
 Optionally possible values for the alias. Can also be <code>NULL</code>, then all
 alias values are allowed.</p></dd>
 
 
 <dt><code>dictionary_name</code></dt>
-<dd><p>(<code>NULL</code> or <code><a href="https://rdrr.io/r/base/character.html" class="external-link">character()</a></code>)<br>
+<dd><p>[<code>NULL</code> or <code><a href="https://rdrr.io/r/base/character.html" class="external-link">character()</a></code>]<br>
 Optionally the name for the dictionary.</p></dd>
 
 
@@ -168,14 +177,14 @@ comply to the <code>value_assert</code> checks).</p></li>
 <div class="section">
 <h4 id="arguments-2">Arguments<a class="anchor" aria-label="anchor" href="#arguments-2"></a></h4>
 <p></p><div class="arguments"><dl><dt><code>key</code></dt>
-<dd><p>(<code>character(1)</code>)<br>
+<dd><p>[<code>character(1)</code>]<br>
 A value for the key variable <code>key_name</code>. Use the <code>$keys</code> method for
 available keys.</p></dd>
 
 
 <dt><code>value</code></dt>
-<dd><p>Optionally a single <code>character</code>, one of the elements in
-<code>value_names</code>, selecting the required value.
+<dd><p>[<code>NULL</code> | <code>character(1)</code>]<br>
+One of the elements in <code>value_names</code>, selecting the required value.
 Can also be <code>NULL</code> (default) for all values connected to the
 <code>key</code>, returned as a <code>list</code>.</p></dd>
 
@@ -193,7 +202,7 @@ Can also be <code>NULL</code> (default) for all values connected to the
 <div class="section">
 <h4 id="arguments-3">Arguments<a class="anchor" aria-label="anchor" href="#arguments-3"></a></h4>
 <p></p><div class="arguments"><dl><dt><code>key</code></dt>
-<dd><p>(<code>character(1)</code>)<br>
+<dd><p>[<code>character(1)</code>]<br>
 A value for the key variable <code>key_name</code>. Use the <code>$keys</code> method for
 available keys.</p></dd>
 
@@ -213,6 +222,12 @@ available keys.</p></dd>
 
     </div>
 
+    <div class="section level2">
+    <h2 id="ref-examples">Examples<a class="anchor" aria-label="anchor" href="#ref-examples"></a></h2>
+    <div class="sourceCode"><pre class="sourceCode r"><code><span class="r-in"><span><span class="co"># TODO</span></span></span>
+<span class="r-in"></span>
+</code></pre></div>
+    </div>
   </main><aside class="col-md-3"><nav id="toc" aria-label="Table of contents"><h2>On this page</h2>
     </nav></aside></div>
 

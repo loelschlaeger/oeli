@@ -50,22 +50,33 @@
 
 
 <dl><dt id="arg-f">f<a class="anchor" aria-label="anchor" href="#arg-f"></a></dt>
-<dd><p>A <code>function</code>.</p></dd>
+<dd><p>[<code>function</code>]<br>
+A <code>function</code>.</p></dd>
 
 
 <dt id="arg-with-default">with_default<a class="anchor" aria-label="anchor" href="#arg-with-default"></a></dt>
-<dd><p>Either <code>TRUE</code> to include function arguments that have default values,
-or <code>FALSE</code> else.</p></dd>
+<dd><p>[<code>logical(1)</code>]<br>
+Include function arguments that have default values?</p></dd>
 
 
 <dt id="arg-with-ellipsis">with_ellipsis<a class="anchor" aria-label="anchor" href="#arg-with-ellipsis"></a></dt>
-<dd><p>Either <code>TRUE</code> to include the <code>"..."</code> argument if present,
-or <code>FALSE</code> else.</p></dd>
+<dd><p>[<code>logical(1)</code>]<br>
+Include the <code>"..."</code> argument if present?</p></dd>
 
 </dl></div>
     <div class="section level2">
     <h2 id="value">Value<a class="anchor" aria-label="anchor" href="#value"></a></h2>
     <p>A <code>character</code> vector.</p>
+    </div>
+    <div class="section level2">
+    <h2 id="see-also">See also<a class="anchor" aria-label="anchor" href="#see-also"></a></h2>
+    <div class="dont-index"><p>Other function helpers:
+<code><a href="do.call_timed.html">do.call_timed</a>()</code>,
+<code><a href="function_body.html">function_body</a>()</code>,
+<code><a href="function_defaults.html">function_defaults</a>()</code>,
+<code><a href="timed.html">timed</a>()</code>,
+<code><a href="try_silent.html">try_silent</a>()</code>,
+<code><a href="variable_name.html">variable_name</a>()</code></p></div>
     </div>
 
     <div class="section level2">
@@ -77,7 +88,6 @@ or <code>FALSE</code> else.</p></dd>
 <span class="r-out co"><span class="r-pr">#&gt;</span> [1] "a"   "..."</span>
 <span class="r-in"><span><span class="fu">function_arguments</span><span class="op">(</span><span class="va">f</span>, with_ellipsis <span class="op">=</span> <span class="cn">FALSE</span><span class="op">)</span></span></span>
 <span class="r-out co"><span class="r-pr">#&gt;</span> [1] "a" "b" "c"</span>
-<span class="r-in"><span></span></span>
 </code></pre></div>
     </div>
   </main><aside class="col-md-3"><nav id="toc" aria-label="Table of contents"><h2>On this page</h2>

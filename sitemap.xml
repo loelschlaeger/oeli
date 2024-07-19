@@ -22,10 +22,9 @@
 <url><loc>http://loelschlaeger.de/oeli/reference/delete_data_frame_columns.html</loc></url>
 <url><loc>http://loelschlaeger.de/oeli/reference/diff_cov.html</loc></url>
 <url><loc>http://loelschlaeger.de/oeli/reference/dmvnorm.html</loc></url>
-<url><loc>http://loelschlaeger.de/oeli/reference/dmvnorm_cpp.html</loc></url>
 <url><loc>http://loelschlaeger.de/oeli/reference/do.call_timed.html</loc></url>
+<url><loc>http://loelschlaeger.de/oeli/reference/dtnorm.html</loc></url>
 <url><loc>http://loelschlaeger.de/oeli/reference/dwishart.html</loc></url>
-<url><loc>http://loelschlaeger.de/oeli/reference/dwishart_cpp.html</loc></url>
 <url><loc>http://loelschlaeger.de/oeli/reference/find_closest_year.html</loc></url>
 <url><loc>http://loelschlaeger.de/oeli/reference/function_arguments.html</loc></url>
 <url><loc>http://loelschlaeger.de/oeli/reference/function_body.html</loc></url>
@@ -46,11 +45,6 @@
 <url><loc>http://loelschlaeger.de/oeli/reference/permutations.html</loc></url>
 <url><loc>http://loelschlaeger.de/oeli/reference/print_matrix.html</loc></url>
 <url><loc>http://loelschlaeger.de/oeli/reference/renv_development_packages.html</loc></url>
-<url><loc>http://loelschlaeger.de/oeli/reference/rmvnorm.html</loc></url>
-<url><loc>http://loelschlaeger.de/oeli/reference/rmvnorm_cpp.html</loc></url>
-<url><loc>http://loelschlaeger.de/oeli/reference/rtnorm_cpp.html</loc></url>
-<url><loc>http://loelschlaeger.de/oeli/reference/rwishart.html</loc></url>
-<url><loc>http://loelschlaeger.de/oeli/reference/rwishart_cpp.html</loc></url>
 <url><loc>http://loelschlaeger.de/oeli/reference/sample_correlation_matrix.html</loc></url>
 <url><loc>http://loelschlaeger.de/oeli/reference/sample_covariance_matrix.html</loc></url>
 <url><loc>http://loelschlaeger.de/oeli/reference/sample_transition_probability_matrix.html</loc></url>

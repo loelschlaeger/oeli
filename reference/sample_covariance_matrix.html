@@ -53,36 +53,54 @@ distribution.</p>
 
 
 <dl><dt id="arg-dim">dim<a class="anchor" aria-label="anchor" href="#arg-dim"></a></dt>
-<dd><p>An <code>integer</code>, the dimension.</p></dd>
+<dd><p>[<code>integer(1)</code>]<br>
+The dimension.</p></dd>
 
 
 <dt id="arg-df">df<a class="anchor" aria-label="anchor" href="#arg-df"></a></dt>
-<dd><p>An <code>integer</code> greater or equal <code>dim</code>, the degrees of freedom of
-the inverse Wishart distribution.</p></dd>
+<dd><p>[<code>integer(1)</code>]<br>
+The degrees of freedom of the inverse Wishart distribution greater or equal
+<code>dim</code>.</p></dd>
 
 
 <dt id="arg-scale">scale<a class="anchor" aria-label="anchor" href="#arg-scale"></a></dt>
-<dd><p>A covariance <code>matrix</code> of dimension <code>dim</code>, the scale matrix of the
-inverse Wishart distribution.</p></dd>
+<dd><p>[<code><a href="https://rdrr.io/r/base/matrix.html" class="external-link">matrix()</a></code>]<br>
+The scale covariance matrix of the inverse Wishart distribution of dimension
+<code>dim</code>.</p></dd>
 
 
 <dt id="arg-diag">diag<a class="anchor" aria-label="anchor" href="#arg-diag"></a></dt>
-<dd><p>Set to <code>TRUE</code> for a diagonal matrix.</p></dd>
+<dd><p>[<code>logical(1)</code>]<br>
+Diagonal matrix?</p></dd>
 
 </dl></div>
     <div class="section level2">
     <h2 id="value">Value<a class="anchor" aria-label="anchor" href="#value"></a></h2>
     <p>A covariance <code>matrix</code>.</p>
     </div>
+    <div class="section level2">
+    <h2 id="see-also">See also<a class="anchor" aria-label="anchor" href="#see-also"></a></h2>
+    <div class="dont-index"><p>Other matrix helpers:
+<code><a href="check_correlation_matrix.html">check_correlation_matrix</a>()</code>,
+<code><a href="check_covariance_matrix.html">check_covariance_matrix</a>()</code>,
+<code><a href="check_transition_probability_matrix.html">check_transition_probability_matrix</a>()</code>,
+<code><a href="cov_2_chol.html">cov_2_chol</a>()</code>,
+<code><a href="diff_cov.html">diff_cov</a>()</code>,
+<code><a href="insert_matrix_column.html">insert_matrix_column</a>()</code>,
+<code><a href="matrix_diagonal_indices.html">matrix_diagonal_indices</a>()</code>,
+<code><a href="matrix_indices.html">matrix_indices</a>()</code>,
+<code><a href="sample_correlation_matrix.html">sample_correlation_matrix</a>()</code>,
+<code><a href="sample_transition_probability_matrix.html">sample_transition_probability_matrix</a>()</code>,
+<code><a href="stationary_distribution.html">stationary_distribution</a>()</code></p></div>
+    </div>
 
     <div class="section level2">
     <h2 id="ref-examples">Examples<a class="anchor" aria-label="anchor" href="#ref-examples"></a></h2>
     <div class="sourceCode"><pre class="sourceCode r"><code><span class="r-in"><span><span class="fu">sample_covariance_matrix</span><span class="op">(</span>dim <span class="op">=</span> <span class="fl">3</span><span class="op">)</span></span></span>
-<span class="r-out co"><span class="r-pr">#&gt;</span>           [,1]      [,2]      [,3]</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> [1,] 3.0901369 0.6149432 2.0976478</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> [2,] 0.6149432 0.1597383 0.3386142</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> [3,] 2.0976478 0.3386142 1.5902290</span>
-<span class="r-in"><span></span></span>
+<span class="r-out co"><span class="r-pr">#&gt;</span>            [,1]      [,2]      [,3]</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> [1,]  0.9422237 -1.036665  1.335934</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> [2,] -1.0366654  2.768152 -2.589853</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> [3,]  1.3359341 -2.589853  5.924043</span>
 </code></pre></div>
     </div>
   </main><aside class="col-md-3"><nav id="toc" aria-label="Table of contents"><h2>On this page</h2>

@@ -53,21 +53,23 @@ match.arg."><meta property="og:image" content="http://loelschlaeger.de/oeli/logo
 
 
 <dl><dt id="arg-arg">arg<a class="anchor" aria-label="anchor" href="#arg-arg"></a></dt>
-<dd><p>A <code>character</code> (vector), the function argument.</p></dd>
+<dd><p>[<code><a href="https://rdrr.io/r/base/character.html" class="external-link">character()</a></code>]<br>
+The function argument.</p></dd>
 
 
 <dt id="arg-choices">choices<a class="anchor" aria-label="anchor" href="#arg-choices"></a></dt>
-<dd><p>A <code>character</code> (vector) of allowed values for <code>arg</code>.</p></dd>
+<dd><p>[<code><a href="https://rdrr.io/r/base/character.html" class="external-link">character()</a></code>]<br>
+Allowed values for <code>arg</code>.</p></dd>
 
 
 <dt id="arg-several-ok">several.ok<a class="anchor" aria-label="anchor" href="#arg-several-ok"></a></dt>
-<dd><p>Either <code>TRUE</code> if <code>arg</code> is allowed to have more than one element,
-or <code>FALSE</code> else.</p></dd>
+<dd><p>[<code>logical(1)</code>]<br>
+Is <code>arg</code> allowed to have more than one element?</p></dd>
 
 
 <dt id="arg-none-ok">none.ok<a class="anchor" aria-label="anchor" href="#arg-none-ok"></a></dt>
-<dd><p>Either <code>TRUE</code> if <code>arg</code> is allowed to have zero elements,
-or <code>FALSE</code> else.</p></dd>
+<dd><p>[<code>logical(1)</code>]<br>
+Is <code>arg</code> allowed to have zero elements?</p></dd>
 
 </dl></div>
     <div class="section level2">
@@ -79,6 +81,20 @@ When <code>several.ok</code> is <code>TRUE</code> and (at least) one element of
 <code>arg</code> has a match, all un-abbreviated versions of matches are returned.
 When <code>none.ok</code> is <code>TRUE</code> and <code>arg</code> has zero elements,
 <code>character(0)</code> is returned.</p>
+    </div>
+    <div class="section level2">
+    <h2 id="see-also">See also<a class="anchor" aria-label="anchor" href="#see-also"></a></h2>
+    <div class="dont-index"><p>Other package helpers:
+<code><a href="Dictionary.html">Dictionary</a></code>,
+<code><a href="Storage.html">Storage</a></code>,
+<code><a href="identical_structure.html">identical_structure</a>()</code>,
+<code><a href="input_check_response.html">input_check_response</a>()</code>,
+<code><a href="package_logo.html">package_logo</a>()</code>,
+<code><a href="print_matrix.html">print_matrix</a>()</code>,
+<code><a href="renv_development_packages.html">renv_development_packages</a>()</code>,
+<code><a href="system_information.html">system_information</a>()</code>,
+<code><a href="unexpected_error.html">unexpected_error</a>()</code>,
+<code><a href="user_confirm.html">user_confirm</a>()</code></p></div>
     </div>
 
   </main><aside class="col-md-3"><nav id="toc" aria-label="Table of contents"><h2>On this page</h2>
