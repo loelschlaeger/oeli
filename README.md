@@ -34,7 +34,7 @@ some demos. Clicking the headings will take you to the corresponding
 vignette, where you’ll find a documentation on all the helpers currently
 available in that category.
 
-### [`data.frame` helpers](https://loelschlaeger.de/oeli/articles/package_helpers.html)
+### [`data.frame` helpers](https://loelschlaeger.de/oeli/articles/dataframe_helpers.html)
 
 The `group_data_frame()` function groups a given `data.frame` based on
 the values in a specified column:
@@ -131,11 +131,11 @@ x <- matrix(rnorm(10000), ncol = 100, nrow = 100)
 print_matrix(x, rowdots = 4, coldots = 4, digits = 2, label = "what a big matrix")
 #> what a big matrix : 100 x 100 matrix of doubles 
 #>         [,1] [,2]  [,3] ... [,100]
-#> [1,]    0.16 0.28  0.97 ...  -0.47
-#> [2,]    1.08    1  0.99 ...   2.59
-#> [3,]   -0.06 1.14 -0.99 ...  -0.02
+#> [1,]    0.25  0.4  0.43 ...  -0.72
+#> [2,]   -0.26 1.76 -0.28 ...   0.87
+#> [3,]    -1.5 0.25   1.1 ...   1.45
 #> ...      ...  ...   ... ...    ...
-#> [100,]  1.37  1.4 -1.68 ...   1.06
+#> [100,]  0.12 0.37 -0.52 ...   0.82
 ```
 
 ### [simulation helpers](https://loelschlaeger.de/oeli/articles/simulation_helpers.html)
@@ -145,10 +145,10 @@ The following simulates a Markov chain:
 ``` r
 Gamma <- sample_transition_probability_matrix(dim = 3)
 simulate_markov_chain(Gamma = Gamma, T = 20)
-#>  [1] 2 3 2 2 2 2 1 2 2 1 3 1 2 2 1 1 2 2 1 1
+#>  [1] 3 3 3 3 3 3 3 3 3 3 3 3 3 3 3 3 3 3 3 3
 ```
 
-### [`vector` helpers](https://loelschlaeger.de/oeli/articles/package_helpers.html)
+### [`vector` helpers](https://loelschlaeger.de/oeli/articles/vector_helpers.html)
 
 Create all possible permutations:
 

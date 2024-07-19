@@ -36,7 +36,7 @@ install.packages("oeli")
 
 The package includes helpers for different tasks and objects. Below are some demos. Clicking the headings will take you to the corresponding vignette, where you'll find a documentation on all the helpers currently available in that category.
 
-### [`data.frame` helpers](https://loelschlaeger.de/oeli/articles/package_helpers.html)
+### [`data.frame` helpers](https://loelschlaeger.de/oeli/articles/dataframe_helpers.html)
 
 The `group_data_frame()` function groups a given `data.frame` based on the values in a specified column:
 
@@ -105,7 +105,7 @@ Gamma <- sample_transition_probability_matrix(dim = 3)
 simulate_markov_chain(Gamma = Gamma, T = 20)
 ``` 
 
-### [`vector` helpers](https://loelschlaeger.de/oeli/articles/package_helpers.html)
+### [`vector` helpers](https://loelschlaeger.de/oeli/articles/vector_helpers.html)
 
 Create all possible permutations:
 
