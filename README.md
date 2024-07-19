@@ -31,8 +31,8 @@ install.packages("oeli")
 
 The package includes helpers for different tasks and objects. Below are
 some demos. Clicking the headings will take you to the corresponding
-vignette, where you’ll find detailed documentation on all the helpers
-currently available in that category.
+vignette, where you’ll find a documentation on all the helpers currently
+available in that category.
 
 ### [`data.frame` helpers](https://loelschlaeger.de/oeli/articles/package_helpers.html)
 
@@ -130,12 +130,12 @@ How to print a matrix without filling up the entire console?
 x <- matrix(rnorm(10000), ncol = 100, nrow = 100)
 print_matrix(x, rowdots = 4, coldots = 4, digits = 2, label = "what a big matrix")
 #> what a big matrix : 100 x 100 matrix of doubles 
-#>         [,1]  [,2]  [,3] ... [,100]
-#> [1,]    0.47  0.34  -0.4 ...  -1.27
-#> [2,]    0.05  0.13  0.02 ...  -2.43
-#> [3,]   -0.81 -1.05  0.72 ...   0.18
-#> ...      ...   ...   ... ...    ...
-#> [100,]  0.74 -1.06 -0.02 ...   1.25
+#>         [,1] [,2]  [,3] ... [,100]
+#> [1,]    0.16 0.28  0.97 ...  -0.47
+#> [2,]    1.08    1  0.99 ...   2.59
+#> [3,]   -0.06 1.14 -0.99 ...  -0.02
+#> ...      ...  ...   ... ...    ...
+#> [100,]  1.37  1.4 -1.68 ...   1.06
 ```
 
 ### [simulation helpers](https://loelschlaeger.de/oeli/articles/simulation_helpers.html)
@@ -145,7 +145,7 @@ The following simulates a Markov chain:
 ``` r
 Gamma <- sample_transition_probability_matrix(dim = 3)
 simulate_markov_chain(Gamma = Gamma, T = 20)
-#>  [1] 3 1 1 2 2 2 3 3 1 3 3 3 3 3 3 3 3 3 1 1
+#>  [1] 2 3 2 2 2 2 1 2 2 1 3 1 2 2 1 1 2 2 1 1
 ```
 
 ### [`vector` helpers](https://loelschlaeger.de/oeli/articles/package_helpers.html)

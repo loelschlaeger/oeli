@@ -4,11 +4,11 @@
 \name{oeli-package}
 \alias{oeli}
 \alias{oeli-package}
-\title{oeli: My Utilities for Developing Data Science Software}
+\title{oeli: Utilities for Developing Data Science Software}
 \description{
 \if{html}{\figure{logo.png}{options: style='float: right' alt='logo' width='120'}}
 
-Some general helper functions that I and maybe others find useful when developing data science software. Functionality includes argument validation, density calculation, sampling, matrix printing, user interaction, storage helpers and more. The vignettes illustrate use cases.
+Some general helper functions that I (and maybe others) find useful when developing data science software. The vignettes illustrate use cases.
 }
 \seealso{
 Useful links:

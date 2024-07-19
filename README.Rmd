@@ -34,7 +34,7 @@ install.packages("oeli")
 
 ## Demos
 
-The package includes helpers for different tasks and objects. Below are some demos. Clicking the headings will take you to the corresponding vignette, where you'll find detailed documentation on all the helpers currently available in that category.
+The package includes helpers for different tasks and objects. Below are some demos. Clicking the headings will take you to the corresponding vignette, where you'll find a documentation on all the helpers currently available in that category.
 
 ### [`data.frame` helpers](https://loelschlaeger.de/oeli/articles/package_helpers.html)
 
