@@ -4,9 +4,6 @@
 #' This function simulates regressor values from various marginal distributions
 #' with custom correlations.
 #'
-#' @details
-#' TODO
-#'
 #' @param labels \[`character()`\]\cr
 #' Unique labels for the regressors.
 #'
@@ -18,7 +15,7 @@
 #' standard normal marginal distributions are used.
 #'
 #' Each list entry must be named according to a regressor label, and the
-#' following distributions are currently supported (TODO: if you need another, report here: ...):
+#' following distributions are currently supported:
 #' \describe{
 #'   \item{discrete distributions}{
 #'     \itemize{
@@ -40,7 +37,7 @@
 #' \code{labels[p]} and \code{labels[q]}.
 #'
 #' @param verbose \[`logical(1)`\]\cr
-#' Whether to print information about the simulated regressors.
+#' Print information about the simulated regressors?
 #'
 #' @return
 #' A \code{data.frame} with \code{n} rows and \code{length(labels)} columns.
@@ -48,6 +45,9 @@
 #' @keywords simulation
 #' @family simulation helpers
 #' @export
+#'
+#' @references
+#' This function heavily depends on the `{SimMultiCorrData}` package.
 #'
 #' @examples
 #' set.seed(1)
@@ -59,8 +59,10 @@
 #'   "N1" = list(type = "normal", mean = -1, sd = 2),
 #'   "U" = list(type = "uniform", min = -2, max = -1)
 #' )
-#' correlation <- sample_correlation_matrix(length(labels))
-#' verbose <- TRUE
+#' data <- correlated_regressors(
+#'   labels = labels, n = n, marginals = marginals, correlation = correlation
+#' )
+#' head(data)
 
 correlated_regressors <- function(
     labels,
@@ -102,10 +104,12 @@ correlated_regressors <- function(
     ),
     "correlation"
   )
+  correlation_req <- correlation
   input_check_response(
     checkmate::check_flag(verbose),
     "verbose"
   )
+  # TODO: is order of correlation correct?
 
   ### draw data
   if (length(marginals) == 0) {
@@ -120,116 +124,144 @@ correlated_regressors <- function(
 
   } else {
 
-    if (isTRUE(all.equal(correlation, diag(P)))) {
-      ### no correlation specified, so draw independently
+    ### interpret marginal distributions
+    marginals_class <- character(P)
+    marginals_info <- character(P)
+    M <- matrix(NA, nrow = 6, ncol = 0)
+    lam <- numeric()
+    marginal <- list()
+    size <- numeric()
+    prob <- numeric()
 
-    } else {
+    for (p in seq_len(P)) {
 
-      ### interpret marginal distributions
-      marginals_class <- character(P)
-      marginals_info <- character(P)
-      M <- matrix(NA, nrow = 6, ncol = 0)
-      lam <- numeric()
-      marginal <- list()
-      size <- numeric()
-      prob <- numeric()
+      if (labels[p] %in% names(marginals)) {
 
-      for (p in seq_len(P)) {
+        ### check structure
+        input_check_response(
+          checkmate::check_list(
+            marginals[labels[p]], names = "strict", any.missing = FALSE
+          ),
+          "marginals",
+          prefix = "Element {labels[p]} of input {var_name} is bad:"
+        )
+        type <- marginals[[labels[p]]][["type"]]
+        input_check_response(
+          checkmate::check_choice(
+            type,
+            c("poisson", "categorical", "normal", "uniform")
+          ),
+          "marginals",
+          prefix = "Element {.val type} of element {labels[p]} in input {var_name} is bad:"
+        )
+        if (type == "poisson") {
 
-        ###
-        if (labels[p] %in% names(marginals)) {
+          # TODO: need input checks for the parameters
+          lam <- c(lam, marginals[[labels[p]]][["lambda"]])
+          marginals_class[p] <- "pois"
+          marginals_info[p] <- paste0("Poisson(lambda = ", lam, ")")
 
-          ### check structure
-          input_check_response(
-            checkmate::check_list(
-              marginals[labels[p]], names = "strict", any.missing = FALSE
-            ),
-            "marginals",
-            prefix = "Element {labels[p]} of input {var_name} is bad:"
+        } else if (type == "categorical") {
+
+          cat_prob_p <- marginals[[labels[p]]][["p"]]
+          marginal <- c(marginal, list(cumsum(cat_prob_p)[-length(cat_prob_p)]))
+          marginals_class[p] <- "cat"
+          marginals_info[p] <- paste0(
+            "Categorical(p = ", paste(cat_prob_p, collapse = ",") , ")"
           )
-          type <- marginals[[labels[p]]][["type"]]
-          input_check_response(
-            checkmate::check_choice(
-              type,
-              c("poisson", "categorical", "normal", "uniform") # TODO: add neg. bin.
-            ),
-            "marginals",
-            prefix = "Element type of element {labels[p]} in input {var_name} is bad:"
-          )
-          if (type == "poisson") {
 
-            lam <- c(lam, marginals[[labels[p]]][["lambda"]])
-            marginals_class[p] <- "pois"
+        } else if (type == "normal") {
 
-          } else if (type == "categorical") {
-
-            # TODO: only K-1 probs can be specified
-            marginal <- c(marginal, list(marginals[[labels[p]]][["p"]]))
-            marginals_class[p] <- "cat"
-
-          } else if (type == "normal") {
-
-            M <- cbind(M, SimMultiCorrData::calc_theory(
-              Dist = "Gaussian",
-              params = c(
-                marginals[[labels[p]]][["mean"]],
-                marginals[[labels[p]]][["sd"]]
-              )
-            ))
-            marginals_class[p] <- "cont"
-
-          } else if (type == "uniform") {
-
-            M <- cbind(M, SimMultiCorrData::calc_theory(
-              Dist = "Uniform",
-              params = c(
-                marginals[[labels[p]]][["min"]],
-                marginals[[labels[p]]][["max"]]
-              )
-            ))
-            marginals_class[p] <- "cont"
-
-          } else {
-            unexpected_error()
-          }
-
-
-        } else {
-
+          normal_mean_p <- marginals[[labels[p]]][["mean"]]
+          normal_sd_p <- marginals[[labels[p]]][["sd"]]
           M <- cbind(M, SimMultiCorrData::calc_theory(
-            Dist = "Gaussian", params = c(0, 1)
+            Dist = "Gaussian",
+            params = c(normal_mean_p, normal_sd_p)
           ))
           marginals_class[p] <- "cont"
+          marginals_info[p] <- paste0(
+            "Normal(mean = ", normal_mean_p, ", sd = ", normal_sd_p, ")"
+          )
 
+        } else if (type == "uniform") {
+
+          uniform_min_p <- marginals[[labels[p]]][["min"]]
+          uniform_max_p <- marginals[[labels[p]]][["max"]]
+          M <- cbind(M, SimMultiCorrData::calc_theory(
+            Dist = "Uniform",
+            params = c(uniform_min_p, uniform_max_p)
+          ))
+          marginals_class[p] <- "cont"
+          marginals_info[p] <- paste0(
+            "Uniform(min = ", uniform_min_p, ", max = ", uniform_max_p, ")"
+          )
+
+        } else {
+          unexpected_error()
         }
+
+
+      } else {
+
+        M <- cbind(M, SimMultiCorrData::calc_theory(
+          Dist = "Gaussian", params = c(0, 1)
+        ))
+        marginals_class[p] <- "cont"
+        marginals_info[p] <- "Normal(mean = 0, sd = 1)"
 
       }
 
+    }
 
-      ### make sure 'correlation' is within upper and lower correlation limits
-      valid <- SimMultiCorrData::valid_corr(
-        k_cat = sum(marginals_class == "cat"),
-        k_cont = sum(marginals_class == "cont"),
-        k_pois = sum(marginals_class == "pois"),
-        k_nb = sum(marginals_class == "nb"),
-        method = "Polynomial",
-        means =  M[1, ],
-        vars =  (M[2, ])^2,
-        skews = M[3, ],
-        skurts = M[4, ],
-        fifths = M[5, ],
-        sixths = M[6, ],
-        marginal = marginal,
-        lam = lam,
-        size = size,
-        prob = prob,
-        rho = correlation,
-        seed = NULL
-      )
-      # TODO: report info about correlation limits
+    ### make sure 'correlation' is within upper and lower correlation limits
+    ### hide messages from the function 'SimMultiCorrData::valid_corr'
+    sink("/dev/null")
+    valid <- SimMultiCorrData::valid_corr(
+      k_cat = sum(marginals_class == "cat"),
+      k_cont = sum(marginals_class == "cont"),
+      k_pois = sum(marginals_class == "pois"),
+      k_nb = sum(marginals_class == "nb"),
+      method = "Polynomial",
+      means =  M[1, ],
+      vars =  (M[2, ])^2,
+      skews = M[3, ],
+      skurts = M[4, ],
+      fifths = M[5, ],
+      sixths = M[6, ],
+      marginal = marginal,
+      lam = lam,
+      size = size,
+      prob = prob,
+      rho = correlation,
+      seed = NULL
+    )
+    sink()
 
-      ### simulate data from marginal distributions
-      sim_out <- SimMultiCorrData::rcorrvar(
+    ### report info about correlation limits
+    for (i in 1:(P - 1)) {
+      for (j in (i + 1):P) {
+        if (correlation[i, j] < valid$L_rho[i, j]) {
+          cli::cli_warn(
+            "{.code correlation[{i},{j}] = {correlation[i,j]}} not possible
+            (too small), increased to {valid$L_rho[i,j]}"
+          )
+          correlation[i, j] <- correlation[j, i] <- valid$L_rho[i, j]
+        }
+        if (correlation[i, j] > valid$U_rho[i, j]) {
+          cli::cli_warn(
+            "{.code correlation[{i},{j}] = {correlation[i,j]}} not possible
+            (too large), decreased to {valid$U_rho[i,j]}"
+          )
+          correlation[i, j] <- correlation[j, i] <- valid$U_rho[i, j]
+        }
+      }
+    }
+
+    ### simulate data from marginal distributions
+    ### hide messages from the function 'SimMultiCorrData::rcorrvar'
+    sink("/dev/null")
+    sim_out <- suppressWarnings(
+      SimMultiCorrData::rcorrvar(
         n = n,
         k_cat = sum(marginals_class == "cat"),
         k_cont = sum(marginals_class == "cont"),
@@ -249,7 +281,8 @@ correlated_regressors <- function(
         rho = correlation,
         seed = NULL
       )
-    }
+    )
+    sink()
 
     # TODO: sort
     data <- cbind(
@@ -266,8 +299,8 @@ correlated_regressors <- function(
       cat("-", labels[p], "~", marginals_info[p], "\n")
     }
     if (n > 1) {
-      cat("Deviation of empirical correlation from requested:\n")
-      print(round(summary(as.numeric(stats::cor(data) - correlation)), 4))
+      cat("\nDeviation of empirical correlations from requested:\n")
+      print(round(summary(as.numeric(stats::cor(data) - correlation_req)), 4))
     }
   }
   as.data.frame(data)

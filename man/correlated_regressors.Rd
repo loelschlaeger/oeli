@@ -24,7 +24,7 @@ Optionally marginal distributions for regressors. If not specified,
 standard normal marginal distributions are used.
 
 Each list entry must be named according to a regressor label, and the
-following distributions are currently supported (TODO: if you need another, report here: ...):
+following distributions are currently supported:
 \describe{
 \item{discrete distributions}{
 \itemize{
@@ -46,7 +46,7 @@ A correlation matrix of dimension \code{length(labels)}, where the
 \code{labels[p]} and \code{labels[q]}.}
 
 \item{verbose}{[\code{logical(1)}]\cr
-Whether to print information about the simulated regressors.}
+Print information about the simulated regressors?}
 }
 \value{
 A \code{data.frame} with \code{n} rows and \code{length(labels)} columns.
@@ -54,9 +54,6 @@ A \code{data.frame} with \code{n} rows and \code{length(labels)} columns.
 \description{
 This function simulates regressor values from various marginal distributions
 with custom correlations.
-}
-\details{
-TODO
 }
 \examples{
 set.seed(1)
@@ -68,8 +65,13 @@ marginals <- list(
   "N1" = list(type = "normal", mean = -1, sd = 2),
   "U" = list(type = "uniform", min = -2, max = -1)
 )
-correlation <- sample_correlation_matrix(length(labels))
-verbose <- TRUE
+data <- correlated_regressors(
+  labels = labels, n = n, marginals = marginals, correlation = correlation
+)
+head(data)
+}
+\references{
+This function heavily depends on the \code{{SimMultiCorrData}} package.
 }
 \seealso{
 Other simulation helpers: 
