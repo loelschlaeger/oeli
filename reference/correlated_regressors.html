@@ -80,7 +80,7 @@ The number of values per regressor.</p></dd>
 Optionally marginal distributions for regressors. If not specified,
 standard normal marginal distributions are used.</p>
 <p>Each list entry must be named according to a regressor label, and the
-following distributions are currently supported (TODO: if you need another, report here: ...):</p><dl><dt>discrete distributions</dt>
+following distributions are currently supported:</p><dl><dt>discrete distributions</dt>
 <dd>
 <ul><li><p>Poisson: <code>list(type = "poisson", lambda = ...)</code></p></li>
 <li><p>categorical: <code>list(type = "categorical", p = c(...))</code></p></li>
@@ -105,7 +105,7 @@ A correlation matrix of dimension <code>length(labels)</code>, where the
 
 <dt id="arg-verbose">verbose<a class="anchor" aria-label="anchor" href="#arg-verbose"></a></dt>
 <dd><p>[<code>logical(1)</code>]<br>
-Whether to print information about the simulated regressors.</p></dd>
+Print information about the simulated regressors?</p></dd>
 
 </dl></div>
     <div class="section level2">
@@ -113,8 +113,8 @@ Whether to print information about the simulated regressors.</p></dd>
     <p>A <code>data.frame</code> with <code>n</code> rows and <code>length(labels)</code> columns.</p>
     </div>
     <div class="section level2">
-    <h2 id="details">Details<a class="anchor" aria-label="anchor" href="#details"></a></h2>
-    <p>TODO</p>
+    <h2 id="references">References<a class="anchor" aria-label="anchor" href="#references"></a></h2>
+    <p>This function heavily depends on the <code>{SimMultiCorrData}</code> package.</p>
     </div>
     <div class="section level2">
     <h2 id="see-also">See also<a class="anchor" aria-label="anchor" href="#see-also"></a></h2>
@@ -137,8 +137,18 @@ Whether to print information about the simulated regressors.</p></dd>
 <span class="r-in"><span>  <span class="st">"N1"</span> <span class="op">=</span> <span class="fu"><a href="https://rdrr.io/r/base/list.html" class="external-link">list</a></span><span class="op">(</span>type <span class="op">=</span> <span class="st">"normal"</span>, mean <span class="op">=</span> <span class="op">-</span><span class="fl">1</span>, sd <span class="op">=</span> <span class="fl">2</span><span class="op">)</span>,</span></span>
 <span class="r-in"><span>  <span class="st">"U"</span> <span class="op">=</span> <span class="fu"><a href="https://rdrr.io/r/base/list.html" class="external-link">list</a></span><span class="op">(</span>type <span class="op">=</span> <span class="st">"uniform"</span>, min <span class="op">=</span> <span class="op">-</span><span class="fl">2</span>, max <span class="op">=</span> <span class="op">-</span><span class="fl">1</span><span class="op">)</span></span></span>
 <span class="r-in"><span><span class="op">)</span></span></span>
-<span class="r-in"><span><span class="va">correlation</span> <span class="op">&lt;-</span> <span class="fu"><a href="sample_correlation_matrix.html">sample_correlation_matrix</a></span><span class="op">(</span><span class="fu"><a href="https://rdrr.io/r/base/length.html" class="external-link">length</a></span><span class="op">(</span><span class="va">labels</span><span class="op">)</span><span class="op">)</span></span></span>
-<span class="r-in"><span><span class="va">verbose</span> <span class="op">&lt;-</span> <span class="cn">TRUE</span></span></span>
+<span class="r-in"><span><span class="va">data</span> <span class="op">&lt;-</span> <span class="fu">correlated_regressors</span><span class="op">(</span></span></span>
+<span class="r-in"><span>  labels <span class="op">=</span> <span class="va">labels</span>, n <span class="op">=</span> <span class="va">n</span>, marginals <span class="op">=</span> <span class="va">marginals</span>, correlation <span class="op">=</span> <span class="va">correlation</span></span></span>
+<span class="r-in"><span><span class="op">)</span></span></span>
+<span class="r-err co"><span class="r-pr">#&gt;</span> <span class="error">Error in eval(expr, envir, enclos):</span> object 'correlation' not found</span>
+<span class="r-in"><span><span class="fu"><a href="https://rdrr.io/r/utils/head.html" class="external-link">head</a></span><span class="op">(</span><span class="va">data</span><span class="op">)</span></span></span>
+<span class="r-out co"><span class="r-pr">#&gt;</span>                                                                             </span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> 1 function (..., list = character(), package = NULL, lib.loc = NULL,        </span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> 2     verbose = getOption("verbose"), envir = .GlobalEnv, overwrite = TRUE) </span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> 3 {                                                                         </span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> 4     fileExt &lt;- function(x) {                                              </span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> 5         db &lt;- grepl("\\\\.[^.]+\\\\.(gz|bz2|xz)$", x)                     </span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> 6         ans &lt;- sub(".*\\\\.", "", x)                                      </span>
 </code></pre></div>
     </div>
   </main><aside class="col-md-3"><nav id="toc" aria-label="Table of contents"><h2>On this page</h2>
