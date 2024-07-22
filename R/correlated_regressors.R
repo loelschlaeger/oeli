@@ -59,6 +59,7 @@
 #'   "N1" = list(type = "normal", mean = -1, sd = 2),
 #'   "U" = list(type = "uniform", min = -2, max = -1)
 #' )
+#' correlation <- sample_correlation_matrix(5)
 #' data <- correlated_regressors(
 #'   labels = labels, n = n, marginals = marginals, correlation = correlation
 #' )
@@ -214,9 +215,7 @@ correlated_regressors <- function(
     }
 
     ### make sure 'correlation' is within upper and lower correlation limits
-    ### hide messages from the function 'SimMultiCorrData::valid_corr'
-    sink("/dev/null")
-    valid <- SimMultiCorrData::valid_corr(
+    valid <- quiet(SimMultiCorrData::valid_corr(
       k_cat = sum(marginals_class == "cat"),
       k_cont = sum(marginals_class == "cont"),
       k_pois = sum(marginals_class == "pois"),
@@ -234,8 +233,7 @@ correlated_regressors <- function(
       prob = prob,
       rho = correlation,
       seed = NULL
-    )
-    sink()
+    ))
 
     ### report info about correlation limits
     for (i in 1:(P - 1)) {
@@ -258,31 +256,26 @@ correlated_regressors <- function(
     }
 
     ### simulate data from marginal distributions
-    ### hide messages from the function 'SimMultiCorrData::rcorrvar'
-    sink("/dev/null")
-    sim_out <- suppressWarnings(
-      SimMultiCorrData::rcorrvar(
-        n = n,
-        k_cat = sum(marginals_class == "cat"),
-        k_cont = sum(marginals_class == "cont"),
-        k_pois = sum(marginals_class == "pois"),
-        k_nb = sum(marginals_class == "nb"),
-        method = "Polynomial",
-        means =  M[1, ],
-        vars =  (M[2, ])^2,
-        skews = M[3, ],
-        skurts = M[4, ],
-        fifths = M[5, ],
-        sixths = M[6, ],
-        marginal = marginal,
-        lam = lam,
-        size = size,
-        prob = prob,
-        rho = correlation,
-        seed = NULL
-      )
-    )
-    sink()
+    sim_out <- quiet(SimMultiCorrData::rcorrvar(
+      n = n,
+      k_cat = sum(marginals_class == "cat"),
+      k_cont = sum(marginals_class == "cont"),
+      k_pois = sum(marginals_class == "pois"),
+      k_nb = sum(marginals_class == "nb"),
+      method = "Polynomial",
+      means =  M[1, ],
+      vars =  (M[2, ])^2,
+      skews = M[3, ],
+      skurts = M[4, ],
+      fifths = M[5, ],
+      sixths = M[6, ],
+      marginal = marginal,
+      lam = lam,
+      size = size,
+      prob = prob,
+      rho = correlation,
+      seed = NULL
+    ))
 
     # TODO: sort
     data <- cbind(

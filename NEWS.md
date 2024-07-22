@@ -1,5 +1,7 @@
 # oeli 0.6.0
 
+* Added function `quiet()` to silence expressions.
+
 * Added functions `dtnorm()` and `dttnorm()` to calculate the density of a (two-sided) truncated normal distribution.
 
 # oeli 0.5.2

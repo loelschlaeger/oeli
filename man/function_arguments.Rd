@@ -33,6 +33,7 @@ Other function helpers:
 \code{\link{do.call_timed}()},
 \code{\link{function_body}()},
 \code{\link{function_defaults}()},
+\code{\link{quiet}()},
 \code{\link{timed}()},
 \code{\link{try_silent}()},
 \code{\link{variable_name}()}

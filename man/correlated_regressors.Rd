@@ -65,6 +65,7 @@ marginals <- list(
   "N1" = list(type = "normal", mean = -1, sd = 2),
   "U" = list(type = "uniform", min = -2, max = -1)
 )
+correlation <- sample_correlation_matrix(5)
 data <- correlated_regressors(
   labels = labels, n = n, marginals = marginals, correlation = correlation
 )
