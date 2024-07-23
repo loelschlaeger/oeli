@@ -128,29 +128,33 @@ Print information about the simulated regressors?</p></dd>
 
     <div class="section level2">
     <h2 id="ref-examples">Examples<a class="anchor" aria-label="anchor" href="#ref-examples"></a></h2>
-    <div class="sourceCode"><pre class="sourceCode r"><code><span class="r-in"><span><span class="fu"><a href="https://rdrr.io/r/base/Random.html" class="external-link">set.seed</a></span><span class="op">(</span><span class="fl">1</span><span class="op">)</span></span></span>
-<span class="r-in"><span><span class="va">labels</span> <span class="op">&lt;-</span> <span class="fu"><a href="https://rdrr.io/r/base/c.html" class="external-link">c</a></span><span class="op">(</span><span class="st">"P"</span>, <span class="st">"C"</span>, <span class="st">"N1"</span>, <span class="st">"N2"</span>, <span class="st">"U"</span><span class="op">)</span></span></span>
+    <div class="sourceCode"><pre class="sourceCode r"><code><span class="r-in"><span><span class="va">labels</span> <span class="op">&lt;-</span> <span class="fu"><a href="https://rdrr.io/r/base/c.html" class="external-link">c</a></span><span class="op">(</span><span class="st">"P"</span>, <span class="st">"C"</span>, <span class="st">"N1"</span>, <span class="st">"N2"</span>, <span class="st">"U"</span><span class="op">)</span></span></span>
 <span class="r-in"><span><span class="va">n</span> <span class="op">&lt;-</span> <span class="fl">100</span></span></span>
 <span class="r-in"><span><span class="va">marginals</span> <span class="op">&lt;-</span> <span class="fu"><a href="https://rdrr.io/r/base/list.html" class="external-link">list</a></span><span class="op">(</span></span></span>
-<span class="r-in"><span>  <span class="st">"P"</span> <span class="op">=</span> <span class="fu"><a href="https://rdrr.io/r/base/list.html" class="external-link">list</a></span><span class="op">(</span>type <span class="op">=</span> <span class="st">"poisson"</span>, lambda <span class="op">=</span> <span class="fl">1</span><span class="op">)</span>,</span></span>
-<span class="r-in"><span>  <span class="st">"C"</span> <span class="op">=</span> <span class="fu"><a href="https://rdrr.io/r/base/list.html" class="external-link">list</a></span><span class="op">(</span>type <span class="op">=</span> <span class="st">"categorical"</span>, p <span class="op">=</span> <span class="fu"><a href="https://rdrr.io/r/base/c.html" class="external-link">c</a></span><span class="op">(</span><span class="fl">0.2</span>, <span class="fl">0.3</span>, <span class="fl">0.5</span><span class="op">)</span><span class="op">)</span>,</span></span>
+<span class="r-in"><span>  <span class="st">"P"</span> <span class="op">=</span> <span class="fu"><a href="https://rdrr.io/r/base/list.html" class="external-link">list</a></span><span class="op">(</span>type <span class="op">=</span> <span class="st">"poisson"</span>, lambda <span class="op">=</span> <span class="fl">2</span><span class="op">)</span>,</span></span>
+<span class="r-in"><span>  <span class="st">"C"</span> <span class="op">=</span> <span class="fu"><a href="https://rdrr.io/r/base/list.html" class="external-link">list</a></span><span class="op">(</span>type <span class="op">=</span> <span class="st">"categorical"</span>, p <span class="op">=</span> <span class="fu"><a href="https://rdrr.io/r/base/c.html" class="external-link">c</a></span><span class="op">(</span><span class="fl">0.3</span>, <span class="fl">0.2</span>, <span class="fl">0.5</span><span class="op">)</span><span class="op">)</span>,</span></span>
 <span class="r-in"><span>  <span class="st">"N1"</span> <span class="op">=</span> <span class="fu"><a href="https://rdrr.io/r/base/list.html" class="external-link">list</a></span><span class="op">(</span>type <span class="op">=</span> <span class="st">"normal"</span>, mean <span class="op">=</span> <span class="op">-</span><span class="fl">1</span>, sd <span class="op">=</span> <span class="fl">2</span><span class="op">)</span>,</span></span>
 <span class="r-in"><span>  <span class="st">"U"</span> <span class="op">=</span> <span class="fu"><a href="https://rdrr.io/r/base/list.html" class="external-link">list</a></span><span class="op">(</span>type <span class="op">=</span> <span class="st">"uniform"</span>, min <span class="op">=</span> <span class="op">-</span><span class="fl">2</span>, max <span class="op">=</span> <span class="op">-</span><span class="fl">1</span><span class="op">)</span></span></span>
 <span class="r-in"><span><span class="op">)</span></span></span>
-<span class="r-in"><span><span class="va">correlation</span> <span class="op">&lt;-</span> <span class="fu"><a href="sample_correlation_matrix.html">sample_correlation_matrix</a></span><span class="op">(</span><span class="fl">5</span><span class="op">)</span></span></span>
+<span class="r-in"><span><span class="va">correlation</span> <span class="op">&lt;-</span> <span class="fu"><a href="https://rdrr.io/r/base/matrix.html" class="external-link">matrix</a></span><span class="op">(</span></span></span>
+<span class="r-in"><span>  <span class="fu"><a href="https://rdrr.io/r/base/c.html" class="external-link">c</a></span><span class="op">(</span><span class="fl">1</span>, <span class="op">-</span><span class="fl">0.3</span>, <span class="op">-</span><span class="fl">0.1</span>, <span class="fl">0</span>, <span class="fl">0.5</span>,</span></span>
+<span class="r-in"><span>    <span class="op">-</span><span class="fl">0.3</span>, <span class="fl">1</span>, <span class="fl">0.3</span>, <span class="op">-</span><span class="fl">0.5</span>, <span class="op">-</span><span class="fl">0.7</span>,</span></span>
+<span class="r-in"><span>    <span class="op">-</span><span class="fl">0.1</span>, <span class="fl">0.3</span>, <span class="fl">1</span>, <span class="op">-</span><span class="fl">0.3</span>, <span class="op">-</span><span class="fl">0.3</span>,</span></span>
+<span class="r-in"><span>    <span class="fl">0</span>, <span class="op">-</span><span class="fl">0.5</span>, <span class="op">-</span><span class="fl">0.3</span>, <span class="fl">1</span>, <span class="fl">0.1</span>,</span></span>
+<span class="r-in"><span>    <span class="fl">0.5</span>, <span class="op">-</span><span class="fl">0.7</span>, <span class="op">-</span><span class="fl">0.3</span>, <span class="fl">0.1</span>, <span class="fl">1</span><span class="op">)</span>,</span></span>
+<span class="r-in"><span>  nrow <span class="op">=</span> <span class="fl">5</span>, ncol <span class="op">=</span> <span class="fl">5</span></span></span>
+<span class="r-in"><span><span class="op">)</span></span></span>
 <span class="r-in"><span><span class="va">data</span> <span class="op">&lt;-</span> <span class="fu">correlated_regressors</span><span class="op">(</span></span></span>
 <span class="r-in"><span>  labels <span class="op">=</span> <span class="va">labels</span>, n <span class="op">=</span> <span class="va">n</span>, marginals <span class="op">=</span> <span class="va">marginals</span>, correlation <span class="op">=</span> <span class="va">correlation</span></span></span>
 <span class="r-in"><span><span class="op">)</span></span></span>
-<span class="r-wrn co"><span class="r-pr">#&gt;</span> <span class="warning">Warning: </span>`correlation[1,5] = 0.885822698877248` not possible (too large), decreased to</span>
-<span class="r-wrn co"><span class="r-pr">#&gt;</span> 0.727648066971045</span>
 <span class="r-in"><span><span class="fu"><a href="https://rdrr.io/r/utils/head.html" class="external-link">head</a></span><span class="op">(</span><span class="va">data</span><span class="op">)</span></span></span>
-<span class="r-out co"><span class="r-pr">#&gt;</span>   V1         V1          V2        V3 V1</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> 1  1 -0.7391127 -0.23326655 -1.157387  0</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> 2  2  3.7122030  1.79119507 -1.965216  0</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> 3  1  1.4927849  1.99045778 -1.710738  0</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> 4  3 -3.9294189  0.61036703 -1.310728  1</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> 5  2 -2.1855780 -0.09987662 -1.788119  1</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> 6  2  1.3548068  0.01075819 -1.742888  0</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span>   P C         N1         N2         U</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> 1 2 3  0.2747115 -0.6287950 -1.747090</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> 2 2 1  1.1985249 -0.5896975 -1.132618</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> 3 1 3 -1.8821726 -1.6103396 -1.661101</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> 4 3 1 -7.5622901  1.5855340 -1.191457</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> 5 2 3  0.3854669  0.2481179 -1.624830</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> 6 0 3  0.7858251 -1.7438526 -1.963152</span>
 </code></pre></div>
     </div>
   </main><aside class="col-md-3"><nav id="toc" aria-label="Table of contents"><h2>On this page</h2>
