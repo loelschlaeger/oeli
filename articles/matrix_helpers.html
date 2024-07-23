@@ -77,8 +77,56 @@
 
     
     
-
-  </main>
+<p>This vignette demonstrates helper functions for working with a
+<code>matrix</code> object.</p>
+<div class="section level2">
+<h2 id="check-correlation-matrix">Check correlation matrix<a class="anchor" aria-label="anchor" href="#check-correlation-matrix"></a>
+</h2>
+<p>Is a given <code>matrix</code> object a correlation matrix? This can
+be checked in three ways as follows:</p>
+<div class="sourceCode" id="cb1"><pre class="downlit sourceCode r">
+<code class="sourceCode R"><span><span class="co">### N is a correlation matrix</span></span>
+<span><span class="va">N</span> <span class="op">&lt;-</span> <span class="fu"><a href="https://rdrr.io/r/base/diag.html" class="external-link">diag</a></span><span class="op">(</span><span class="fl">3</span><span class="op">)</span></span>
+<span><span class="fu"><a href="../reference/check_correlation_matrix.html">check_correlation_matrix</a></span><span class="op">(</span><span class="va">N</span>, dim <span class="op">=</span> <span class="fl">3</span><span class="op">)</span></span>
+<span><span class="co">#&gt; [1] TRUE</span></span>
+<span><span class="fu"><a href="../reference/check_correlation_matrix.html">test_correlation_matrix</a></span><span class="op">(</span><span class="va">N</span>, dim <span class="op">=</span> <span class="fl">3</span><span class="op">)</span></span>
+<span><span class="co">#&gt; [1] TRUE</span></span>
+<span><span class="fu"><a href="../reference/check_correlation_matrix.html">assert_correlation_matrix</a></span><span class="op">(</span><span class="va">N</span>, dim <span class="op">=</span> <span class="fl">3</span><span class="op">)</span></span>
+<span></span>
+<span><span class="co">### M ist not a correlation matrix</span></span>
+<span><span class="va">M</span> <span class="op">&lt;-</span> <span class="fu"><a href="https://rdrr.io/r/base/matrix.html" class="external-link">matrix</a></span><span class="op">(</span><span class="fu"><a href="https://rdrr.io/r/base/c.html" class="external-link">c</a></span><span class="op">(</span><span class="fl">1</span>,  <span class="fl">0.9</span>,  <span class="fl">0.9</span>, <span class="fl">0.9</span>,  <span class="fl">1</span>,  <span class="op">-</span><span class="fl">0.9</span>, <span class="fl">0.9</span>,  <span class="op">-</span><span class="fl">0.9</span>,  <span class="fl">1</span><span class="op">)</span>, nrow <span class="op">=</span> <span class="fl">3</span><span class="op">)</span></span>
+<span><span class="fu"><a href="../reference/check_correlation_matrix.html">check_correlation_matrix</a></span><span class="op">(</span><span class="va">M</span><span class="op">)</span></span>
+<span><span class="co">#&gt; [1] "Must have positive eigenvalues only"</span></span>
+<span><span class="fu"><a href="../reference/check_correlation_matrix.html">test_correlation_matrix</a></span><span class="op">(</span><span class="va">M</span><span class="op">)</span></span>
+<span><span class="co">#&gt; [1] FALSE</span></span>
+<span><span class="fu"><a href="../reference/check_correlation_matrix.html">assert_correlation_matrix</a></span><span class="op">(</span><span class="va">M</span><span class="op">)</span></span>
+<span><span class="co">#&gt; Error in eval(expr, envir, enclos): Assertion on 'M' failed: Must have positive eigenvalues only.</span></span></code></pre></div>
+</div>
+<div class="section level2">
+<h2 id="check-covariance-matrix">Check covariance matrix<a class="anchor" aria-label="anchor" href="#check-covariance-matrix"></a>
+</h2>
+<p>The same check for a correlation matrix also works for a covariance
+matrix:</p>
+<div class="sourceCode" id="cb2"><pre class="downlit sourceCode r">
+<code class="sourceCode R"><span><span class="co">### N is a covariance matrix</span></span>
+<span><span class="va">N</span> <span class="op">&lt;-</span> <span class="fu"><a href="https://rdrr.io/r/base/diag.html" class="external-link">diag</a></span><span class="op">(</span><span class="fl">3</span><span class="op">)</span></span>
+<span><span class="fu"><a href="../reference/check_covariance_matrix.html">check_covariance_matrix</a></span><span class="op">(</span><span class="va">N</span>, dim <span class="op">=</span> <span class="fl">3</span><span class="op">)</span></span>
+<span><span class="co">#&gt; [1] TRUE</span></span>
+<span><span class="fu"><a href="../reference/check_covariance_matrix.html">test_covariance_matrix</a></span><span class="op">(</span><span class="va">N</span>, dim <span class="op">=</span> <span class="fl">3</span><span class="op">)</span></span>
+<span><span class="co">#&gt; [1] TRUE</span></span>
+<span><span class="fu"><a href="../reference/check_covariance_matrix.html">assert_covariance_matrix</a></span><span class="op">(</span><span class="va">N</span>, dim <span class="op">=</span> <span class="fl">3</span><span class="op">)</span></span>
+<span></span>
+<span><span class="co">### M ist not a correlation matrix</span></span>
+<span><span class="va">M</span> <span class="op">&lt;-</span> <span class="fu"><a href="https://rdrr.io/r/base/matrix.html" class="external-link">matrix</a></span><span class="op">(</span><span class="fu"><a href="https://rdrr.io/r/base/c.html" class="external-link">c</a></span><span class="op">(</span><span class="fl">1</span>, <span class="fl">2</span>, <span class="fl">3</span>, <span class="fl">2</span>, <span class="fl">1</span>, <span class="fl">2</span>, <span class="fl">3</span>, <span class="fl">2</span>, <span class="fl">1</span><span class="op">)</span>, nrow <span class="op">=</span> <span class="fl">3</span><span class="op">)</span></span>
+<span><span class="fu"><a href="../reference/check_covariance_matrix.html">check_covariance_matrix</a></span><span class="op">(</span><span class="va">M</span><span class="op">)</span></span>
+<span><span class="co">#&gt; [1] "Must have positive eigenvalues only"</span></span>
+<span><span class="fu"><a href="../reference/check_covariance_matrix.html">test_covariance_matrix</a></span><span class="op">(</span><span class="va">M</span><span class="op">)</span></span>
+<span><span class="co">#&gt; [1] FALSE</span></span>
+<span><span class="fu"><a href="../reference/check_covariance_matrix.html">assert_covariance_matrix</a></span><span class="op">(</span><span class="va">M</span><span class="op">)</span></span>
+<span><span class="co">#&gt; Error in eval(expr, envir, enclos): Assertion on 'M' failed: Must have positive eigenvalues only.</span></span></code></pre></div>
+</div>
+  </main><aside class="col-md-3"><nav id="toc" aria-label="Table of contents"><h2>On this page</h2>
+    </nav></aside>
 </div>
 
 
