@@ -15,8 +15,8 @@ knitr::opts_chunk$set(
   fig.dim = c(7, 7), 
   out.width = "50%"
 )
-devtools::load_all()
-#library("oeli")
+#devtools::load_all()
+library("oeli")
 ```
 
 This vignette demonstrates helper functions for working with a `matrix` object.
