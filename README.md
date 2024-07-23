@@ -130,12 +130,12 @@ How to print a matrix without filling up the entire console?
 x <- matrix(rnorm(10000), ncol = 100, nrow = 100)
 print_matrix(x, rowdots = 4, coldots = 4, digits = 2, label = "what a big matrix")
 #> what a big matrix : 100 x 100 matrix of doubles 
-#>         [,1] [,2]  [,3] ... [,100]
-#> [1,]    0.25  0.4  0.43 ...  -0.72
-#> [2,]   -0.26 1.76 -0.28 ...   0.87
-#> [3,]    -1.5 0.25   1.1 ...   1.45
-#> ...      ...  ...   ... ...    ...
-#> [100,]  0.12 0.37 -0.52 ...   0.82
+#>        [,1]  [,2]  [,3] ... [,100]
+#> [1,]   0.21  0.49 -0.09 ...  -0.45
+#> [2,]   0.48  0.93 -0.14 ...   0.89
+#> [3,]   0.25 -1.17 -0.56 ...   0.18
+#> ...     ...   ...   ... ...    ...
+#> [100,] -1.6 -0.37  0.41 ...  -1.74
 ```
 
 ### [simulation helpers](https://loelschlaeger.de/oeli/articles/simulation_helpers.html)
@@ -145,7 +145,7 @@ The following simulates a Markov chain:
 ``` r
 Gamma <- sample_transition_probability_matrix(dim = 3)
 simulate_markov_chain(Gamma = Gamma, T = 20)
-#>  [1] 3 3 3 3 3 3 3 3 3 3 3 3 3 3 3 3 3 3 3 3
+#>  [1] 1 3 1 3 2 2 2 2 2 2 3 1 1 1 1 2 2 3 2 1
 ```
 
 ### [`vector` helpers](https://loelschlaeger.de/oeli/articles/vector_helpers.html)

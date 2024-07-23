@@ -51,7 +51,7 @@
 #' }
 
 input_check_response <- function(
-    check, var_name = NULL, error = TRUE, prefix = "Input {var_name} is bad:"
+    check, var_name = NULL, error = TRUE, prefix = "Input {.var {var_name}} is bad:"
   ) {
   if (!isTRUE(check)) {
     if (isTRUE(error)) {

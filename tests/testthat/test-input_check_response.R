@@ -28,6 +28,6 @@ test_that("response to input check works", {
       var_name = "y",
       error = TRUE
     ),
-    "Input y is bad: Must be of type 'character', not 'double'"
+    "Input `y` is bad: Must be of type 'character', not 'double'"
   )
 })

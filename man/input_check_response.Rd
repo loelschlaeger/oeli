@@ -8,7 +8,7 @@ input_check_response(
   check,
   var_name = NULL,
   error = TRUE,
-  prefix = "Input {var_name} is bad:"
+  prefix = "Input {.var {var_name}} is bad:"
 )
 }
 \arguments{

@@ -28,5 +28,5 @@ test_that("simulating regressors works", {
     labels = labels, n = n, marginals = marginals, correlation = correlation,
     verbose = FALSE
   )
-  # checkmate::expect_data_frame(data, col.names = "strict", nrows = n)
+  checkmate::expect_data_frame(data, col.names = "strict", nrows = n)
 })
