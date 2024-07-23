@@ -34,6 +34,16 @@ test_that("check for correlation matrix works", {
     "Assertion on 'matrix_with_bad_correlations' failed: Must have values between -1 and 1."
   )
 
+  # Test a matrix with bad eigenvalues
+  matrix_with_bad_eigenvalues <- matrix(c(
+    1,  0.9,  0.9,
+    0.9,  1,  -0.9,
+    0.9,  -0.9,  1), nrow = 3, byrow = TRUE)
+  expect_error(
+    assert_correlation_matrix(matrix_with_bad_eigenvalues),
+    "Assertion on 'matrix_with_bad_eigenvalues' failed: Must have positive eigenvalues only."
+  )
+
   # Test a matrix with the wrong dimensions
   matrix_with_wrong_dimensions <- diag(3)
   expect_error(

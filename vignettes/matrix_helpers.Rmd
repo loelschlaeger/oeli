@@ -15,7 +15,45 @@ knitr::opts_chunk$set(
   fig.dim = c(7, 7), 
   out.width = "50%"
 )
-#devtools::load_all()
-library("oeli")
+devtools::load_all()
+#library("oeli")
 ```
 
+This vignette demonstrates helper functions for working with a `matrix` object.
+
+## Check correlation matrix
+
+Is a given `matrix` object a correlation matrix? This can be checked in three ways as follows:
+
+```{r, check_correlation_matrix, error = TRUE}
+### N is a correlation matrix
+N <- diag(3)
+check_correlation_matrix(N, dim = 3)
+test_correlation_matrix(N, dim = 3)
+assert_correlation_matrix(N, dim = 3)
+
+### M ist not a correlation matrix
+M <- matrix(c(1,  0.9,  0.9, 0.9,  1,  -0.9, 0.9,  -0.9,  1), nrow = 3)
+check_correlation_matrix(M)
+test_correlation_matrix(M)
+assert_correlation_matrix(M)
+```
+
+
+## Check covariance matrix
+
+The same check for a correlation matrix also works for a covariance matrix:
+
+```{r, check_covariance_matrix, error = TRUE}
+### N is a covariance matrix
+N <- diag(3)
+check_covariance_matrix(N, dim = 3)
+test_covariance_matrix(N, dim = 3)
+assert_covariance_matrix(N, dim = 3)
+
+### M ist not a correlation matrix
+M <- matrix(c(1, 2, 3, 2, 1, 2, 3, 2, 1), nrow = 3)
+check_covariance_matrix(M)
+test_covariance_matrix(M)
+assert_covariance_matrix(M)
+```

@@ -39,8 +39,16 @@ Collection to store assertion messages. See \code{\link[checkmate]{AssertCollect
 Same as documented in \code{\link[checkmate]{check_matrix}}.
 }
 \description{
-This function checks whether the input is a symmetric, real matrix that
-fulfills the correlation matrix properties.
+These functions checks whether the input fulfills the correlation matrix
+properties.
+}
+\examples{
+M <- matrix(c(1,  0.9,  0.9, 0.9,  1,  -0.9, 0.9,  -0.9,  1), nrow = 3)
+check_correlation_matrix(M)
+test_correlation_matrix(M)
+\dontrun{
+assert_correlation_matrix(M)
+}
 }
 \seealso{
 Other matrix helpers: 

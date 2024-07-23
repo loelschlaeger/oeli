@@ -1,8 +1,8 @@
 #' Check if an argument is a covariance matrix
 #'
 #' @description
-#' This function checks whether the input is a symmetric, real matrix that
-#' fulfills the covariance matrix properties.
+#' This function checks whether the input fulfills the covariance matrix
+#' properties.
 #'
 #' @inheritParams checkmate::check_matrix
 #'
@@ -20,7 +20,12 @@
 #' @export
 #'
 #' @examples
-#' # TODO
+#' M <- matrix(c(1, 2, 3, 2, 1, 2, 3, 2, 1), nrow = 3)
+#' check_covariance_matrix(M)
+#' test_covariance_matrix(M)
+#' \dontrun{
+#' assert_covariance_matrix(M)
+#' }
 
 check_covariance_matrix <- function(
     x, dim = NULL, tolerance = sqrt(.Machine$double.eps)

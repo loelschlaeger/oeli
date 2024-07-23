@@ -1,8 +1,8 @@
 #' Check if an argument is a correlation matrix
 #'
 #' @description
-#' This function checks whether the input is a symmetric, real matrix that
-#' fulfills the correlation matrix properties.
+#' These functions checks whether the input fulfills the correlation matrix
+#' properties.
 #'
 #' @inheritParams check_covariance_matrix
 #'
@@ -12,6 +12,14 @@
 #' @keywords validation
 #' @family matrix helpers
 #' @export
+#'
+#' @examples
+#' M <- matrix(c(1,  0.9,  0.9, 0.9,  1,  -0.9, 0.9,  -0.9,  1), nrow = 3)
+#' check_correlation_matrix(M)
+#' test_correlation_matrix(M)
+#' \dontrun{
+#' assert_correlation_matrix(M)
+#' }
 
 check_correlation_matrix <- function(
     x, dim = NULL, tolerance = sqrt(.Machine$double.eps)
@@ -38,6 +46,9 @@ check_correlation_matrix <- function(
   }
   if (any(x < -1 | x > 1)) {
     return("Must have values between -1 and 1")
+  }
+  if (any(eigen(x)$value < -tolerance)) {
+    return("Must have positive eigenvalues only")
   }
   if (!is.null(dim)) {
     checkmate::assert_count(dim, positive = TRUE)
