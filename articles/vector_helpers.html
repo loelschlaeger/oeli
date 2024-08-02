@@ -77,8 +77,80 @@
 
     
     
-
-  </main>
+<div class="section level2">
+<h2 id="check-numeric-vector">Check numeric vector<a class="anchor" aria-label="anchor" href="#check-numeric-vector"></a>
+</h2>
+<p>Is a given object a numeric vector? This can be checked in three ways
+as follows:</p>
+<div class="sourceCode" id="cb1"><pre class="downlit sourceCode r">
+<code class="sourceCode R"><span><span class="co">### x is a numeric vector</span></span>
+<span><span class="va">x</span> <span class="op">&lt;-</span> <span class="fl">1</span><span class="op">:</span><span class="fl">3</span></span>
+<span><span class="fu"><a href="../reference/check_numeric_vector.html">check_numeric_vector</a></span><span class="op">(</span><span class="va">x</span><span class="op">)</span></span>
+<span><span class="co">#&gt; [1] TRUE</span></span>
+<span><span class="fu"><a href="../reference/check_numeric_vector.html">test_numeric_vector</a></span><span class="op">(</span><span class="va">x</span><span class="op">)</span></span>
+<span><span class="co">#&gt; [1] TRUE</span></span>
+<span><span class="fu"><a href="../reference/check_numeric_vector.html">assert_numeric_vector</a></span><span class="op">(</span><span class="va">x</span><span class="op">)</span></span>
+<span></span>
+<span><span class="co">### y ist not a numeric vector</span></span>
+<span><span class="va">y</span> <span class="op">&lt;-</span> <span class="fu"><a href="https://rdrr.io/r/base/c.html" class="external-link">c</a></span><span class="op">(</span><span class="fl">1</span>, <span class="fl">2</span>, <span class="st">"3"</span><span class="op">)</span></span>
+<span><span class="fu"><a href="../reference/check_numeric_vector.html">check_numeric_vector</a></span><span class="op">(</span><span class="va">y</span><span class="op">)</span></span>
+<span><span class="co">#&gt; [1] "Must be of type 'numeric', not 'character'"</span></span>
+<span><span class="fu"><a href="../reference/check_numeric_vector.html">test_numeric_vector</a></span><span class="op">(</span><span class="va">y</span><span class="op">)</span></span>
+<span><span class="co">#&gt; [1] FALSE</span></span>
+<span><span class="fu"><a href="../reference/check_numeric_vector.html">assert_numeric_vector</a></span><span class="op">(</span><span class="va">y</span><span class="op">)</span></span>
+<span><span class="co">#&gt; Error in eval(expr, envir, enclos): Assertion on 'y' failed: Must be of type 'numeric', not 'character'.</span></span></code></pre></div>
+</div>
+<div class="section level2">
+<h2 id="generate-vector-subsets">Generate vector subsets<a class="anchor" aria-label="anchor" href="#generate-vector-subsets"></a>
+</h2>
+<p>The <code><a href="../reference/subsets.html">subsets()</a></code> function generates subsets of a
+vector.</p>
+<div class="sourceCode" id="cb2"><pre class="downlit sourceCode r">
+<code class="sourceCode R"><span><span class="va">v</span> <span class="op">&lt;-</span> <span class="va">month.name</span><span class="op">[</span><span class="fl">1</span><span class="op">:</span><span class="fl">3</span><span class="op">]</span></span>
+<span></span>
+<span><span class="co">### all subsets</span></span>
+<span><span class="fu"><a href="../reference/subsets.html">subsets</a></span><span class="op">(</span><span class="va">v</span><span class="op">)</span></span>
+<span><span class="co">#&gt; [[1]]</span></span>
+<span><span class="co">#&gt; [1] "January"</span></span>
+<span><span class="co">#&gt; </span></span>
+<span><span class="co">#&gt; [[2]]</span></span>
+<span><span class="co">#&gt; [1] "February"</span></span>
+<span><span class="co">#&gt; </span></span>
+<span><span class="co">#&gt; [[3]]</span></span>
+<span><span class="co">#&gt; [1] "March"</span></span>
+<span><span class="co">#&gt; </span></span>
+<span><span class="co">#&gt; [[4]]</span></span>
+<span><span class="co">#&gt; [1] "January"  "February"</span></span>
+<span><span class="co">#&gt; </span></span>
+<span><span class="co">#&gt; [[5]]</span></span>
+<span><span class="co">#&gt; [1] "January" "March"  </span></span>
+<span><span class="co">#&gt; </span></span>
+<span><span class="co">#&gt; [[6]]</span></span>
+<span><span class="co">#&gt; [1] "February" "March"   </span></span>
+<span><span class="co">#&gt; </span></span>
+<span><span class="co">#&gt; [[7]]</span></span>
+<span><span class="co">#&gt; [1] "January"  "February" "March"</span></span>
+<span></span>
+<span><span class="co">### only subsets of length 1 or 3</span></span>
+<span><span class="fu"><a href="../reference/subsets.html">subsets</a></span><span class="op">(</span><span class="va">v</span>, <span class="fu"><a href="https://rdrr.io/r/base/c.html" class="external-link">c</a></span><span class="op">(</span><span class="fl">1</span>, <span class="fl">3</span><span class="op">)</span><span class="op">)</span> </span>
+<span><span class="co">#&gt; [[1]]</span></span>
+<span><span class="co">#&gt; [1] "January"</span></span>
+<span><span class="co">#&gt; </span></span>
+<span><span class="co">#&gt; [[2]]</span></span>
+<span><span class="co">#&gt; [1] "February"</span></span>
+<span><span class="co">#&gt; </span></span>
+<span><span class="co">#&gt; [[3]]</span></span>
+<span><span class="co">#&gt; [1] "March"</span></span>
+<span><span class="co">#&gt; </span></span>
+<span><span class="co">#&gt; [[4]]</span></span>
+<span><span class="co">#&gt; [1] "January"  "February" "March"</span></span>
+<span></span>
+<span><span class="co">### the trivial case also works</span></span>
+<span><span class="fu"><a href="../reference/subsets.html">subsets</a></span><span class="op">(</span><span class="fu"><a href="https://rdrr.io/r/base/integer.html" class="external-link">integer</a></span><span class="op">(</span><span class="op">)</span><span class="op">)</span>  </span>
+<span><span class="co">#&gt; list()</span></span></code></pre></div>
+</div>
+  </main><aside class="col-md-3"><nav id="toc" aria-label="Table of contents"><h2>On this page</h2>
+    </nav></aside>
 </div>
 
 
