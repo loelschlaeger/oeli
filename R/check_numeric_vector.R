@@ -1,7 +1,7 @@
-#' Check if an argument is a numeric vector
+#' Check numeric vector
 #'
 #' @description
-#' This function checks whether the input is a numeric vector.
+#' These functions check whether the input is a numeric vector.
 #'
 #' @inheritParams checkmate::check_numeric
 #' @inheritParams checkmate::check_atomic_vector
@@ -12,6 +12,14 @@
 #' @keywords validation
 #' @family vector helpers
 #' @export
+#'
+#' @examples
+#' x <- c(1, 2, "3")
+#' check_numeric_vector(x)
+#' test_numeric_vector(x)
+#' \dontrun{
+#' assert_numeric_vector(x)
+#' }
 
 check_numeric_vector <- function(
     x, lower = -Inf, upper = Inf, finite = FALSE, any.missing = TRUE,

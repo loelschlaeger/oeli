@@ -10,3 +10,33 @@ home:
 authors:
   Lennart Oelschläger:
     href: https://loelschlaeger.de
+
+reference:
+- subtitle: Distribution
+  desc: These functions help to work with distributions.
+- contents:
+  - has_keyword("distribution")
+- subtitle: Functional
+  desc: These functions help to work with functions.
+- contents:
+  - has_keyword("functional")
+- subtitle: Indexing
+  desc: These functions help to index objects.
+- contents:
+  - has_keyword("indexing")
+- subtitle: Packaging
+  desc: These functions help to build a package.
+- contents:
+  - has_keyword("packaging")
+- subtitle: Simulation
+  desc: These functions help to simulate something.
+- contents:
+  - has_keyword("simulation")
+- subtitle: Transformation
+  desc: These functions help to transform an input.
+- contents:
+  - has_keyword("transformation")
+- subtitle: Validation
+  desc: These functions help to validate an input.
+- contents:
+  - has_keyword("validation")

@@ -1,4 +1,4 @@
-#' Response to an input check
+#' Standardized response to an input check
 #'
 #' @description
 #' This function provides standardized responses to input checks, ensuring
@@ -6,12 +6,12 @@
 #'
 #' @param check \[`TRUE` | `character(1)`\]\cr
 #' Matches the return value of the `check*` functions from the `{checkmate}`
-#' package, i.e., either `TRUE` if the check was successful, or an error message
-#' else.
+#' package, i.e., either `TRUE` if the check was successful, or a `character`
+#' (the error message) else.
 #'
 #' @param var_name \[`NULL` | `character(1)`\]\cr
 #' Optionally specifies the name of the input being checked. This name will be
-#' used as the default value for the `prefix` argument.
+#' used for the default value of the `prefix` argument.
 #'
 #' @param error \[`logical(1)`\]\cr
 #' If `check` is not `TRUE`, throw an error?

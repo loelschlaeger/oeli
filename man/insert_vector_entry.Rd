@@ -49,6 +49,7 @@ Other vector helpers:
 \code{\link{chunk_vector}()},
 \code{\link{match_numerics}()},
 \code{\link{permutations}()},
+\code{\link{subsets}()},
 \code{\link{vector_occurrence}()}
 }
 \concept{vector helpers}

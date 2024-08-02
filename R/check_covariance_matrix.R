@@ -1,8 +1,8 @@
-#' Check if an argument is a covariance matrix
+#' Check covariance matrix
 #'
 #' @description
-#' This function checks whether the input fulfills the covariance matrix
-#' properties.
+#' These functions check whether the input fulfills the properties of a
+#' covariance matrix.
 #'
 #' @inheritParams checkmate::check_matrix
 #'
@@ -30,7 +30,10 @@
 check_covariance_matrix <- function(
     x, dim = NULL, tolerance = sqrt(.Machine$double.eps)
   ) {
-  checkmate::assert_number(tolerance, lower = 0)
+  input_check_response(
+    check = checkmate::check_number(tolerance, lower = 0),
+    var_name = "tolerance"
+  )
   res <- checkmate::check_matrix(x, mode = "numeric")
   if (!isTRUE(res)) {
     return(res)
@@ -51,7 +54,10 @@ check_covariance_matrix <- function(
     return("Must have positive eigenvalues only")
   }
   if (!is.null(dim)) {
-    checkmate::assert_count(dim, positive = TRUE)
+    input_check_response(
+      check = checkmate::check_count(dim, positive = TRUE),
+      var_name = "dim"
+    )
     if (nrow(x) != dim) {
       return(paste("Must be of dimension", dim))
     }

@@ -15,7 +15,41 @@ knitr::opts_chunk$set(
   fig.dim = c(7, 7), 
   out.width = "50%"
 )
-#devtools::load_all()
-library("oeli")
+devtools::load_all() # TODO
+#library("oeli")
 ```
 
+## Check numeric vector
+
+Is a given object a numeric vector? This can be checked in three ways as follows:
+
+```{r, check_numeric_vector, error = TRUE}
+### x is a numeric vector
+x <- 1:3
+check_numeric_vector(x)
+test_numeric_vector(x)
+assert_numeric_vector(x)
+
+### y ist not a numeric vector
+y <- c(1, 2, "3")
+check_numeric_vector(y)
+test_numeric_vector(y)
+assert_numeric_vector(y)
+```
+
+## Generate vector subsets
+
+The `subsets()` function generates subsets of a vector.
+
+```{r, subsets}
+v <- month.name[1:3]
+
+### all subsets
+subsets(v)
+
+### only subsets of length 1 or 3
+subsets(v, c(1, 3)) 
+
+### the trivial case also works
+subsets(integer())  
+```

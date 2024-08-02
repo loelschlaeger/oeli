@@ -15,7 +15,7 @@ knitr::opts_chunk$set(
   fig.dim = c(7, 7), 
   out.width = "50%"
 )
-#devtools::load_all()
+#devtools::load_all() # TODO
 library("oeli")
 ```
 

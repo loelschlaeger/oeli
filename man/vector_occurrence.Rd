@@ -36,7 +36,8 @@ Other vector helpers:
 \code{\link{chunk_vector}()},
 \code{\link{insert_vector_entry}()},
 \code{\link{match_numerics}()},
-\code{\link{permutations}()}
+\code{\link{permutations}()},
+\code{\link{subsets}()}
 }
 \concept{vector helpers}
 \keyword{indexing}

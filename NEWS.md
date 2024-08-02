@@ -6,6 +6,8 @@
 
 * Added function `correlated_regressors()` to simulate correlated regressor values.
 
+* Improved documentation.
+
 # oeli 0.5.2
 
 * Added function `identical_structure()` to check if two objects have the identical structure.

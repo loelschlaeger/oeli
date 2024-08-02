@@ -4,7 +4,7 @@
 \alias{check_numeric_vector}
 \alias{assert_numeric_vector}
 \alias{test_numeric_vector}
-\title{Check if an argument is a numeric vector}
+\title{Check numeric vector}
 \usage{
 check_numeric_vector(
   x,
@@ -120,7 +120,15 @@ Collection to store assertion messages. See \code{\link[checkmate]{AssertCollect
 Same as documented in \code{\link[checkmate]{check_numeric}}.
 }
 \description{
-This function checks whether the input is a numeric vector.
+These functions check whether the input is a numeric vector.
+}
+\examples{
+x <- c(1, 2, "3")
+check_numeric_vector(x)
+test_numeric_vector(x)
+\dontrun{
+assert_numeric_vector(x)
+}
 }
 \seealso{
 Other vector helpers: 
@@ -129,6 +137,7 @@ Other vector helpers:
 \code{\link{insert_vector_entry}()},
 \code{\link{match_numerics}()},
 \code{\link{permutations}()},
+\code{\link{subsets}()},
 \code{\link{vector_occurrence}()}
 }
 \concept{vector helpers}

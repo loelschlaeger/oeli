@@ -7,11 +7,10 @@
 subsets(v, n = seq_along(v))
 }
 \arguments{
-\item{v}{A \code{vector} (\code{numeric} or \code{character}).}
+\item{n}{[integer(1)`]\cr
+The requested subset sizes.}
 
-\item{n}{An \code{integer} vector with the required subset sizes.
-By default, \code{n = seq_along(v)}, i.e., all subsets of \code{v} are
-generated.}
+\item{\[atomic()`\]\cr}{A vector of elements.}
 }
 \value{
 A \code{list}, each element is a subset of \code{v}.
@@ -25,3 +24,15 @@ subsets(v)
 subsets(v, c(1, 3)) # only subsets of length 1 or 3
 subsets(integer())  # trivial case works
 }
+\seealso{
+Other vector helpers: 
+\code{\link{check_numeric_vector}()},
+\code{\link{check_probability_vector}()},
+\code{\link{chunk_vector}()},
+\code{\link{insert_vector_entry}()},
+\code{\link{match_numerics}()},
+\code{\link{permutations}()},
+\code{\link{vector_occurrence}()}
+}
+\concept{vector helpers}
+\keyword{indexing}

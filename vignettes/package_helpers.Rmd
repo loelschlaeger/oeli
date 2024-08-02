@@ -12,14 +12,12 @@ knitr::opts_chunk$set(
   collapse = TRUE,
   comment = "#>",
   fig.align = 'center', 
-  fig.dim = c(7, 7), 
+  fig.dim = c(7, 7),
   out.width = "50%"
 )
-#devtools::load_all()
-library("oeli")
+devtools::load_all() # TODO
+#library("oeli")
 ```
-
-This vignette demonstrates helper functions for building an R package.
 
 ## Response to an input check
 

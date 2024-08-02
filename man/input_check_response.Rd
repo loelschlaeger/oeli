@@ -2,7 +2,7 @@
 % Please edit documentation in R/input_check_response.R
 \name{input_check_response}
 \alias{input_check_response}
-\title{Response to an input check}
+\title{Standardized response to an input check}
 \usage{
 input_check_response(
   check,
@@ -14,12 +14,12 @@ input_check_response(
 \arguments{
 \item{check}{[\code{TRUE} | \code{character(1)}]\cr
 Matches the return value of the \verb{check*} functions from the \code{{checkmate}}
-package, i.e., either \code{TRUE} if the check was successful, or an error message
-else.}
+package, i.e., either \code{TRUE} if the check was successful, or a \code{character}
+(the error message) else.}
 
 \item{var_name}{[\code{NULL} | \code{character(1)}]\cr
 Optionally specifies the name of the input being checked. This name will be
-used as the default value for the \code{prefix} argument.}
+used for the default value of the \code{prefix} argument.}
 
 \item{error}{[\code{logical(1)}]\cr
 If \code{check} is not \code{TRUE}, throw an error?}

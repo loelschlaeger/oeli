@@ -1,4 +1,8 @@
 test_that("check for numeric vector works", {
+  # Test a valid numeric vector
+  valid_numeric_vector <- 1:9
+  expect_true(check_numeric_vector(valid_numeric_vector))
+
   # Test a non-numeric vector
   non_numeric_vector <- letters[1:9]
   expect_error(

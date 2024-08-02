@@ -4,7 +4,7 @@
 \alias{check_covariance_matrix}
 \alias{assert_covariance_matrix}
 \alias{test_covariance_matrix}
-\title{Check if an argument is a covariance matrix}
+\title{Check covariance matrix}
 \usage{
 check_covariance_matrix(x, dim = NULL, tolerance = sqrt(.Machine$double.eps))
 
@@ -39,8 +39,8 @@ Collection to store assertion messages. See \code{\link[checkmate]{AssertCollect
 Same as documented in \code{\link[checkmate]{check_matrix}}.
 }
 \description{
-This function checks whether the input fulfills the covariance matrix
-properties.
+These functions check whether the input fulfills the properties of a
+covariance matrix.
 }
 \examples{
 M <- matrix(c(1, 2, 3, 2, 1, 2, 3, 2, 1), nrow = 3)

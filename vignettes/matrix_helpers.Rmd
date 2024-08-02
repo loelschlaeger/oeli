@@ -15,15 +15,13 @@ knitr::opts_chunk$set(
   fig.dim = c(7, 7), 
   out.width = "50%"
 )
-#devtools::load_all()
-library("oeli")
+devtools::load_all() # TODO
+#library("oeli")
 ```
-
-This vignette demonstrates helper functions for working with a `matrix` object.
 
 ## Check correlation matrix
 
-Is a given `matrix` object a correlation matrix? This can be checked in three ways as follows:
+Is a given object a correlation matrix? This can be checked in three ways as follows:
 
 ```{r, check_correlation_matrix, error = TRUE}
 ### N is a correlation matrix
@@ -39,10 +37,9 @@ test_correlation_matrix(M)
 assert_correlation_matrix(M)
 ```
 
-
 ## Check covariance matrix
 
-The same check for a correlation matrix also works for a covariance matrix:
+The same checks for a correlation matrix also work for a covariance matrix:
 
 ```{r, check_covariance_matrix, error = TRUE}
 ### N is a covariance matrix

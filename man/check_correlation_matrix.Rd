@@ -4,7 +4,7 @@
 \alias{check_correlation_matrix}
 \alias{assert_correlation_matrix}
 \alias{test_correlation_matrix}
-\title{Check if an argument is a correlation matrix}
+\title{Check correlation matrix}
 \usage{
 check_correlation_matrix(x, dim = NULL, tolerance = sqrt(.Machine$double.eps))
 
@@ -39,8 +39,8 @@ Collection to store assertion messages. See \code{\link[checkmate]{AssertCollect
 Same as documented in \code{\link[checkmate]{check_matrix}}.
 }
 \description{
-These functions checks whether the input fulfills the correlation matrix
-properties.
+These functions check whether the input fulfills the properties of a
+correlation matrix.
 }
 \examples{
 M <- matrix(c(1,  0.9,  0.9, 0.9,  1,  -0.9, 0.9,  -0.9,  1), nrow = 3)
