@@ -7,10 +7,11 @@
 subsets(v, n = seq_along(v))
 }
 \arguments{
+\item{v}{[atomic()`]\cr
+A vector of elements.}
+
 \item{n}{[integer(1)`]\cr
 The requested subset sizes.}
-
-\item{\[atomic()`\]\cr}{A vector of elements.}
 }
 \value{
 A \code{list}, each element is a subset of \code{v}.

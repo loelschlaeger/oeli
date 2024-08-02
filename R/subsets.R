@@ -3,7 +3,7 @@
 #' @description
 #' This function generates subsets of a vector.
 #'
-#' @param \[atomic()`\]\cr
+#' @param v \[atomic()`\]\cr
 #' A vector of elements.
 #'
 #' @param n \[integer(1)`\]\cr
