@@ -59,20 +59,9 @@ group_data_frame(df = df, by = "label")
 #> 10     B     10
 ```
 
-### [`date` helpers](https://loelschlaeger.de/oeli/articles/date_helpers.html)
-
-The start of which year is closest to a specified date?
-
-``` r
-find_closest_year(as.Date("2022-07-15"))
-#> [1] 2023
-find_closest_year(as.Date("2022-05-15"))
-#> [1] 2022
-```
-
 ### [`function` helpers](https://loelschlaeger.de/oeli/articles/function_helpers.html)
 
-Default arguments of a `function` can be retrieved via:
+Retrieving default arguments of a `function`:
 
 ``` r
 f <- function(a, b = 1, c = "", ...) { }
@@ -105,7 +94,7 @@ merge_lists(list("a" = 1, "b" = 2), list("b" = 3, "c" = 4, "d" = NULL))
 
 ### [`matrix` helpers](https://loelschlaeger.de/oeli/articles/matrix_helpers.html)
 
-We can check if a `matrix` is a proper transition probability matrix:
+Checking if a `matrix` is a proper transition probability matrix:
 
 ``` r
 matrix <- diag(4)
@@ -116,7 +105,7 @@ check_transition_probability_matrix(matrix)
 
 ### [package helpers](https://loelschlaeger.de/oeli/articles/package_helpers.html)
 
-A basic package logo can be quickly created:
+Quickly having a basic package logo:
 
 ``` r
 package_logo("my_package", brackets = TRUE, use_logo = FALSE)
@@ -130,22 +119,22 @@ How to print a matrix without filling up the entire console?
 x <- matrix(rnorm(10000), ncol = 100, nrow = 100)
 print_matrix(x, rowdots = 4, coldots = 4, digits = 2, label = "what a big matrix")
 #> what a big matrix : 100 x 100 matrix of doubles 
-#>        [,1]  [,2]  [,3] ... [,100]
-#> [1,]   0.21  0.49 -0.09 ...  -0.45
-#> [2,]   0.48  0.93 -0.14 ...   0.89
-#> [3,]   0.25 -1.17 -0.56 ...   0.18
-#> ...     ...   ...   ... ...    ...
-#> [100,] -1.6 -0.37  0.41 ...  -1.74
+#>         [,1]  [,2]  [,3] ... [,100]
+#> [1,]    0.09 -0.43   0.2 ...   -0.6
+#> [2,]    -0.3  0.44  0.88 ...   0.14
+#> [3,]   -0.04 -2.39  1.69 ...    2.1
+#> ...      ...   ...   ... ...    ...
+#> [100,]  0.83  0.32 -0.05 ...   1.77
 ```
 
 ### [simulation helpers](https://loelschlaeger.de/oeli/articles/simulation_helpers.html)
 
-The following simulates a Markov chain:
+Simulate a Markov chain:
 
 ``` r
 Gamma <- sample_transition_probability_matrix(dim = 3)
 simulate_markov_chain(Gamma = Gamma, T = 20)
-#>  [1] 1 3 1 3 2 2 2 2 2 2 3 1 1 1 1 2 2 3 2 1
+#>  [1] 3 3 2 2 3 3 2 3 1 1 1 1 1 1 1 1 1 1 1 1
 ```
 
 ### [`vector` helpers](https://loelschlaeger.de/oeli/articles/vector_helpers.html)

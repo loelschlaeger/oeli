@@ -4,7 +4,7 @@
 \alias{check_list_of_lists}
 \alias{assert_list_of_lists}
 \alias{test_list_of_lists}
-\title{Check if an argument is a list of lists}
+\title{Check list of lists}
 \usage{
 check_list_of_lists(x, len = NULL)
 
@@ -35,7 +35,16 @@ Collection to store assertion messages. See \code{\link[checkmate]{AssertCollect
 Same as documented in \code{\link[checkmate]{check_list}}.
 }
 \description{
-This function checks whether the input is a list that contains list elements.
+These functions check whether the input is a list that contains list
+elements.
+}
+\examples{
+L <- list(list(1), list(2), 3)
+check_list_of_lists(L)
+test_list_of_lists(L)
+\dontrun{
+assert_list_of_lists(L)
+}
 }
 \seealso{
 Other list helpers: 

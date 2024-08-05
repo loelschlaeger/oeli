@@ -30,11 +30,29 @@ check_numeric_vector(x)
 test_numeric_vector(x)
 assert_numeric_vector(x)
 
-### y ist not a numeric vector
+### y is not a numeric vector
 y <- c(1, 2, "3")
 check_numeric_vector(y)
 test_numeric_vector(y)
 assert_numeric_vector(y)
+```
+
+## Check probability vector
+
+A probability vector is a special type of numeric vector:
+
+```{r, check_probability_vector, error = TRUE}
+### p1 is a probability vector
+p1 <- c(0.2, 0.3, 0.5)
+check_probability_vector(p1)
+test_probability_vector(p1)
+assert_probability_vector(p1)
+
+### p2 is not a probability vector
+p2 <- c(0.2, 0.3, 0.6)
+check_probability_vector(p2)
+test_probability_vector(p2)
+assert_probability_vector(p2)
 ```
 
 ## Generate vector subsets

@@ -1,8 +1,8 @@
-#' Check if an argument is a probability vector
+#' Check probability vector
 #'
 #' @description
-#' This function checks whether the input is a real vector with non-negative
-#' entries that add up to one.
+#' These functions check whether the input fulfills the properties of a
+#' probability matrix.
 #'
 #' @param tolerance \[`numeric(1)`\]\cr
 #' A non-negative tolerance value.
@@ -15,11 +15,22 @@
 #' @keywords validation
 #' @family vector helpers
 #' @export
+#'
+#' @examples
+#' p <- c(0.2, 0.3, 0.6)
+#' check_probability_vector(p)
+#' test_probability_vector(p)
+#' \dontrun{
+#' assert_probability_vector(p)
+#' }
 
 check_probability_vector <- function(
     x, len = NULL, tolerance = sqrt(.Machine$double.eps)
 ) {
-  checkmate::assert_number(tolerance, lower = 0)
+  input_check_response(
+    check = checkmate::check_number(tolerance, lower = 0),
+    var_name = "tolerance"
+  )
   res <- check_numeric_vector(
     x, any.missing = FALSE, len = len, lower = 0, upper = 1
   )

@@ -4,7 +4,7 @@
 \alias{check_probability_vector}
 \alias{assert_probability_vector}
 \alias{test_probability_vector}
-\title{Check if an argument is a probability vector}
+\title{Check probability vector}
 \usage{
 check_probability_vector(x, len = NULL, tolerance = sqrt(.Machine$double.eps))
 
@@ -39,8 +39,16 @@ Collection to store assertion messages. See \code{\link[checkmate]{AssertCollect
 Same as documented in \code{\link[checkmate]{check_numeric}}.
 }
 \description{
-This function checks whether the input is a real vector with non-negative
-entries that add up to one.
+These functions check whether the input fulfills the properties of a
+probability matrix.
+}
+\examples{
+p <- c(0.2, 0.3, 0.6)
+check_probability_vector(p)
+test_probability_vector(p)
+\dontrun{
+assert_probability_vector(p)
+}
 }
 \seealso{
 Other vector helpers: 

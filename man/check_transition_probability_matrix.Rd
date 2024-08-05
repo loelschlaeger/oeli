@@ -4,7 +4,7 @@
 \alias{check_transition_probability_matrix}
 \alias{assert_transition_probability_matrix}
 \alias{test_transition_probability_matrix}
-\title{Check if an argument is a transition probability matrix}
+\title{Check transition probability matrix}
 \usage{
 check_transition_probability_matrix(
   x,
@@ -47,8 +47,15 @@ Collection to store assertion messages. See \code{\link[checkmate]{AssertCollect
 Same as documented in \code{\link[checkmate]{check_matrix}}.
 }
 \description{
-This function checks whether the input is a quadratic, real matrix with
-elements between 0 and 1 and row sums equal to 1.
+These functions check whether the input is a transition probability matrix.
+}
+\examples{
+T <- matrix(c(0.8,  0.2,  0.1, 0.1,  0.7,  0.4, 0.1,  0.1,  0.6), nrow = 3)
+check_transition_probability_matrix(T)
+test_transition_probability_matrix(T)
+\dontrun{
+assert_transition_probability_matrix(T)
+}
 }
 \seealso{
 Other matrix helpers: 

@@ -30,7 +30,7 @@ check_correlation_matrix(N, dim = 3)
 test_correlation_matrix(N, dim = 3)
 assert_correlation_matrix(N, dim = 3)
 
-### M ist not a correlation matrix
+### M is not a correlation matrix
 M <- matrix(c(1,  0.9,  0.9, 0.9,  1,  -0.9, 0.9,  -0.9,  1), nrow = 3)
 check_correlation_matrix(M)
 test_correlation_matrix(M)
@@ -48,9 +48,27 @@ check_covariance_matrix(N, dim = 3)
 test_covariance_matrix(N, dim = 3)
 assert_covariance_matrix(N, dim = 3)
 
-### M ist not a correlation matrix
+### M is not a correlation matrix
 M <- matrix(c(1, 2, 3, 2, 1, 2, 3, 2, 1), nrow = 3)
 check_covariance_matrix(M)
 test_covariance_matrix(M)
 assert_covariance_matrix(M)
+```
+
+## Check transistion probability matrix
+
+And what about transition probability matrices?
+
+```{r, check_transition_probability_matrix, error = TRUE}
+### T1 is a transition probability matrix
+T1 <- matrix(c(0.8,  0.2,  0, 0.1,  0.7,  0.4, 0.1,  0.1,  0.6), nrow = 3)
+check_transition_probability_matrix(T1)
+test_transition_probability_matrix(T1)
+assert_transition_probability_matrix(T1)
+
+### T2 is not a transition probability matrix
+T2 <- matrix(c(0.8,  0.2,  0.1, 0.1,  0.7,  0.4, 0.1,  0.1,  0.6), nrow = 3)
+check_transition_probability_matrix(T2)
+test_transition_probability_matrix(T2)
+assert_transition_probability_matrix(T2)
 ```

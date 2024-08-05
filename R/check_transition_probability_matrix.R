@@ -1,8 +1,7 @@
-#' Check if an argument is a transition probability matrix
+#' Check transition probability matrix
 #'
 #' @description
-#' This function checks whether the input is a quadratic, real matrix with
-#' elements between 0 and 1 and row sums equal to 1.
+#' These functions check whether the input is a transition probability matrix.
 #'
 #' @inheritParams check_covariance_matrix
 #'
@@ -12,11 +11,22 @@
 #' @keywords validation
 #' @family matrix helpers
 #' @export
+#'
+#' @examples
+#' T <- matrix(c(0.8,  0.2,  0.1, 0.1,  0.7,  0.4, 0.1,  0.1,  0.6), nrow = 3)
+#' check_transition_probability_matrix(T)
+#' test_transition_probability_matrix(T)
+#' \dontrun{
+#' assert_transition_probability_matrix(T)
+#' }
 
 check_transition_probability_matrix <- function(
     x, dim = NULL, tolerance = sqrt(.Machine$double.eps)
   ) {
-  checkmate::assert_number(tolerance, lower = 0)
+  input_check_response(
+    check = checkmate::check_number(tolerance, lower = 0),
+    var_name = "tolerance"
+  )
   res <- checkmate::check_matrix(x, mode = "numeric")
   if (!isTRUE(res)) {
     return(res)
