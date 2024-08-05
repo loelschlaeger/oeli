@@ -3,14 +3,13 @@ pkgdown: 2.1.0
 pkgdown_sha: ~
 articles:
   dataframe_helpers: dataframe_helpers.html
-  date_helpers: date_helpers.html
   function_helpers: function_helpers.html
   list_helpers: list_helpers.html
   matrix_helpers: matrix_helpers.html
   package_helpers: package_helpers.html
   simulation_helpers: simulation_helpers.html
   vector_helpers: vector_helpers.html
-last_built: 2024-08-02T13:42Z
+last_built: 2024-08-05T09:13Z
 urls:
   reference: http://loelschlaeger.de/oeli/reference
   article: http://loelschlaeger.de/oeli/articles

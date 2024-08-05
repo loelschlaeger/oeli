@@ -29,7 +29,6 @@ The functions with suffix _cpp perform no input checks, hence are faster."><meta
 <li class="nav-item dropdown">
   <button class="nav-link dropdown-toggle" type="button" id="dropdown-articles" data-bs-toggle="dropdown" aria-expanded="false" aria-haspopup="true">Articles</button>
   <ul class="dropdown-menu" aria-labelledby="dropdown-articles"><li><a class="dropdown-item" href="../articles/dataframe_helpers.html">Helpers for working with data.frames</a></li>
-    <li><a class="dropdown-item" href="../articles/date_helpers.html">Helpers for working with dates</a></li>
     <li><a class="dropdown-item" href="../articles/function_helpers.html">Helpers for working with functions</a></li>
     <li><a class="dropdown-item" href="../articles/list_helpers.html">Helpers for working with lists</a></li>
     <li><a class="dropdown-item" href="../articles/matrix_helpers.html">Helpers for working with matrices</a></li>
@@ -144,12 +143,12 @@ Return the logarithm of the density value?</p></dd>
 <span class="r-in"><span></span></span>
 <span class="r-in"><span><span class="co"># sample</span></span></span>
 <span class="r-in"><span><span class="fu"><a href="dmvnorm.html">rmvnorm</a></span><span class="op">(</span>n <span class="op">=</span> <span class="fl">3</span>, mean <span class="op">=</span> <span class="va">mean</span>, Sigma <span class="op">=</span> <span class="va">Sigma</span><span class="op">)</span></span></span>
-<span class="r-out co"><span class="r-pr">#&gt;</span>            [,1]      [,2]</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> [1,] -0.4035738 0.9438868</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> [2,] -2.9359990 1.1592323</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> [3,]  0.5455058 0.4907415</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span>            [,1]       [,2]</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> [1,]  0.1310688  0.9109809</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> [2,]  0.4615199  0.8636803</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> [3,] -1.5717468 -0.3970272</span>
 <span class="r-in"><span><span class="fu"><a href="dmvnorm.html">rmvnorm</a></span><span class="op">(</span>mean <span class="op">=</span> <span class="va">mean</span>, Sigma <span class="op">=</span> <span class="va">Sigma</span>, log <span class="op">=</span> <span class="cn">TRUE</span><span class="op">)</span></span></span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> [1] 0.0840809 0.5692592</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> [1] 1.2127743 0.9642983</span>
 </code></pre></div>
     </div>
   </main><aside class="col-md-3"><nav id="toc" aria-label="Table of contents"><h2>On this page</h2>

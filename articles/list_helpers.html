@@ -40,7 +40,6 @@
   <button class="nav-link dropdown-toggle" type="button" id="dropdown-articles" data-bs-toggle="dropdown" aria-expanded="false" aria-haspopup="true">Articles</button>
   <ul class="dropdown-menu" aria-labelledby="dropdown-articles">
 <li><a class="dropdown-item" href="../articles/dataframe_helpers.html">Helpers for working with data.frames</a></li>
-    <li><a class="dropdown-item" href="../articles/date_helpers.html">Helpers for working with dates</a></li>
     <li><a class="dropdown-item" href="../articles/function_helpers.html">Helpers for working with functions</a></li>
     <li><a class="dropdown-item" href="../articles/list_helpers.html">Helpers for working with lists</a></li>
     <li><a class="dropdown-item" href="../articles/matrix_helpers.html">Helpers for working with matrices</a></li>
@@ -77,7 +76,29 @@
 
     
     
-
+<div class="section level2">
+<h2 id="check-list-of-lists">Check list of lists<a class="anchor" aria-label="anchor" href="#check-list-of-lists"></a>
+</h2>
+<p>Is a given object a list of list elements? This can be checked in
+three ways as follows:</p>
+<div class="sourceCode" id="cb1"><pre class="downlit sourceCode r">
+<code class="sourceCode R"><span><span class="co">### L1 is a list of lists</span></span>
+<span><span class="va">L1</span> <span class="op">&lt;-</span> <span class="fu"><a href="https://rdrr.io/r/base/list.html" class="external-link">list</a></span><span class="op">(</span><span class="fu"><a href="https://rdrr.io/r/base/list.html" class="external-link">list</a></span><span class="op">(</span><span class="fl">1</span><span class="op">)</span>, <span class="fu"><a href="https://rdrr.io/r/base/list.html" class="external-link">list</a></span><span class="op">(</span><span class="fl">2</span><span class="op">)</span>, <span class="fu"><a href="https://rdrr.io/r/base/list.html" class="external-link">list</a></span><span class="op">(</span><span class="fl">3</span><span class="op">)</span><span class="op">)</span></span>
+<span><span class="fu"><a href="../reference/check_list_of_lists.html">check_list_of_lists</a></span><span class="op">(</span><span class="va">L1</span><span class="op">)</span></span>
+<span><span class="co">#&gt; [1] TRUE</span></span>
+<span><span class="fu"><a href="../reference/check_list_of_lists.html">test_list_of_lists</a></span><span class="op">(</span><span class="va">L1</span><span class="op">)</span></span>
+<span><span class="co">#&gt; [1] TRUE</span></span>
+<span><span class="fu"><a href="../reference/check_list_of_lists.html">assert_list_of_lists</a></span><span class="op">(</span><span class="va">L1</span><span class="op">)</span></span>
+<span></span>
+<span><span class="co">### L2 is not a list of lists</span></span>
+<span><span class="va">L2</span> <span class="op">&lt;-</span> <span class="fu"><a href="https://rdrr.io/r/base/list.html" class="external-link">list</a></span><span class="op">(</span><span class="fu"><a href="https://rdrr.io/r/base/list.html" class="external-link">list</a></span><span class="op">(</span><span class="fl">1</span><span class="op">)</span>, <span class="fu"><a href="https://rdrr.io/r/base/list.html" class="external-link">list</a></span><span class="op">(</span><span class="fl">2</span><span class="op">)</span>, <span class="fl">3</span><span class="op">)</span></span>
+<span><span class="fu"><a href="../reference/check_list_of_lists.html">check_list_of_lists</a></span><span class="op">(</span><span class="va">L2</span><span class="op">)</span></span>
+<span><span class="co">#&gt; [1] "Check for element 3 failed: Must be of type 'list', not 'double'"</span></span>
+<span><span class="fu"><a href="../reference/check_list_of_lists.html">test_list_of_lists</a></span><span class="op">(</span><span class="va">L2</span><span class="op">)</span></span>
+<span><span class="co">#&gt; [1] FALSE</span></span>
+<span><span class="fu"><a href="../reference/check_list_of_lists.html">assert_list_of_lists</a></span><span class="op">(</span><span class="va">L2</span><span class="op">)</span></span>
+<span><span class="co">#&gt; Error in eval(expr, envir, enclos): Assertion on 'L2' failed: Check for element 3 failed: Must be of type 'list', not 'double'.</span></span></code></pre></div>
+</div>
   </main>
 </div>
 

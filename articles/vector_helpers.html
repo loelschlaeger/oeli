@@ -40,7 +40,6 @@
   <button class="nav-link dropdown-toggle" type="button" id="dropdown-articles" data-bs-toggle="dropdown" aria-expanded="false" aria-haspopup="true">Articles</button>
   <ul class="dropdown-menu" aria-labelledby="dropdown-articles">
 <li><a class="dropdown-item" href="../articles/dataframe_helpers.html">Helpers for working with data.frames</a></li>
-    <li><a class="dropdown-item" href="../articles/date_helpers.html">Helpers for working with dates</a></li>
     <li><a class="dropdown-item" href="../articles/function_helpers.html">Helpers for working with functions</a></li>
     <li><a class="dropdown-item" href="../articles/list_helpers.html">Helpers for working with lists</a></li>
     <li><a class="dropdown-item" href="../articles/matrix_helpers.html">Helpers for working with matrices</a></li>
@@ -91,7 +90,7 @@ as follows:</p>
 <span><span class="co">#&gt; [1] TRUE</span></span>
 <span><span class="fu"><a href="../reference/check_numeric_vector.html">assert_numeric_vector</a></span><span class="op">(</span><span class="va">x</span><span class="op">)</span></span>
 <span></span>
-<span><span class="co">### y ist not a numeric vector</span></span>
+<span><span class="co">### y is not a numeric vector</span></span>
 <span><span class="va">y</span> <span class="op">&lt;-</span> <span class="fu"><a href="https://rdrr.io/r/base/c.html" class="external-link">c</a></span><span class="op">(</span><span class="fl">1</span>, <span class="fl">2</span>, <span class="st">"3"</span><span class="op">)</span></span>
 <span><span class="fu"><a href="../reference/check_numeric_vector.html">check_numeric_vector</a></span><span class="op">(</span><span class="va">y</span><span class="op">)</span></span>
 <span><span class="co">#&gt; [1] "Must be of type 'numeric', not 'character'"</span></span>
@@ -101,11 +100,33 @@ as follows:</p>
 <span><span class="co">#&gt; Error in eval(expr, envir, enclos): Assertion on 'y' failed: Must be of type 'numeric', not 'character'.</span></span></code></pre></div>
 </div>
 <div class="section level2">
+<h2 id="check-probability-vector">Check probability vector<a class="anchor" aria-label="anchor" href="#check-probability-vector"></a>
+</h2>
+<p>A probability vector is a special type of numeric vector:</p>
+<div class="sourceCode" id="cb2"><pre class="downlit sourceCode r">
+<code class="sourceCode R"><span><span class="co">### p1 is a probability vector</span></span>
+<span><span class="va">p1</span> <span class="op">&lt;-</span> <span class="fu"><a href="https://rdrr.io/r/base/c.html" class="external-link">c</a></span><span class="op">(</span><span class="fl">0.2</span>, <span class="fl">0.3</span>, <span class="fl">0.5</span><span class="op">)</span></span>
+<span><span class="fu"><a href="../reference/check_probability_vector.html">check_probability_vector</a></span><span class="op">(</span><span class="va">p1</span><span class="op">)</span></span>
+<span><span class="co">#&gt; [1] TRUE</span></span>
+<span><span class="fu"><a href="../reference/check_probability_vector.html">test_probability_vector</a></span><span class="op">(</span><span class="va">p1</span><span class="op">)</span></span>
+<span><span class="co">#&gt; [1] TRUE</span></span>
+<span><span class="fu"><a href="../reference/check_probability_vector.html">assert_probability_vector</a></span><span class="op">(</span><span class="va">p1</span><span class="op">)</span></span>
+<span></span>
+<span><span class="co">### p2 is not a probability vector</span></span>
+<span><span class="va">p2</span> <span class="op">&lt;-</span> <span class="fu"><a href="https://rdrr.io/r/base/c.html" class="external-link">c</a></span><span class="op">(</span><span class="fl">0.2</span>, <span class="fl">0.3</span>, <span class="fl">0.6</span><span class="op">)</span></span>
+<span><span class="fu"><a href="../reference/check_probability_vector.html">check_probability_vector</a></span><span class="op">(</span><span class="va">p2</span><span class="op">)</span></span>
+<span><span class="co">#&gt; [1] "Must add up to 1"</span></span>
+<span><span class="fu"><a href="../reference/check_probability_vector.html">test_probability_vector</a></span><span class="op">(</span><span class="va">p2</span><span class="op">)</span></span>
+<span><span class="co">#&gt; [1] FALSE</span></span>
+<span><span class="fu"><a href="../reference/check_probability_vector.html">assert_probability_vector</a></span><span class="op">(</span><span class="va">p2</span><span class="op">)</span></span>
+<span><span class="co">#&gt; Error in eval(expr, envir, enclos): Assertion on 'p2' failed: Must add up to 1.</span></span></code></pre></div>
+</div>
+<div class="section level2">
 <h2 id="generate-vector-subsets">Generate vector subsets<a class="anchor" aria-label="anchor" href="#generate-vector-subsets"></a>
 </h2>
 <p>The <code><a href="../reference/subsets.html">subsets()</a></code> function generates subsets of a
 vector.</p>
-<div class="sourceCode" id="cb2"><pre class="downlit sourceCode r">
+<div class="sourceCode" id="cb3"><pre class="downlit sourceCode r">
 <code class="sourceCode R"><span><span class="va">v</span> <span class="op">&lt;-</span> <span class="va">month.name</span><span class="op">[</span><span class="fl">1</span><span class="op">:</span><span class="fl">3</span><span class="op">]</span></span>
 <span></span>
 <span><span class="co">### all subsets</span></span>
