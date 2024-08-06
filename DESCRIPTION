@@ -8,7 +8,7 @@ Authors@R: c(
            role = c("aut", "cre"))
            )
 Description: Some general helper functions that I (and maybe others) find useful 
-    when developing data science software. The vignettes illustrate use cases.
+    when developing data science software. 
 License: GPL (>= 3)
 Encoding: UTF-8
 Suggests: 
@@ -40,4 +40,3 @@ LinkingTo:
 URL: https://github.com/loelschlaeger/oeli, http://loelschlaeger.de/oeli/
 BugReports: https://github.com/loelschlaeger/oeli/issues
 Roxygen: list(markdown = TRUE)
-VignetteBuilder: knitr

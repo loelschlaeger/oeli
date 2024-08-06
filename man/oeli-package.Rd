@@ -8,7 +8,7 @@
 \description{
 \if{html}{\figure{logo.png}{options: style='float: right' alt='logo' width='120'}}
 
-Some general helper functions that I (and maybe others) find useful when developing data science software. The vignettes illustrate use cases.
+Some general helper functions that I (and maybe others) find useful when developing data science software.
 }
 \seealso{
 Useful links:
