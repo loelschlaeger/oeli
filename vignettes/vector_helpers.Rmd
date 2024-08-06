@@ -55,6 +55,15 @@ test_probability_vector(p2)
 assert_probability_vector(p2)
 ```
 
+## Split a vector into chunks
+
+```{r, chunk_vector}
+x <- 1:12
+chunk_vector(x, n = 3, type = 1)
+chunk_vector(x, n = 3, type = 2)
+try(chunk_vector(x, n = 5, strict = TRUE))
+```
+
 ## Generate vector subsets
 
 The `subsets()` function generates subsets of a vector.

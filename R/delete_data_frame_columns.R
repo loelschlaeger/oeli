@@ -23,8 +23,14 @@
 #' delete_data_frame_columns(df = df, column_names = c("label", "number"))
 
 delete_data_frame_columns <- function(df, column_names) {
-  checkmate::assert_data_frame(df)
-  checkmate::assert_names(column_names, subset.of = names(df))
+  input_check_response(
+    checkmate::check_data_frame(df),
+    "df"
+  )
+  input_check_response(
+    checkmate::check_names(column_names, subset.of = names(df)),
+    "column_names"
+  )
   df[column_names] <- NULL
   return(df)
 }

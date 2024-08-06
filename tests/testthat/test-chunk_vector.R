@@ -12,6 +12,6 @@ test_that("chunking a vector works", {
   )
   expect_error(
     chunk_vector(1:10, n = 4, strict = TRUE),
-    "is not a multiple"
+    "Not a multiple"
   )
 })

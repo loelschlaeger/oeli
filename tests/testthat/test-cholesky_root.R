@@ -1,7 +1,8 @@
 test_that("Cholesky decomposition works", {
-  cov <- sample_covariance_matrix(4)
-  chol <- cov_2_chol(cov)
-  expect_true(all.equal(cov, chol_2_cov(chol)))
-  chol <- cov_2_chol(cov, unique = FALSE)
-  expect_true(all.equal(cov, chol_2_cov(chol)))
+  cov <- sample_covariance_matrix(5)
+  chol <- cov_to_chol(cov)
+  expect_true(all.equal(cov, chol_to_cov(chol)))
+  chol <- cov_to_chol(cov)
+  expect_true(all.equal(cov, chol_to_cov(chol)))
+  expect_equal(unique_chol(numeric()), numeric())
 })

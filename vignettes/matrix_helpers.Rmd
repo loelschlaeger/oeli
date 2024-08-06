@@ -72,3 +72,10 @@ check_transition_probability_matrix(T2)
 test_transition_probability_matrix(T2)
 assert_transition_probability_matrix(T2)
 ```
+## Cholesky root of covariance matrix
+
+```{r, cholesky_root}
+(cov <- sample_covariance_matrix(4))
+(chol <- cov_to_chol(cov))
+all.equal(cov, chol_to_cov(chol))
+```

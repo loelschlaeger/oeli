@@ -53,7 +53,7 @@ Other matrix helpers:
 \code{\link{check_correlation_matrix}()},
 \code{\link{check_covariance_matrix}()},
 \code{\link{check_transition_probability_matrix}()},
-\code{\link{cov_2_chol}()},
+\code{\link{cov_to_chol}()},
 \code{\link{diff_cov}()},
 \code{\link{matrix_diagonal_indices}()},
 \code{\link{matrix_indices}()},

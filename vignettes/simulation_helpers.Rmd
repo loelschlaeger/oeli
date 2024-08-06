@@ -19,3 +19,42 @@ knitr::opts_chunk$set(
 library("oeli")
 ```
 
+## Simulate correlated regressor values
+
+```{r, correlated_regressors}
+labels <- c("P", "C", "N1", "N2", "U")
+n <- 100
+marginals <- list(
+  "P" = list(type = "poisson", lambda = 2),
+  "C" = list(type = "categorical", p = c(0.3, 0.2, 0.5)),
+  "N1" = list(type = "normal", mean = -1, sd = 2),
+  "U" = list(type = "uniform", min = -2, max = -1)
+)
+correlation <- matrix(
+  c(1, -0.3, -0.1, 0, 0.5,
+    -0.3, 1, 0.3, -0.5, -0.7,
+    -0.1, 0.3, 1, -0.3, -0.3,
+    0, -0.5, -0.3, 1, 0.1,
+    0.5, -0.7, -0.3, 0.1, 1),
+  nrow = 5, ncol = 5
+)
+data <- correlated_regressors(
+  labels = labels, n = n, marginals = marginals, correlation = correlation
+)
+head(data)
+```
+
+## Dirichlet distribution
+
+```{r, dirichlet}
+x <- c(0.5, 0.3, 0.2)
+concentration <- 1:3
+
+# compute density
+ddirichlet(x = x, concentration = concentration)
+ddirichlet(x = x, concentration = concentration, log = TRUE)
+
+# sample
+rdirichlet(concentration = 1:3)
+rdirichlet(n = 4, concentration = 1:2)
+```

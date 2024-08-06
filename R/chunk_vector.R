@@ -35,12 +35,27 @@
 #' try(chunk_vector(x, n = 5, strict = TRUE))
 
 chunk_vector <- function(x, n, type = 1, strict = FALSE) {
-  checkmate::assert_atomic_vector(x)
-  checkmate::assert_int(n, lower = 1)
-  checkmate::assert_choice(type, c(1, 2))
-  checkmate::assert_flag(strict)
+  input_check_response(
+    checkmate::check_atomic_vector(x),
+    "x"
+  )
+  input_check_response(
+    checkmate::check_int(n, lower = 1),
+    "n"
+  )
+  input_check_response(
+    checkmate::check_choice(type, c(1, 2)),
+    "type"
+  )
+  input_check_response(
+    checkmate::check_flag(strict),
+    "strict"
+  )
   if (strict) {
-    stopifnot("'n' is not a multiple of 'length(x)'" = length(x) %% n == 0)
+    input_check_response(
+      if (length(x) %% n == 0) TRUE else "Not a multiple of 'length(x)'",
+      "n"
+    )
   }
   if (type == 1) {
     split(x, cut(seq_along(x), n, labels = FALSE))
