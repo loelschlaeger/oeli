@@ -144,6 +144,22 @@ matrix:</p>
 <span><span class="fu"><a href="../reference/check_transition_probability_matrix.html">assert_transition_probability_matrix</a></span><span class="op">(</span><span class="va">T2</span><span class="op">)</span></span>
 <span><span class="co">#&gt; Error in eval(expr, envir, enclos): Assertion on 'T2' failed: Must have row sums equal to 1.</span></span></code></pre></div>
 </div>
+<div class="section level2">
+<h2 id="cholesky-root-of-covariance-matrix">Cholesky root of covariance matrix<a class="anchor" aria-label="anchor" href="#cholesky-root-of-covariance-matrix"></a>
+</h2>
+<div class="sourceCode" id="cb4"><pre class="downlit sourceCode r">
+<code class="sourceCode R"><span><span class="op">(</span><span class="va">cov</span> <span class="op">&lt;-</span> <span class="fu"><a href="../reference/sample_covariance_matrix.html">sample_covariance_matrix</a></span><span class="op">(</span><span class="fl">4</span><span class="op">)</span><span class="op">)</span></span>
+<span><span class="co">#&gt;            [,1]       [,2]      [,3]      [,4]</span></span>
+<span><span class="co">#&gt; [1,]  0.5506687 -0.6360957 -1.131468  1.461452</span></span>
+<span><span class="co">#&gt; [2,] -0.6360957  1.2287961  1.632546 -2.289933</span></span>
+<span><span class="co">#&gt; [3,] -1.1314677  1.6325459  3.531512 -2.753927</span></span>
+<span><span class="co">#&gt; [4,]  1.4614522 -2.2899326 -2.753927  5.319355</span></span>
+<span><span class="op">(</span><span class="va">chol</span> <span class="op">&lt;-</span> <span class="fu"><a href="../reference/cov_to_chol.html">cov_to_chol</a></span><span class="op">(</span><span class="va">cov</span><span class="op">)</span><span class="op">)</span></span>
+<span><span class="co">#&gt;  [1]  0.7420705 -0.8571904 -1.5247442  1.9694248  0.7028661  0.4631747</span></span>
+<span><span class="co">#&gt;  [7] -0.8561524  0.9960605  0.6480433  0.5364358</span></span>
+<span><span class="fu"><a href="https://rdrr.io/r/base/all.equal.html" class="external-link">all.equal</a></span><span class="op">(</span><span class="va">cov</span>, <span class="fu"><a href="../reference/cov_to_chol.html">chol_to_cov</a></span><span class="op">(</span><span class="va">chol</span><span class="op">)</span><span class="op">)</span></span>
+<span><span class="co">#&gt; [1] TRUE</span></span></code></pre></div>
+</div>
   </main><aside class="col-md-3"><nav id="toc" aria-label="Table of contents"><h2>On this page</h2>
     </nav></aside>
 </div>

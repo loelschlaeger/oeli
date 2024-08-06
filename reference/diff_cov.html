@@ -105,7 +105,7 @@ matrix.</p>
 <code><a href="check_correlation_matrix.html">check_correlation_matrix</a>()</code>,
 <code><a href="check_covariance_matrix.html">check_covariance_matrix</a>()</code>,
 <code><a href="check_transition_probability_matrix.html">check_transition_probability_matrix</a>()</code>,
-<code><a href="cov_2_chol.html">cov_2_chol</a>()</code>,
+<code><a href="cov_to_chol.html">cov_to_chol</a>()</code>,
 <code><a href="insert_matrix_column.html">insert_matrix_column</a>()</code>,
 <code><a href="matrix_diagonal_indices.html">matrix_diagonal_indices</a>()</code>,
 <code><a href="matrix_indices.html">matrix_indices</a>()</code>,
@@ -129,16 +129,16 @@ matrix.</p>
 <span class="r-in"><span></span></span>
 <span class="r-in"><span><span class="co"># difference Sigma</span></span></span>
 <span class="r-in"><span><span class="op">(</span><span class="va">Sigma_diff</span> <span class="op">&lt;-</span> <span class="fu">diff_cov</span><span class="op">(</span><span class="va">Sigma</span>, ref <span class="op">=</span> <span class="va">k</span><span class="op">)</span><span class="op">)</span></span></span>
-<span class="r-out co"><span class="r-pr">#&gt;</span>          [,1]     [,2]</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> [1,] 1.474912 2.715646</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> [2,] 2.715646 5.152303</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span>          [,1]      [,2]</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> [1,] 2.978166  3.702776</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> [2,] 3.702776 17.249292</span>
 <span class="r-in"><span></span></span>
 <span class="r-in"><span><span class="co"># un-difference Sigma</span></span></span>
 <span class="r-in"><span><span class="fu">undiff_cov</span><span class="op">(</span><span class="va">Sigma_diff</span>, ref <span class="op">=</span> <span class="va">k</span><span class="op">)</span></span></span>
-<span class="r-out co"><span class="r-pr">#&gt;</span>          [,1] [,2]     [,3]</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> [1,] 2.474912    1 3.715646</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> [2,] 1.000000    1 1.000000</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> [3,] 3.715646    1 6.152303</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span>          [,1] [,2]      [,3]</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> [1,] 3.978166    1  4.702776</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> [2,] 1.000000    1  1.000000</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> [3,] 4.702776    1 18.249292</span>
 </code></pre></div>
     </div>
   </main><aside class="col-md-3"><nav id="toc" aria-label="Table of contents"><h2>On this page</h2>
