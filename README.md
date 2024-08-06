@@ -33,7 +33,7 @@ The package includes helpers for various tasks and objects. Some demos
 are shown below. Click the headings for reference pages with
 documentation on all available helpers in each category.
 
-### [distributions](https://loelschlaeger.de/oeli/reference/index.html#distribution)
+### [Distributions](https://loelschlaeger.de/oeli/reference/index.html#distribution)
 
 The package has density and sampling functions for distributions not in
 base R, such as Dirichlet, multivariate normal, truncated normal, and
@@ -43,11 +43,14 @@ available.
 ``` r
 ddirichlet(x = c(0.2, 0.3, 0.5), concentration = 1:3)
 #> [1] 4.5
-rdirichlet(concentration = 1:3)
-#> [1] 0.03614051 0.30433121 0.65952828
 ```
 
-### [`function` helpers](https://loelschlaeger.de/oeli/reference/index.html#functional)
+``` r
+rdirichlet(concentration = 1:3)
+#> [1] 0.2032900 0.2310928 0.5656171
+```
+
+### [Function helpers](https://loelschlaeger.de/oeli/reference/index.html#functional)
 
 Retrieving default arguments of a `function`:
 
@@ -61,7 +64,7 @@ function_defaults(f)
 #> [1] ""
 ```
 
-### [indexing helpers](https://loelschlaeger.de/oeli/reference/index.html#indexing)
+### [Indexing helpers](https://loelschlaeger.de/oeli/reference/index.html#indexing)
 
 Create all possible permutations of vector elements:
 
@@ -86,7 +89,7 @@ permutations(LETTERS[1:3])
 #> [1] "C" "B" "A"
 ```
 
-### [package helpers](https://loelschlaeger.de/oeli/reference/index.html#packaging)
+### [Package helpers](https://loelschlaeger.de/oeli/reference/index.html#packaging)
 
 Quickly have a basic logo for your new package:
 
@@ -103,24 +106,24 @@ x <- matrix(rnorm(10000), ncol = 100, nrow = 100)
 print_matrix(x, rowdots = 4, coldots = 4, digits = 2, label = "what a big matrix")
 #> what a big matrix : 100 x 100 matrix of doubles 
 #>         [,1]  [,2]  [,3] ... [,100]
-#> [1,]   -0.16  0.18 -0.67 ...   1.27
-#> [2,]    0.41 -0.28  1.96 ...   1.46
-#> [3,]    1.85 -1.53  0.78 ...   0.07
+#> [1,]    0.01  0.59 -1.02 ...   1.73
+#> [2,]   -0.11 -0.01  2.37 ...   0.22
+#> [3,]   -1.87  0.09 -1.24 ...  -0.93
 #> ...      ...   ...   ... ...    ...
-#> [100,]  0.31 -1.15  0.62 ...   0.46
+#> [100,]   0.6 -0.99 -0.26 ...   -0.9
 ```
 
-### [simulation helpers](https://loelschlaeger.de/oeli/reference/index.html#simulation)
+### [Simulation helpers](https://loelschlaeger.de/oeli/reference/index.html#simulation)
 
 Let’s simulate a Markov chain:
 
 ``` r
 Gamma <- sample_transition_probability_matrix(dim = 3)
 simulate_markov_chain(Gamma = Gamma, T = 20)
-#>  [1] 3 1 1 1 2 3 3 1 1 1 1 1 1 2 3 3 1 1 2 3
+#>  [1] 2 2 3 2 1 2 2 2 2 1 2 2 1 1 2 3 3 1 1 1
 ```
 
-### [transformation helpers](https://loelschlaeger.de/oeli/reference/index.html#transformation)
+### [Transformation helpers](https://loelschlaeger.de/oeli/reference/index.html#transformation)
 
 The `group_data_frame()` function groups a given `data.frame` based on
 the values in a specified column:
@@ -145,7 +148,7 @@ group_data_frame(df = df, by = "label")
 #> 10     B     10
 ```
 
-### [validation helpers](https://loelschlaeger.de/oeli/reference/index.html#validation)
+### [Validation helpers](https://loelschlaeger.de/oeli/reference/index.html#validation)
 
 Is my matrix a proper transition probability matrix?
 
