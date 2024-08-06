@@ -17,8 +17,8 @@
 <script src="deps/bootstrap-5.3.1/bootstrap.bundle.min.js"></script><link href="deps/font-awesome-6.4.2/css/all.min.css" rel="stylesheet">
 <link href="deps/font-awesome-6.4.2/css/v4-shims.min.css" rel="stylesheet">
 <script src="deps/headroom-0.11.0/headroom.min.js"></script><script src="deps/headroom-0.11.0/jQuery.headroom.min.js"></script><script src="deps/bootstrap-toc-1.0.1/bootstrap-toc.min.js"></script><script src="deps/clipboard.js-2.0.11/clipboard.min.js"></script><script src="deps/search-1.0.0/autocomplete.jquery.min.js"></script><script src="deps/search-1.0.0/fuse.min.js"></script><script src="deps/search-1.0.0/mark.min.js"></script><!-- pkgdown --><script src="pkgdown.js"></script><meta property="og:title" content="Utilities for Developing R Software">
-<meta name="description" content="Some general helper functions that I (and maybe others) find useful when developing data science software. The vignettes illustrate use cases.">
-<meta property="og:description" content="Some general helper functions that I (and maybe others) find useful when developing data science software. The vignettes illustrate use cases.">
+<meta name="description" content="Some general helper functions that I (and maybe others) find useful when developing data science software.">
+<meta property="og:description" content="Some general helper functions that I (and maybe others) find useful when developing data science software.">
 <meta property="og:image" content="http://loelschlaeger.de/oeli/logo.png">
 </head>
 <body>
@@ -39,18 +39,6 @@
     <div id="navbar" class="collapse navbar-collapse ms-3">
       <ul class="navbar-nav me-auto">
 <li class="nav-item"><a class="nav-link" href="reference/index.html">Reference</a></li>
-<li class="nav-item dropdown">
-  <button class="nav-link dropdown-toggle" type="button" id="dropdown-articles" data-bs-toggle="dropdown" aria-expanded="false" aria-haspopup="true">Articles</button>
-  <ul class="dropdown-menu" aria-labelledby="dropdown-articles">
-<li><a class="dropdown-item" href="articles/dataframe_helpers.html">Helpers for working with data.frames</a></li>
-    <li><a class="dropdown-item" href="articles/function_helpers.html">Helpers for working with functions</a></li>
-    <li><a class="dropdown-item" href="articles/list_helpers.html">Helpers for working with lists</a></li>
-    <li><a class="dropdown-item" href="articles/matrix_helpers.html">Helpers for working with matrices</a></li>
-    <li><a class="dropdown-item" href="articles/package_helpers.html">Helpers for building an R package</a></li>
-    <li><a class="dropdown-item" href="articles/simulation_helpers.html">Helpers for simulations</a></li>
-    <li><a class="dropdown-item" href="articles/vector_helpers.html">Helpers for working with vectors</a></li>
-  </ul>
-</li>
 <li class="nav-item"><a class="nav-link" href="news/index.html">Changelog</a></li>
       </ul>
 <ul class="navbar-nav">
@@ -77,20 +65,100 @@
 <div class="section level2">
 <h2 id="installation">Installation<a class="anchor" aria-label="anchor" href="#installation"></a>
 </h2>
-<p>You can install the released package version from <a href="https://CRAN.R-project.org" class="external-link">CRAN</a> with:</p>
+<p>The released package version can be installed from <a href="https://CRAN.R-project.org" class="external-link">CRAN</a> via:</p>
 <div class="sourceCode" id="cb1"><pre class="downlit sourceCode r">
 <code class="sourceCode R"><span><span class="fu"><a href="https://rdrr.io/r/utils/install.packages.html" class="external-link">install.packages</a></span><span class="op">(</span><span class="st">"oeli"</span><span class="op">)</span></span></code></pre></div>
 </div>
 <div class="section level2">
 <h2 id="demos">Demos<a class="anchor" aria-label="anchor" href="#demos"></a>
 </h2>
-<p>The package includes helpers for different tasks and objects. Below are some demos. Clicking the headings will take you to the corresponding vignette, where you’ll find a documentation on all the helpers currently available in that category.</p>
+<p>The package includes helpers for various tasks and objects. Some demos are shown below. Click the headings for reference pages with documentation on all available helpers in each category.</p>
 <div class="section level3">
-<h3 id="dataframe-helpers">
-<a href="https://loelschlaeger.de/oeli/articles/dataframe_helpers.html" class="external-link"><code>data.frame</code> helpers</a><a class="anchor" aria-label="anchor" href="#dataframe-helpers"></a>
+<h3 id="distributions">
+<a href="https://loelschlaeger.de/oeli/reference/index.html#distribution" class="external-link">distributions</a><a class="anchor" aria-label="anchor" href="#distributions"></a>
+</h3>
+<p>The package has density and sampling functions for distributions not in base R, such as Dirichlet, multivariate normal, truncated normal, and Wishart. For faster computation, an Rcpp implementation is also available.</p>
+<div class="sourceCode" id="cb2"><pre class="downlit sourceCode r">
+<code class="sourceCode R"><span><span class="fu"><a href="reference/ddirichlet.html">ddirichlet</a></span><span class="op">(</span>x <span class="op">=</span> <span class="fu"><a href="https://rdrr.io/r/base/c.html" class="external-link">c</a></span><span class="op">(</span><span class="fl">0.2</span>, <span class="fl">0.3</span>, <span class="fl">0.5</span><span class="op">)</span>, concentration <span class="op">=</span> <span class="fl">1</span><span class="op">:</span><span class="fl">3</span><span class="op">)</span></span>
+<span><span class="co">#&gt; [1] 4.5</span></span>
+<span><span class="fu"><a href="reference/ddirichlet.html">rdirichlet</a></span><span class="op">(</span>concentration <span class="op">=</span> <span class="fl">1</span><span class="op">:</span><span class="fl">3</span><span class="op">)</span></span>
+<span><span class="co">#&gt; [1] 0.03614051 0.30433121 0.65952828</span></span></code></pre></div>
+</div>
+<div class="section level3">
+<h3 id="function-helpers">
+<a href="https://loelschlaeger.de/oeli/reference/index.html#functional" class="external-link"><code>function</code> helpers</a><a class="anchor" aria-label="anchor" href="#function-helpers"></a>
+</h3>
+<p>Retrieving default arguments of a <code>function</code>:</p>
+<div class="sourceCode" id="cb3"><pre class="downlit sourceCode r">
+<code class="sourceCode R"><span><span class="va">f</span> <span class="op">&lt;-</span> <span class="kw">function</span><span class="op">(</span><span class="va">a</span>, <span class="va">b</span> <span class="op">=</span> <span class="fl">1</span>, <span class="va">c</span> <span class="op">=</span> <span class="st">""</span>, <span class="va">...</span><span class="op">)</span> <span class="op">{</span> <span class="op">}</span></span>
+<span><span class="fu"><a href="reference/function_defaults.html">function_defaults</a></span><span class="op">(</span><span class="va">f</span><span class="op">)</span></span>
+<span><span class="co">#&gt; $b</span></span>
+<span><span class="co">#&gt; [1] 1</span></span>
+<span><span class="co">#&gt; </span></span>
+<span><span class="co">#&gt; $c</span></span>
+<span><span class="co">#&gt; [1] ""</span></span></code></pre></div>
+</div>
+<div class="section level3">
+<h3 id="indexing-helpers">
+<a href="https://loelschlaeger.de/oeli/reference/index.html#indexing" class="external-link">indexing helpers</a><a class="anchor" aria-label="anchor" href="#indexing-helpers"></a>
+</h3>
+<p>Create all possible permutations of vector elements:</p>
+<div class="sourceCode" id="cb4"><pre class="downlit sourceCode r">
+<code class="sourceCode R"><span><span class="fu"><a href="reference/permutations.html">permutations</a></span><span class="op">(</span><span class="va">LETTERS</span><span class="op">[</span><span class="fl">1</span><span class="op">:</span><span class="fl">3</span><span class="op">]</span><span class="op">)</span></span>
+<span><span class="co">#&gt; [[1]]</span></span>
+<span><span class="co">#&gt; [1] "A" "B" "C"</span></span>
+<span><span class="co">#&gt; </span></span>
+<span><span class="co">#&gt; [[2]]</span></span>
+<span><span class="co">#&gt; [1] "A" "C" "B"</span></span>
+<span><span class="co">#&gt; </span></span>
+<span><span class="co">#&gt; [[3]]</span></span>
+<span><span class="co">#&gt; [1] "B" "A" "C"</span></span>
+<span><span class="co">#&gt; </span></span>
+<span><span class="co">#&gt; [[4]]</span></span>
+<span><span class="co">#&gt; [1] "B" "C" "A"</span></span>
+<span><span class="co">#&gt; </span></span>
+<span><span class="co">#&gt; [[5]]</span></span>
+<span><span class="co">#&gt; [1] "C" "A" "B"</span></span>
+<span><span class="co">#&gt; </span></span>
+<span><span class="co">#&gt; [[6]]</span></span>
+<span><span class="co">#&gt; [1] "C" "B" "A"</span></span></code></pre></div>
+</div>
+<div class="section level3">
+<h3 id="package-helpers">
+<a href="https://loelschlaeger.de/oeli/reference/index.html#packaging" class="external-link">package helpers</a><a class="anchor" aria-label="anchor" href="#package-helpers"></a>
+</h3>
+<p>Quickly have a basic logo for your new package:</p>
+<div class="sourceCode" id="cb5"><pre class="downlit sourceCode r">
+<code class="sourceCode R"><span><span class="fu"><a href="reference/package_logo.html">package_logo</a></span><span class="op">(</span><span class="st">"my_package"</span>, brackets <span class="op">=</span> <span class="cn">TRUE</span>, use_logo <span class="op">=</span> <span class="cn">FALSE</span><span class="op">)</span></span></code></pre></div>
+<p><img src="reference/figures/README-package_logo-1.png" width="50%" style="display: block; margin: auto;"></p>
+<p>How to print a matrix without filling up the entire console?</p>
+<div class="sourceCode" id="cb6"><pre class="downlit sourceCode r">
+<code class="sourceCode R"><span><span class="va">x</span> <span class="op">&lt;-</span> <span class="fu"><a href="https://rdrr.io/r/base/matrix.html" class="external-link">matrix</a></span><span class="op">(</span><span class="fu"><a href="https://rdrr.io/r/stats/Normal.html" class="external-link">rnorm</a></span><span class="op">(</span><span class="fl">10000</span><span class="op">)</span>, ncol <span class="op">=</span> <span class="fl">100</span>, nrow <span class="op">=</span> <span class="fl">100</span><span class="op">)</span></span>
+<span><span class="fu"><a href="reference/print_matrix.html">print_matrix</a></span><span class="op">(</span><span class="va">x</span>, rowdots <span class="op">=</span> <span class="fl">4</span>, coldots <span class="op">=</span> <span class="fl">4</span>, digits <span class="op">=</span> <span class="fl">2</span>, label <span class="op">=</span> <span class="st">"what a big matrix"</span><span class="op">)</span></span>
+<span><span class="co">#&gt; what a big matrix : 100 x 100 matrix of doubles </span></span>
+<span><span class="co">#&gt;         [,1]  [,2]  [,3] ... [,100]</span></span>
+<span><span class="co">#&gt; [1,]   -0.16  0.18 -0.67 ...   1.27</span></span>
+<span><span class="co">#&gt; [2,]    0.41 -0.28  1.96 ...   1.46</span></span>
+<span><span class="co">#&gt; [3,]    1.85 -1.53  0.78 ...   0.07</span></span>
+<span><span class="co">#&gt; ...      ...   ...   ... ...    ...</span></span>
+<span><span class="co">#&gt; [100,]  0.31 -1.15  0.62 ...   0.46</span></span></code></pre></div>
+</div>
+<div class="section level3">
+<h3 id="simulation-helpers">
+<a href="https://loelschlaeger.de/oeli/reference/index.html#simulation" class="external-link">simulation helpers</a><a class="anchor" aria-label="anchor" href="#simulation-helpers"></a>
+</h3>
+<p>Let’s simulate a Markov chain:</p>
+<div class="sourceCode" id="cb7"><pre class="downlit sourceCode r">
+<code class="sourceCode R"><span><span class="va">Gamma</span> <span class="op">&lt;-</span> <span class="fu"><a href="reference/sample_transition_probability_matrix.html">sample_transition_probability_matrix</a></span><span class="op">(</span>dim <span class="op">=</span> <span class="fl">3</span><span class="op">)</span></span>
+<span><span class="fu"><a href="reference/simulate_markov_chain.html">simulate_markov_chain</a></span><span class="op">(</span>Gamma <span class="op">=</span> <span class="va">Gamma</span>, T <span class="op">=</span> <span class="fl">20</span><span class="op">)</span></span>
+<span><span class="co">#&gt;  [1] 3 1 1 1 2 3 3 1 1 1 1 1 1 2 3 3 1 1 2 3</span></span></code></pre></div>
+</div>
+<div class="section level3">
+<h3 id="transformation-helpers">
+<a href="https://loelschlaeger.de/oeli/reference/index.html#transformation" class="external-link">transformation helpers</a><a class="anchor" aria-label="anchor" href="#transformation-helpers"></a>
 </h3>
 <p>The <code><a href="reference/group_data_frame.html">group_data_frame()</a></code> function groups a given <code>data.frame</code> based on the values in a specified column:</p>
-<div class="sourceCode" id="cb2"><pre class="downlit sourceCode r">
+<div class="sourceCode" id="cb8"><pre class="downlit sourceCode r">
 <code class="sourceCode R"><span><span class="va">df</span> <span class="op">&lt;-</span> <span class="fu"><a href="https://rdrr.io/r/base/data.frame.html" class="external-link">data.frame</a></span><span class="op">(</span><span class="st">"label"</span> <span class="op">=</span> <span class="fu"><a href="https://rdrr.io/r/base/c.html" class="external-link">c</a></span><span class="op">(</span><span class="st">"A"</span>, <span class="st">"B"</span><span class="op">)</span>, <span class="st">"number"</span> <span class="op">=</span> <span class="fl">1</span><span class="op">:</span><span class="fl">10</span><span class="op">)</span></span>
 <span><span class="fu"><a href="reference/group_data_frame.html">group_data_frame</a></span><span class="op">(</span>df <span class="op">=</span> <span class="va">df</span>, by <span class="op">=</span> <span class="st">"label"</span><span class="op">)</span></span>
 <span><span class="co">#&gt; $A</span></span>
@@ -110,103 +178,15 @@
 <span><span class="co">#&gt; 10     B     10</span></span></code></pre></div>
 </div>
 <div class="section level3">
-<h3 id="function-helpers">
-<a href="https://loelschlaeger.de/oeli/articles/function_helpers.html" class="external-link"><code>function</code> helpers</a><a class="anchor" aria-label="anchor" href="#function-helpers"></a>
+<h3 id="validation-helpers">
+<a href="https://loelschlaeger.de/oeli/reference/index.html#validation" class="external-link">validation helpers</a><a class="anchor" aria-label="anchor" href="#validation-helpers"></a>
 </h3>
-<p>Retrieving default arguments of a <code>function</code>:</p>
-<div class="sourceCode" id="cb3"><pre class="downlit sourceCode r">
-<code class="sourceCode R"><span><span class="va">f</span> <span class="op">&lt;-</span> <span class="kw">function</span><span class="op">(</span><span class="va">a</span>, <span class="va">b</span> <span class="op">=</span> <span class="fl">1</span>, <span class="va">c</span> <span class="op">=</span> <span class="st">""</span>, <span class="va">...</span><span class="op">)</span> <span class="op">{</span> <span class="op">}</span></span>
-<span><span class="fu"><a href="reference/function_defaults.html">function_defaults</a></span><span class="op">(</span><span class="va">f</span><span class="op">)</span></span>
-<span><span class="co">#&gt; $b</span></span>
-<span><span class="co">#&gt; [1] 1</span></span>
-<span><span class="co">#&gt; </span></span>
-<span><span class="co">#&gt; $c</span></span>
-<span><span class="co">#&gt; [1] ""</span></span></code></pre></div>
-</div>
-<div class="section level3">
-<h3 id="list-helpers">
-<a href="https://loelschlaeger.de/oeli/articles/list_helpers.html" class="external-link"><code>list</code> helpers</a><a class="anchor" aria-label="anchor" href="#list-helpers"></a>
-</h3>
-<p>The following merges two or more <code>list</code> objects by unique element names:</p>
-<div class="sourceCode" id="cb4"><pre class="downlit sourceCode r">
-<code class="sourceCode R"><span><span class="fu"><a href="reference/merge_lists.html">merge_lists</a></span><span class="op">(</span><span class="fu"><a href="https://rdrr.io/r/base/list.html" class="external-link">list</a></span><span class="op">(</span><span class="st">"a"</span> <span class="op">=</span> <span class="fl">1</span>, <span class="st">"b"</span> <span class="op">=</span> <span class="fl">2</span><span class="op">)</span>, <span class="fu"><a href="https://rdrr.io/r/base/list.html" class="external-link">list</a></span><span class="op">(</span><span class="st">"b"</span> <span class="op">=</span> <span class="fl">3</span>, <span class="st">"c"</span> <span class="op">=</span> <span class="fl">4</span>, <span class="st">"d"</span> <span class="op">=</span> <span class="cn">NULL</span><span class="op">)</span><span class="op">)</span></span>
-<span><span class="co">#&gt; $a</span></span>
-<span><span class="co">#&gt; [1] 1</span></span>
-<span><span class="co">#&gt; </span></span>
-<span><span class="co">#&gt; $b</span></span>
-<span><span class="co">#&gt; [1] 2</span></span>
-<span><span class="co">#&gt; </span></span>
-<span><span class="co">#&gt; $c</span></span>
-<span><span class="co">#&gt; [1] 4</span></span>
-<span><span class="co">#&gt; </span></span>
-<span><span class="co">#&gt; $d</span></span>
-<span><span class="co">#&gt; NULL</span></span></code></pre></div>
-</div>
-<div class="section level3">
-<h3 id="matrix-helpers">
-<a href="https://loelschlaeger.de/oeli/articles/matrix_helpers.html" class="external-link"><code>matrix</code> helpers</a><a class="anchor" aria-label="anchor" href="#matrix-helpers"></a>
-</h3>
-<p>Checking if a <code>matrix</code> is a proper transition probability matrix:</p>
-<div class="sourceCode" id="cb5"><pre class="downlit sourceCode r">
+<p>Is my matrix a proper transition probability matrix?</p>
+<div class="sourceCode" id="cb9"><pre class="downlit sourceCode r">
 <code class="sourceCode R"><span><span class="va">matrix</span> <span class="op">&lt;-</span> <span class="fu"><a href="https://rdrr.io/r/base/diag.html" class="external-link">diag</a></span><span class="op">(</span><span class="fl">4</span><span class="op">)</span></span>
 <span><span class="va">matrix</span><span class="op">[</span><span class="fl">1</span>, <span class="fl">2</span><span class="op">]</span> <span class="op">&lt;-</span> <span class="fl">1</span></span>
 <span><span class="fu"><a href="reference/check_transition_probability_matrix.html">check_transition_probability_matrix</a></span><span class="op">(</span><span class="va">matrix</span><span class="op">)</span></span>
 <span><span class="co">#&gt; [1] "Must have row sums equal to 1"</span></span></code></pre></div>
-</div>
-<div class="section level3">
-<h3 id="package-helpers">
-<a href="https://loelschlaeger.de/oeli/articles/package_helpers.html" class="external-link">package helpers</a><a class="anchor" aria-label="anchor" href="#package-helpers"></a>
-</h3>
-<p>Quickly having a basic package logo:</p>
-<div class="sourceCode" id="cb6"><pre class="downlit sourceCode r">
-<code class="sourceCode R"><span><span class="fu"><a href="reference/package_logo.html">package_logo</a></span><span class="op">(</span><span class="st">"my_package"</span>, brackets <span class="op">=</span> <span class="cn">TRUE</span>, use_logo <span class="op">=</span> <span class="cn">FALSE</span><span class="op">)</span></span></code></pre></div>
-<p><img src="reference/figures/README-package_logo-1.png" width="50%" style="display: block; margin: auto;"></p>
-<p>How to print a matrix without filling up the entire console?</p>
-<div class="sourceCode" id="cb7"><pre class="downlit sourceCode r">
-<code class="sourceCode R"><span><span class="va">x</span> <span class="op">&lt;-</span> <span class="fu"><a href="https://rdrr.io/r/base/matrix.html" class="external-link">matrix</a></span><span class="op">(</span><span class="fu"><a href="https://rdrr.io/r/stats/Normal.html" class="external-link">rnorm</a></span><span class="op">(</span><span class="fl">10000</span><span class="op">)</span>, ncol <span class="op">=</span> <span class="fl">100</span>, nrow <span class="op">=</span> <span class="fl">100</span><span class="op">)</span></span>
-<span><span class="fu"><a href="reference/print_matrix.html">print_matrix</a></span><span class="op">(</span><span class="va">x</span>, rowdots <span class="op">=</span> <span class="fl">4</span>, coldots <span class="op">=</span> <span class="fl">4</span>, digits <span class="op">=</span> <span class="fl">2</span>, label <span class="op">=</span> <span class="st">"what a big matrix"</span><span class="op">)</span></span>
-<span><span class="co">#&gt; what a big matrix : 100 x 100 matrix of doubles </span></span>
-<span><span class="co">#&gt;         [,1]  [,2]  [,3] ... [,100]</span></span>
-<span><span class="co">#&gt; [1,]    0.09 -0.43   0.2 ...   -0.6</span></span>
-<span><span class="co">#&gt; [2,]    -0.3  0.44  0.88 ...   0.14</span></span>
-<span><span class="co">#&gt; [3,]   -0.04 -2.39  1.69 ...    2.1</span></span>
-<span><span class="co">#&gt; ...      ...   ...   ... ...    ...</span></span>
-<span><span class="co">#&gt; [100,]  0.83  0.32 -0.05 ...   1.77</span></span></code></pre></div>
-</div>
-<div class="section level3">
-<h3 id="simulation-helpers">
-<a href="https://loelschlaeger.de/oeli/articles/simulation_helpers.html" class="external-link">simulation helpers</a><a class="anchor" aria-label="anchor" href="#simulation-helpers"></a>
-</h3>
-<p>Simulate a Markov chain:</p>
-<div class="sourceCode" id="cb8"><pre class="downlit sourceCode r">
-<code class="sourceCode R"><span><span class="va">Gamma</span> <span class="op">&lt;-</span> <span class="fu"><a href="reference/sample_transition_probability_matrix.html">sample_transition_probability_matrix</a></span><span class="op">(</span>dim <span class="op">=</span> <span class="fl">3</span><span class="op">)</span></span>
-<span><span class="fu"><a href="reference/simulate_markov_chain.html">simulate_markov_chain</a></span><span class="op">(</span>Gamma <span class="op">=</span> <span class="va">Gamma</span>, T <span class="op">=</span> <span class="fl">20</span><span class="op">)</span></span>
-<span><span class="co">#&gt;  [1] 3 3 2 2 3 3 2 3 1 1 1 1 1 1 1 1 1 1 1 1</span></span></code></pre></div>
-</div>
-<div class="section level3">
-<h3 id="vector-helpers">
-<a href="https://loelschlaeger.de/oeli/articles/vector_helpers.html" class="external-link"><code>vector</code> helpers</a><a class="anchor" aria-label="anchor" href="#vector-helpers"></a>
-</h3>
-<p>Create all possible permutations:</p>
-<div class="sourceCode" id="cb9"><pre class="downlit sourceCode r">
-<code class="sourceCode R"><span><span class="fu"><a href="reference/permutations.html">permutations</a></span><span class="op">(</span><span class="va">LETTERS</span><span class="op">[</span><span class="fl">1</span><span class="op">:</span><span class="fl">3</span><span class="op">]</span><span class="op">)</span></span>
-<span><span class="co">#&gt; [[1]]</span></span>
-<span><span class="co">#&gt; [1] "A" "B" "C"</span></span>
-<span><span class="co">#&gt; </span></span>
-<span><span class="co">#&gt; [[2]]</span></span>
-<span><span class="co">#&gt; [1] "A" "C" "B"</span></span>
-<span><span class="co">#&gt; </span></span>
-<span><span class="co">#&gt; [[3]]</span></span>
-<span><span class="co">#&gt; [1] "B" "A" "C"</span></span>
-<span><span class="co">#&gt; </span></span>
-<span><span class="co">#&gt; [[4]]</span></span>
-<span><span class="co">#&gt; [1] "B" "C" "A"</span></span>
-<span><span class="co">#&gt; </span></span>
-<span><span class="co">#&gt; [[5]]</span></span>
-<span><span class="co">#&gt; [1] "C" "A" "B"</span></span>
-<span><span class="co">#&gt; </span></span>
-<span><span class="co">#&gt; [[6]]</span></span>
-<span><span class="co">#&gt; [1] "C" "B" "A"</span></span></code></pre></div>
 </div>
 </div>
 </div>
