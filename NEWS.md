@@ -8,6 +8,8 @@
 
 * Improved documentation.
 
+* Removed functions `check_date()` and `find_closest_year()` (too special, only needed for `{fHMM}` package).
+
 # oeli 0.5.2
 
 * Added function `identical_structure()` to check if two objects have the identical structure.
