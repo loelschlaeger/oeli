@@ -1,8 +1,8 @@
 #' Difference and un-difference covariance matrix
 #'
 #' @description
-#' These functions difference and un-difference a covariance matrix with respect
-#' to row \code{ref}.
+#' These functions difference and un-difference random vectors and covariance
+#' matrices.
 #'
 #' @param cov,cov_diff \[`matrix()`\]\cr
 #' A (differenced) covariance matrix of dimension \code{dim}
@@ -19,20 +19,33 @@
 #' A (differenced or un-differenced) covariance \code{matrix}.
 #'
 #' @details
-#' For differencing: Let \eqn{\Sigma} be a covariance matrix of dimension
-#' \eqn{n}. Then \deqn{\tilde{\Sigma} = \Delta_k \Sigma \Delta_k'}
-#' is the differenced covariance matrix with respect to row \eqn{k = 1,\dots,n},
-#' where \eqn{\Delta_k} is a difference operator that depends on the reference
-#' row \eqn{k}. More precise, \eqn{\Delta_k} the identity matrix of dimension
+#' Assume \eqn{x \sim N(0, \Sigma)} is a multivariate normally distributed
+#' random vector of dimension \eqn{n}. We may want to consider the differenced
+#' vector \deqn{\tilde x = (x_1 - x_k, x_2 - x_k, \dots, x_n - x_k)',} excluding
+#' the \eqn{k}th element (hence, \eqn{\tilde x} is of dimension
+#' \eqn{(n - 1) \times 1}). Formally, \eqn{\tilde x = \Delta_k x}, where
+#' \eqn{\Delta_k} is a difference operator that depends on the reference
+#' row \eqn{k}. More precise, \eqn{\Delta_k} is the identity matrix of dimension
 #' \eqn{n} without row \eqn{k} and with \eqn{-1}s in column \eqn{k}.
-#' It can be computed with \code{delta(ref = k, dim = n)}.
+#' The difference operator \eqn{\Delta_k} can be computed via
+#' \code{delta(ref = k, dim = n)}.
 #'
-#' For un-differencing: The "un-differenced" covariance matrix \eqn{\Sigma}
-#' cannot be uniquely computed from \eqn{\tilde{\Sigma}}.
-#' For a non-unique solution, we add a column and a row of zeros
+#' Then, \eqn{\tilde x \sim N(0, \tilde \Sigma)}, where
+#' \deqn{\tilde{\Sigma} = \Delta_k \Sigma \Delta_k'}
+#' is the differenced covariance matrix with respect to row \eqn{k = 1,\dots,n}.
+#' The differenced covariance matrix \eqn{\tilde \Sigma} can be computed via
+#' \code{diff_delta(Sigma, ref = k)}.
+#'
+#' Since \eqn{\Delta_k} is a non-bijective mapping, \eqn{\Sigma} cannot be
+#' uniquely restored from \eqn{\tilde \Sigma}. However, it is possible to
+#' compute a non-unique solution \eqn{\Sigma_0}, such that
+#' \eqn{\Delta_k \Sigma_0 \Delta_k = \tilde \Sigma}. For such a non-unique
+#' solution, we add a column and a row of zeros
 #' at column and row number \eqn{k} to \eqn{\tilde{\Sigma}}, respectively, and
 #' add \eqn{1} to each matrix entry to make the result a proper covariance
 #' matrix.
+#' An "un-differenced" covariance matrix \eqn{\Sigma_0} can be computed via
+#' \code{undiff_delta(Sigma_diff, ref = k)}.
 #'
 #' @keywords transformation
 #' @family matrix helpers
@@ -42,20 +55,34 @@
 #' n <- 3
 #' Sigma <- sample_covariance_matrix(dim = n)
 #' k <- 2
+#' x <- c(1, 3, 2)
 #'
 #' # build difference operator
-#' delta(ref = k, dim = n)
+#' delta_k <- delta(ref = k, dim = n)
+#'
+#' # difference vector
+#' delta_k %*% x
 #'
 #' # difference Sigma
 #' (Sigma_diff <- diff_cov(Sigma, ref = k))
 #'
 #' # un-difference Sigma
-#' undiff_cov(Sigma_diff, ref = k)
+#' (Sigma_0 <- undiff_cov(Sigma_diff, ref = k))
+#'
+#' # difference again
+#' Sigma_diff_2 <- diff_cov(Sigma_0, ref = k)
+#' all.equal(Sigma_diff, Sigma_diff_2)
 
 diff_cov <- function(cov, ref = 1) {
-  assert_covariance_matrix(cov)
+  input_check_response(
+    check = check_covariance_matrix(cov),
+    var_name = "cov"
+  )
   dim <- nrow(cov)
-  checkmate::assert_int(ref, lower = 1, upper = dim)
+  input_check_response(
+    check = checkmate::check_int(ref, lower = 1, upper = dim),
+    var_name = "ref"
+  )
   D <- delta(ref = ref, dim = dim)
   D %*% cov %*% t(D)
 }
@@ -64,22 +91,32 @@ diff_cov <- function(cov, ref = 1) {
 #' @export
 
 undiff_cov <- function(cov_diff, ref = 1) {
-  assert_covariance_matrix(cov_diff)
+  input_check_response(
+    check = check_covariance_matrix(cov_diff),
+    var_name = "cov_diff"
+  )
   dim <- nrow(cov_diff) + 1
-  checkmate::assert_int(ref, lower = 1, upper = dim)
+  input_check_response(
+    check = checkmate::check_int(ref, lower = 1, upper = dim),
+    var_name = "ref"
+  )
   cov <- matrix(0, dim, dim)
   cov[row(cov) != ref & col(cov) != ref] <- cov_diff
-  cov <- cov + 1
-  assert_covariance_matrix(cov)
-  return(cov)
+  cov + 1
 }
 
 #' @rdname diff_cov
 #' @export
 
 delta <- function(ref = 1, dim) {
-  checkmate::assert_int(dim, lower = 2)
-  checkmate::assert_int(ref, lower = 1, upper = dim)
+  input_check_response(
+    check = checkmate::check_int(dim, lower = 2),
+    var_name = "dim"
+  )
+  input_check_response(
+    check = checkmate::check_int(ref, lower = 1, upper = dim),
+    var_name = "ref"
+  )
   D <- diag(dim)
   D[, ref] <- -1
   D[-ref, , drop = FALSE]

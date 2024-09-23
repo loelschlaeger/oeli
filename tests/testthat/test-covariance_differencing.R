@@ -1,7 +1,7 @@
 test_that("differencing works", {
   expect_error(
     delta(0, 3),
-    "Assertion on 'ref' failed: Element 1 is not >= 1."
+    "Input `ref` is bad: Element 1 is not >= 1"
   )
   expect_equal(
     delta(1, 3),
@@ -17,7 +17,7 @@ test_that("differencing works", {
   )
   expect_error(
     delta(4, 3),
-    "Assertion on 'ref' failed: Element 1 is not <= 3."
+    "Input `ref` is bad: Element 1 is not <= 3"
   )
   n <- sample(2:10, 1)
   ref <- sample.int(n, 1)

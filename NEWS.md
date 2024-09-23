@@ -1,3 +1,7 @@
+# oeli development
+
+* Improved documentation of `diff_cov()`, `undiff_cov()`, and `delta()`.
+
 # oeli 0.6.0
 
 * Added function `quiet()` to silence expressions.

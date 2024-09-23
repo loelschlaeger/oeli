@@ -28,38 +28,59 @@ The matrix dimension.}
 A (differenced or un-differenced) covariance \code{matrix}.
 }
 \description{
-These functions difference and un-difference a covariance matrix with respect
-to row \code{ref}.
+These functions difference and un-difference random vectors and covariance
+matrices.
 }
 \details{
-For differencing: Let \eqn{\Sigma} be a covariance matrix of dimension
-\eqn{n}. Then \deqn{\tilde{\Sigma} = \Delta_k \Sigma \Delta_k'}
-is the differenced covariance matrix with respect to row \eqn{k = 1,\dots,n},
-where \eqn{\Delta_k} is a difference operator that depends on the reference
-row \eqn{k}. More precise, \eqn{\Delta_k} the identity matrix of dimension
+Assume \eqn{x \sim N(0, \Sigma)} is a multivariate normally distributed
+random vector of dimension \eqn{n}. We may want to consider the differenced
+vector \deqn{\tilde x = (x_1 - x_k, x_2 - x_k, \dots, x_n - x_k)',} excluding
+the \eqn{k}th element (hence, \eqn{\tilde x} is of dimension
+\eqn{(n - 1) \times 1}). Formally, \eqn{\tilde x = \Delta_k x}, where
+\eqn{\Delta_k} is a difference operator that depends on the reference
+row \eqn{k}. More precise, \eqn{\Delta_k} is the identity matrix of dimension
 \eqn{n} without row \eqn{k} and with \eqn{-1}s in column \eqn{k}.
-It can be computed with \code{delta(ref = k, dim = n)}.
+The difference operator \eqn{\Delta_k} can be computed via
+\code{delta(ref = k, dim = n)}.
 
-For un-differencing: The "un-differenced" covariance matrix \eqn{\Sigma}
-cannot be uniquely computed from \eqn{\tilde{\Sigma}}.
-For a non-unique solution, we add a column and a row of zeros
+Then, \eqn{\tilde x \sim N(0, \tilde \Sigma)}, where
+\deqn{\tilde{\Sigma} = \Delta_k \Sigma \Delta_k'}
+is the differenced covariance matrix with respect to row \eqn{k = 1,\dots,n}.
+The differenced covariance matrix \eqn{\tilde \Sigma} can be computed via
+\code{diff_delta(Sigma, ref = k)}.
+
+Since \eqn{\Delta_k} is a non-bijective mapping, \eqn{\Sigma} cannot be
+uniquely restored from \eqn{\tilde \Sigma}. However, it is possible to
+compute a non-unique solution \eqn{\Sigma_0}, such that
+\eqn{\Delta_k \Sigma_0 \Delta_k = \tilde \Sigma}. For such a non-unique
+solution, we add a column and a row of zeros
 at column and row number \eqn{k} to \eqn{\tilde{\Sigma}}, respectively, and
 add \eqn{1} to each matrix entry to make the result a proper covariance
 matrix.
+An "un-differenced" covariance matrix \eqn{\Sigma_0} can be computed via
+\code{undiff_delta(Sigma_diff, ref = k)}.
 }
 \examples{
 n <- 3
 Sigma <- sample_covariance_matrix(dim = n)
 k <- 2
+x <- c(1, 3, 2)
 
 # build difference operator
-delta(ref = k, dim = n)
+delta_k <- delta(ref = k, dim = n)
+
+# difference vector
+delta_k \%*\% x
 
 # difference Sigma
 (Sigma_diff <- diff_cov(Sigma, ref = k))
 
 # un-difference Sigma
-undiff_cov(Sigma_diff, ref = k)
+(Sigma_0 <- undiff_cov(Sigma_diff, ref = k))
+
+# difference again
+Sigma_diff_2 <- diff_cov(Sigma_0, ref = k)
+all.equal(Sigma_diff, Sigma_diff_2)
 }
 \seealso{
 Other matrix helpers: 
