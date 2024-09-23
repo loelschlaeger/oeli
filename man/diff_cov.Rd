@@ -54,9 +54,7 @@ uniquely restored from \eqn{\tilde \Sigma}. However, it is possible to
 compute a non-unique solution \eqn{\Sigma_0}, such that
 \eqn{\Delta_k \Sigma_0 \Delta_k = \tilde \Sigma}. For such a non-unique
 solution, we add a column and a row of zeros
-at column and row number \eqn{k} to \eqn{\tilde{\Sigma}}, respectively, and
-add \eqn{1} to each matrix entry to make the result a proper covariance
-matrix.
+at column and row number \eqn{k} to \eqn{\tilde{\Sigma}}, respectively.
 An "un-differenced" covariance matrix \eqn{\Sigma_0} can be computed via
 \code{undiff_delta(Sigma_diff, ref = k)}.
 }
