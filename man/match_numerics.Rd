@@ -30,6 +30,7 @@ Other vector helpers:
 \code{\link{chunk_vector}()},
 \code{\link{insert_vector_entry}()},
 \code{\link{permutations}()},
+\code{\link{split_vector_at}()},
 \code{\link{subsets}()},
 \code{\link{vector_occurrence}()}
 }

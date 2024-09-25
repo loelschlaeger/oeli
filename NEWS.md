@@ -4,6 +4,8 @@
 
 * Improved documentation of `dmvnorm()` and `rmvnorm()`. The mean vector can now be of length 1 for convenience. The degenerate case (covariance is zero) is now supported.
 
+* Added function `split_vector_at()` to split a vector at specific positions.
+
 # oeli 0.6.0
 
 * Added function `quiet()` to silence expressions.
