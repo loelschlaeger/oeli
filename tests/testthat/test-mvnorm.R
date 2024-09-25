@@ -1,3 +1,14 @@
+test_that("Univariate normal density can be computed", {
+  x <- 1
+  mean <- 2
+  Sigma <- 4
+  expect_equal(dmvnorm(x, mean, Sigma), dnorm(x, mean, sqrt(Sigma)))
+  expect_error(
+    dmvnorm(x = 1:2, mean = 1:3, Sigma = diag(4)),
+    "Input `mean` is bad: Must have length 2, but has length 3"
+  )
+})
+
 test_that("Multivariate normal density can be computed", {
   x <- c(0, 0)
   mean <- c(0, 0)
@@ -13,7 +24,18 @@ test_that("Multivariate normal density can be computed", {
   )
   expect_error(
     dmvnorm(x = 1:2, mean = 1:3, Sigma = diag(4)),
-    "Assertion on 'mean' failed: Must have length 2, but has length 3."
+    "Input `mean` is bad: Must have length 2, but has length 3"
+  )
+})
+
+test_that("Univariate normal can be drawn", {
+  mean <- 0
+  Sigma <- 1
+  expect_length(rmvnorm(mean = mean, Sigma = Sigma, log = FALSE), 1)
+  expect_length(rmvnorm(mean = mean, Sigma = Sigma, log = TRUE), 1)
+  checkmate::expect_matrix(
+    rmvnorm(n = 5, mean = mean, Sigma = Sigma),
+    ncols = 1, nrows = 5
   )
 })
 
@@ -27,15 +49,4 @@ test_that("Multivariate normal can be drawn", {
     ncols = 2, nrows = 5
   )
   expect_error(rmvnorm(mean = 1:3, Sigma = diag(4)))
-})
-
-test_that("Univariate normal can be drawn", {
-  mean <- 0
-  Sigma <- 1
-  expect_length(rmvnorm(mean = mean, Sigma = Sigma, log = FALSE), 1)
-  expect_length(rmvnorm(mean = mean, Sigma = Sigma, log = TRUE), 1)
-  checkmate::expect_matrix(
-    rmvnorm(n = 5, mean = mean, Sigma = Sigma),
-    ncols = 1, nrows = 5
-  )
 })

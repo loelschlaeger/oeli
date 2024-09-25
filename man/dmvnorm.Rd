@@ -20,21 +20,34 @@ rmvnorm(n = 1, mean, Sigma, log = FALSE)
 A quantile vector of length \code{p}.}
 
 \item{mean}{[\code{numeric()}]\cr
-The mean vector of length \code{p}.}
+The mean vector of length \code{p}.
+
+For \code{dmvnorm()} and \code{rmvnorm()}, it can also be of length \code{1} for
+convenience, then \code{rep(mean, p)} is considered.}
 
 \item{Sigma}{[\code{matrix()}]\cr
-The covariance matrix of dimension \code{p}.}
+The covariance matrix of dimension \code{p}.
+
+It can also be a zero matrix.
+
+For \code{dmvnorm()} and \code{rmvnorm()} and if \code{p = 1}, it can also be a single
+\code{numeric} for convenience. Note that \code{Sigma} is this case is a variance,
+which is a different format than in \code{stats::dnorm()} or \code{stats::rnorm},
+which require a standard deviation.}
 
 \item{log}{[\code{logical(1)}]\cr
-Return the logarithm of the density value?}
+For \code{dmvnorm()}: Return the logarithm of the density value?
+
+For \code{rmvnorm()}: Draw from a log-normal distribution?}
 
 \item{n}{[\code{integer(1)}]\cr
-An \code{integer}, the number of samples.}
+An \code{integer}, the number of requested samples.}
 }
 \value{
 For \code{dmvnorm()}: The density value.
 
-For \code{rmvnorm()}: If \code{n = 1} a \code{vector} of length \code{p}, else
+For \code{rmvnorm()}: If \code{n = 1} a \code{vector} of length \code{p} (note
+that it is a column vector for \code{rmvnorm_cpp()}), else
 a \code{matrix} of dimension \code{n} times \code{p} with samples as rows.
 }
 \description{
@@ -44,6 +57,8 @@ distribution.
 The function \code{rmvnorm()} samples from a multivariate normal distribution.
 
 The functions with suffix \verb{_cpp} perform no input checks, hence are faster.
+
+The univariate normal distribution is available as the special case \code{p = 1}.
 }
 \examples{
 x <- c(0, 0)

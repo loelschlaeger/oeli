@@ -2,6 +2,8 @@
 
 * Improved documentation of `diff_cov()`, `undiff_cov()`, and `delta()`.
 
+* Improved documentation of `dmvnorm()` and `rmvnorm()`. The mean vector can now be of length 1 for convenience. The degenerate case (covariance is zero) is now supported.
+
 # oeli 0.6.0
 
 * Added function `quiet()` to silence expressions.
