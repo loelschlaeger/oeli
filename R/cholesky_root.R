@@ -7,6 +7,9 @@
 #' @param cov \[`matrix()`\]\cr
 #' A covariance matrix.
 #'
+#' It can also be the zero matrix, in which case the Cholesky root is defined as
+#' the zero matrix.
+#'
 #' @param chol \[`numeric()`\]\cr
 #' Cholesky root elements.
 #'
@@ -38,8 +41,11 @@ cov_to_chol <- function(cov, unique = TRUE) {
     checkmate::check_flag(unique),
     "unique"
   )
-  cov_chol <- t(chol(cov))
-  #diag(cov_chol) <- abs(diag(cov_chol))
+  if (all(as.vector(cov) == 0)) {
+    cov_chol <- cov
+  } else {
+    cov_chol <- t(chol(cov))
+  }
   chol <- cov_chol[lower.tri(cov_chol, diag = TRUE)]
   if (unique) {
     return(unique_chol(chol))

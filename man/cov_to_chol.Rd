@@ -14,7 +14,10 @@ unique_chol(chol)
 }
 \arguments{
 \item{cov}{[\code{matrix()}]\cr
-A covariance matrix.}
+A covariance matrix.
+
+It can also be the zero matrix, in which case the Cholesky root is defined as
+the zero matrix.}
 
 \item{unique}{[\code{logical(1)}]\cr
 Ensure that the Cholesky decomposition is unique by restricting the diagonal

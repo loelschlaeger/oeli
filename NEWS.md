@@ -6,6 +6,8 @@
 
 * Added function `split_vector_at()` to split a vector at specific positions.
 
+* Allow for zero matrix in `cov_to_chol()`.
+
 # oeli 0.6.0
 
 * Added function `quiet()` to silence expressions.
