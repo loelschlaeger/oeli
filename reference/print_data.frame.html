@@ -92,41 +92,41 @@ Print row names?</p></dd>
     <h2 id="ref-examples">Examples<a class="anchor" aria-label="anchor" href="#ref-examples"></a></h2>
     <div class="sourceCode"><pre class="sourceCode r"><code><span class="r-in"><span><span class="va">x</span> <span class="op">&lt;-</span> <span class="fu"><a href="https://rdrr.io/r/base/data.frame.html" class="external-link">data.frame</a></span><span class="op">(</span><span class="st">"a"</span> <span class="op">=</span> <span class="fu"><a href="https://rdrr.io/r/stats/Normal.html" class="external-link">rnorm</a></span><span class="op">(</span><span class="fl">20</span><span class="op">)</span>, <span class="st">"b"</span> <span class="op">=</span> <span class="fu"><a href="https://rdrr.io/r/stats/Normal.html" class="external-link">rnorm</a></span><span class="op">(</span><span class="fl">20</span><span class="op">)</span><span class="op">)</span></span></span>
 <span class="r-in"><span><span class="fu">print_data.frame</span><span class="op">(</span><span class="va">x</span>, rows <span class="op">=</span> <span class="fl">7</span><span class="op">)</span></span></span>
-<span class="r-out co"><span class="r-pr">#&gt;</span>    a           b         </span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> 1  -0.02434007 -0.4201588</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> 2  -0.52026577  0.4430282</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> 3  -1.68194841 -0.1678813</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> 4   2.11269810 -0.4552553</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span>    a            b          </span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> 1  -0.937042705  0.26684863</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> 2  -1.564545171  0.85327630</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> 3  -0.141777606  0.20113116</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> 4   0.757381254 -0.35341753</span>
 <span class="r-out co"><span class="r-pr">#&gt;</span> </span>
 <span class="r-msg co"><span class="r-pr">#&gt;</span> &lt; 13 rows hidden &gt;</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span>                          </span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> 18 -0.15419096  1.6703403</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> 19 -0.77594799 -1.1435800</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> 20 -0.96816750  0.0900125</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span>                            </span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> 18  0.548131777  1.40909846</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> 19  0.038893959  0.05161212</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> 20 -0.001227307  0.12062133</span>
 <span class="r-in"><span><span class="fu">print_data.frame</span><span class="op">(</span><span class="va">x</span>, rows <span class="op">=</span> <span class="fl">7</span>, digits <span class="op">=</span> <span class="fl">1</span><span class="op">)</span></span></span>
 <span class="r-out co"><span class="r-pr">#&gt;</span>    a    b   </span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> 1   0.0 -0.4</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> 2  -0.5  0.4</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> 3  -1.7 -0.2</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> 4   2.1 -0.5</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> 1  -0.9  0.3</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> 2  -1.6  0.9</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> 3  -0.1  0.2</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> 4   0.8 -0.4</span>
 <span class="r-out co"><span class="r-pr">#&gt;</span> </span>
 <span class="r-msg co"><span class="r-pr">#&gt;</span> &lt; 13 rows hidden &gt;</span>
 <span class="r-out co"><span class="r-pr">#&gt;</span>             </span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> 18 -0.2  1.7</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> 19 -0.8 -1.1</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> 20 -1.0  0.1</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> 18  0.5  1.4</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> 19  0.0  0.1</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> 20  0.0  0.1</span>
 <span class="r-in"><span><span class="fu">print_data.frame</span><span class="op">(</span><span class="va">x</span>, rows <span class="op">=</span> <span class="fl">7</span>, digits <span class="op">=</span> <span class="fl">1</span>, row.names <span class="op">=</span> <span class="cn">FALSE</span><span class="op">)</span></span></span>
 <span class="r-out co"><span class="r-pr">#&gt;</span>  a    b   </span>
-<span class="r-out co"><span class="r-pr">#&gt;</span>   0.0 -0.4</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span>  -0.5  0.4</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span>  -1.7 -0.2</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span>   2.1 -0.5</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span>  -0.9  0.3</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span>  -1.6  0.9</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span>  -0.1  0.2</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span>   0.8 -0.4</span>
 <span class="r-out co"><span class="r-pr">#&gt;</span> </span>
 <span class="r-msg co"><span class="r-pr">#&gt;</span> &lt; 13 rows hidden &gt;</span>
 <span class="r-out co"><span class="r-pr">#&gt;</span>           </span>
-<span class="r-out co"><span class="r-pr">#&gt;</span>  -0.2  1.7</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span>  -0.8 -1.1</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span>  -1.0  0.1</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span>   0.5  1.4</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span>   0.0  0.1</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span>   0.0  0.1</span>
 </code></pre></div>
     </div>
   </main><aside class="col-md-3"><nav id="toc" aria-label="Table of contents"><h2>On this page</h2>
