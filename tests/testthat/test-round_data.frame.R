@@ -2,6 +2,9 @@ test_that("rounding numeric data.frame columns works", {
   set.seed(1)
   df <- data.frame("label" = c("A", "B"), "number" = rnorm(10) * 10)
   expect_equal(
+    round_data.frame(df, NULL), df
+  )
+  expect_equal(
     round_data.frame(df),
     structure(
       list(
