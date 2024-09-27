@@ -10,6 +10,8 @@
 
 * Added function `round_data.frame()` that rounds `numeric` columns of a `data.frame`.
 
+* Added function `print_data.frame()` that prints a (possibly abbreviated) `data.frame`.
+
 # oeli 0.6.0
 
 * Added function `quiet()` to silence expressions.

@@ -7,7 +7,7 @@
 #' @param df \[`data.frame`\]\cr
 #' A \code{data.frame}.
 #'
-#' @param digits \[`integer(1)` | NULL \]\cr
+#' @param digits \[`integer(1)` | `NULL` \]\cr
 #' The number of decimal places to be used.
 #'
 #' Negative values are allowed, resulting in rounding to a power of ten.

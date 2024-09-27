@@ -10,10 +10,12 @@ round_data.frame(df, digits = 0)
 \item{df}{[\code{data.frame}]\cr
 A \code{data.frame}.}
 
-\item{digits}{[\code{integer(1)}]\cr
+\item{digits}{[\code{integer(1)} | \code{NULL} ]\cr
 The number of decimal places to be used.
 
-Negative values are allowed, resulting in rounding to a power of ten.}
+Negative values are allowed, resulting in rounding to a power of ten.
+
+Can be \code{NULL} to not round.}
 }
 \value{
 A \code{data.frame}.

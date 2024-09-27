@@ -30,6 +30,7 @@ Other package helpers:
 \code{\link{input_check_response}()},
 \code{\link{match_arg}()},
 \code{\link{package_logo}()},
+\code{\link{print_data.frame}()},
 \code{\link{print_matrix}()},
 \code{\link{renv_development_packages}()},
 \code{\link{unexpected_error}()},
