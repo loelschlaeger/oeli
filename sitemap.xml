@@ -16,7 +16,7 @@
 <url><loc>http://loelschlaeger.de/oeli/reference/correlated_regressors.html</loc></url>
 <url><loc>http://loelschlaeger.de/oeli/reference/cov_to_chol.html</loc></url>
 <url><loc>http://loelschlaeger.de/oeli/reference/ddirichlet.html</loc></url>
-<url><loc>http://loelschlaeger.de/oeli/reference/delete_data_frame_columns.html</loc></url>
+<url><loc>http://loelschlaeger.de/oeli/reference/delete_columns_data.frame.html</loc></url>
 <url><loc>http://loelschlaeger.de/oeli/reference/diff_cov.html</loc></url>
 <url><loc>http://loelschlaeger.de/oeli/reference/dmvnorm.html</loc></url>
 <url><loc>http://loelschlaeger.de/oeli/reference/do.call_timed.html</loc></url>
@@ -25,7 +25,7 @@
 <url><loc>http://loelschlaeger.de/oeli/reference/function_arguments.html</loc></url>
 <url><loc>http://loelschlaeger.de/oeli/reference/function_body.html</loc></url>
 <url><loc>http://loelschlaeger.de/oeli/reference/function_defaults.html</loc></url>
-<url><loc>http://loelschlaeger.de/oeli/reference/group_data_frame.html</loc></url>
+<url><loc>http://loelschlaeger.de/oeli/reference/group_data.frame.html</loc></url>
 <url><loc>http://loelschlaeger.de/oeli/reference/identical_structure.html</loc></url>
 <url><loc>http://loelschlaeger.de/oeli/reference/index.html</loc></url>
 <url><loc>http://loelschlaeger.de/oeli/reference/input_check_response.html</loc></url>
@@ -39,9 +39,11 @@
 <url><loc>http://loelschlaeger.de/oeli/reference/oeli-package.html</loc></url>
 <url><loc>http://loelschlaeger.de/oeli/reference/package_logo.html</loc></url>
 <url><loc>http://loelschlaeger.de/oeli/reference/permutations.html</loc></url>
+<url><loc>http://loelschlaeger.de/oeli/reference/print_data.frame.html</loc></url>
 <url><loc>http://loelschlaeger.de/oeli/reference/print_matrix.html</loc></url>
 <url><loc>http://loelschlaeger.de/oeli/reference/quiet.html</loc></url>
 <url><loc>http://loelschlaeger.de/oeli/reference/renv_development_packages.html</loc></url>
+<url><loc>http://loelschlaeger.de/oeli/reference/round_data.frame.html</loc></url>
 <url><loc>http://loelschlaeger.de/oeli/reference/sample_correlation_matrix.html</loc></url>
 <url><loc>http://loelschlaeger.de/oeli/reference/sample_covariance_matrix.html</loc></url>
 <url><loc>http://loelschlaeger.de/oeli/reference/sample_transition_probability_matrix.html</loc></url>
