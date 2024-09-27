@@ -27,7 +27,8 @@ delete_data_frame_columns(df = df, column_names = c("label", "number"))
 }
 \seealso{
 Other data.frame helpers: 
-\code{\link{group_data_frame}()}
+\code{\link{group_data_frame}()},
+\code{\link{round_data.frame}()}
 }
 \concept{data.frame helpers}
 \keyword{transformation}

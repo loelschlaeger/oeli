@@ -29,7 +29,8 @@ group_data_frame(df = df, by = "label", keep_by = FALSE)
 }
 \seealso{
 Other data.frame helpers: 
-\code{\link{delete_data_frame_columns}()}
+\code{\link{delete_data_frame_columns}()},
+\code{\link{round_data.frame}()}
 }
 \concept{data.frame helpers}
 \keyword{transformation}

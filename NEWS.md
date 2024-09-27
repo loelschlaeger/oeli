@@ -8,6 +8,8 @@
 
 * Allow for zero matrix in `cov_to_chol()`.
 
+* Added function `round_data.frame()` that rounds `numeric` columns of a `data.frame`.
+
 # oeli 0.6.0
 
 * Added function `quiet()` to silence expressions.
