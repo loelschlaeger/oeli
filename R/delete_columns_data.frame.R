@@ -18,18 +18,18 @@
 #'
 #' @examples
 #' df <- data.frame("label" = c("A", "B"), "number" = 1:10)
-#' delete_data_frame_columns(df = df, column_names = "label")
-#' delete_data_frame_columns(df = df, column_names = "number")
-#' delete_data_frame_columns(df = df, column_names = c("label", "number"))
+#' delete_columns_data.frame(df = df, column_names = "label")
+#' delete_columns_data.frame(df = df, column_names = "number")
+#' delete_columns_data.frame(df = df, column_names = c("label", "number"))
 
-delete_data_frame_columns <- function(df, column_names) {
+delete_columns_data.frame <- function(df, column_names) {
   input_check_response(
-    checkmate::check_data_frame(df),
-    "df"
+    check = checkmate::check_data_frame(df),
+    var_name = "df"
   )
   input_check_response(
-    checkmate::check_names(column_names, subset.of = names(df)),
-    "column_names"
+    check = checkmate::check_names(column_names, subset.of = names(df)),
+    var_name = "column_names"
   )
   df[column_names] <- NULL
   return(df)

@@ -38,11 +38,20 @@ The package includes helpers for various tasks and objects. Some demos are shown
 
 ### [Distributions](https://loelschlaeger.de/oeli/reference/index.html#distribution)
 
-The package has density and sampling functions for distributions not in base R, such as Dirichlet, multivariate normal, truncated normal, and Wishart. For faster computation, an Rcpp implementation is also available.
+The package has density and sampling functions for distributions not in base R, such as Dirichlet, multivariate normal, truncated normal, and Wishart.
 
 ```{r, dirichlet}
 ddirichlet(x = c(0.2, 0.3, 0.5), concentration = 1:3)
 rdirichlet(concentration = 1:3)
+```
+
+For faster computation, [Rcpp](https://www.rcpp.org) implementations are also available:
+
+```{r, mvnorm_fast}
+microbenchmark::microbenchmark(
+  "R"    = rmvnorm(mean = c(0, 0, 0), Sigma = diag(3)),
+  "Rcpp" = rmvnorm_cpp(mean = c(0, 0, 0), Sigma = diag(3))
+)
 ```
 
 ### [Function helpers](https://loelschlaeger.de/oeli/reference/index.html#functional)
@@ -70,11 +79,18 @@ Quickly have a basic logo for your new package:
 package_logo("my_package", brackets = TRUE, use_logo = FALSE)
 ```
 
-How to print a matrix without filling up the entire console?
+How to print a `matrix` without filling up the entire console?
 
 ```{r, print_matrix}
 x <- matrix(rnorm(10000), ncol = 100, nrow = 100)
 print_matrix(x, rowdots = 4, coldots = 4, digits = 2, label = "what a big matrix")
+```
+
+And what about a `data.frame`?
+
+```{r, print_data.frame}
+x <- data.frame(x = rnorm(1000), y = LETTERS[1:10])
+print_data.frame(x, rows = 7, digits = 0)
 ```
 
 ### [Simulation helpers](https://loelschlaeger.de/oeli/reference/index.html#simulation)
@@ -88,11 +104,11 @@ simulate_markov_chain(Gamma = Gamma, T = 20)
 
 ### [Transformation helpers](https://loelschlaeger.de/oeli/reference/index.html#transformation)
 
-The `group_data_frame()` function groups a given `data.frame` based on the values in a specified column:
+The `group_data.frame()` function groups a given `data.frame` based on the values in a specified column:
 
-```{r, group_data_frame}
+```{r, group_data.frame}
 df <- data.frame("label" = c("A", "B"), "number" = 1:10)
-group_data_frame(df = df, by = "label")
+group_data.frame(df = df, by = "label")
 ```
 
 ### [Validation helpers](https://loelschlaeger.de/oeli/reference/index.html#validation)

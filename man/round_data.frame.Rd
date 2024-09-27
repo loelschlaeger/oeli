@@ -30,8 +30,8 @@ round_data.frame(df, digits = 1)
 }
 \seealso{
 Other data.frame helpers: 
-\code{\link{delete_data_frame_columns}()},
-\code{\link{group_data_frame}()}
+\code{\link{delete_columns_data.frame}()},
+\code{\link{group_data.frame}()}
 }
 \concept{data.frame helpers}
 \keyword{transformation}

@@ -21,16 +21,16 @@
 #'
 #' @examples
 #' df <- data.frame("label" = c("A", "B"), "number" = 1:10)
-#' group_data_frame(df = df, by = "label")
-#' group_data_frame(df = df, by = "label", keep_by = FALSE)
+#' group_data.frame(df = df, by = "label")
+#' group_data.frame(df = df, by = "label", keep_by = FALSE)
 
-group_data_frame <- function(df, by, keep_by = TRUE) {
+group_data.frame <- function(df, by, keep_by = TRUE) {
   checkmate::assert_data_frame(df)
   checkmate::assert_names(by, subset.of = names(df))
   checkmate::assert_flag(keep_by)
   lapply(
     split(df, as.factor(df[, by])),
-    delete_data_frame_columns,
+    delete_columns_data.frame,
     column_names = if (keep_by) character() else by
   )
 }

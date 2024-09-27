@@ -12,6 +12,10 @@
 
 * Added function `print_data.frame()` that prints a (possibly abbreviated) `data.frame`.
 
+* Renamed function `group_data_frame()` -> `group_data.frame()`.
+
+* Renamed function `delete_data_frame_columns()` -> `delete_columns_data.frame()`.
+
 # oeli 0.6.0
 
 * Added function `quiet()` to silence expressions.

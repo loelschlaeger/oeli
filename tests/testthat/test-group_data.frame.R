@@ -1,7 +1,7 @@
 test_that("can group data.frame", {
   df <- data.frame("label" = c("A", "B"), "number" = 1:10)
   expect_equal(
-    group_data_frame(df = df, by = "label"),
+    group_data.frame(df = df, by = "label"),
     list(
       A = structure(
         list(label = c("A", "A", "A", "A", "A"), number = c(1L, 3L, 5L, 7L, 9L)),
@@ -14,7 +14,7 @@ test_that("can group data.frame", {
     )
   )
   expect_equal(
-    group_data_frame(df = df, by = "label", keep_by = FALSE),
+    group_data.frame(df = df, by = "label", keep_by = FALSE),
     list(
       A = structure(
         list(number = c(1L, 3L, 5L, 7L, 9L)),

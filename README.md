@@ -37,17 +37,27 @@ documentation on all available helpers in each category.
 
 The package has density and sampling functions for distributions not in
 base R, such as Dirichlet, multivariate normal, truncated normal, and
-Wishart. For faster computation, an Rcpp implementation is also
-available.
+Wishart.
 
 ``` r
 ddirichlet(x = c(0.2, 0.3, 0.5), concentration = 1:3)
 #> [1] 4.5
+rdirichlet(concentration = 1:3)
+#> [1] 0.1273171 0.5269401 0.3457428
 ```
 
+For faster computation, [Rcpp](https://www.rcpp.org) implementations are
+also available:
+
 ``` r
-rdirichlet(concentration = 1:3)
-#> [1] 0.2032900 0.2310928 0.5656171
+microbenchmark::microbenchmark(
+  "R"    = rmvnorm(mean = c(0, 0, 0), Sigma = diag(3)),
+  "Rcpp" = rmvnorm_cpp(mean = c(0, 0, 0), Sigma = diag(3))
+)
+#> Unit: microseconds
+#>  expr   min     lq    mean median     uq    max neval
+#>     R 200.5 208.25 263.396 217.10 234.35 2154.7   100
+#>  Rcpp   2.7   2.90   5.386   4.05   4.40   72.0   100
 ```
 
 ### [Function helpers](https://loelschlaeger.de/oeli/reference/index.html#functional)
@@ -99,18 +109,35 @@ package_logo("my_package", brackets = TRUE, use_logo = FALSE)
 
 <img src="man/figures/README-package_logo-1.png" width="50%" style="display: block; margin: auto;" />
 
-How to print a matrix without filling up the entire console?
+How to print a `matrix` without filling up the entire console?
 
 ``` r
 x <- matrix(rnorm(10000), ncol = 100, nrow = 100)
 print_matrix(x, rowdots = 4, coldots = 4, digits = 2, label = "what a big matrix")
 #> what a big matrix : 100 x 100 matrix of doubles 
 #>         [,1]  [,2]  [,3] ... [,100]
-#> [1,]    0.01  0.59 -1.02 ...   1.73
-#> [2,]   -0.11 -0.01  2.37 ...   0.22
-#> [3,]   -1.87  0.09 -1.24 ...  -0.93
+#> [1,]    2.39   0.3 -0.48 ...   0.56
+#> [2,]   -1.33  0.62  0.37 ...  -1.21
+#> [3,]   -0.03 -0.43  1.71 ...   0.07
 #> ...      ...   ...   ... ...    ...
-#> [100,]   0.6 -0.99 -0.26 ...   -0.9
+#> [100,]  0.14 -0.16  2.49 ...  -1.58
+```
+
+And what about a `data.frame`?
+
+``` r
+x <- data.frame(x = rnorm(1000), y = LETTERS[1:10])
+print_data.frame(x, rows = 7, digits = 0)
+#>      x  y
+#> 1     0 A
+#> 2    -1 B
+#> 3     0 C
+#> 4    -1 D
+#> < 993 rows hidden >
+#>          
+#> 998  -1 H
+#> 999  -1 I
+#> 1000  0 J
 ```
 
 ### [Simulation helpers](https://loelschlaeger.de/oeli/reference/index.html#simulation)
@@ -120,17 +147,17 @@ Let’s simulate a Markov chain:
 ``` r
 Gamma <- sample_transition_probability_matrix(dim = 3)
 simulate_markov_chain(Gamma = Gamma, T = 20)
-#>  [1] 2 2 3 2 1 2 2 2 2 1 2 2 1 1 2 3 3 1 1 1
+#>  [1] 2 1 1 3 1 1 2 2 3 2 2 2 2 2 1 1 1 1 1 3
 ```
 
 ### [Transformation helpers](https://loelschlaeger.de/oeli/reference/index.html#transformation)
 
-The `group_data_frame()` function groups a given `data.frame` based on
+The `group_data.frame()` function groups a given `data.frame` based on
 the values in a specified column:
 
 ``` r
 df <- data.frame("label" = c("A", "B"), "number" = 1:10)
-group_data_frame(df = df, by = "label")
+group_data.frame(df = df, by = "label")
 #> $A
 #>   label number
 #> 1     A      1
