@@ -4,14 +4,23 @@
 \alias{print_data.frame}
 \title{Print (abbreviated) \code{data.frame}}
 \usage{
-print_data.frame(x, rows = NULL, digits = NULL, row.names = TRUE)
+print_data.frame(
+  x,
+  rows = NULL,
+  cols = NULL,
+  digits = NULL,
+  row.names = TRUE,
+  col.names = TRUE
+)
 }
 \arguments{
 \item{x}{[\code{data.frame}]\cr
 A \code{data.frame}.}
 
-\item{rows}{[\code{integer(1)} | \code{NULL} ]\cr
-The number of rows to be printed. Printing is abbreviated in the middle.
+\item{rows, cols}{[\code{integer(1)} | \code{NULL} ]\cr
+The number of rows or columns to be printed, greater or equal \code{2}.
+
+Printing is abbreviated in the middle.
 
 Can be \code{NULL} to print everything.}
 
@@ -22,8 +31,8 @@ Negative values are allowed, resulting in rounding to a power of ten.
 
 Can be \code{NULL} to not round.}
 
-\item{row.names}{[\code{logical(1)}]\cr
-Print row names?}
+\item{row.names, col.names}{[\code{logical(1)}]\cr
+Print row names or column names?}
 }
 \value{
 Invisibly returns \code{x}.
@@ -32,10 +41,12 @@ Invisibly returns \code{x}.
 This function prints a (possibly abbreviated) \code{data.frame}.
 }
 \examples{
-x <- data.frame("a" = rnorm(20), "b" = rnorm(20))
+x <- data.frame(1:10, LETTERS[1:10], stats::rnorm(10))
 print_data.frame(x, rows = 7)
-print_data.frame(x, rows = 7, digits = 1)
-print_data.frame(x, rows = 7, digits = 1, row.names = FALSE)
+print_data.frame(x, rows = 7, cols = 2)
+print_data.frame(x, rows = 7, cols = 2, digits = 1)
+print_data.frame(x, rows = 7, cols = 2, digits = 1, row.names = FALSE)
+print_data.frame(x, rows = 7, cols = 2, digits = 1, col.names = FALSE)
 }
 \seealso{
 Other package helpers: 

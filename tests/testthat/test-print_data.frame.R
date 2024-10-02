@@ -1,17 +1,20 @@
 test_that("printing abbreviated data.frames works", {
   set.seed(1)
-  x <- data.frame("a" = rnorm(20), "b" = rnorm(20))
-  expect_snapshot(
-    print_data.frame(x, rows = 20, digits = 0)
-  )
+  x <- data.frame(1:10, LETTERS[1:10], stats::rnorm(10))
   expect_snapshot(
     print_data.frame(x, rows = 7)
   )
   expect_snapshot(
-    print_data.frame(x, rows = 7, digits = 1)
+    print_data.frame(x, rows = 7, cols = 2)
   )
   expect_snapshot(
-    print_data.frame(x, rows = 7, digits = 1, row.names = FALSE)
+    print_data.frame(x, rows = 7, cols = 2, digits = 1)
+  )
+  expect_snapshot(
+    print_data.frame(x, rows = 7, cols = 2, digits = 1, row.names = FALSE)
+  )
+  expect_snapshot(
+    print_data.frame(x, rows = 7, cols = 2, digits = 1, col.names = FALSE)
   )
   expect_snapshot(
     print_data.frame(data.frame())
