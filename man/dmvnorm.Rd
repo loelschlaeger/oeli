@@ -30,6 +30,9 @@ The covariance matrix of dimension \code{p}.
 
 It can also be a zero matrix.
 
+For \code{rmvnorm()}, arbitrary dimensions (i.e., full rows and corresponding
+columns) of \code{Sigma} can be \code{0}.
+
 For \code{dmvnorm()} and \code{rmvnorm()} and if \code{p = 1}, it can also be a single
 \code{numeric} for convenience. Note that \code{Sigma} is this case is a variance,
 which is a different format than in \code{stats::dnorm()} or \code{stats::rnorm},

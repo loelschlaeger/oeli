@@ -2,7 +2,7 @@
 
 * Improved documentation of `diff_cov()`, `undiff_cov()`, and `delta()`.
 
-* Improved documentation of `dmvnorm()` and `rmvnorm()`. The mean vector can now be of length 1 for convenience. The degenerate case (covariance is zero) is now supported.
+* Improved documentation of `dmvnorm()` and `rmvnorm()`. The mean vector can now be of length 1 for convenience. The degenerate case (covariance is zero) is now supported. Also separate dimensions of `Sigma` can be degenerate for `rmvnorm()`.
 
 * Added function `split_vector_at()` to split a vector at specific positions.
 

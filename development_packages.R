@@ -13,6 +13,9 @@ if (!require("markdown", quietly = TRUE)) {
 if (!require("R.utils", quietly = TRUE)) {
   renv::install("R.utils", prompt = FALSE)
 }
+if (!require("spsUtil", quietly = TRUE)) {
+  renv::install("spsUtil", prompt = FALSE)
+}
 if (!require("yaml", quietly = TRUE)) {
   renv::install("yaml", prompt = FALSE)
 }

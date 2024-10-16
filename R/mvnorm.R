@@ -24,6 +24,9 @@
 #'
 #' It can also be a zero matrix.
 #'
+#' For `rmvnorm()`, arbitrary dimensions (i.e., full rows and corresponding
+#' columns) of `Sigma` can be `0`.
+#'
 #' For `dmvnorm()` and `rmvnorm()` and if `p = 1`, it can also be a single
 #' `numeric` for convenience. Note that `Sigma` is this case is a variance,
 #' which is a different format than in `stats::dnorm()` or `stats::rnorm`,
@@ -92,6 +95,8 @@ dmvnorm <- function(x, mean, Sigma, log = FALSE) {
 #' @export
 
 rmvnorm <- function(n = 1, mean, Sigma, log = FALSE) {
+
+  ### input checks
   input_check_response(
     check = checkmate::check_int(n),
     var_name = "n"
@@ -100,7 +105,7 @@ rmvnorm <- function(n = 1, mean, Sigma, log = FALSE) {
     Sigma <- as.matrix(Sigma)
   }
   input_check_response(
-    check = check_covariance_matrix(Sigma),
+    check = checkmate::check_matrix(Sigma, mode = "numeric"),
     var_name = "Sigma"
   )
   dim <- nrow(Sigma)
@@ -115,12 +120,52 @@ rmvnorm <- function(n = 1, mean, Sigma, log = FALSE) {
     check = checkmate::check_flag(log),
     var_name = "log"
   )
-  out <- replicate(n = n, rmvnorm_cpp(mean, Sigma, log), simplify = TRUE)
-  if (n == 1) {
-    drop(out)
-  } else if (dim == 1) {
-    as.matrix(out)
-  } else {
-    t(out)
+
+  ### zero dimensions case
+  zero_dims <- which(
+    apply(Sigma, 1, function(row) all(row == 0)) &
+    apply(Sigma, 2, function(col) all(col == 0))
+  )
+  if (length(zero_dims) == dim) {
+    ### the case where Sigma = 0 is handeled in rmvnorm_cpp
+    zero_dims <- integer()
   }
+  if (length(zero_dims) > 0) {
+    mean_det <- mean[zero_dims]
+    mean <- mean[-zero_dims]
+    Sigma <- Sigma[-zero_dims, -zero_dims, drop = FALSE]
+  }
+  input_check_response(
+    check = check_covariance_matrix(Sigma),
+    var_name = "Sigma"
+  )
+
+  ### sample
+  sample <- replicate(n = n, rmvnorm_cpp(mean, Sigma, log), simplify = TRUE)
+  if (n == 1) {
+    if (length(zero_dims) > 0) {
+      out <- numeric(dim)
+      out[-zero_dims] <- drop(sample)
+      out[zero_dims] <- mean_det
+      if (log) out[zero_dims] <- exp(out[zero_dims])
+    } else {
+      out <- drop(sample)
+    }
+  } else if (dim == 1) {
+    out <- as.matrix(sample)
+  } else {
+    if (length(zero_dims) > 0) {
+      out <- matrix(0, nrow = n, ncol = dim)
+      out[, -zero_dims] <- t(sample)
+      out[, zero_dims] <- matrix(
+        mean_det, nrow = n, ncol = length(zero_dims), byrow = TRUE
+      )
+      if (log) out[, zero_dims] <- exp(out[, zero_dims])
+    } else {
+      out <- t(sample)
+    }
+  }
+
+  ### return
+  return(out)
 }
