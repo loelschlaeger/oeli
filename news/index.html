@@ -7,7 +7,7 @@
 
     <a class="navbar-brand me-2" href="../index.html">oeli</a>
 
-    <small class="nav-text text-muted me-auto" data-bs-toggle="tooltip" data-bs-placement="bottom" title="">0.6.0.9003</small>
+    <small class="nav-text text-muted me-auto" data-bs-toggle="tooltip" data-bs-placement="bottom" title="">0.7.0</small>
 
 
     <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbar" aria-controls="navbar" aria-expanded="false" aria-label="Toggle navigation">
@@ -31,6 +31,17 @@
       <small>Source: <a href="https://github.com/loelschlaeger/oeli/blob/master/NEWS.md" class="external-link"><code>NEWS.md</code></a></small>
     </div>
 
+    <div class="section level2">
+<h2 class="pkg-version" data-toc-text="0.7.0" id="oeli-070">oeli 0.7.0<a class="anchor" aria-label="anchor" href="#oeli-070"></a></h2>
+<ul><li><p>Improved documentation of <code><a href="../reference/diff_cov.html">diff_cov()</a></code>, <code><a href="../reference/diff_cov.html">undiff_cov()</a></code>, and <code><a href="../reference/diff_cov.html">delta()</a></code>.</p></li>
+<li><p>Improved documentation of <code><a href="../reference/dmvnorm.html">dmvnorm()</a></code> and <code><a href="../reference/dmvnorm.html">rmvnorm()</a></code>. The mean vector can now be of length 1 for convenience. The degenerate case (covariance is zero) is now supported. Also separate dimensions of <code>Sigma</code> can be degenerate for <code><a href="../reference/dmvnorm.html">rmvnorm()</a></code>.</p></li>
+<li><p>Added function <code><a href="../reference/split_vector_at.html">split_vector_at()</a></code> to split a vector at specific positions.</p></li>
+<li><p>Allow for zero matrix in <code><a href="../reference/cov_to_chol.html">cov_to_chol()</a></code>.</p></li>
+<li><p>Added function <code><a href="../reference/round_data.frame.html">round_data.frame()</a></code> that rounds <code>numeric</code> columns of a <code>data.frame</code>.</p></li>
+<li><p>Added function <code><a href="../reference/print_data.frame.html">print_data.frame()</a></code> that prints a (possibly abbreviated) <code>data.frame</code>.</p></li>
+<li><p>Renamed function <code>group_data_frame()</code> -&gt; <code><a href="../reference/group_data.frame.html">group_data.frame()</a></code>.</p></li>
+<li><p>Renamed function <code>delete_data_frame_columns()</code> -&gt; <code><a href="../reference/delete_columns_data.frame.html">delete_columns_data.frame()</a></code>.</p></li>
+</ul></div>
     <div class="section level2">
 <h2 class="pkg-version" data-toc-text="0.6.0" id="oeli-060">oeli 0.6.0<a class="anchor" aria-label="anchor" href="#oeli-060"></a></h2><p class="text-muted">CRAN release: 2024-09-17</p>
 <ul><li><p>Added function <code><a href="../reference/quiet.html">quiet()</a></code> to silence expressions.</p></li>
