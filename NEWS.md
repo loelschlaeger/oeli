@@ -1,4 +1,4 @@
-# oeli development
+# oeli 0.7.0
 
 * Improved documentation of `diff_cov()`, `undiff_cov()`, and `delta()`.
 
