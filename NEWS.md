@@ -1,3 +1,7 @@
+# oeli development
+
+* Allowed for zero-dimension edge cases in `cov_to_chol()` and `chol_to_cov()`.
+
 # oeli 0.7.0
 
 * Improved documentation of `diff_cov()`, `undiff_cov()`, and `delta()`.
