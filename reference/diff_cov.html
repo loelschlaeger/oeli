@@ -9,7 +9,7 @@ matrices."><meta property="og:image" content="http://loelschlaeger.de/oeli/logo.
 
     <a class="navbar-brand me-2" href="../index.html">oeli</a>
 
-    <small class="nav-text text-muted me-auto" data-bs-toggle="tooltip" data-bs-placement="bottom" title="">0.7.0.9000</small>
+    <small class="nav-text text-muted me-auto" data-bs-toggle="tooltip" data-bs-placement="bottom" title="">0.7.0.9001</small>
 
 
     <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbar" aria-controls="navbar" aria-expanded="false" aria-label="Toggle navigation">
@@ -133,16 +133,16 @@ An "un-differenced" covariance matrix \(\Sigma_0\) can be computed via
 <span class="r-in"><span></span></span>
 <span class="r-in"><span><span class="co"># difference Sigma</span></span></span>
 <span class="r-in"><span><span class="op">(</span><span class="va">Sigma_diff</span> <span class="op">&lt;-</span> <span class="fu">diff_cov</span><span class="op">(</span><span class="va">Sigma</span>, ref <span class="op">=</span> <span class="va">k</span><span class="op">)</span><span class="op">)</span></span></span>
-<span class="r-out co"><span class="r-pr">#&gt;</span>          [,1]     [,2]</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> [1,] 7.498539 4.325304</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> [2,] 4.325304 2.842063</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span>           [,1]     [,2]</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> [1,]  8.685396 10.23345</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> [2,] 10.233450 13.42753</span>
 <span class="r-in"><span></span></span>
 <span class="r-in"><span><span class="co"># un-difference Sigma</span></span></span>
 <span class="r-in"><span><span class="op">(</span><span class="va">Sigma_0</span> <span class="op">&lt;-</span> <span class="fu">undiff_cov</span><span class="op">(</span><span class="va">Sigma_diff</span>, ref <span class="op">=</span> <span class="va">k</span><span class="op">)</span><span class="op">)</span></span></span>
-<span class="r-out co"><span class="r-pr">#&gt;</span>          [,1] [,2]     [,3]</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> [1,] 7.498539    0 4.325304</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> [2,] 0.000000    0 0.000000</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> [3,] 4.325304    0 2.842063</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span>           [,1] [,2]     [,3]</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> [1,]  8.685396    0 10.23345</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> [2,]  0.000000    0  0.00000</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> [3,] 10.233450    0 13.42753</span>
 <span class="r-in"><span></span></span>
 <span class="r-in"><span><span class="co"># difference again</span></span></span>
 <span class="r-in"><span><span class="va">Sigma_diff_2</span> <span class="op">&lt;-</span> <span class="fu">diff_cov</span><span class="op">(</span><span class="va">Sigma_0</span>, ref <span class="op">=</span> <span class="va">k</span><span class="op">)</span></span></span>
