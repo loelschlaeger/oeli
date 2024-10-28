@@ -33,6 +33,9 @@
 #' all.equal(cov, chol_to_cov(chol))
 
 cov_to_chol <- function(cov, unique = TRUE) {
+  if (is.matrix(cov) && nrow(cov) == 0 && ncol(cov) == 0) {
+    return(numeric())
+  }
   input_check_response(
     check_covariance_matrix(cov),
     "cov"
@@ -62,10 +65,13 @@ chol_to_cov <- function(chol) {
     check_numeric_vector(chol, any.missing = FALSE, finite = TRUE),
     "chol"
   )
+  if (length(chol) == 0) {
+    return(matrix(0, 0, 0))
+  }
   dim <- -0.5 + sqrt(0.25 + 2 * length(chol))
   input_check_response(
     checkmate::check_count(dim, positive = TRUE),
-    prefix = "Length of {.var chol} is bad:"
+    prefix = "Value {.code -0.5 + sqrt(0.25 + 2 * length(chol))} is bad:"
   )
   cov <- matrix(0, dim, dim)
   cov[lower.tri(cov, diag = TRUE)] <- chol
