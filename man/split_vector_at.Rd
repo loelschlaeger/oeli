@@ -34,6 +34,7 @@ Other vector helpers:
 \code{\link{check_probability_vector}()},
 \code{\link{chunk_vector}()},
 \code{\link{insert_vector_entry}()},
+\code{\link{map_indices}()},
 \code{\link{match_numerics}()},
 \code{\link{permutations}()},
 \code{\link{subsets}()},
