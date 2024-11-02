@@ -4,6 +4,7 @@
 \alias{diff_cov}
 \alias{undiff_cov}
 \alias{delta}
+\alias{M}
 \title{Difference and un-difference covariance matrix}
 \usage{
 diff_cov(cov, ref = 1)
@@ -11,6 +12,8 @@ diff_cov(cov, ref = 1)
 undiff_cov(cov_diff, ref = 1)
 
 delta(ref = 1, dim)
+
+M(ranking = seq_len(dim), dim)
 }
 \arguments{
 \item{cov, cov_diff}{[\code{matrix()}]\cr
@@ -23,6 +26,9 @@ differencing that maps \code{cov} to \code{cov_diff}, see details.}
 
 \item{dim}{[\code{integer(1)}]\cr
 The matrix dimension.}
+
+\item{ranking}{[\code{integer()}]\cr
+The integers \code{1} to \code{dim} in arbitrary order.}
 }
 \value{
 A (differenced or un-differenced) covariance \code{matrix}.
@@ -57,12 +63,15 @@ solution, we add a column and a row of zeros
 at column and row number \eqn{k} to \eqn{\tilde{\Sigma}}, respectively.
 An "un-differenced" covariance matrix \eqn{\Sigma_0} can be computed via
 \code{undiff_delta(Sigma_diff, ref = k)}.
+
+As a alternative to \eqn{\Delta_k}, the function \code{M()} returns a matrix for
+taking differences such that the resulting vector is negative.
 }
 \examples{
-n <- 3
+n <- 4
 Sigma <- sample_covariance_matrix(dim = n)
 k <- 2
-x <- c(1, 3, 2)
+x <- c(1, 3, 2, 4)
 
 # build difference operator
 delta_k <- delta(ref = k, dim = n)
@@ -79,6 +88,9 @@ delta_k \%*\% x
 # difference again
 Sigma_diff_2 <- diff_cov(Sigma_0, ref = k)
 all.equal(Sigma_diff, Sigma_diff_2)
+
+# difference such that the resulting vector is negative
+M(ranking = order(x, decreasing = TRUE), dim = n) \%*\% x
 }
 \seealso{
 Other matrix helpers: 

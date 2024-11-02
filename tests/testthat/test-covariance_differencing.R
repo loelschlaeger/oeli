@@ -31,3 +31,12 @@ test_that("differencing works", {
   expect_silent(assert_covariance_matrix(Sigma_diff1))
   expect_equal(Sigma_diff0, Sigma_diff1)
 })
+
+test_that("matrix M works", {
+  dim <- 4
+  x <- rnorm(4)
+  ranking <- order(x, decreasing = TRUE)
+  expect_true(
+    all(M(ranking = ranking, dim = dim) %*% x < 0)
+  )
+})

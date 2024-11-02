@@ -15,6 +15,9 @@
 #' @param dim \[`integer(1)`\]\cr
 #' The matrix dimension.
 #'
+#' @param ranking \[`integer()`\]\cr
+#' The integers `1` to `dim` in arbitrary order.
+#'
 #' @return
 #' A (differenced or un-differenced) covariance \code{matrix}.
 #'
@@ -45,15 +48,18 @@
 #' An "un-differenced" covariance matrix \eqn{\Sigma_0} can be computed via
 #' \code{undiff_delta(Sigma_diff, ref = k)}.
 #'
+#' As a alternative to \eqn{\Delta_k}, the function `M()` returns a matrix for
+#' taking differences such that the resulting vector is negative.
+#'
 #' @keywords transformation
 #' @family matrix helpers
 #' @export
 #'
 #' @examples
-#' n <- 3
+#' n <- 4
 #' Sigma <- sample_covariance_matrix(dim = n)
 #' k <- 2
-#' x <- c(1, 3, 2)
+#' x <- c(1, 3, 2, 4)
 #'
 #' # build difference operator
 #' delta_k <- delta(ref = k, dim = n)
@@ -70,6 +76,9 @@
 #' # difference again
 #' Sigma_diff_2 <- diff_cov(Sigma_0, ref = k)
 #' all.equal(Sigma_diff, Sigma_diff_2)
+#'
+#' # difference such that the resulting vector is negative
+#' M(ranking = order(x, decreasing = TRUE), dim = n) %*% x
 
 diff_cov <- function(cov, ref = 1) {
   input_check_response(
@@ -118,4 +127,27 @@ delta <- function(ref = 1, dim) {
   D <- diag(dim)
   D[, ref] <- -1
   D[-ref, , drop = FALSE]
+}
+
+#' @rdname diff_cov
+#' @export
+
+M <- function(ranking = seq_len(dim), dim) {
+  input_check_response(
+    check = checkmate::check_int(dim, lower = 2),
+    var_name = "dim"
+  )
+  input_check_response(
+    check = checkmate::check_integerish(
+      ranking, lower = 1, upper = dim, len = dim, unique = TRUE,
+      any.missing = FALSE
+    ),
+    var_name = "ranking"
+  )
+  M <- matrix(0, nrow = dim - 1, ncol = dim)
+  for (i in seq_len(dim - 1)) {
+    M[i, ranking[i]] <- -1
+    M[i, ranking[i + 1]] <- 1
+  }
+  return(M)
 }

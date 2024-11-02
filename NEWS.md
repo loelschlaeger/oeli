@@ -4,6 +4,8 @@
 
 * Added function `map_indices()` that maps indices from an input vector to corresponding sequences of grouped indices.
 
+* Added function `M()` for taking differences such that the resulting vector is negative.
+
 # oeli 0.7.0
 
 * Improved documentation of `diff_cov()`, `undiff_cov()`, and `delta()`.
