@@ -4,7 +4,7 @@
 \alias{package_logo}
 \title{Creating a basic logo for an R package}
 \usage{
-package_logo(package_name, brackets = TRUE, use_logo = FALSE)
+package_logo(package_name, brackets = TRUE)
 }
 \arguments{
 \item{package_name}{[\code{character(1)}]\cr
@@ -12,9 +12,6 @@ The package name.}
 
 \item{brackets}{[\code{logical(1)}]\cr
 Curly brackets around the package name?}
-
-\item{use_logo}{[\code{logical(1)}]\cr
-Run \code{\link[usethis]{use_logo}} in the end?}
 }
 \value{
 A \code{ggplot} object.
@@ -25,12 +22,14 @@ background and the package name (with or without curly brackets) in the
 center. The font size for the package name is scaled such that it fits inside
 the logo. Type \code{?oeli} to see an example.
 }
-\details{
-The function optionally calls \code{\link[usethis]{use_logo}} if
-\code{use_logo = TRUE} to set up the logo for a package.
-}
 \examples{
-package_logo("my_package", brackets = TRUE, use_logo = FALSE)
+package_logo("my_package", brackets = TRUE)
+}
+\references{
+\itemize{
+\item This function builds upon \code{\link[hexSticker]{sticker}}.
+\item Use \code{\link[usethis]{use_logo}} to set up the logo for a package.
+}
 }
 \seealso{
 Other package helpers: 
@@ -41,7 +40,6 @@ Other package helpers:
 \code{\link{match_arg}()},
 \code{\link{print_data.frame}()},
 \code{\link{print_matrix}()},
-\code{\link{renv_development_packages}()},
 \code{\link{system_information}()},
 \code{\link{unexpected_error}()},
 \code{\link{user_confirm}()}

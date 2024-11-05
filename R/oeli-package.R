@@ -28,7 +28,6 @@
 #' @importFrom stats dist
 #' @importFrom stats runif
 #' @importFrom sysfonts font_add_google
-#' @importFrom usethis use_logo
 #' @importFrom utils combn
 #' @importFrom utils head
 #' @importFrom utils tail

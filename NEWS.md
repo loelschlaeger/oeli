@@ -6,6 +6,8 @@
 
 * Added function `M()` for taking differences such that the resulting vector is negative.
 
+* Removed function `renv_development_packages()` and argument `use_logo` in `package_logo()` to get rid of dependency to `{usethis}` package.
+
 # oeli 0.7.0
 
 * Improved documentation of `diff_cov()`, `undiff_cov()`, and `delta()`.

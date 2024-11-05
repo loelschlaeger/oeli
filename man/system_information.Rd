@@ -32,7 +32,6 @@ Other package helpers:
 \code{\link{package_logo}()},
 \code{\link{print_data.frame}()},
 \code{\link{print_matrix}()},
-\code{\link{renv_development_packages}()},
 \code{\link{unexpected_error}()},
 \code{\link{user_confirm}()}
 }

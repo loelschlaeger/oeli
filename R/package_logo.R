@@ -6,18 +6,15 @@
 #' center. The font size for the package name is scaled such that it fits inside
 #' the logo. Type \code{?oeli} to see an example.
 #'
-#' @details
-#' The function optionally calls \code{\link[usethis]{use_logo}} if
-#' \code{use_logo = TRUE} to set up the logo for a package.
+#' @references
+#' - This function builds upon \code{\link[hexSticker]{sticker}}.
+#' - Use \code{\link[usethis]{use_logo}} to set up the logo for a package.
 #'
 #' @param package_name \[`character(1)`\]\cr
 #' The package name.
 #'
 #' @param brackets \[`logical(1)`\]\cr
 #' Curly brackets around the package name?
-#'
-#' @param use_logo \[`logical(1)`\]\cr
-#' Run \code{\link[usethis]{use_logo}} in the end?
 #'
 #' @return
 #' A \code{ggplot} object.
@@ -27,16 +24,19 @@
 #' @family package helpers
 #'
 #' @examples
-#' package_logo("my_package", brackets = TRUE, use_logo = FALSE)
+#' package_logo("my_package", brackets = TRUE)
 
-package_logo <- function(
-    package_name, brackets = TRUE, use_logo = FALSE
-) {
+package_logo <- function(package_name, brackets = TRUE) {
 
   ### input checks
-  checkmate::assert_string(package_name)
-  checkmate::assert_flag(brackets)
-  checkmate::assert_flag(use_logo)
+  input_check_response(
+    check = checkmate::check_string(package_name),
+    var_name = "package_name"
+  )
+  input_check_response(
+    check = checkmate::check_flag(brackets),
+    var_name = "brackets"
+  )
 
   ### define font
   sysfonts::font_add_google("Martel", "my_font")
@@ -59,7 +59,7 @@ package_logo <- function(
 
   ### build logo
   suppressWarnings(
-    logo_file <- hexSticker::sticker(
+    hexSticker::sticker(
 
       ### image
       subplot = ggplot2::ggplot() +
@@ -105,11 +105,4 @@ package_logo <- function(
       dpi = 300
     )
   )
-
-  if (use_logo) {
-    usethis::use_logo(img = filename)
-  }
-
-  ### print logo
-  return(logo_file)
 }
