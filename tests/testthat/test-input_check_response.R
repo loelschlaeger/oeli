@@ -30,4 +30,15 @@ test_that("response to input check works", {
     ),
     "Input `y` is bad: Must be of type 'character', not 'double'"
   )
+  expect_error(
+    input_check_response(
+      check = list(
+        checkmate::check_flag(x),
+        checkmate::check_character(y)
+      ),
+      var_name = "y",
+      error = TRUE
+    ),
+    "Input `y` is bad: Either:"
+  )
 })

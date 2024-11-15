@@ -8,6 +8,8 @@
 
 * Removed function `renv_development_packages()` and argument `use_logo` in `package_logo()` to get rid of dependency to `{usethis}` package.
 
+* Extended `input_check_response()` to allow for multiple alternative checking criteria.
+
 # oeli 0.7.0
 
 * Improved documentation of `diff_cov()`, `undiff_cov()`, and `delta()`.

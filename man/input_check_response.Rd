@@ -2,7 +2,7 @@
 % Please edit documentation in R/input_check_response.R
 \name{input_check_response}
 \alias{input_check_response}
-\title{Standardized response to an input check}
+\title{Standardized response to input check}
 \usage{
 input_check_response(
   check,
@@ -12,31 +12,35 @@ input_check_response(
 )
 }
 \arguments{
-\item{check}{[\code{TRUE} | \code{character(1)}]\cr
+\item{check}{[\code{TRUE} | \code{character(1)} | \code{list()}]\cr
 Matches the return value of the \verb{check*} functions from the \code{{checkmate}}
 package, i.e., either \code{TRUE} if the check was successful, or a \code{character}
-(the error message) else.}
+(the error message) else.
+
+Can also be a \code{list} of multiple such values for alternative criteria, where
+at least one must be \code{TRUE} for a successful check.}
 
 \item{var_name}{[\code{NULL} | \code{character(1)}]\cr
 Optionally specifies the name of the input being checked. This name will be
 used for the default value of the \code{prefix} argument.}
 
 \item{error}{[\code{logical(1)}]\cr
-If \code{check} is not \code{TRUE}, throw an error?}
+If \code{check} is not \code{TRUE} (or no element in \code{check} is \code{TRUE}, if \code{check} is
+a \code{list}), throw an error?}
 
 \item{prefix}{[\code{character(1)}]\cr
-A prefix for the thrown error message, if \code{check} is not \code{TRUE} and
-\code{error} is \code{TRUE}.}
+A prefix for the thrown error message, only relevant if \code{error} is \code{TRUE}.}
 }
 \value{
-\code{TRUE} if \code{check} is \code{TRUE}. If \code{check} is not \code{TRUE}, depending on \code{error}:
+\code{TRUE} if \code{check} is \code{TRUE} (or any element in \code{check} is \code{TRUE}, if \code{check}
+is a \code{list}) . Else, depending on \code{error}:
 \itemize{
 \item If \code{error} is \code{TRUE}, throws an error.
 \item If \code{error} is \code{FALSE}, returns \code{FALSE}.
 }
 }
 \description{
-This function provides standardized responses to input checks, ensuring
+This function provides a standardized response to input checks, ensuring
 consistency.
 }
 \examples{
@@ -50,10 +54,29 @@ input_check_response(
   error = TRUE
 )
 
+### alternative checks
+input_check_response(
+  check = list(
+    checkmate::check_character(x),
+    checkmate::check_character(y)
+  ),
+  var_name = "x",
+  error = TRUE
+)
+
 ### standardized check response
 \dontrun{
 input_check_response(
   check = checkmate::check_character(y),
+  var_name = "y",
+  error = TRUE
+)
+
+input_check_response(
+  check = list(
+    checkmate::check_flag(x),
+    checkmate::check_character(y)
+  ),
   var_name = "y",
   error = TRUE
 )
