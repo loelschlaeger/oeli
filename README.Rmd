@@ -22,23 +22,17 @@ library("oeli")
 [![Codecov test coverage](https://codecov.io/gh/loelschlaeger/oeli/branch/master/graph/badge.svg)](https://app.codecov.io/gh/loelschlaeger/oeli?branch=master)
 <!-- badges: end -->
 
-The `{oeli}` package offers a collection of handy functions that I found useful while developing R packages. Perhaps you'll find them helpful too!
-
-## Installation
-
-The released package version can be installed from [CRAN](https://CRAN.R-project.org) via:
+This [R](https://CRAN.R-project.org) package provides helper functions I found useful when developing R code - perhaps you will too! The released package version can be installed via:
 
 ``` r
 install.packages("oeli")
 ```
 
-## Demos
-
-The package includes helpers for various tasks and objects. Some demos are shown below. Click the headings for reference pages with documentation on all available helpers in each category.
+The following shows some demos. Click the headings for references on all available helpers in each category.
 
 ### [Distributions](https://loelschlaeger.de/oeli/reference/index.html#distribution)
 
-The package has density and sampling functions for distributions not in base R, such as Dirichlet, multivariate normal, truncated normal, and Wishart.
+The package has density and sampling functions for some distributions not included in base R, like the Dirichlet:
 
 ```{r, dirichlet}
 ddirichlet(x = c(0.2, 0.3, 0.5), concentration = 1:3)

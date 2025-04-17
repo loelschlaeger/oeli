@@ -99,7 +99,7 @@ Storage <- R6::R6Class(
 
     #' @description
     #' Adding an element.
-    #' @param x \[`any()`\]\cr
+    #' @param x \[`any`\]\cr
     #' An object to be saved.
     add = function(x, identifier, confirm = interactive() & self$confirm,
                    missing_identifier = self$missing_identifier) {

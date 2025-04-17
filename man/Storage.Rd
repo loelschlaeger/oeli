@@ -137,7 +137,7 @@ Adding an element.
 \subsection{Arguments}{
 \if{html}{\out{<div class="arguments">}}
 \describe{
-\item{\code{x}}{[\code{any()}]\cr
+\item{\code{x}}{[\code{any}]\cr
 An object to be saved.}
 
 \item{\code{identifier}}{[\code{character()}]\cr

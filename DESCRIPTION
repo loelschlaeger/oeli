@@ -1,6 +1,6 @@
 Package: oeli
 Type: Package
-Title: Utilities for Developing Data Science Software
+Title: Some utilities
 Version: 0.7.0.9003
 Authors@R: c(
     person("Lennart", "Oelschl\u00e4ger", 

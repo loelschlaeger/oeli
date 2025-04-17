@@ -24,8 +24,14 @@
 #' function_defaults(f, exclude = "b")
 
 function_defaults <- function(f, exclude = NULL) {
-  checkmate::assert_function(f)
-  checkmate::assert_character(exclude, null.ok = TRUE)
+  input_check_response(
+    checkmate::check_function(f),
+    "f"
+  )
+  input_check_response(
+    checkmate::check_character(exclude, null.ok = TRUE),
+    "exclude"
+  )
   formals_f <- formals(f)
   formals_f <- formals_f[!sapply(formals_f, is.symbol)]
   formals_f <- formals_f[!names(formals_f) %in% exclude]
