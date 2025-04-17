@@ -24,15 +24,21 @@
 #' stationary_distribution(tpm)
 
 stationary_distribution <- function(tpm, soft_fail = FALSE) {
-  assert_transition_probability_matrix(tpm)
-  checkmate::assert_flag(soft_fail)
+  input_check_response(
+    check = check_transition_probability_matrix(tpm),
+    var_name = "tpm"
+  )
+  input_check_response(
+    check = checkmate::check_flag(soft_fail),
+    var_name = "soft_fail"
+  )
   dim <- nrow(tpm)
   stat_distr <- try(solve(t(diag(dim) - tpm + 1), rep(1, dim)), silent = TRUE)
   if (inherits(stat_distr, "try-error")) {
     if (soft_fail) {
       stat_distr <- rep(1, dim) / dim
     } else {
-      stop(as.character(stat_distr))
+      stop("singular system")
     }
   }
   return(stat_distr)
