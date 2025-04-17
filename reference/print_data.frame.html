@@ -101,64 +101,64 @@ Print row names or column names?</p></dd>
     <div class="sourceCode"><pre class="sourceCode r"><code><span class="r-in"><span><span class="va">x</span> <span class="op">&lt;-</span> <span class="fu"><a href="https://rdrr.io/r/base/data.frame.html" class="external-link">data.frame</a></span><span class="op">(</span><span class="fl">1</span><span class="op">:</span><span class="fl">10</span>, <span class="va">LETTERS</span><span class="op">[</span><span class="fl">1</span><span class="op">:</span><span class="fl">10</span><span class="op">]</span>, <span class="fu">stats</span><span class="fu">::</span><span class="fu"><a href="https://rdrr.io/r/stats/Normal.html" class="external-link">rnorm</a></span><span class="op">(</span><span class="fl">10</span><span class="op">)</span><span class="op">)</span></span></span>
 <span class="r-in"><span><span class="fu">print_data.frame</span><span class="op">(</span><span class="va">x</span>, rows <span class="op">=</span> <span class="fl">7</span><span class="op">)</span></span></span>
 <span class="r-out co"><span class="r-pr">#&gt;</span>    X1.10 LETTERS.1.10. stats..rnorm.10.</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> 1   1    A              0.93088269     </span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> 2   2    B              0.30662786     </span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> 3   3    C              0.01964776     </span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> 4   4    D             -0.79903337     </span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> 1   1    A              1.0081422      </span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> 2   2    B              0.1009156      </span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> 3   3    C              0.8570189      </span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> 4   4    D             -0.9032502      </span>
 <span class="r-out co"><span class="r-pr">#&gt;</span> </span>
 <span class="r-msg co"><span class="r-pr">#&gt;</span> &lt;3 rows hidden&gt;</span>
 <span class="r-out co"><span class="r-pr">#&gt;</span>                                        </span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> 8   8    H              2.06185790     </span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> 9   9    I             -0.90466122     </span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> 10 10    J              0.65432741     </span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> 8   8    H              0.5027230      </span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> 9   9    I              0.7751356      </span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> 10 10    J              1.1954309      </span>
 <span class="r-in"><span><span class="fu">print_data.frame</span><span class="op">(</span><span class="va">x</span>, rows <span class="op">=</span> <span class="fl">7</span>, cols <span class="op">=</span> <span class="fl">2</span><span class="op">)</span></span></span>
 <span class="r-out co"><span class="r-pr">#&gt;</span>    X1.10 &lt;1 col hidden&gt; stats..rnorm.10.</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> 1   1          -         0.93088269     </span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> 2   2          -         0.30662786     </span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> 3   3          -         0.01964776     </span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> 4   4          -        -0.79903337     </span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> 1   1          -         1.0081422      </span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> 2   2          -         0.1009156      </span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> 3   3          -         0.8570189      </span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> 4   4          -        -0.9032502      </span>
 <span class="r-out co"><span class="r-pr">#&gt;</span> </span>
 <span class="r-msg co"><span class="r-pr">#&gt;</span> &lt;3 rows hidden&gt;</span>
 <span class="r-out co"><span class="r-pr">#&gt;</span>                                         </span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> 8   8          -         2.06185790     </span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> 9   9          -        -0.90466122     </span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> 10 10          -         0.65432741     </span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> 8   8          -         0.5027230      </span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> 9   9          -         0.7751356      </span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> 10 10          -         1.1954309      </span>
 <span class="r-in"><span><span class="fu">print_data.frame</span><span class="op">(</span><span class="va">x</span>, rows <span class="op">=</span> <span class="fl">7</span>, cols <span class="op">=</span> <span class="fl">2</span>, digits <span class="op">=</span> <span class="fl">1</span><span class="op">)</span></span></span>
 <span class="r-out co"><span class="r-pr">#&gt;</span>    X1.10 &lt;1 col hidden&gt; stats..rnorm.10.</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> 1   1          -         0.9            </span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> 2   2          -         0.3            </span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> 3   3          -         0.0            </span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> 4   4          -        -0.8            </span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> 1   1          -         1.0            </span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> 2   2          -         0.1            </span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> 3   3          -         0.9            </span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> 4   4          -        -0.9            </span>
 <span class="r-out co"><span class="r-pr">#&gt;</span> </span>
 <span class="r-msg co"><span class="r-pr">#&gt;</span> &lt;3 rows hidden&gt;</span>
 <span class="r-out co"><span class="r-pr">#&gt;</span>                                         </span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> 8   8          -         2.1            </span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> 9   9          -        -0.9            </span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> 10 10          -         0.7            </span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> 8   8          -         0.5            </span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> 9   9          -         0.8            </span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> 10 10          -         1.2            </span>
 <span class="r-in"><span><span class="fu">print_data.frame</span><span class="op">(</span><span class="va">x</span>, rows <span class="op">=</span> <span class="fl">7</span>, cols <span class="op">=</span> <span class="fl">2</span>, digits <span class="op">=</span> <span class="fl">1</span>, row.names <span class="op">=</span> <span class="cn">FALSE</span><span class="op">)</span></span></span>
 <span class="r-out co"><span class="r-pr">#&gt;</span>  X1.10 &lt;1 col hidden&gt; stats..rnorm.10.</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span>   1          -         0.9            </span>
-<span class="r-out co"><span class="r-pr">#&gt;</span>   2          -         0.3            </span>
-<span class="r-out co"><span class="r-pr">#&gt;</span>   3          -         0.0            </span>
-<span class="r-out co"><span class="r-pr">#&gt;</span>   4          -        -0.8            </span>
+<span class="r-out co"><span class="r-pr">#&gt;</span>   1          -         1.0            </span>
+<span class="r-out co"><span class="r-pr">#&gt;</span>   2          -         0.1            </span>
+<span class="r-out co"><span class="r-pr">#&gt;</span>   3          -         0.9            </span>
+<span class="r-out co"><span class="r-pr">#&gt;</span>   4          -        -0.9            </span>
 <span class="r-out co"><span class="r-pr">#&gt;</span> </span>
 <span class="r-msg co"><span class="r-pr">#&gt;</span> &lt;3 rows hidden&gt;</span>
 <span class="r-out co"><span class="r-pr">#&gt;</span>                                       </span>
-<span class="r-out co"><span class="r-pr">#&gt;</span>   8          -         2.1            </span>
-<span class="r-out co"><span class="r-pr">#&gt;</span>   9          -        -0.9            </span>
-<span class="r-out co"><span class="r-pr">#&gt;</span>  10          -         0.7            </span>
+<span class="r-out co"><span class="r-pr">#&gt;</span>   8          -         0.5            </span>
+<span class="r-out co"><span class="r-pr">#&gt;</span>   9          -         0.8            </span>
+<span class="r-out co"><span class="r-pr">#&gt;</span>  10          -         1.2            </span>
 <span class="r-in"><span><span class="fu">print_data.frame</span><span class="op">(</span><span class="va">x</span>, rows <span class="op">=</span> <span class="fl">7</span>, cols <span class="op">=</span> <span class="fl">2</span>, digits <span class="op">=</span> <span class="fl">1</span>, col.names <span class="op">=</span> <span class="cn">FALSE</span><span class="op">)</span></span></span>
 <span class="r-out co"><span class="r-pr">#&gt;</span>       &lt;1 col hidden&gt;     </span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> 1   1       -         0.9</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> 2   2       -         0.3</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> 3   3       -         0.0</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> 4   4       -        -0.8</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> 1   1       -         1.0</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> 2   2       -         0.1</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> 3   3       -         0.9</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> 4   4       -        -0.9</span>
 <span class="r-out co"><span class="r-pr">#&gt;</span> </span>
 <span class="r-msg co"><span class="r-pr">#&gt;</span> &lt;3 rows hidden&gt;</span>
 <span class="r-out co"><span class="r-pr">#&gt;</span>                          </span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> 8   8       -         2.1</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> 9   9       -        -0.9</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> 10 10       -         0.7</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> 8   8       -         0.5</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> 9   9       -         0.8</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> 10 10       -         1.2</span>
 </code></pre></div>
     </div>
   </main><aside class="col-md-3"><nav id="toc" aria-label="Table of contents"><h2>On this page</h2>
