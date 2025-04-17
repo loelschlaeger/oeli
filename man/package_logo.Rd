@@ -35,6 +35,7 @@ package_logo("my_package", brackets = TRUE)
 Other package helpers: 
 \code{\link{Dictionary}},
 \code{\link{Storage}},
+\code{\link{check_missing}()},
 \code{\link{identical_structure}()},
 \code{\link{input_check_response}()},
 \code{\link{match_arg}()},

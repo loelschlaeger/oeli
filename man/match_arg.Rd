@@ -36,6 +36,7 @@ This function matches function arguments and is a modified version of
 Other package helpers: 
 \code{\link{Dictionary}},
 \code{\link{Storage}},
+\code{\link{check_missing}()},
 \code{\link{identical_structure}()},
 \code{\link{input_check_response}()},
 \code{\link{package_logo}()},

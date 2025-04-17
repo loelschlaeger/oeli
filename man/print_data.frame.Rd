@@ -52,6 +52,7 @@ print_data.frame(x, rows = 7, cols = 2, digits = 1, col.names = FALSE)
 Other package helpers: 
 \code{\link{Dictionary}},
 \code{\link{Storage}},
+\code{\link{check_missing}()},
 \code{\link{identical_structure}()},
 \code{\link{input_check_response}()},
 \code{\link{match_arg}()},

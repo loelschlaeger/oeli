@@ -12,6 +12,7 @@ Provides a simple key-value interface based on R6.
 \seealso{
 Other package helpers: 
 \code{\link{Storage}},
+\code{\link{check_missing}()},
 \code{\link{identical_structure}()},
 \code{\link{input_check_response}()},
 \code{\link{match_arg}()},

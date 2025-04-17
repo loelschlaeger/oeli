@@ -34,6 +34,7 @@ Inspired by \url{https://stackoverflow.com/a/45548885/15157768}.
 Other package helpers: 
 \code{\link{Dictionary}},
 \code{\link{Storage}},
+\code{\link{check_missing}()},
 \code{\link{input_check_response}()},
 \code{\link{match_arg}()},
 \code{\link{package_logo}()},

@@ -68,6 +68,7 @@ my_storage$get(ids = 4:5, id_names = TRUE) # add the ids as names
 \seealso{
 Other package helpers: 
 \code{\link{Dictionary}},
+\code{\link{check_missing}()},
 \code{\link{identical_structure}()},
 \code{\link{input_check_response}()},
 \code{\link{match_arg}()},

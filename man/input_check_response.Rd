@@ -86,6 +86,7 @@ input_check_response(
 Other package helpers: 
 \code{\link{Dictionary}},
 \code{\link{Storage}},
+\code{\link{check_missing}()},
 \code{\link{identical_structure}()},
 \code{\link{match_arg}()},
 \code{\link{package_logo}()},
