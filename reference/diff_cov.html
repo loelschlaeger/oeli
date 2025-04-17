@@ -9,7 +9,7 @@ matrices."><meta property="og:image" content="http://loelschlaeger.de/oeli/logo.
 
     <a class="navbar-brand me-2" href="../index.html">oeli</a>
 
-    <small class="nav-text text-muted me-auto" data-bs-toggle="tooltip" data-bs-placement="bottom" title="">0.7.1</small>
+    <small class="nav-text text-muted me-auto" data-bs-toggle="tooltip" data-bs-placement="bottom" title="">0.7.2</small>
 
 
     <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbar" aria-controls="navbar" aria-expanded="false" aria-label="Toggle navigation">
@@ -143,18 +143,18 @@ taking differences such that the resulting vector is negative.</p>
 <span class="r-in"><span></span></span>
 <span class="r-in"><span><span class="co"># difference Sigma</span></span></span>
 <span class="r-in"><span><span class="op">(</span><span class="va">Sigma_diff</span> <span class="op">&lt;-</span> <span class="fu">diff_cov</span><span class="op">(</span><span class="va">Sigma</span>, ref <span class="op">=</span> <span class="va">k</span><span class="op">)</span><span class="op">)</span></span></span>
-<span class="r-out co"><span class="r-pr">#&gt;</span>          [,1]     [,2]      [,3]</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> [1,] 7.598265 1.545601  5.552754</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> [2,] 1.545601 3.668382  5.568672</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> [3,] 5.552754 5.568672 10.721597</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span>           [,1]      [,2]     [,3]</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> [1,] 14.382089 10.370461 5.331523</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> [2,] 10.370461 10.952516 5.117339</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> [3,]  5.331523  5.117339 4.679660</span>
 <span class="r-in"><span></span></span>
 <span class="r-in"><span><span class="co"># un-difference Sigma</span></span></span>
 <span class="r-in"><span><span class="op">(</span><span class="va">Sigma_0</span> <span class="op">&lt;-</span> <span class="fu">undiff_cov</span><span class="op">(</span><span class="va">Sigma_diff</span>, ref <span class="op">=</span> <span class="va">k</span><span class="op">)</span><span class="op">)</span></span></span>
-<span class="r-out co"><span class="r-pr">#&gt;</span>          [,1] [,2]     [,3]      [,4]</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> [1,] 7.598265    0 1.545601  5.552754</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> [2,] 0.000000    0 0.000000  0.000000</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> [3,] 1.545601    0 3.668382  5.568672</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> [4,] 5.552754    0 5.568672 10.721597</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span>           [,1] [,2]      [,3]     [,4]</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> [1,] 14.382089    0 10.370461 5.331523</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> [2,]  0.000000    0  0.000000 0.000000</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> [3,] 10.370461    0 10.952516 5.117339</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> [4,]  5.331523    0  5.117339 4.679660</span>
 <span class="r-in"><span></span></span>
 <span class="r-in"><span><span class="co"># difference again</span></span></span>
 <span class="r-in"><span><span class="va">Sigma_diff_2</span> <span class="op">&lt;-</span> <span class="fu">diff_cov</span><span class="op">(</span><span class="va">Sigma_0</span>, ref <span class="op">=</span> <span class="va">k</span><span class="op">)</span></span></span>
