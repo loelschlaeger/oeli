@@ -41,7 +41,55 @@
 #' @export
 #'
 #' @examples
-#' # TODO
+#' # Managing variable metadata for a dataset
+#'
+#' meta_dict <- Dictionary$new(
+#'   key_name = "var_name",
+#'   alias_name = "category",
+#'   value_names = c("label", "type"),
+#'   value_assert = alist(
+#'     label = checkmate::assert_string(),
+#'     type = checkmate::assert_choice(choices = c("numeric", "factor", "character"))
+#'   ),
+#'   allow_overwrite = FALSE,
+#'   keys_reserved = c("id"),
+#'   alias_choices = c("demographics", "outcome", "other"),
+#'   dictionary_name = "Variable Metadata"
+#' )
+#'
+#' # Add entries to the dictionary
+#' meta_dict$add(
+#'   var_name = "age",
+#'   label = "Age of respondent",
+#'   type = "numeric",
+#'   category = "demographics"
+#' )
+#'
+#' meta_dict$add(
+#'   var_name = "gender",
+#'   label = "Gender identity",
+#'   type = "factor",
+#'   category = "demographics"
+#' )
+#'
+#' meta_dict$add(
+#'   var_name = "income",
+#'   label = "Annual income in USD",
+#'   type = "numeric",
+#'   category = c("demographics", "outcome")
+#' )
+#'
+#' # Print dictionary
+#' meta_dict$print()
+#'
+#' # Retrieve full metadata for a variable
+#' meta_dict$get("income")
+#'
+#' # Retrieve a specific piece of metadata
+#' meta_dict$get("income", value = "label")
+#'
+#' # Show variables by category
+#' meta_dict$alias
 
 Dictionary <- R6::R6Class(
   classname = "Dictionary",
