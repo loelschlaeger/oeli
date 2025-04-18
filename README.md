@@ -1,7 +1,7 @@
 
 <!-- README.md is generated from README.Rmd. Please edit that file -->
 
-# Utilities for developing R software <a href="https://loelschlaeger.de/oeli/"><img src="man/figures/logo.png" align="right" height="138" /></a>
+# Utilities for developing R code <a href="https://loelschlaeger.de/oeli/"><img src="man/figures/logo.png" align="right" height="138" /></a>
 
 <!-- badges: start -->
 
@@ -34,7 +34,7 @@ not included in base R, like the Dirichlet:
 ddirichlet(x = c(0.2, 0.3, 0.5), concentration = 1:3)
 #> [1] 4.5
 rdirichlet(concentration = 1:3)
-#> [1] 0.32926072 0.08223541 0.58850387
+#> [1] 0.3736202 0.2714344 0.3549454
 ```
 
 For faster computation, [Rcpp](https://www.rcpp.org) implementations are
@@ -46,9 +46,9 @@ microbenchmark::microbenchmark(
   "Rcpp" = rmvnorm_cpp(mean = c(0, 0, 0), Sigma = diag(3))
 )
 #> Unit: microseconds
-#>  expr   min     lq    mean median     uq    max neval
-#>     R 206.2 218.95 270.398 227.10 238.65 2082.6   100
-#>  Rcpp   2.7   3.15   5.679   4.15   4.80  146.3   100
+#>  expr     min      lq      mean   median       uq      max neval
+#>     R 133.594 136.599 154.11343 139.2575 144.7405 1272.113   100
+#>  Rcpp   1.690   1.927   2.34702   2.3235   2.5915    7.290   100
 ```
 
 ### [Function helpers](https://loelschlaeger.de/oeli/reference/index.html#functional)
@@ -95,7 +95,8 @@ permutations(LETTERS[1:3])
 Quickly have a basic logo for your new package:
 
 ``` r
-package_logo("my_package", brackets = TRUE, use_logo = FALSE)
+logo <- package_logo("my_package", brackets = TRUE)
+print(logo)
 ```
 
 <img src="man/figures/README-package_logo-1.png" width="50%" style="display: block; margin: auto;" />
@@ -106,12 +107,12 @@ How to print a `matrix` without filling up the entire console?
 x <- matrix(rnorm(10000), ncol = 100, nrow = 100)
 print_matrix(x, rowdots = 4, coldots = 4, digits = 2, label = "what a big matrix")
 #> what a big matrix : 100 x 100 matrix of doubles 
-#>         [,1]  [,2] [,3] ... [,100]
-#> [1,]    0.13 -0.74 0.22 ...  -2.02
-#> [2,]    1.17  0.65 0.25 ...  -0.07
-#> [3,]    1.06  0.27 0.51 ...   2.12
-#> ...      ...   ...  ... ...    ...
-#> [100,] -0.57 -1.15 0.52 ...  -0.11
+#>         [,1]  [,2]  [,3] ... [,100]
+#> [1,]   -0.68 -1.99 -0.89 ...   0.65
+#> [2,]    1.27  0.28 -1.35 ...   0.79
+#> [3,]   -1.27 -1.87  0.57 ...  -0.52
+#> ...      ...   ...   ... ...    ...
+#> [100,]  2.02  0.27  -0.7 ...  -1.59
 ```
 
 And what about a `data.frame`?
@@ -121,12 +122,12 @@ x <- data.frame(x = rnorm(1000), y = LETTERS[1:10])
 print_data.frame(x, rows = 7, digits = 0)
 #>      x  y
 #> 1    -1 A
-#> 2     1 B
-#> 3     0 C
-#> 4     0 D
-#> < 993 rows hidden >
+#> 2    -1 B
+#> 3    -1 C
+#> 4     1 D
+#> <993 rows hidden>
 #>          
-#> 998   1 H
+#> 998  -1 H
 #> 999   1 I
 #> 1000  0 J
 ```
@@ -138,7 +139,7 @@ Let’s simulate a Markov chain:
 ``` r
 Gamma <- sample_transition_probability_matrix(dim = 3)
 simulate_markov_chain(Gamma = Gamma, T = 20)
-#>  [1] 3 2 1 1 1 1 2 2 3 2 1 1 1 1 1 1 1 1 2 2
+#>  [1] 2 3 3 3 3 3 3 3 1 2 2 2 2 2 2 2 2 2 3 2
 ```
 
 ### [Transformation helpers](https://loelschlaeger.de/oeli/reference/index.html#transformation)
