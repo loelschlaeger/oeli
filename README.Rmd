@@ -90,11 +90,30 @@ print_data.frame(x, rows = 7, digits = 0)
 
 ### [Simulation helpers](https://loelschlaeger.de/oeli/reference/index.html#simulation)
 
-Let's simulate a Markov chain:
+Let's simulate correlated regressor values from different marginal distributions:
 
-```{r, simulate_markov_chain}
-Gamma <- sample_transition_probability_matrix(dim = 3)
-simulate_markov_chain(Gamma = Gamma, T = 20)
+```{r, simulate_regressors}
+labels <- c("P", "C", "N1", "N2", "U")
+n <- 100
+marginals <- list(
+  "P" = list(type = "poisson", lambda = 2),
+  "C" = list(type = "categorical", p = c(0.3, 0.2, 0.5)),
+  "N1" = list(type = "normal", mean = -1, sd = 2),
+  "U" = list(type = "uniform", min = -2, max = -1)
+)
+correlation <- matrix(
+  c(1, -0.3, -0.1, 0, 0.5,
+    -0.3, 1, 0.3, -0.5, -0.7,
+    -0.1, 0.3, 1, -0.3, -0.3,
+    0, -0.5, -0.3, 1, 0.1,
+    0.5, -0.7, -0.3, 0.1, 1),
+  nrow = 5, ncol = 5
+)
+data <- correlated_regressors(
+  labels = labels, n = n, marginals = marginals, correlation = correlation
+)
+head(data)
+cor(data)
 ``` 
 
 ### [Transformation helpers](https://loelschlaeger.de/oeli/reference/index.html#transformation)

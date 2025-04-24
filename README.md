@@ -34,7 +34,7 @@ not included in base R, like the Dirichlet:
 ddirichlet(x = c(0.2, 0.3, 0.5), concentration = 1:3)
 #> [1] 4.5
 rdirichlet(concentration = 1:3)
-#> [1] 0.3736202 0.2714344 0.3549454
+#> [1] 0.13324172 0.08290917 0.78384911
 ```
 
 For faster computation, [Rcpp](https://www.rcpp.org) implementations are
@@ -46,9 +46,9 @@ microbenchmark::microbenchmark(
   "Rcpp" = rmvnorm_cpp(mean = c(0, 0, 0), Sigma = diag(3))
 )
 #> Unit: microseconds
-#>  expr     min      lq      mean   median       uq      max neval
-#>     R 133.594 136.599 154.11343 139.2575 144.7405 1272.113   100
-#>  Rcpp   1.690   1.927   2.34702   2.3235   2.5915    7.290   100
+#>  expr   min     lq    mean median    uq    max neval
+#>     R 252.5 282.75 360.581 305.15 354.6 2325.8   100
+#>  Rcpp   2.7   3.10   5.029   4.70   5.6   23.3   100
 ```
 
 ### [Function helpers](https://loelschlaeger.de/oeli/reference/index.html#functional)
@@ -108,11 +108,11 @@ x <- matrix(rnorm(10000), ncol = 100, nrow = 100)
 print_matrix(x, rowdots = 4, coldots = 4, digits = 2, label = "what a big matrix")
 #> what a big matrix : 100 x 100 matrix of doubles 
 #>         [,1]  [,2]  [,3] ... [,100]
-#> [1,]   -0.68 -1.99 -0.89 ...   0.65
-#> [2,]    1.27  0.28 -1.35 ...   0.79
-#> [3,]   -1.27 -1.87  0.57 ...  -0.52
+#> [1,]   -0.21  1.79 -0.16 ...  -1.09
+#> [2,]   -0.58 -1.15  1.46 ...     -1
+#> [3,]   -1.64 -0.31 -1.12 ...   0.07
 #> ...      ...   ...   ... ...    ...
-#> [100,]  2.02  0.27  -0.7 ...  -1.59
+#> [100,]  1.06  1.83 -0.04 ...  -1.33
 ```
 
 And what about a `data.frame`?
@@ -121,25 +121,57 @@ And what about a `data.frame`?
 x <- data.frame(x = rnorm(1000), y = LETTERS[1:10])
 print_data.frame(x, rows = 7, digits = 0)
 #>      x  y
-#> 1    -1 A
+#> 1     0 A
 #> 2    -1 B
-#> 3    -1 C
-#> 4     1 D
+#> 3     2 C
+#> 4     0 D
 #> <993 rows hidden>
 #>          
 #> 998  -1 H
-#> 999   1 I
-#> 1000  0 J
+#> 999   2 I
+#> 1000  2 J
 ```
 
 ### [Simulation helpers](https://loelschlaeger.de/oeli/reference/index.html#simulation)
 
-Let’s simulate a Markov chain:
+Let’s simulate correlated regressor values from different marginal
+distributions:
 
 ``` r
-Gamma <- sample_transition_probability_matrix(dim = 3)
-simulate_markov_chain(Gamma = Gamma, T = 20)
-#>  [1] 2 3 3 3 3 3 3 3 1 2 2 2 2 2 2 2 2 2 3 2
+labels <- c("P", "C", "N1", "N2", "U")
+n <- 100
+marginals <- list(
+  "P" = list(type = "poisson", lambda = 2),
+  "C" = list(type = "categorical", p = c(0.3, 0.2, 0.5)),
+  "N1" = list(type = "normal", mean = -1, sd = 2),
+  "U" = list(type = "uniform", min = -2, max = -1)
+)
+correlation <- matrix(
+  c(1, -0.3, -0.1, 0, 0.5,
+    -0.3, 1, 0.3, -0.5, -0.7,
+    -0.1, 0.3, 1, -0.3, -0.3,
+    0, -0.5, -0.3, 1, 0.1,
+    0.5, -0.7, -0.3, 0.1, 1),
+  nrow = 5, ncol = 5
+)
+data <- correlated_regressors(
+  labels = labels, n = n, marginals = marginals, correlation = correlation
+)
+head(data)
+#>   P C          N1         N2         U
+#> 1 2 3  0.28054900 -0.2664126 -1.630263
+#> 2 4 2 -0.05037582 -0.6722802 -1.350827
+#> 3 1 1  3.55001847  1.2912325 -1.509097
+#> 4 1 3  0.41071971 -1.0315166 -1.974558
+#> 5 2 3  1.04476544  0.0975537 -1.972854
+#> 6 2 3 -2.19746308 -0.5906266 -1.385856
+cor(data)
+#>              P          C         N1          N2           U
+#> P   1.00000000 -0.2783753 -0.1117716 -0.01414418  0.54579038
+#> C  -0.27837534  1.0000000  0.2071735 -0.53935363 -0.72732467
+#> N1 -0.11177156  0.2071735  1.0000000 -0.30000000 -0.28153377
+#> N2 -0.01414418 -0.5393536 -0.3000000  1.00000000  0.09985643
+#> U   0.54579038 -0.7273247 -0.2815338  0.09985643  1.00000000
 ```
 
 ### [Transformation helpers](https://loelschlaeger.de/oeli/reference/index.html#transformation)
