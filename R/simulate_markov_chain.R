@@ -12,8 +12,6 @@
 #' @param delta \[`numeric()`\]\cr
 #' A probability vector, the initial distribution.
 #'
-#' By default, \code{delta} is the stationary distribution of \code{Gamma}.
-#'
 #' @return
 #' A \code{numeric} vector of length \code{T} with states.
 #'
@@ -22,15 +20,23 @@
 #' @export
 #'
 #' @examples
-#' Gamma <- sample_transition_probability_matrix(dim = 3)
-#' simulate_markov_chain(Gamma = Gamma, T = 10)
+#' Gamma <- matrix(c(0.8, 0.2, 0.3, 0.7), byrow = TRUE, nrow = 2)
+#' delta <- c(0.6, 0.4)
+#' simulate_markov_chain(Gamma = Gamma, T = 20, delta = delta)
 
-simulate_markov_chain <- function(
-    Gamma, T, delta = oeli::stationary_distribution(Gamma)
-  ) {
-  assert_transition_probability_matrix(Gamma)
-  checkmate::assert_int(T, lower = 1)
-  assert_probability_vector(delta, len = nrow(Gamma))
+simulate_markov_chain <- function(Gamma, T, delta) {
+  input_check_response(
+    check = check_transition_probability_matrix(Gamma),
+    var_name = "Gamma"
+  )
+  input_check_response(
+    check = checkmate::check_int(T, lower = 1),
+    var_name = "T"
+  )
+  input_check_response(
+    check = check_probability_vector(delta, len = nrow(Gamma)),
+    var_name = "delta"
+  )
   N <- length(delta)
   markov_chain <- numeric(T)
   markov_chain[1] <- sample(1:N, 1, prob = delta)

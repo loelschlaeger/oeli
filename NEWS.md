@@ -1,3 +1,9 @@
+# development
+
+* Added function `find_namespace_calls()` that searches for namespace calls in `.R` files.
+
+* Cleaned up package dependencies.
+
 # oeli 0.7.2
 
 * Added function `check_missing()` that checks for missing formal arguments.

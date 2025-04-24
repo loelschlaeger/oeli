@@ -35,6 +35,7 @@ Other package helpers:
 \code{\link{Dictionary}},
 \code{\link{Storage}},
 \code{\link{check_missing}()},
+\code{\link{find_namespace_calls}()},
 \code{\link{input_check_response}()},
 \code{\link{match_arg}()},
 \code{\link{package_logo}()},

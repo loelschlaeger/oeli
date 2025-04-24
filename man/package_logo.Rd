@@ -4,7 +4,7 @@
 \alias{package_logo}
 \title{Creating a basic logo for an R package}
 \usage{
-package_logo(package_name, brackets = TRUE)
+package_logo(package_name, brackets = FALSE)
 }
 \arguments{
 \item{package_name}{[\code{character(1)}]\cr
@@ -23,7 +23,7 @@ center. The font size for the package name is scaled such that it fits inside
 the logo. Type \code{?oeli} to see an example.
 }
 \examples{
-package_logo("my_package", brackets = TRUE)
+print(package_logo("my_package", brackets = TRUE))
 }
 \references{
 \itemize{
@@ -36,6 +36,7 @@ Other package helpers:
 \code{\link{Dictionary}},
 \code{\link{Storage}},
 \code{\link{check_missing}()},
+\code{\link{find_namespace_calls}()},
 \code{\link{identical_structure}()},
 \code{\link{input_check_response}()},
 \code{\link{match_arg}()},

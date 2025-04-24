@@ -52,13 +52,15 @@ print_matrix(x = matrix(LETTERS[1:24], ncol = 6), label = "big matrix")
 print_matrix(x = diag(5), coldots = 2, rowdots = 2, simplify = TRUE)
 }
 \references{
-This function is a modified version of \code{ramify::pprint()}.
+This function is a modified version of \code{pprint()} from the \code{{ramify}}
+package.
 }
 \seealso{
 Other package helpers: 
 \code{\link{Dictionary}},
 \code{\link{Storage}},
 \code{\link{check_missing}()},
+\code{\link{find_namespace_calls}()},
 \code{\link{identical_structure}()},
 \code{\link{input_check_response}()},
 \code{\link{match_arg}()},

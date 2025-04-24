@@ -24,9 +24,9 @@
 #' @family package helpers
 #'
 #' @examples
-#' package_logo("my_package", brackets = TRUE)
+#' print(package_logo("my_package", brackets = TRUE))
 
-package_logo <- function(package_name, brackets = TRUE) {
+package_logo <- function(package_name, brackets = FALSE) {
 
   ### input checks
   input_check_response(
@@ -37,10 +37,6 @@ package_logo <- function(package_name, brackets = TRUE) {
     check = checkmate::check_flag(brackets),
     var_name = "brackets"
   )
-
-  ### define font
-  sysfonts::font_add_google("Martel", "my_font")
-  showtext::showtext_auto()
 
   ### define path
   filename <- tempfile(
@@ -74,7 +70,6 @@ package_logo <- function(package_name, brackets = TRUE) {
       p_x = 1,
       p_y = 1,
       p_color = "black",
-      p_family = "my_font",
       p_fontface = "plain",
       p_size = p_size,
 

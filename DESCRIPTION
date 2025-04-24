@@ -1,7 +1,7 @@
 Package: oeli
 Type: Package
 Title: Some Utilities for Developing Data Science Software
-Version: 0.7.2
+Version: 0.7.2.9000
 Authors@R: c(
     person("Lennart", "Oelschl\u00e4ger", 
            email = "oelschlaeger.lennart@gmail.com", 
@@ -20,13 +20,11 @@ Imports:
     cli,
     ggplot2,
     hexSticker,
-    latex2exp,
+    R6,
     Rcpp,
-    rprojroot,
-    showtext,
     SimMultiCorrData,
     stats,
-    sysfonts,
+    tools,
     utils
 LinkingTo:
     Rcpp,

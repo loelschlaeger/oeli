@@ -4,7 +4,8 @@
 #' This function prints a (possibly abbreviated) \code{matrix}.
 #'
 #' @references
-#' This function is a modified version of \code{ramify::pprint()}.
+#' This function is a modified version of `pprint()` from the `{ramify}`
+#' package.
 #'
 #' @param x \[`atomic()` | `matrix`\]\cr
 #' The object to be printed.
