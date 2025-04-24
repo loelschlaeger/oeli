@@ -14,7 +14,7 @@
 #'
 #' @param value_assert \[`alist(1)`\]\cr
 #' For each element in \code{value_names}, \code{values_assert} *can* have an
-#' identically named element of the form \code{checkmate::assert_*(...)}, where
+#' identically named element of the form \code{checkmate::assert*(...)}, where
 #' \code{...} can be any argument for the assertion function except for the
 #' \code{x} argument.
 #'

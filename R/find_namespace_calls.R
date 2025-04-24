@@ -51,9 +51,10 @@ find_namespace_calls <- function(
     path = path, pattern = pattern, full.names = TRUE, recursive = TRUE
   )
 
-  ### regular expressions to match :: and ::: calls
-  pattern_double <- "\\b([a-zA-Z0-9\\.]+)::([a-zA-Z0-9_\\.]+)\\s*\\("
-  pattern_triple <- "\\b([a-zA-Z0-9\\.]+):::+([a-zA-Z0-9_\\.]+)\\s*\\("
+  ### regular expressions to match :: and ::: calls followed by a character that
+  ### is NOT part of a valid function name
+  pattern_double <- "\\b([a-zA-Z0-9\\.]+)::([a-zA-Z0-9_\\.]+)(?![a-zA-Z0-9_\\.])"
+  pattern_triple <- "\\b([a-zA-Z0-9\\.]+):::+([a-zA-Z0-9_\\.]+)(?![a-zA-Z0-9_\\.])"
   pattern <- if (triple_colon) {
     paste0("(", pattern_double, "|", pattern_triple, ")")
   } else {
@@ -73,13 +74,13 @@ find_namespace_calls <- function(
       if (found[1] != -1) {
         matched_texts <- regmatches(line, gregexpr(pattern, line, perl = TRUE))[[1]]
         for (match in matched_texts) {
-          pkg <- sub("^([a-zA-Z0-9\\.]+):::+.*", "\\1", match)
-          fun <- sub("^[a-zA-Z0-9\\.]+:::+([a-zA-Z0-9_\\.]+)\\s*\\(.*", "\\1", match)
           if (grepl(":::", match)) {
+            pkg <- sub("^([a-zA-Z0-9\\.]+):::+.*", "\\1", match)
+            fun <- sub("^[a-zA-Z0-9\\.]+:::+([a-zA-Z0-9_\\.]+).*", "\\1", match)
             full_call <- paste0(pkg, "::: ", fun)
           } else {
             pkg <- sub("^([a-zA-Z0-9\\.]+)::.*", "\\1", match)
-            fun <- sub("^[a-zA-Z0-9\\.]+::([a-zA-Z0-9_\\.]+)\\s*\\(.*", "\\1", match)
+            fun <- sub("^[a-zA-Z0-9\\.]+::([a-zA-Z0-9_\\.]+).*", "\\1", match)
             full_call <- paste0(pkg, "::", fun)
           }
           matches <- append(matches, list(list(
