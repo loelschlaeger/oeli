@@ -1,8 +1,10 @@
-# development
+# oeli development
 
 * Added function `find_namespace_calls()` that searches for namespace calls in `.R` files.
 
 * Cleaned up package dependencies.
+
+* Added option for custom background in `package_logo()`.
 
 # oeli 0.7.2
 
