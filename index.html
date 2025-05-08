@@ -6,12 +6,11 @@
 <meta http-equiv="X-UA-Compatible" content="IE=edge">
 <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
 <title>Utilities for Developing R Software • oeli</title>
-<!-- favicons --><link rel="icon" type="image/png" sizes="16x16" href="favicon-16x16.png">
-<link rel="icon" type="image/png" sizes="32x32" href="favicon-32x32.png">
-<link rel="apple-touch-icon" type="image/png" sizes="180x180" href="apple-touch-icon.png">
-<link rel="apple-touch-icon" type="image/png" sizes="120x120" href="apple-touch-icon-120x120.png">
-<link rel="apple-touch-icon" type="image/png" sizes="76x76" href="apple-touch-icon-76x76.png">
-<link rel="apple-touch-icon" type="image/png" sizes="60x60" href="apple-touch-icon-60x60.png">
+<!-- favicons --><link rel="icon" type="image/png" sizes="96x96" href="favicon-96x96.png">
+<link rel="icon" type="”image/svg+xml”" href="favicon.svg">
+<link rel="apple-touch-icon" sizes="180x180" href="apple-touch-icon.png">
+<link rel="icon" sizes="any" href="favicon.ico">
+<link rel="manifest" href="site.webmanifest">
 <script src="deps/jquery-3.6.0/jquery-3.6.0.min.js"></script><meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
 <link href="deps/bootstrap-5.3.1/bootstrap.min.css" rel="stylesheet">
 <script src="deps/bootstrap-5.3.1/bootstrap.bundle.min.js"></script><link href="deps/font-awesome-6.5.2/css/all.min.css" rel="stylesheet">
@@ -29,7 +28,7 @@
 
     <a class="navbar-brand me-2" href="index.html">oeli</a>
 
-    <small class="nav-text text-muted me-auto" data-bs-toggle="tooltip" data-bs-placement="bottom" title="">0.7.2.9000</small>
+    <small class="nav-text text-muted me-auto" data-bs-toggle="tooltip" data-bs-placement="bottom" title="">0.7.2.9001</small>
 
 
     <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbar" aria-controls="navbar" aria-expanded="false" aria-label="Toggle navigation">
@@ -74,7 +73,7 @@
 <code class="sourceCode R"><span><span class="fu"><a href="reference/ddirichlet.html">ddirichlet</a></span><span class="op">(</span>x <span class="op">=</span> <span class="fu"><a href="https://rdrr.io/r/base/c.html" class="external-link">c</a></span><span class="op">(</span><span class="fl">0.2</span>, <span class="fl">0.3</span>, <span class="fl">0.5</span><span class="op">)</span>, concentration <span class="op">=</span> <span class="fl">1</span><span class="op">:</span><span class="fl">3</span><span class="op">)</span></span>
 <span><span class="co">#&gt; [1] 4.5</span></span>
 <span><span class="fu"><a href="reference/ddirichlet.html">rdirichlet</a></span><span class="op">(</span>concentration <span class="op">=</span> <span class="fl">1</span><span class="op">:</span><span class="fl">3</span><span class="op">)</span></span>
-<span><span class="co">#&gt; [1] 0.13324172 0.08290917 0.78384911</span></span></code></pre></div>
+<span><span class="co">#&gt; [1] 0.2219166 0.2998792 0.4782041</span></span></code></pre></div>
 <p>For faster computation, <a href="https://www.rcpp.org" class="external-link">Rcpp</a> implementations are also available:</p>
 <div class="sourceCode" id="cb3"><pre class="downlit sourceCode r">
 <code class="sourceCode R"><span><span class="fu">microbenchmark</span><span class="fu">::</span><span class="fu">microbenchmark</span><span class="op">(</span></span>
@@ -82,9 +81,9 @@
 <span>  <span class="st">"Rcpp"</span> <span class="op">=</span> <span class="fu"><a href="reference/dmvnorm.html">rmvnorm_cpp</a></span><span class="op">(</span>mean <span class="op">=</span> <span class="fu"><a href="https://rdrr.io/r/base/c.html" class="external-link">c</a></span><span class="op">(</span><span class="fl">0</span>, <span class="fl">0</span>, <span class="fl">0</span><span class="op">)</span>, Sigma <span class="op">=</span> <span class="fu"><a href="https://rdrr.io/r/base/diag.html" class="external-link">diag</a></span><span class="op">(</span><span class="fl">3</span><span class="op">)</span><span class="op">)</span></span>
 <span><span class="op">)</span></span>
 <span><span class="co">#&gt; Unit: microseconds</span></span>
-<span><span class="co">#&gt;  expr   min     lq    mean median    uq    max neval</span></span>
-<span><span class="co">#&gt;     R 252.5 282.75 360.581 305.15 354.6 2325.8   100</span></span>
-<span><span class="co">#&gt;  Rcpp   2.7   3.10   5.029   4.70   5.6   23.3   100</span></span></code></pre></div>
+<span><span class="co">#&gt;  expr     min       lq     mean   median      uq      max neval</span></span>
+<span><span class="co">#&gt;     R 254.001 271.4505 347.1850 282.7515 316.901 2248.201   100</span></span>
+<span><span class="co">#&gt;  Rcpp   2.701   3.2005   4.6491   4.4010   5.151   14.802   100</span></span></code></pre></div>
 </div>
 <div class="section level3">
 <h3 id="function-helpers">
@@ -140,25 +139,25 @@
 <span><span class="fu"><a href="reference/print_matrix.html">print_matrix</a></span><span class="op">(</span><span class="va">x</span>, rowdots <span class="op">=</span> <span class="fl">4</span>, coldots <span class="op">=</span> <span class="fl">4</span>, digits <span class="op">=</span> <span class="fl">2</span>, label <span class="op">=</span> <span class="st">"what a big matrix"</span><span class="op">)</span></span>
 <span><span class="co">#&gt; what a big matrix : 100 x 100 matrix of doubles </span></span>
 <span><span class="co">#&gt;         [,1]  [,2]  [,3] ... [,100]</span></span>
-<span><span class="co">#&gt; [1,]   -0.21  1.79 -0.16 ...  -1.09</span></span>
-<span><span class="co">#&gt; [2,]   -0.58 -1.15  1.46 ...     -1</span></span>
-<span><span class="co">#&gt; [3,]   -1.64 -0.31 -1.12 ...   0.07</span></span>
+<span><span class="co">#&gt; [1,]   -1.65 -0.68 -1.17 ...  -1.12</span></span>
+<span><span class="co">#&gt; [2,]    0.25  0.07 -0.72 ...  -1.63</span></span>
+<span><span class="co">#&gt; [3,]   -0.94  0.24  2.24 ...   0.03</span></span>
 <span><span class="co">#&gt; ...      ...   ...   ... ...    ...</span></span>
-<span><span class="co">#&gt; [100,]  1.06  1.83 -0.04 ...  -1.33</span></span></code></pre></div>
+<span><span class="co">#&gt; [100,] -0.78  0.97   2.1 ...   1.38</span></span></code></pre></div>
 <p>And what about a <code>data.frame</code>?</p>
 <div class="sourceCode" id="cb8"><pre class="downlit sourceCode r">
 <code class="sourceCode R"><span><span class="va">x</span> <span class="op">&lt;-</span> <span class="fu"><a href="https://rdrr.io/r/base/data.frame.html" class="external-link">data.frame</a></span><span class="op">(</span>x <span class="op">=</span> <span class="fu"><a href="https://rdrr.io/r/stats/Normal.html" class="external-link">rnorm</a></span><span class="op">(</span><span class="fl">1000</span><span class="op">)</span>, y <span class="op">=</span> <span class="va">LETTERS</span><span class="op">[</span><span class="fl">1</span><span class="op">:</span><span class="fl">10</span><span class="op">]</span><span class="op">)</span></span>
 <span><span class="fu"><a href="reference/print_data.frame.html">print_data.frame</a></span><span class="op">(</span><span class="va">x</span>, rows <span class="op">=</span> <span class="fl">7</span>, digits <span class="op">=</span> <span class="fl">0</span><span class="op">)</span></span>
 <span><span class="co">#&gt;      x  y</span></span>
 <span><span class="co">#&gt; 1     0 A</span></span>
-<span><span class="co">#&gt; 2    -1 B</span></span>
-<span><span class="co">#&gt; 3     2 C</span></span>
-<span><span class="co">#&gt; 4     0 D</span></span>
+<span><span class="co">#&gt; 2     1 B</span></span>
+<span><span class="co">#&gt; 3    -1 C</span></span>
+<span><span class="co">#&gt; 4    -2 D</span></span>
 <span><span class="co">#&gt; &lt;993 rows hidden&gt;</span></span>
 <span><span class="co">#&gt;          </span></span>
-<span><span class="co">#&gt; 998  -1 H</span></span>
-<span><span class="co">#&gt; 999   2 I</span></span>
-<span><span class="co">#&gt; 1000  2 J</span></span></code></pre></div>
+<span><span class="co">#&gt; 998   1 H</span></span>
+<span><span class="co">#&gt; 999   1 I</span></span>
+<span><span class="co">#&gt; 1000  1 J</span></span></code></pre></div>
 </div>
 <div class="section level3">
 <h3 id="simulation-helpers">
@@ -186,20 +185,20 @@
 <span>  labels <span class="op">=</span> <span class="va">labels</span>, n <span class="op">=</span> <span class="va">n</span>, marginals <span class="op">=</span> <span class="va">marginals</span>, correlation <span class="op">=</span> <span class="va">correlation</span></span>
 <span><span class="op">)</span></span>
 <span><span class="fu"><a href="https://rdrr.io/r/utils/head.html" class="external-link">head</a></span><span class="op">(</span><span class="va">data</span><span class="op">)</span></span>
-<span><span class="co">#&gt;   P C          N1         N2         U</span></span>
-<span><span class="co">#&gt; 1 2 3  0.28054900 -0.2664126 -1.630263</span></span>
-<span><span class="co">#&gt; 2 4 2 -0.05037582 -0.6722802 -1.350827</span></span>
-<span><span class="co">#&gt; 3 1 1  3.55001847  1.2912325 -1.509097</span></span>
-<span><span class="co">#&gt; 4 1 3  0.41071971 -1.0315166 -1.974558</span></span>
-<span><span class="co">#&gt; 5 2 3  1.04476544  0.0975537 -1.972854</span></span>
-<span><span class="co">#&gt; 6 2 3 -2.19746308 -0.5906266 -1.385856</span></span>
+<span><span class="co">#&gt;   P C         N1          N2         U</span></span>
+<span><span class="co">#&gt; 1 4 1 -3.3191431  0.31658348 -1.049335</span></span>
+<span><span class="co">#&gt; 2 1 3 -2.6607111 -0.82624230 -1.577239</span></span>
+<span><span class="co">#&gt; 3 2 3 -1.3887395 -2.76968068 -1.542392</span></span>
+<span><span class="co">#&gt; 4 2 2 -0.7360741 -0.09171994 -1.305831</span></span>
+<span><span class="co">#&gt; 5 2 3  3.6731239 -0.67047586 -1.866220</span></span>
+<span><span class="co">#&gt; 6 4 2  0.7742342  1.36074573 -1.631845</span></span>
 <span><span class="fu"><a href="https://rdrr.io/r/stats/cor.html" class="external-link">cor</a></span><span class="op">(</span><span class="va">data</span><span class="op">)</span></span>
-<span><span class="co">#&gt;              P          C         N1          N2           U</span></span>
-<span><span class="co">#&gt; P   1.00000000 -0.2783753 -0.1117716 -0.01414418  0.54579038</span></span>
-<span><span class="co">#&gt; C  -0.27837534  1.0000000  0.2071735 -0.53935363 -0.72732467</span></span>
-<span><span class="co">#&gt; N1 -0.11177156  0.2071735  1.0000000 -0.30000000 -0.28153377</span></span>
-<span><span class="co">#&gt; N2 -0.01414418 -0.5393536 -0.3000000  1.00000000  0.09985643</span></span>
-<span><span class="co">#&gt; U   0.54579038 -0.7273247 -0.2815338  0.09985643  1.00000000</span></span></code></pre></div>
+<span><span class="co">#&gt;              P          C         N1          N2          U</span></span>
+<span><span class="co">#&gt; P   1.00000000 -0.2742909 -0.1021209  0.04795651  0.4767508</span></span>
+<span><span class="co">#&gt; C  -0.27429087  1.0000000  0.2713539 -0.50344066 -0.7408584</span></span>
+<span><span class="co">#&gt; N1 -0.10212093  0.2713539  1.0000000 -0.30000000 -0.3098568</span></span>
+<span><span class="co">#&gt; N2  0.04795651 -0.5034407 -0.3000000  1.00000000  0.0715843</span></span>
+<span><span class="co">#&gt; U   0.47675075 -0.7408584 -0.3098568  0.07158430  1.0000000</span></span></code></pre></div>
 </div>
 <div class="section level3">
 <h3 id="transformation-helpers">
@@ -266,7 +265,7 @@
 <h2 data-toc-skip>Developers</h2>
 <ul class="list-unstyled">
 <li>
-<a href="https://loelschlaeger.de" class="external-link">Lennart Oelschläger</a> <br><small class="roles"> Author, maintainer </small>  </li>
+<a href="https://loelschlaeger.de" class="external-link">Lennart Oelschläger</a> <br><small class="roles"> Author, maintainer </small>   </li>
 </ul>
 </div>
 
@@ -289,7 +288,7 @@
 </div>
 
 <div class="pkgdown-footer-right">
-  <p>Site built with <a href="https://pkgdown.r-lib.org/" class="external-link">pkgdown</a> 2.1.1.</p>
+  <p>Site built with <a href="https://pkgdown.r-lib.org/" class="external-link">pkgdown</a> 2.1.2.</p>
 </div>
 
     </footer>
