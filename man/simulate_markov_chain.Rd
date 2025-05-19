@@ -4,7 +4,7 @@
 \alias{simulate_markov_chain}
 \title{Simulate Markov chain}
 \usage{
-simulate_markov_chain(Gamma, T, delta)
+simulate_markov_chain(Gamma, T, delta = oeli::stationary_distribution(Gamma))
 }
 \arguments{
 \item{Gamma}{[\code{matrix()}]\cr
@@ -14,7 +14,9 @@ A transition probability matrix.}
 The length of the Markov chain.}
 
 \item{delta}{[\code{numeric()}]\cr
-A probability vector, the initial distribution.}
+A probability vector, the initial distribution.
+
+The stationary distribution is used by default.}
 }
 \value{
 A \code{numeric} vector of length \code{T} with states.

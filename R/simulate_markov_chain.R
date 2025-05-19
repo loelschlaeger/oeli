@@ -12,6 +12,8 @@
 #' @param delta \[`numeric()`\]\cr
 #' A probability vector, the initial distribution.
 #'
+#' The stationary distribution is used by default.
+#'
 #' @return
 #' A \code{numeric} vector of length \code{T} with states.
 #'
@@ -24,7 +26,9 @@
 #' delta <- c(0.6, 0.4)
 #' simulate_markov_chain(Gamma = Gamma, T = 20, delta = delta)
 
-simulate_markov_chain <- function(Gamma, T, delta) {
+simulate_markov_chain <- function(
+    Gamma, T, delta = oeli::stationary_distribution(Gamma)
+  ) {
   input_check_response(
     check = check_transition_probability_matrix(Gamma),
     var_name = "Gamma"
