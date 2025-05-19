@@ -1,4 +1,4 @@
-# oeli development
+# oeli 0.7.3
 
 * Added function `find_namespace_calls()` that searches for namespace calls in `.R` files.
 
