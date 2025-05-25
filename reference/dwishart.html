@@ -11,7 +11,7 @@ The functions with suffix _cpp perform no input checks, hence are faster."><meta
 
     <a class="navbar-brand me-2" href="../index.html">oeli</a>
 
-    <small class="nav-text text-muted me-auto" data-bs-toggle="tooltip" data-bs-placement="bottom" title="">0.7.3</small>
+    <small class="nav-text text-muted me-auto" data-bs-toggle="tooltip" data-bs-placement="bottom" title="">0.7.3.9000</small>
 
 
     <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbar" aria-controls="navbar" aria-expanded="false" aria-label="Toggle navigation">
@@ -90,6 +90,7 @@ Use this inverse Wishart distribution?</p></dd>
     <div class="section level2">
     <h2 id="see-also">See also<a class="anchor" aria-label="anchor" href="#see-also"></a></h2>
     <div class="dont-index"><p>Other simulation helpers:
+<code><a href="Simulator.html">Simulator</a></code>,
 <code><a href="correlated_regressors.html">correlated_regressors</a>()</code>,
 <code><a href="ddirichlet.html">ddirichlet_cpp</a>()</code>,
 <code><a href="dmvnorm.html">dmvnorm_cpp</a>()</code>,
@@ -114,12 +115,12 @@ Use this inverse Wishart distribution?</p></dd>
 <span class="r-in"><span><span class="co"># sample</span></span></span>
 <span class="r-in"><span><span class="fu">rwishart</span><span class="op">(</span>df <span class="op">=</span> <span class="va">df</span>, scale <span class="op">=</span> <span class="va">scale</span><span class="op">)</span></span></span>
 <span class="r-out co"><span class="r-pr">#&gt;</span>            [,1]       [,2]</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> [1,]  2.2358105 -0.8633542</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> [2,] -0.8633542  0.5840491</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> [1,] 0.45438505 0.01103428</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> [2,] 0.01103428 0.39071490</span>
 <span class="r-in"><span><span class="fu">rwishart</span><span class="op">(</span>df <span class="op">=</span> <span class="va">df</span>, scale <span class="op">=</span> <span class="va">scale</span>, inv <span class="op">=</span> <span class="cn">TRUE</span><span class="op">)</span></span></span>
-<span class="r-out co"><span class="r-pr">#&gt;</span>          [,1]     [,2]</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> [1,] 1.797465 1.540578</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> [2,] 1.540578 2.265803</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span>            [,1]       [,2]</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> [1,]  5.3533488 -0.2521811</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> [2,] -0.2521811  1.7163198</span>
 </code></pre></div>
     </div>
   </main><aside class="col-md-3"><nav id="toc" aria-label="Table of contents"><h2>On this page</h2>
@@ -131,7 +132,7 @@ Use this inverse Wishart distribution?</p></dd>
 </div>
 
 <div class="pkgdown-footer-right">
-  <p>Site built with <a href="https://pkgdown.r-lib.org/" class="external-link">pkgdown</a> 2.1.2.</p>
+  <p>Site built with <a href="https://pkgdown.r-lib.org/" class="external-link">pkgdown</a> 2.1.3.</p>
 </div>
 
     </footer></div>
