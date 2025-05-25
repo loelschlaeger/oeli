@@ -1,3 +1,7 @@
+# oeli development
+
+* Added R6 object `Simulator` that provides some convenience when running simulations.
+
 # oeli 0.7.3
 
 * Added function `find_namespace_calls()` that searches for namespace calls in `.R` files.

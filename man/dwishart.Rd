@@ -59,6 +59,7 @@ rwishart(df = df, scale = scale, inv = TRUE)
 }
 \seealso{
 Other simulation helpers: 
+\code{\link{Simulator}},
 \code{\link{correlated_regressors}()},
 \code{\link{ddirichlet_cpp}()},
 \code{\link{dmvnorm_cpp}()},

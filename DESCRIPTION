@@ -1,7 +1,7 @@
 Package: oeli
 Type: Package
 Title: Some Utilities for Developing Data Science Software
-Version: 0.7.3
+Version: 0.7.3.9000
 Authors@R: person("Lennart", "Oelschl\u00e4ger", email = "oelschlaeger.lennart@gmail.com", role = c("aut", "cre"))
 Description: A collection of general-purpose helper functions that I (and maybe 
     others) find useful when developing data science software. Includes tools 
@@ -14,12 +14,19 @@ Imports:
     benchmarkme,
     checkmate,
     cli,
+    dplyr,
+    future,
+    future.apply,
     ggplot2,
+    glue,
     hexSticker,
+    progressr,
+    purrr,
     R6,
     Rcpp,
     SimMultiCorrData,
     stats,
+    tibble,
     tools,
     utils
 LinkingTo:

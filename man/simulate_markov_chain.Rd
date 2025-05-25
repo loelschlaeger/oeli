@@ -31,6 +31,7 @@ simulate_markov_chain(Gamma = Gamma, T = 20, delta = delta)
 }
 \seealso{
 Other simulation helpers: 
+\code{\link{Simulator}},
 \code{\link{correlated_regressors}()},
 \code{\link{ddirichlet_cpp}()},
 \code{\link{dmvnorm_cpp}()},

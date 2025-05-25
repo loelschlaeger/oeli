@@ -77,6 +77,7 @@ rmvnorm(mean = mean, Sigma = Sigma, log = TRUE)
 }
 \seealso{
 Other simulation helpers: 
+\code{\link{Simulator}},
 \code{\link{correlated_regressors}()},
 \code{\link{ddirichlet_cpp}()},
 \code{\link{dmvnorm_cpp}()},
