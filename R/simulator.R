@@ -7,47 +7,35 @@
 #' Provides some convenience (see below for more details):
 #'
 #' - Simulation results can be restored from a backup if the R session crashes.
-#' - Failed simulation cases can be re-run.
-#' - More simulation runs can be conducted after the initial simulation.
+#' - More simulation runs can be conducted after the initial simulation, failed
+#'   simulation cases can be re-run.
 #' - Parallel computation and progress updates are supported.
 #'
 #' @details
-#' ## Getting started
-#' 1. Initialize a new simulation setup via `object <- Simulator$new()`.
-#' 2. Define function `f` and (optionally) arguments via
-#'    `object$define(f = f, ...)`.
-#' 3. Call `object$go(runs)` for `runs` simulation of `f` evaluated at each
-#'    parameter combination.
-#' 4. Access the results via `object$results`.
-#' 5. The field `object$cases` lists all simulation cases, including those
-#'    already resolved and those still pending.
-#'
-#' See the examples section.
-#'
 #' ## Backup
-#' TODO (with example for defining and using backup)
+#' Simulation results can be saved to disk, allowing you to restore the results
+#' if the R session is interrupted or crashes before the simulation completes.
+#' To enable backup, set `backup = TRUE` in the `$go()` method, which will
+#' create a backup directory at the location specified by `path`.
+#' To restore, use `Simulator$initialize(use_backup = path)`.
 #'
-#' ## Re-run
-#' TODO
-#'
-#' ## More runs
-#' TODO
+#' ## More runs and re-run
+#' If additional simulation runs are needed, simply call the `$go()` method
+#' again. Any cases that were not successfully completed in previous runs will
+#' be attempted again.
 #'
 #' ## Parallel computation
 #' By default, simulations run sequentially. But since they are independent,
 #' they can be parallelized to decrease computation time. To enable parallel
 #' computation, use the [`{future}` framework](https://future.futureverse.org/).
 #' For example, run
-#' \preformatted{
-#' future::plan(future::multisession, workers = 4)
-#' }
+#' \preformatted{future::plan(future::multisession, workers = 4)}
 #' in advance for computation in 4 parallel R sessions.
 #'
 #' ## Progress updates
 #' Use the [`{progressr}` framework](https://progressr.futureverse.org/) to
 #' get progress updates. For example, run the following in advance:
-#' \preformatted{
-#' progressr::handlers(global = TRUE)
+#' \preformatted{progressr::handlers(global = TRUE)
 #' progressr::handlers(
 #'   progressr::handler_progress(format = ">> :percent, :eta to go :message")
 #' )
@@ -58,11 +46,21 @@
 #' @export
 #'
 #' @examples
-#' f <- function(x, y = 1) { Sys.sleep(runif(1)); x + y + rnorm(1, sd = 0.1) }
+#' # 1. Initialize a new simulation setup:
 #' object <- Simulator$new(verbose = TRUE)
-#' object$define(f = f, x = as.list(1:2))
+#'
+#' # 2. Define function `f` and arguments (if any):
+#' f <- function(x, y = 1) { Sys.sleep(runif(1)); x + y }
+#' x_args <- list(1, 2)
+#' object$define(f = f, x = x_args)
+#'
+#' # 3. Evaluate `f` `runs` times at each parameter combination:
 #' object$go(runs = 2)
+#'
+#' # 4. Access the results:
 #' object$results
+#'
+#' # 5. Check if cases are pending or if an error occurred:
 #' object$cases
 
 Simulator <- R6::R6Class(
@@ -73,13 +71,13 @@ Simulator <- R6::R6Class(
   public = list(
 
     #' @description
-    #' TODO
+    #' Initialize a `Simulator` object, either a new one or from backup.
     #'
     #' @param use_backup \[`NULL` | `character(1)`\]\cr
-    #' TODO
+    #' Optionally a path to a backup folder previously used in `$go()`.
     #'
     #' @param verbose \[`logical(1)`\]\cr
-    #' TODO
+    #' Provide info? Does not include progress updates. For that, see details.
 
     initialize = function(
       use_backup = NULL, verbose = getOption("verbose", default = FALSE)
@@ -88,27 +86,48 @@ Simulator <- R6::R6Class(
       private$.verbose <- isTRUE(verbose)
 
       if (is.null(use_backup)) {
-
-        private$.status(
-          "Created new {.cls Simulator}, call {.fun $define} next."
-        )
-
+        private$.status("Created {.cls Simulator}, call {.fun $define} next.")
       } else {
-
-        private$.status("Loaded {.cls Simulator} from backup.")
-
+        input_check_response(
+          check = checkmate::check_directory_exists(use_backup, access = "rw"),
+          var_name = "use_backup"
+        )
+        input_check_response(
+          check = checkmate::check_file_exists(
+            file.path(use_backup, "Simulator_object.rds"), extension = ".rds",
+            access = "r"
+          )
+        )
+        self_old <- readRDS(file.path(use_backup, "Simulator_object.rds"))
+        private_old <- self_old$.__enclos_env__$private
+        for (name in c(".verbose", ".f", ".args", ".results", ".cases")) {
+          self$.__enclos_env__$private[[name]] <- private_old[[name]]
+        }
+        case_files <- list.files(
+          use_backup, pattern = "^case_.*\\.rds$", full.names = TRUE
+        )
+        cases <- lapply(case_files, readRDS)
+        for (case in cases) {
+          private$.results <- c(private$.results, list(case))
+          private$.update_case_pending(case = case$.case, error = case$.error)
+        }
+        private$.status(
+          "Loaded {.cls Simulator} and {length(cases)} case{?s} from backup."
+        )
       }
-
     },
 
     #' @description
-    #' TODO
+    #' Define function and arguments for a new `Simulator` object.
     #'
     #' @param f \[`function`\]\cr
-    #' TODO
+    #' A `function` to evaluate.
     #'
     #' @param ...
-    #' TODO
+    #' Arguments for `f`. Each value must be
+    #'
+    #' 1. named after an argument of `f`, and
+    #' 2. a `list`, where each element is a variant of that argument for `f`.
 
     define = function(f, ...) {
 
@@ -156,16 +175,21 @@ Simulator <- R6::R6Class(
     },
 
     #' @description
-    #' TODO
+    #' Run simulations.
     #'
     #' @param runs \[`integer(1)`\]\cr
-    #' TODO
+    #' The number of (additional) simulation runs.
+    #'
+    #' If `runs = 0`, only pending cases (if any) are solved.
     #'
     #' @param backup \[`logical(1)`\]\cr
-    #' TODO
+    #' Create a backup under `path`?
     #'
     #' @param path \[`character(1)`\]\cr
-    #' TODO
+    #' Only relevant, if `backup = TRUE`.
+    #'
+    #' In this case, a path for a new folder, which does not yet exist and
+    #' allows reading and writing.
 
     go = function(
       runs = 0, backup = FALSE,
@@ -191,9 +215,13 @@ Simulator <- R6::R6Class(
       )
 
       ### prepare simulation
-      if (backup) dir.create(path)
       private$.new_cases(runs = runs)
       cases <- self$cases |> dplyr::filter(.pending)
+      if (backup) {
+        dir.create(path)
+        saveRDS(self, file = sprintf("%s/Simulator_object.rds", path))
+        private$.status("Saving backup to path {.path {normalizePath(path)}}.")
+      }
       private$.status("Started simulation with {nrow(cases)} cases...")
       progress_step <- progressr::progressor(steps = nrow(cases))
 
@@ -223,8 +251,7 @@ Simulator <- R6::R6Class(
           )
         }
 
-        private$.cases[private$.cases$.case == case, ".pending"] <- error
-        private$.cases[private$.cases$.case == case, ".error"] <- error
+        private$.update_case_pending(case = case, error = error)
 
         if (backup && !error) {
           saveRDS(case_out, file = sprintf("%s/case_%03d.rds", path, case))
@@ -324,6 +351,11 @@ Simulator <- R6::R6Class(
         grid
       )
       private$.cases <- dplyr::bind_rows(private$.cases, new_cases)
+    },
+
+    .update_case_pending = function(case, error) {
+      private$.cases[private$.cases$.case == case, ".pending"] <- error
+      private$.cases[private$.cases$.case == case, ".error"] <- error
     }
   )
 

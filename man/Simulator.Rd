@@ -10,40 +10,26 @@ optionally at each combination of input values.
 Provides some convenience (see below for more details):
 \itemize{
 \item Simulation results can be restored from a backup if the R session crashes.
-\item Failed simulation cases can be re-run.
-\item More simulation runs can be conducted after the initial simulation.
+\item More simulation runs can be conducted after the initial simulation, failed
+simulation cases can be re-run.
 \item Parallel computation and progress updates are supported.
 }
 }
 \details{
-\subsection{Getting started}{
-\enumerate{
-\item Initialize a new simulation setup via \code{object <- Simulator$new()}.
-\item Define function \code{f} and (optionally) arguments via
-\code{object$define(f = f, ...)}.
-\item Call \code{object$go(runs)} for \code{runs} simulation of \code{f} evaluated at each
-parameter combination.
-\item Access the results via \code{object$results}.
-\item The field \code{object$cases} lists all simulation cases, including those
-already resolved and those still pending.
-}
-
-See the examples section.
-}
-
 \subsection{Backup}{
 
-TODO (with example for defining and using backup)
+Simulation results can be saved to disk, allowing you to restore the results
+if the R session is interrupted or crashes before the simulation completes.
+To enable backup, set \code{backup = TRUE} in the \verb{$go()} method, which will
+create a backup directory at the location specified by \code{path}.
+To restore, use \code{Simulator$initialize(use_backup = path)}.
 }
 
-\subsection{Re-run}{
+\subsection{More runs and re-run}{
 
-TODO
-}
-
-\subsection{More runs}{
-
-TODO
+If additional simulation runs are needed, simply call the \verb{$go()} method
+again. Any cases that were not successfully completed in previous runs will
+be attempted again.
 }
 
 \subsection{Parallel computation}{
@@ -52,9 +38,7 @@ By default, simulations run sequentially. But since they are independent,
 they can be parallelized to decrease computation time. To enable parallel
 computation, use the \href{https://future.futureverse.org/}{\code{{future}} framework}.
 For example, run
-\preformatted{
-future::plan(future::multisession, workers = 4)
-}
+\preformatted{future::plan(future::multisession, workers = 4)}
 in advance for computation in 4 parallel R sessions.
 }
 
@@ -62,8 +46,7 @@ in advance for computation in 4 parallel R sessions.
 
 Use the \href{https://progressr.futureverse.org/}{\code{{progressr}} framework} to
 get progress updates. For example, run the following in advance:
-\preformatted{
-progressr::handlers(global = TRUE)
+\preformatted{progressr::handlers(global = TRUE)
 progressr::handlers(
   progressr::handler_progress(format = ">> :percent, :eta to go :message")
 )
@@ -71,11 +54,21 @@ progressr::handlers(
 }
 }
 \examples{
-f <- function(x, y = 1) { Sys.sleep(runif(1)); x + y + rnorm(1, sd = 0.1) }
+# 1. Initialize a new simulation setup:
 object <- Simulator$new(verbose = TRUE)
-object$define(f = f, x = as.list(1:2))
+
+# 2. Define function `f` and arguments (if any):
+f <- function(x, y = 1) { Sys.sleep(runif(1)); x + y }
+x_args <- list(1, 2)
+object$define(f = f, x = x_args)
+
+# 3. Evaluate `f` `runs` times at each parameter combination:
 object$go(runs = 2)
+
+# 4. Access the results:
 object$results
+
+# 5. Check if cases are pending or if an error occurred:
 object$cases
 }
 \seealso{
@@ -112,7 +105,7 @@ The simulation cases.}
 \if{html}{\out{<a id="method-Simulator-new"></a>}}
 \if{latex}{\out{\hypertarget{method-Simulator-new}{}}}
 \subsection{Method \code{new()}}{
-TODO
+Initialize a \code{Simulator} object, either a new one or from backup.
 \subsection{Usage}{
 \if{html}{\out{<div class="r">}}\preformatted{Simulator$new(
   use_backup = NULL,
@@ -124,10 +117,10 @@ TODO
 \if{html}{\out{<div class="arguments">}}
 \describe{
 \item{\code{use_backup}}{[\code{NULL} | \code{character(1)}]\cr
-TODO}
+Optionally a path to a backup folder previously used in \verb{$go()}.}
 
 \item{\code{verbose}}{[\code{logical(1)}]\cr
-TODO}
+Provide info? Does not include progress updates. For that, see details.}
 }
 \if{html}{\out{</div>}}
 }
@@ -136,7 +129,7 @@ TODO}
 \if{html}{\out{<a id="method-Simulator-define"></a>}}
 \if{latex}{\out{\hypertarget{method-Simulator-define}{}}}
 \subsection{Method \code{define()}}{
-TODO
+Define function and arguments for a new \code{Simulator} object.
 \subsection{Usage}{
 \if{html}{\out{<div class="r">}}\preformatted{Simulator$define(f, ...)}\if{html}{\out{</div>}}
 }
@@ -145,9 +138,13 @@ TODO
 \if{html}{\out{<div class="arguments">}}
 \describe{
 \item{\code{f}}{[\code{function}]\cr
-TODO}
+A \code{function} to evaluate.}
 
-\item{\code{...}}{TODO}
+\item{\code{...}}{Arguments for \code{f}. Each value must be
+\enumerate{
+\item named after an argument of \code{f}, and
+\item a \code{list}, where each element is a variant of that argument for \code{f}.
+}}
 }
 \if{html}{\out{</div>}}
 }
@@ -156,7 +153,7 @@ TODO}
 \if{html}{\out{<a id="method-Simulator-go"></a>}}
 \if{latex}{\out{\hypertarget{method-Simulator-go}{}}}
 \subsection{Method \code{go()}}{
-TODO
+Run simulations.
 \subsection{Usage}{
 \if{html}{\out{<div class="r">}}\preformatted{Simulator$go(
   runs = 0,
@@ -169,13 +166,18 @@ TODO
 \if{html}{\out{<div class="arguments">}}
 \describe{
 \item{\code{runs}}{[\code{integer(1)}]\cr
-TODO}
+The number of (additional) simulation runs.
+
+If \code{runs = 0}, only pending cases (if any) are solved.}
 
 \item{\code{backup}}{[\code{logical(1)}]\cr
-TODO}
+Create a backup under \code{path}?}
 
 \item{\code{path}}{[\code{character(1)}]\cr
-TODO}
+Only relevant, if \code{backup = TRUE}.
+
+In this case, a path for a new folder, which does not yet exist and
+allows reading and writing.}
 }
 \if{html}{\out{</div>}}
 }
