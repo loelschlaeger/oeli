@@ -12,18 +12,6 @@
 #' - Parallel computation and progress updates are supported.
 #'
 #' @details
-#' ## Getting started
-#' 1. Initialize a new simulation setup via `object <- Simulator$new()`.
-#' 2. Define function `f` and (optionally) arguments via
-#'    `object$define(f = f, ...)`.
-#' 3. Call `object$go(runs)` for `runs` simulation of `f` evaluated at each
-#'    parameter combination.
-#' 4. Access the results via `object$results`.
-#' 5. The field `object$cases` lists all simulation cases, including those
-#'    already resolved and those still pending.
-#'
-#' See the examples section.
-#'
 #' ## Backup
 #' TODO (with example for defining and using backup)
 #'
@@ -58,11 +46,23 @@
 #' @export
 #'
 #' @examples
+#' # 0. Simulation task
 #' f <- function(x, y = 1) { Sys.sleep(runif(1)); x + y + rnorm(1, sd = 0.1) }
+#' x_args <- list(1, 2)
+#'
+#' # 1. Initialize a new simulation setup:
 #' object <- Simulator$new(verbose = TRUE)
-#' object$define(f = f, x = as.list(1:2))
+#'
+#' # 2. Define function `f` and (optionally) arguments:
+#' object$define(f = f, x = x_args)
+#'
+#' # 3. Evaluate `f` `runs` times at each parameter combination:
 #' object$go(runs = 2)
+#'
+#' # 4. Access the results:
 #' object$results
+#'
+#' # 5. Check if cases are pending or if an error occurred:
 #' object$cases
 
 Simulator <- R6::R6Class(
@@ -73,13 +73,13 @@ Simulator <- R6::R6Class(
   public = list(
 
     #' @description
-    #' TODO
+    #' Initialize a `Simulator` object, either a new one or from backup.
     #'
     #' @param use_backup \[`NULL` | `character(1)`\]\cr
-    #' TODO
+    #' Optionally a path to a backup folder previously used in `$go()`.
     #'
     #' @param verbose \[`logical(1)`\]\cr
-    #' TODO
+    #' Provide info? Does not include progress updates. For that, see details.
 
     initialize = function(
       use_backup = NULL, verbose = getOption("verbose", default = FALSE)
@@ -102,13 +102,16 @@ Simulator <- R6::R6Class(
     },
 
     #' @description
-    #' TODO
+    #' Define function and arguments for a new `Simulator` object.
     #'
     #' @param f \[`function`\]\cr
-    #' TODO
+    #' A `function` to evaluate.
     #'
     #' @param ...
-    #' TODO
+    #' Arguments for `f`. Each value must be
+    #'
+    #' 1. named after an argument of `f`, and
+    #' 2. a `list`, where each element is a variant of that argument for `f`.
 
     define = function(f, ...) {
 
@@ -159,13 +162,18 @@ Simulator <- R6::R6Class(
     #' TODO
     #'
     #' @param runs \[`integer(1)`\]\cr
-    #' TODO
+    #' The number of (additional) simulation runs.
+    #'
+    #' If `runs = 0`, only pending cases (if any) are solved.
     #'
     #' @param backup \[`logical(1)`\]\cr
     #' TODO
     #'
     #' @param path \[`character(1)`\]\cr
-    #' TODO
+    #' Only relevant, if `backup = TRUE`.
+    #'
+    #' In this case, a path for a new folder, which does not yet exist and
+    #' allows reading and writing.
 
     go = function(
       runs = 0, backup = FALSE,

@@ -4,7 +4,7 @@
 # progressr::handlers(
 #   progressr::handler_progress(format = ">> :percent, :eta to go :message")
 # )
-# future::plan(future::multisession, workers = 2)
+# # future::plan(future::multisession, workers = 2)
 #
 # f <- function() { Sys.sleep(runif(1)); rnorm(1, sd = 0.1) }
 #
@@ -24,4 +24,3 @@
 # sim$go(runs = 2)
 #
 # sim$results
-#
