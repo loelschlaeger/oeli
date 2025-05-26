@@ -62,20 +62,6 @@ optionally at each combination of input values.</p>
     <h2 id="details">Details<a class="anchor" aria-label="anchor" href="#details"></a></h2>
 
 <div class="section">
-<h3 id="getting-started">Getting started<a class="anchor" aria-label="anchor" href="#getting-started"></a></h3>
-
-<ol><li><p>Initialize a new simulation setup via <code>object &lt;- Simulator$new()</code>.</p></li>
-<li><p>Define function <code>f</code> and (optionally) arguments via
-<code>object$define(f = f, ...)</code>.</p></li>
-<li><p>Call <code>object$go(runs)</code> for <code>runs</code> simulation of <code>f</code> evaluated at each
-parameter combination.</p></li>
-<li><p>Access the results via <code>object$results</code>.</p></li>
-<li><p>The field <code>object$cases</code> lists all simulation cases, including those
-already resolved and those still pending.</p></li>
-</ol><p>See the examples section.</p>
-</div>
-
-<div class="section">
 <h3 id="backup">Backup<a class="anchor" aria-label="anchor" href="#backup"></a></h3>
 
 
@@ -156,7 +142,7 @@ The simulation cases.</p></dd>
 <li><p><a href="#method-Simulator-go"><code>Simulator$go()</code></a></p></li>
 </ul></div><p></p><hr><a id="method-Simulator-new"></a><div class="section">
 <h3 id="method-new-">Method <code>new()</code><a class="anchor" aria-label="anchor" href="#method-new-"></a></h3>
-<p>TODO</p><div class="section">
+<p>Initialize a <code>Simulator</code> object, either a new one or from backup.</p><div class="section">
 <h4 id="usage">Usage<a class="anchor" aria-label="anchor" href="#usage"></a></h4>
 <p></p><div class="r"><div class="sourceCode"><pre><code><span><span class="va"><a href="../reference/Simulator.html">Simulator</a></span><span class="op">$</span><span class="fu">new</span><span class="op">(</span></span>
 <span>  use_backup <span class="op">=</span> <span class="cn">NULL</span>,</span>
@@ -168,12 +154,12 @@ The simulation cases.</p></dd>
 <h4 id="arguments">Arguments<a class="anchor" aria-label="anchor" href="#arguments"></a></h4>
 <p></p><div class="arguments"><dl><dt><code>use_backup</code></dt>
 <dd><p>[<code>NULL</code> | <code>character(1)</code>]<br>
-TODO</p></dd>
+Optionally a path to a backup folder previously used in <code>$go()</code>.</p></dd>
 
 
 <dt><code>verbose</code></dt>
 <dd><p>[<code>logical(1)</code>]<br>
-TODO</p></dd>
+Provide info? Does not include progress updates. For that, see details.</p></dd>
 
 
 </dl><p></p></div>
@@ -181,7 +167,7 @@ TODO</p></dd>
 
 </div><p></p><hr><a id="method-Simulator-define"></a><div class="section">
 <h3 id="method-define-">Method <code>define()</code><a class="anchor" aria-label="anchor" href="#method-define-"></a></h3>
-<p>TODO</p><div class="section">
+<p>Define function and arguments for a new <code>Simulator</code> object.</p><div class="section">
 <h4 id="usage-1">Usage<a class="anchor" aria-label="anchor" href="#usage-1"></a></h4>
 <p></p><div class="r"><div class="sourceCode"><pre><code><span><span class="va">Simulator</span><span class="op">$</span><span class="fu">define</span><span class="op">(</span><span class="va">f</span>, <span class="va">...</span><span class="op">)</span></span></code></pre></div><p></p></div>
 </div>
@@ -190,11 +176,13 @@ TODO</p></dd>
 <h4 id="arguments-1">Arguments<a class="anchor" aria-label="anchor" href="#arguments-1"></a></h4>
 <p></p><div class="arguments"><dl><dt><code>f</code></dt>
 <dd><p>[<code>function</code>]<br>
-TODO</p></dd>
+A <code>function</code> to evaluate.</p></dd>
 
 
 <dt><code>...</code></dt>
-<dd><p>TODO</p></dd>
+<dd><p>Arguments for <code>f</code>. Each value must be</p><ol><li><p>named after an argument of <code>f</code>, and</p></li>
+<li><p>a <code>list</code>, where each element is a variant of that argument for <code>f</code>.</p></li>
+</ol></dd>
 
 
 </dl><p></p></div>
@@ -215,7 +203,8 @@ TODO</p></dd>
 <h4 id="arguments-2">Arguments<a class="anchor" aria-label="anchor" href="#arguments-2"></a></h4>
 <p></p><div class="arguments"><dl><dt><code>runs</code></dt>
 <dd><p>[<code>integer(1)</code>]<br>
-TODO</p></dd>
+The number of (additional) simulation runs.</p>
+<p>If <code>runs = 0</code>, only pending cases (if any) are solved.</p></dd>
 
 
 <dt><code>backup</code></dt>
@@ -225,7 +214,9 @@ TODO</p></dd>
 
 <dt><code>path</code></dt>
 <dd><p>[<code>character(1)</code>]<br>
-TODO</p></dd>
+Only relevant, if <code>backup = TRUE</code>.</p>
+<p>In this case, a path for a new folder, which does not yet exist and
+allows reading and writing.</p></dd>
 
 
 </dl><p></p></div>
@@ -237,30 +228,42 @@ TODO</p></dd>
 
     <div class="section level2">
     <h2 id="ref-examples">Examples<a class="anchor" aria-label="anchor" href="#ref-examples"></a></h2>
-    <div class="sourceCode"><pre class="sourceCode r"><code><span class="r-in"><span><span class="va">f</span> <span class="op">&lt;-</span> <span class="kw">function</span><span class="op">(</span><span class="va">x</span>, <span class="va">y</span> <span class="op">=</span> <span class="fl">1</span><span class="op">)</span> <span class="op">{</span> <span class="fu"><a href="https://rdrr.io/r/base/Sys.sleep.html" class="external-link">Sys.sleep</a></span><span class="op">(</span><span class="fu"><a href="https://rdrr.io/r/stats/Uniform.html" class="external-link">runif</a></span><span class="op">(</span><span class="fl">1</span><span class="op">)</span><span class="op">)</span>; <span class="va">x</span> <span class="op">+</span> <span class="va">y</span> <span class="op">+</span> <span class="fu"><a href="https://rdrr.io/r/stats/Normal.html" class="external-link">rnorm</a></span><span class="op">(</span><span class="fl">1</span>, sd <span class="op">=</span> <span class="fl">0.1</span><span class="op">)</span> <span class="op">}</span></span></span>
+    <div class="sourceCode"><pre class="sourceCode r"><code><span class="r-in"><span><span class="co"># 0. Simulation task</span></span></span>
+<span class="r-in"><span><span class="va">f</span> <span class="op">&lt;-</span> <span class="kw">function</span><span class="op">(</span><span class="va">x</span>, <span class="va">y</span> <span class="op">=</span> <span class="fl">1</span><span class="op">)</span> <span class="op">{</span> <span class="fu"><a href="https://rdrr.io/r/base/Sys.sleep.html" class="external-link">Sys.sleep</a></span><span class="op">(</span><span class="fu"><a href="https://rdrr.io/r/stats/Uniform.html" class="external-link">runif</a></span><span class="op">(</span><span class="fl">1</span><span class="op">)</span><span class="op">)</span>; <span class="va">x</span> <span class="op">+</span> <span class="va">y</span> <span class="op">+</span> <span class="fu"><a href="https://rdrr.io/r/stats/Normal.html" class="external-link">rnorm</a></span><span class="op">(</span><span class="fl">1</span>, sd <span class="op">=</span> <span class="fl">0.1</span><span class="op">)</span> <span class="op">}</span></span></span>
+<span class="r-in"><span><span class="va">x_args</span> <span class="op">&lt;-</span> <span class="fu"><a href="https://rdrr.io/r/base/list.html" class="external-link">list</a></span><span class="op">(</span><span class="fl">1</span>, <span class="fl">2</span><span class="op">)</span></span></span>
+<span class="r-in"><span></span></span>
+<span class="r-in"><span><span class="co"># 1. Initialize a new simulation setup:</span></span></span>
 <span class="r-in"><span><span class="va">object</span> <span class="op">&lt;-</span> <span class="va">Simulator</span><span class="op">$</span><span class="fu">new</span><span class="op">(</span>verbose <span class="op">=</span> <span class="cn">TRUE</span><span class="op">)</span></span></span>
 <span class="r-msg co"><span class="r-pr">#&gt;</span> Created new <span style="color: #0000BB;">&lt;Simulator&gt;</span>, call `$define()` next.</span>
-<span class="r-in"><span><span class="va">object</span><span class="op">$</span><span class="fu">define</span><span class="op">(</span>f <span class="op">=</span> <span class="va">f</span>, x <span class="op">=</span> <span class="fu"><a href="https://rdrr.io/r/base/list.html" class="external-link">as.list</a></span><span class="op">(</span><span class="fl">1</span><span class="op">:</span><span class="fl">2</span><span class="op">)</span><span class="op">)</span></span></span>
+<span class="r-in"><span></span></span>
+<span class="r-in"><span><span class="co"># 2. Define function `f` and (optionally) arguments:</span></span></span>
+<span class="r-in"><span><span class="va">object</span><span class="op">$</span><span class="fu">define</span><span class="op">(</span>f <span class="op">=</span> <span class="va">f</span>, x <span class="op">=</span> <span class="va">x_args</span><span class="op">)</span></span></span>
 <span class="r-msg co"><span class="r-pr">#&gt;</span> Simulation details defined, call `$go()` next to run simulations.</span>
+<span class="r-in"><span></span></span>
+<span class="r-in"><span><span class="co"># 3. Evaluate `f` `runs` times at each parameter combination:</span></span></span>
 <span class="r-in"><span><span class="va">object</span><span class="op">$</span><span class="fu">go</span><span class="op">(</span>runs <span class="op">=</span> <span class="fl">2</span><span class="op">)</span></span></span>
 <span class="r-msg co"><span class="r-pr">#&gt;</span> Started simulation with 4 cases...</span>
 <span class="r-msg co"><span class="r-pr">#&gt;</span> Simulation completed.</span>
+<span class="r-in"><span></span></span>
+<span class="r-in"><span><span class="co"># 4. Access the results:</span></span></span>
 <span class="r-in"><span><span class="va">object</span><span class="op">$</span><span class="va">results</span></span></span>
 <span class="r-out co"><span class="r-pr">#&gt;</span> <span style="color: #949494;"># A tibble: 4 × 4</span></span>
 <span class="r-out co"><span class="r-pr">#&gt;</span>   .case .seconds       .input           .output  </span>
 <span class="r-out co"><span class="r-pr">#&gt;</span>   <span style="color: #949494; font-style: italic;">&lt;int&gt;</span> <span style="color: #949494; font-style: italic;">&lt;drtn&gt;</span>         <span style="color: #949494; font-style: italic;">&lt;list&gt;</span>           <span style="color: #949494; font-style: italic;">&lt;list&gt;</span>   </span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> <span style="color: #BCBCBC;">1</span>     1 0.5169876 secs <span style="color: #949494;">&lt;named list [1]&gt;</span> <span style="color: #949494;">&lt;dbl [1]&gt;</span></span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> <span style="color: #BCBCBC;">2</span>     2 0.2302444 secs <span style="color: #949494;">&lt;named list [1]&gt;</span> <span style="color: #949494;">&lt;dbl [1]&gt;</span></span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> <span style="color: #BCBCBC;">3</span>     3 0.6743932 secs <span style="color: #949494;">&lt;named list [1]&gt;</span> <span style="color: #949494;">&lt;dbl [1]&gt;</span></span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> <span style="color: #BCBCBC;">4</span>     4 0.6663585 secs <span style="color: #949494;">&lt;named list [1]&gt;</span> <span style="color: #949494;">&lt;dbl [1]&gt;</span></span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> <span style="color: #BCBCBC;">1</span>     1 0.5170081 secs <span style="color: #949494;">&lt;named list [1]&gt;</span> <span style="color: #949494;">&lt;dbl [1]&gt;</span></span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> <span style="color: #BCBCBC;">2</span>     2 0.2302732 secs <span style="color: #949494;">&lt;named list [1]&gt;</span> <span style="color: #949494;">&lt;dbl [1]&gt;</span></span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> <span style="color: #BCBCBC;">3</span>     3 0.6744225 secs <span style="color: #949494;">&lt;named list [1]&gt;</span> <span style="color: #949494;">&lt;dbl [1]&gt;</span></span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> <span style="color: #BCBCBC;">4</span>     4 0.6663837 secs <span style="color: #949494;">&lt;named list [1]&gt;</span> <span style="color: #949494;">&lt;dbl [1]&gt;</span></span>
+<span class="r-in"><span></span></span>
+<span class="r-in"><span><span class="co"># 5. Check if cases are pending or if an error occurred:</span></span></span>
 <span class="r-in"><span><span class="va">object</span><span class="op">$</span><span class="va">cases</span></span></span>
 <span class="r-out co"><span class="r-pr">#&gt;</span> <span style="color: #949494;"># A tibble: 4 × 5</span></span>
 <span class="r-out co"><span class="r-pr">#&gt;</span>   .case .pending .error  .run x        </span>
 <span class="r-out co"><span class="r-pr">#&gt;</span>   <span style="color: #949494; font-style: italic;">&lt;int&gt;</span> <span style="color: #949494; font-style: italic;">&lt;lgl&gt;</span>    <span style="color: #949494; font-style: italic;">&lt;lgl&gt;</span>  <span style="color: #949494; font-style: italic;">&lt;int&gt;</span> <span style="color: #949494; font-style: italic;">&lt;list&gt;</span>   </span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> <span style="color: #BCBCBC;">1</span>     1 FALSE    FALSE      1 <span style="color: #949494;">&lt;int [1]&gt;</span></span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> <span style="color: #BCBCBC;">2</span>     2 FALSE    FALSE      1 <span style="color: #949494;">&lt;int [1]&gt;</span></span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> <span style="color: #BCBCBC;">3</span>     3 FALSE    FALSE      2 <span style="color: #949494;">&lt;int [1]&gt;</span></span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> <span style="color: #BCBCBC;">4</span>     4 FALSE    FALSE      2 <span style="color: #949494;">&lt;int [1]&gt;</span></span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> <span style="color: #BCBCBC;">1</span>     1 FALSE    FALSE      1 <span style="color: #949494;">&lt;dbl [1]&gt;</span></span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> <span style="color: #BCBCBC;">2</span>     2 FALSE    FALSE      1 <span style="color: #949494;">&lt;dbl [1]&gt;</span></span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> <span style="color: #BCBCBC;">3</span>     3 FALSE    FALSE      2 <span style="color: #949494;">&lt;dbl [1]&gt;</span></span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> <span style="color: #BCBCBC;">4</span>     4 FALSE    FALSE      2 <span style="color: #949494;">&lt;dbl [1]&gt;</span></span>
 </code></pre></div>
     </div>
   </main><aside class="col-md-3"><nav id="toc" aria-label="Table of contents"><h2>On this page</h2>
