@@ -46,12 +46,23 @@
 #' @export
 #'
 #' @examples
+<<<<<<< HEAD
 #' # 1. Initialize a new simulation setup:
 #' object <- Simulator$new(verbose = TRUE)
 #'
 #' # 2. Define function `f` and arguments (if any):
 #' f <- function(x, y = 1) { Sys.sleep(runif(1)); x + y }
 #' x_args <- list(1, 2)
+=======
+#' # 0. Simulation task
+#' f <- function(x, y = 1) { Sys.sleep(runif(1)); x + y + rnorm(1, sd = 0.1) }
+#' x_args <- list(1, 2)
+#'
+#' # 1. Initialize a new simulation setup:
+#' object <- Simulator$new(verbose = TRUE)
+#'
+#' # 2. Define function `f` and (optionally) arguments:
+>>>>>>> f82728beed0c515939faaf1ce9d22e8098f0af17
 #' object$define(f = f, x = x_args)
 #'
 #' # 3. Evaluate `f` `runs` times at each parameter combination:
