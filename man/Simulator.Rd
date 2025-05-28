@@ -58,7 +58,10 @@ progressr::handlers(
 object <- Simulator$new(verbose = TRUE)
 
 # 2. Define function `f` and arguments (if any):
-f <- function(x, y = 1) { Sys.sleep(runif(1)); x + y }
+f <- function(x, y = 1) {
+  Sys.sleep(runif(1)) # to see progress updates via {progressr}
+  x + y
+}
 x_args <- list(1, 2)
 object$define(f = f, x = x_args)
 

@@ -50,7 +50,10 @@
 #' object <- Simulator$new(verbose = TRUE)
 #'
 #' # 2. Define function `f` and arguments (if any):
-#' f <- function(x, y = 1) { Sys.sleep(runif(1)); x + y }
+#' f <- function(x, y = 1) {
+#'   Sys.sleep(runif(1)) # to see progress updates via {progressr}
+#'   x + y
+#' }
 #' x_args <- list(1, 2)
 #' object$define(f = f, x = x_args)
 #'
@@ -209,15 +212,15 @@ Simulator <- R6::R6Class(
         check = checkmate::check_flag(backup),
         var_name = "backup"
       )
-      input_check_response(
-        check = checkmate::check_path_for_output(path, overwrite = FALSE),
-        var_name = "path"
-      )
 
       ### prepare simulation
       private$.new_cases(runs = runs)
       cases <- self$cases |> dplyr::filter(.pending)
       if (backup) {
+        input_check_response(
+          check = checkmate::check_path_for_output(path, overwrite = FALSE),
+          var_name = "path"
+        )
         dir.create(path)
         saveRDS(self, file = sprintf("%s/Simulator_object.rds", path))
         private$.status("Saving backup to path {.path {normalizePath(path)}}.")
@@ -230,7 +233,10 @@ Simulator <- R6::R6Class(
 
         progress_step(glue::glue("[case {case}] started"), amount = 0)
 
-        args <- lapply(cases[case, -(1:4), drop = FALSE], function(x) x[[1]])
+        args <- lapply(
+          cases[cases$.case == case, -(1:4), drop = FALSE],
+          function(x) x[[1]]
+        )
 
         start <- Sys.time()
         f_out <- try_silent(do.call(what = private$.f, args = args))
