@@ -51,20 +51,34 @@
 #'
 #' # 2. Define function `f` and arguments (if any):
 #' f <- function(x, y = 1) {
-#'   Sys.sleep(runif(1)) # to see progress updates via {progressr}
+#'   Sys.sleep(runif(1)) # to see progress updates
 #'   x + y
 #' }
 #' x_args <- list(1, 2)
 #' object$define(f = f, x = x_args)
+#' print(object)
 #'
-#' # 3. Evaluate `f` `runs` times at each parameter combination:
-#' object$go(runs = 2)
+#' # 3. Define 'future' and 'progress' (optional):
+#' future::plan(future::sequential)
+#' progressr::handlers(global = TRUE)
 #'
-#' # 4. Access the results:
+#' # 4. Evaluate `f` `runs` times at each parameter combination (backup is optional):
+#' path <- file.path(tempdir(), paste0("backup_", format(Sys.time(), "%Y-%m-%d-%H-%M-%S")))
+#' object$go(runs = 2, backup = TRUE, path = path)
+#'
+#' # 5. Access the results:
 #' object$results
 #'
-#' # 5. Check if cases are pending or if an error occurred:
+#' # 6. Check if cases are pending or if an error occurred:
 #' object$cases
+#'
+#' # 7. Restore simulation results from backup:
+#' object_restored <- Simulator$new(use_backup = path)
+#' print(object_restored)
+#' all.equal(object, object_restored)
+#'
+#' # 8. Run more simulations and pending simulations (if any):
+#' object_restored$go(runs = 2)
 
 Simulator <- R6::R6Class(
 
@@ -102,22 +116,39 @@ Simulator <- R6::R6Class(
           )
         )
         self_old <- readRDS(file.path(use_backup, "Simulator_object.rds"))
-        private_old <- self_old$.__enclos_env__$private
-        for (name in c(".verbose", ".f", ".args", ".results", ".cases")) {
-          self$.__enclos_env__$private[[name]] <- private_old[[name]]
-        }
+        list2env(
+          mget(
+            c(".verbose", ".f", ".args", ".results", ".cases"),
+            envir = self_old$.__enclos_env__$private
+          ),
+          envir = self$.__enclos_env__$private
+        )
         case_files <- list.files(
           use_backup, pattern = "^case_.*\\.rds$", full.names = TRUE
         )
         cases <- lapply(case_files, readRDS)
-        for (case in cases) {
-          private$.results <- c(private$.results, list(case))
+        private$.results <- c(private$.results, cases)
+        lapply(cases, function(case) {
           private$.update_case_pending(case = case$.case, error = case$.error)
-        }
+        })
         private$.status(
           "Loaded {.cls Simulator} and {length(cases)} case{?s} from backup."
         )
       }
+    },
+
+    #' @description
+    #' Print method.
+
+    print = function() {
+      cli::cli_bullets(c(
+        "*"  = "Total cases: {nrow(private$.cases)}",
+        ">"  = "Pending cases: {sum(private$.cases$.pending)}",
+        "v"  = "Successful cases: {length(private$.results)}",
+        "x"  = "Failed cases: {sum(private$.cases$.error)}"
+      ))
+      cli::cli_end()
+      invisible(self)
     },
 
     #' @description
@@ -154,12 +185,12 @@ Simulator <- R6::R6Class(
         ),
         var_name = "..."
       )
-      for (n_arg in seq_along(args)) {
+      Map(function(arg, name) {
         input_check_response(
-          check = checkmate::check_list(args[[n_arg]]),
-          var_name = arg_names[[n_arg]]
+          check = checkmate::check_list(arg),
+          var_name = name
         )
-      }
+      }, args, arg_names)
       input_check_response(
         check = checkmate::check_function(f, args = arg_names),
         var_name = "f"
@@ -168,8 +199,6 @@ Simulator <- R6::R6Class(
       ### save simulation setting
       private$.f <- f
       private$.args <- args
-
-      ### return
       private$.status(
         "Simulation details defined, call {.fun $go} next to run simulations."
       )
@@ -227,6 +256,7 @@ Simulator <- R6::R6Class(
       }
       private$.status("Started simulation with {nrow(cases)} cases...")
       progress_step <- progressr::progressor(steps = nrow(cases))
+      f <- private$.f # need to put f in environment
 
       ### run simulation
       results <- future.apply::future_lapply(cases$.case, function(case) {
@@ -239,25 +269,19 @@ Simulator <- R6::R6Class(
         )
 
         start <- Sys.time()
-        f_out <- try_silent(do.call(what = private$.f, args = args))
+        f_out <- try_silent(do.call(what = f, args = args))
         end <- Sys.time()
         error <- inherits(f_out, "fail")
 
         progress_step(glue::glue("[case {case}] finished"), class = "sticky")
 
-        case_out <- if (error) {
-          NULL
-        } else {
-          list(
-            ".case" = case,
-            ".error" = error,
-            ".seconds" = difftime(end, start, units = "secs"),
-            ".input" = args,
-            ".output" = f_out
-          )
-        }
-
-        private$.update_case_pending(case = case, error = error)
+        case_out <- list(
+          ".case" = case,
+          ".error" = error,
+          ".seconds" = difftime(end, start, units = "secs"),
+          ".input" = args,
+          ".output" = f_out
+        )
 
         if (backup && !error) {
           saveRDS(case_out, file = sprintf("%s/case_%03d.rds", path, case))
@@ -267,9 +291,14 @@ Simulator <- R6::R6Class(
 
       }, future.seed = TRUE)
 
-      ### return
-      private$.results <- c(private$.results, purrr::compact(results))
-      private$.status("Simulation completed.")
+      ### save results
+      valid_cases <- Filter(function(case) !case$.error, results)
+      ncases_failed <- nrow(cases) - length(valid_cases)
+      private$.results <- c(private$.results, valid_cases)
+      lapply(results, function(case) {
+        private$.update_case_pending(case = case$.case, error = case$.error)
+      })
+      private$.status("Simulation complete, {ncases_failed} case{?s} failed.")
       invisible(self)
 
     }
@@ -283,20 +312,24 @@ Simulator <- R6::R6Class(
 
     results = function(value) {
       if (missing(value)) {
-        private$.results |>
-          purrr::map(~ tibble::tibble(
-            .case = .x$.case,
-            .seconds = .x$.seconds,
-            .input = list(.x$.input),
-            .output = list(.x$.output)
-          )) |>
-          purrr::list_rbind(ptype = tibble::tibble(
+        if (length(private$.results) == 0) {
+          tibble::tibble(
             .case = integer(),
-            .seconds = difftime(0, 0),
+            .seconds = difftime(numeric(), numeric(), units = "secs"),
             .input = list(),
             .output = list()
-          )) |>
-          dplyr::arrange(.case)
+          )
+        } else {
+          private$.results |>
+            lapply(function(x) tibble::tibble(
+              .case = x$.case,
+              .seconds = x$.seconds,
+              .input = list(x$.input),
+              .output = list(x$.output)
+            )) |>
+            dplyr::bind_rows() |>
+            dplyr::arrange(.case)
+        }
       } else {
         cli::cli_abort(
           "Field {.var $results} is read-only.",

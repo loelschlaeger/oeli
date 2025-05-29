@@ -21,7 +21,6 @@ Imports:
     glue,
     hexSticker,
     progressr,
-    purrr,
     R6,
     Rcpp,
     SimMultiCorrData,

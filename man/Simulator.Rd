@@ -59,20 +59,34 @@ object <- Simulator$new(verbose = TRUE)
 
 # 2. Define function `f` and arguments (if any):
 f <- function(x, y = 1) {
-  Sys.sleep(runif(1)) # to see progress updates via {progressr}
+  Sys.sleep(runif(1)) # to see progress updates
   x + y
 }
 x_args <- list(1, 2)
 object$define(f = f, x = x_args)
+print(object)
 
-# 3. Evaluate `f` `runs` times at each parameter combination:
-object$go(runs = 2)
+# 3. Define 'future' and 'progress' (optional):
+future::plan(future::sequential)
+progressr::handlers(global = TRUE)
 
-# 4. Access the results:
+# 4. Evaluate `f` `runs` times at each parameter combination (backup is optional):
+path <- file.path(tempdir(), paste0("backup_", format(Sys.time(), "\%Y-\%m-\%d-\%H-\%M-\%S")))
+object$go(runs = 2, backup = TRUE, path = path)
+
+# 5. Access the results:
 object$results
 
-# 5. Check if cases are pending or if an error occurred:
+# 6. Check if cases are pending or if an error occurred:
 object$cases
+
+# 7. Restore simulation results from backup:
+object_restored <- Simulator$new(use_backup = path)
+print(object_restored)
+all.equal(object, object_restored)
+
+# 8. Run more simulations and pending simulations (if any):
+object_restored$go(runs = 2)
 }
 \seealso{
 Other simulation helpers: 
@@ -100,6 +114,7 @@ The simulation cases.}
 \subsection{Public methods}{
 \itemize{
 \item \href{#method-Simulator-new}{\code{Simulator$new()}}
+\item \href{#method-Simulator-print}{\code{Simulator$print()}}
 \item \href{#method-Simulator-define}{\code{Simulator$define()}}
 \item \href{#method-Simulator-go}{\code{Simulator$go()}}
 }
@@ -127,6 +142,16 @@ Provide info? Does not include progress updates. For that, see details.}
 }
 \if{html}{\out{</div>}}
 }
+}
+\if{html}{\out{<hr>}}
+\if{html}{\out{<a id="method-Simulator-print"></a>}}
+\if{latex}{\out{\hypertarget{method-Simulator-print}{}}}
+\subsection{Method \code{print()}}{
+Print method.
+\subsection{Usage}{
+\if{html}{\out{<div class="r">}}\preformatted{Simulator$print()}\if{html}{\out{</div>}}
+}
+
 }
 \if{html}{\out{<hr>}}
 \if{html}{\out{<a id="method-Simulator-define"></a>}}
