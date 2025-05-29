@@ -135,6 +135,7 @@ The simulation cases.</p></dd>
 <h3 id="public-methods">Public methods<a class="anchor" aria-label="anchor" href="#public-methods"></a></h3>
 
 <ul><li><p><a href="#method-Simulator-new"><code>Simulator$new()</code></a></p></li>
+<li><p><a href="#method-Simulator-print"><code>Simulator$print()</code></a></p></li>
 <li><p><a href="#method-Simulator-define"><code>Simulator$define()</code></a></p></li>
 <li><p><a href="#method-Simulator-go"><code>Simulator$go()</code></a></p></li>
 </ul></div><p></p><hr><a id="method-Simulator-new"></a><div class="section">
@@ -162,10 +163,18 @@ Provide info? Does not include progress updates. For that, see details.</p></dd>
 </dl><p></p></div>
 </div>
 
+</div><p></p><hr><a id="method-Simulator-print"></a><div class="section">
+<h3 id="method-print-">Method <code><a href="https://rdrr.io/r/base/print.html" class="external-link">print()</a></code><a class="anchor" aria-label="anchor" href="#method-print-"></a></h3>
+<p>Print method.</p><div class="section">
+<h4 id="usage-1">Usage<a class="anchor" aria-label="anchor" href="#usage-1"></a></h4>
+<p></p><div class="r"><div class="sourceCode"><pre><code><span><span class="va">Simulator</span><span class="op">$</span><span class="fu">print</span><span class="op">(</span><span class="op">)</span></span></code></pre></div><p></p></div>
+</div>
+
+
 </div><p></p><hr><a id="method-Simulator-define"></a><div class="section">
 <h3 id="method-define-">Method <code>define()</code><a class="anchor" aria-label="anchor" href="#method-define-"></a></h3>
 <p>Define function and arguments for a new <code>Simulator</code> object.</p><div class="section">
-<h4 id="usage-1">Usage<a class="anchor" aria-label="anchor" href="#usage-1"></a></h4>
+<h4 id="usage-2">Usage<a class="anchor" aria-label="anchor" href="#usage-2"></a></h4>
 <p></p><div class="r"><div class="sourceCode"><pre><code><span><span class="va">Simulator</span><span class="op">$</span><span class="fu">define</span><span class="op">(</span><span class="va">f</span>, <span class="va">...</span><span class="op">)</span></span></code></pre></div><p></p></div>
 </div>
 
@@ -188,7 +197,7 @@ A <code>function</code> to evaluate.</p></dd>
 </div><p></p><hr><a id="method-Simulator-go"></a><div class="section">
 <h3 id="method-go-">Method <code>go()</code><a class="anchor" aria-label="anchor" href="#method-go-"></a></h3>
 <p>Run simulations.</p><div class="section">
-<h4 id="usage-2">Usage<a class="anchor" aria-label="anchor" href="#usage-2"></a></h4>
+<h4 id="usage-3">Usage<a class="anchor" aria-label="anchor" href="#usage-3"></a></h4>
 <p></p><div class="r"><div class="sourceCode"><pre><code><span><span class="va">Simulator</span><span class="op">$</span><span class="fu">go</span><span class="op">(</span></span>
 <span>  runs <span class="op">=</span> <span class="fl">0</span>,</span>
 <span>  backup <span class="op">=</span> <span class="cn">FALSE</span>,</span>
@@ -231,29 +240,41 @@ allows reading and writing.</p></dd>
 <span class="r-in"><span></span></span>
 <span class="r-in"><span><span class="co"># 2. Define function `f` and arguments (if any):</span></span></span>
 <span class="r-in"><span><span class="va">f</span> <span class="op">&lt;-</span> <span class="kw">function</span><span class="op">(</span><span class="va">x</span>, <span class="va">y</span> <span class="op">=</span> <span class="fl">1</span><span class="op">)</span> <span class="op">{</span></span></span>
-<span class="r-in"><span>  <span class="fu"><a href="https://rdrr.io/r/base/Sys.sleep.html" class="external-link">Sys.sleep</a></span><span class="op">(</span><span class="fu"><a href="https://rdrr.io/r/stats/Uniform.html" class="external-link">runif</a></span><span class="op">(</span><span class="fl">1</span><span class="op">)</span><span class="op">)</span> <span class="co"># to see progress updates via {progressr}</span></span></span>
+<span class="r-in"><span>  <span class="fu"><a href="https://rdrr.io/r/base/Sys.sleep.html" class="external-link">Sys.sleep</a></span><span class="op">(</span><span class="fu"><a href="https://rdrr.io/r/stats/Uniform.html" class="external-link">runif</a></span><span class="op">(</span><span class="fl">1</span><span class="op">)</span><span class="op">)</span> <span class="co"># to see progress updates</span></span></span>
 <span class="r-in"><span>  <span class="va">x</span> <span class="op">+</span> <span class="va">y</span></span></span>
 <span class="r-in"><span><span class="op">}</span></span></span>
 <span class="r-in"><span><span class="va">x_args</span> <span class="op">&lt;-</span> <span class="fu"><a href="https://rdrr.io/r/base/list.html" class="external-link">list</a></span><span class="op">(</span><span class="fl">1</span>, <span class="fl">2</span><span class="op">)</span></span></span>
 <span class="r-in"><span><span class="va">object</span><span class="op">$</span><span class="fu">define</span><span class="op">(</span>f <span class="op">=</span> <span class="va">f</span>, x <span class="op">=</span> <span class="va">x_args</span><span class="op">)</span></span></span>
 <span class="r-msg co"><span class="r-pr">#&gt;</span> Simulation details defined, call `$go()` next to run simulations.</span>
+<span class="r-in"><span><span class="fu"><a href="https://rdrr.io/r/base/print.html" class="external-link">print</a></span><span class="op">(</span><span class="va">object</span><span class="op">)</span></span></span>
+<span class="r-msg co"><span class="r-pr">#&gt;</span> <span style="color: #00BBBB;">•</span> Total cases: 0</span>
+<span class="r-msg co"><span class="r-pr">#&gt;</span> → Pending cases: 0</span>
+<span class="r-msg co"><span class="r-pr">#&gt;</span> <span style="color: #00BB00;">✔</span> Successful cases: 0</span>
+<span class="r-msg co"><span class="r-pr">#&gt;</span> <span style="color: #BB0000;">✖</span> Failed cases: 0</span>
 <span class="r-in"><span></span></span>
-<span class="r-in"><span><span class="co"># 3. Evaluate `f` `runs` times at each parameter combination:</span></span></span>
-<span class="r-in"><span><span class="va">object</span><span class="op">$</span><span class="fu">go</span><span class="op">(</span>runs <span class="op">=</span> <span class="fl">2</span><span class="op">)</span></span></span>
+<span class="r-in"><span><span class="co"># 3. Define 'future' and 'progress' (optional):</span></span></span>
+<span class="r-in"><span><span class="fu">future</span><span class="fu">::</span><span class="fu"><a href="https://future.futureverse.org/reference/plan.html" class="external-link">plan</a></span><span class="op">(</span><span class="fu">future</span><span class="fu">::</span><span class="va"><a href="https://future.futureverse.org/reference/sequential.html" class="external-link">sequential</a></span><span class="op">)</span></span></span>
+<span class="r-in"><span><span class="fu">progressr</span><span class="fu">::</span><span class="fu"><a href="https://progressr.futureverse.org/reference/handlers.html" class="external-link">handlers</a></span><span class="op">(</span>global <span class="op">=</span> <span class="cn">TRUE</span><span class="op">)</span></span></span>
+<span class="r-err co"><span class="r-pr">#&gt;</span> <span class="error">Error in globalCallingHandlers(condition = global_progression_handler):</span> should not be called with handlers on the stack</span>
+<span class="r-in"><span></span></span>
+<span class="r-in"><span><span class="co"># 4. Evaluate `f` `runs` times at each parameter combination (backup is optional):</span></span></span>
+<span class="r-in"><span><span class="va">path</span> <span class="op">&lt;-</span> <span class="fu"><a href="https://rdrr.io/r/base/file.path.html" class="external-link">file.path</a></span><span class="op">(</span><span class="fu"><a href="https://rdrr.io/r/base/tempfile.html" class="external-link">tempdir</a></span><span class="op">(</span><span class="op">)</span>, <span class="fu"><a href="https://rdrr.io/r/base/paste.html" class="external-link">paste0</a></span><span class="op">(</span><span class="st">"backup_"</span>, <span class="fu"><a href="https://rdrr.io/r/base/format.html" class="external-link">format</a></span><span class="op">(</span><span class="fu"><a href="https://rdrr.io/r/base/Sys.time.html" class="external-link">Sys.time</a></span><span class="op">(</span><span class="op">)</span>, <span class="st">"%Y-%m-%d-%H-%M-%S"</span><span class="op">)</span><span class="op">)</span><span class="op">)</span></span></span>
+<span class="r-in"><span><span class="va">object</span><span class="op">$</span><span class="fu">go</span><span class="op">(</span>runs <span class="op">=</span> <span class="fl">2</span>, backup <span class="op">=</span> <span class="cn">TRUE</span>, path <span class="op">=</span> <span class="va">path</span><span class="op">)</span></span></span>
+<span class="r-msg co"><span class="r-pr">#&gt;</span> Saving backup to path <span style="color: #0000BB;">/tmp/Rtmpah8959/backup_2025-05-29-12-25-03</span>.</span>
 <span class="r-msg co"><span class="r-pr">#&gt;</span> Started simulation with 4 cases...</span>
-<span class="r-msg co"><span class="r-pr">#&gt;</span> Simulation completed.</span>
+<span class="r-msg co"><span class="r-pr">#&gt;</span> Simulation complete, 0 cases failed.</span>
 <span class="r-in"><span></span></span>
-<span class="r-in"><span><span class="co"># 4. Access the results:</span></span></span>
+<span class="r-in"><span><span class="co"># 5. Access the results:</span></span></span>
 <span class="r-in"><span><span class="va">object</span><span class="op">$</span><span class="va">results</span></span></span>
 <span class="r-out co"><span class="r-pr">#&gt;</span> <span style="color: #949494;"># A tibble: 4 × 4</span></span>
 <span class="r-out co"><span class="r-pr">#&gt;</span>   .case .seconds       .input           .output  </span>
 <span class="r-out co"><span class="r-pr">#&gt;</span>   <span style="color: #949494; font-style: italic;">&lt;int&gt;</span> <span style="color: #949494; font-style: italic;">&lt;drtn&gt;</span>         <span style="color: #949494; font-style: italic;">&lt;list&gt;</span>           <span style="color: #949494; font-style: italic;">&lt;list&gt;</span>   </span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> <span style="color: #BCBCBC;">1</span>     1 0.5169475 secs <span style="color: #949494;">&lt;named list [1]&gt;</span> <span style="color: #949494;">&lt;dbl [1]&gt;</span></span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> <span style="color: #BCBCBC;">2</span>     2 0.2302618 secs <span style="color: #949494;">&lt;named list [1]&gt;</span> <span style="color: #949494;">&lt;dbl [1]&gt;</span></span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> <span style="color: #BCBCBC;">3</span>     3 0.6743782 secs <span style="color: #949494;">&lt;named list [1]&gt;</span> <span style="color: #949494;">&lt;dbl [1]&gt;</span></span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> <span style="color: #BCBCBC;">4</span>     4 0.6663616 secs <span style="color: #949494;">&lt;named list [1]&gt;</span> <span style="color: #949494;">&lt;dbl [1]&gt;</span></span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> <span style="color: #BCBCBC;">1</span>     1 0.5169213 secs <span style="color: #949494;">&lt;named list [1]&gt;</span> <span style="color: #949494;">&lt;dbl [1]&gt;</span></span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> <span style="color: #BCBCBC;">2</span>     2 0.2302675 secs <span style="color: #949494;">&lt;named list [1]&gt;</span> <span style="color: #949494;">&lt;dbl [1]&gt;</span></span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> <span style="color: #BCBCBC;">3</span>     3 0.6744151 secs <span style="color: #949494;">&lt;named list [1]&gt;</span> <span style="color: #949494;">&lt;dbl [1]&gt;</span></span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> <span style="color: #BCBCBC;">4</span>     4 0.6663513 secs <span style="color: #949494;">&lt;named list [1]&gt;</span> <span style="color: #949494;">&lt;dbl [1]&gt;</span></span>
 <span class="r-in"><span></span></span>
-<span class="r-in"><span><span class="co"># 5. Check if cases are pending or if an error occurred:</span></span></span>
+<span class="r-in"><span><span class="co"># 6. Check if cases are pending or if an error occurred:</span></span></span>
 <span class="r-in"><span><span class="va">object</span><span class="op">$</span><span class="va">cases</span></span></span>
 <span class="r-out co"><span class="r-pr">#&gt;</span> <span style="color: #949494;"># A tibble: 4 × 5</span></span>
 <span class="r-out co"><span class="r-pr">#&gt;</span>   .case .pending .error  .run x        </span>
@@ -262,6 +283,35 @@ allows reading and writing.</p></dd>
 <span class="r-out co"><span class="r-pr">#&gt;</span> <span style="color: #BCBCBC;">2</span>     2 FALSE    FALSE      1 <span style="color: #949494;">&lt;dbl [1]&gt;</span></span>
 <span class="r-out co"><span class="r-pr">#&gt;</span> <span style="color: #BCBCBC;">3</span>     3 FALSE    FALSE      2 <span style="color: #949494;">&lt;dbl [1]&gt;</span></span>
 <span class="r-out co"><span class="r-pr">#&gt;</span> <span style="color: #BCBCBC;">4</span>     4 FALSE    FALSE      2 <span style="color: #949494;">&lt;dbl [1]&gt;</span></span>
+<span class="r-in"><span></span></span>
+<span class="r-in"><span><span class="co"># 7. Restore simulation results from backup:</span></span></span>
+<span class="r-in"><span><span class="va">object_restored</span> <span class="op">&lt;-</span> <span class="va">Simulator</span><span class="op">$</span><span class="fu">new</span><span class="op">(</span>use_backup <span class="op">=</span> <span class="va">path</span><span class="op">)</span></span></span>
+<span class="r-msg co"><span class="r-pr">#&gt;</span> Loaded <span style="color: #0000BB;">&lt;Simulator&gt;</span> and 4 cases from backup.</span>
+<span class="r-in"><span><span class="fu"><a href="https://rdrr.io/r/base/print.html" class="external-link">print</a></span><span class="op">(</span><span class="va">object_restored</span><span class="op">)</span></span></span>
+<span class="r-msg co"><span class="r-pr">#&gt;</span> <span style="color: #00BBBB;">•</span> Total cases: 4</span>
+<span class="r-msg co"><span class="r-pr">#&gt;</span> → Pending cases: 0</span>
+<span class="r-msg co"><span class="r-pr">#&gt;</span> <span style="color: #00BB00;">✔</span> Successful cases: 4</span>
+<span class="r-msg co"><span class="r-pr">#&gt;</span> <span style="color: #BB0000;">✖</span> Failed cases: 0</span>
+<span class="r-in"><span><span class="fu"><a href="https://rdrr.io/r/base/all.equal.html" class="external-link">all.equal</a></span><span class="op">(</span><span class="va">object</span>, <span class="va">object_restored</span><span class="op">)</span></span></span>
+<span class="r-out co"><span class="r-pr">#&gt;</span>  [1] "Component “.__enclos_env__”: Component “private”: Component “.f”: Names: 2 string mismatches"                                                                                                                   </span>
+<span class="r-out co"><span class="r-pr">#&gt;</span>  [2] "Component “.__enclos_env__”: Component “private”: Component “.f”: Length mismatch: comparison on first 4 components"                                                                                            </span>
+<span class="r-out co"><span class="r-pr">#&gt;</span>  [3] "Component “.__enclos_env__”: Component “private”: Component “.f”: Component “object”: Component “.__enclos_env__”: Component “private”: Component “.cases”: Component “.pending”: 4 element mismatches"         </span>
+<span class="r-out co"><span class="r-pr">#&gt;</span>  [4] "Component “.__enclos_env__”: Component “private”: Component “.f”: Component “object”: Component “.__enclos_env__”: Component “private”: Component “.results”: Length mismatch: comparison on first 0 components"</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span>  [5] "Component “.__enclos_env__”: Component “private”: Component “.f”: Component “object”: Component “cases”: Component “.pending”: 4 element mismatches"                                                            </span>
+<span class="r-out co"><span class="r-pr">#&gt;</span>  [6] "Component “.__enclos_env__”: Component “private”: Component “.f”: Component “object”: Component “results”: Attributes: &lt; Component “row.names”: Numeric: lengths (4, 0) differ &gt;"                               </span>
+<span class="r-out co"><span class="r-pr">#&gt;</span>  [7] "Component “.__enclos_env__”: Component “private”: Component “.f”: Component “object”: Component “results”: Component “.case”: Numeric: lengths (4, 0) differ"                                                   </span>
+<span class="r-out co"><span class="r-pr">#&gt;</span>  [8] "Component “.__enclos_env__”: Component “private”: Component “.f”: Component “object”: Component “results”: Component “.seconds”: Numeric: lengths (4, 0) differ"                                                </span>
+<span class="r-out co"><span class="r-pr">#&gt;</span>  [9] "Component “.__enclos_env__”: Component “private”: Component “.f”: Component “object”: Component “results”: Component “.input”: Length mismatch: comparison on first 0 components"                               </span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> [10] "Component “.__enclos_env__”: Component “private”: Component “.f”: Component “object”: Component “results”: Component “.output”: Length mismatch: comparison on first 0 components"                              </span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> [11] "Component “.__enclos_env__”: Component “private”: Component “.f”: Component 3: 'current' is not an environment"                                                                                                 </span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> [12] "Component “.__enclos_env__”: Component “private”: Component “.f”: Component 4: Modes: character, list"                                                                                                          </span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> [13] "Component “.__enclos_env__”: Component “private”: Component “.f”: Component 4: Lengths: 1, 2"                                                                                                                   </span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> [14] "Component “.__enclos_env__”: Component “private”: Component “.f”: Component 4: target is character, current is list"                                                                                            </span>
+<span class="r-in"><span></span></span>
+<span class="r-in"><span><span class="co"># 8. Run more simulations and pending simulations (if any):</span></span></span>
+<span class="r-in"><span><span class="va">object_restored</span><span class="op">$</span><span class="fu">go</span><span class="op">(</span>runs <span class="op">=</span> <span class="fl">2</span><span class="op">)</span></span></span>
+<span class="r-msg co"><span class="r-pr">#&gt;</span> Started simulation with 4 cases...</span>
+<span class="r-msg co"><span class="r-pr">#&gt;</span> Simulation complete, 0 cases failed.</span>
 </code></pre></div>
     </div>
   </main><aside class="col-md-3"><nav id="toc" aria-label="Table of contents"><h2>On this page</h2>
