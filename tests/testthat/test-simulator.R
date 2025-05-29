@@ -1,9 +1,22 @@
 test_that("simulation works", {
   f <- function() rnorm(1, sd = 0.1)
   sim <- Simulator$new(verbose = FALSE)
+  checkmate::expect_r6(sim, "Simulator")
+  expect_identical(
+    sim$results,
+    structure(
+      list(
+        .case = integer(0),
+        .seconds = structure(numeric(0), class = "difftime", units = "secs"),
+        .input = list(), .output = list()
+      ),
+      class = c("tbl_df", "tbl", "data.frame"),
+      row.names = integer(0)
+    )
+  )
   sim$define(f = f)
   sim$go(runs = 2, backup = FALSE)
-  checkmate::expect_r6(sim, "Simulator")
+  expect_snapshot(print(sim))
   checkmate::expect_tibble(sim$cases, nrows = 2, ncols = 4)
   expect_error(sim$cases <- "bad", "read-only")
   checkmate::expect_tibble(sim$results, nrows = 2, ncols = 4)
