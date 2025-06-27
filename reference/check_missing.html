@@ -9,7 +9,7 @@ function."><meta property="og:image" content="http://loelschlaeger.de/oeli/logo.
 
     <a class="navbar-brand me-2" href="../index.html">oeli</a>
 
-    <small class="nav-text text-muted me-auto" data-bs-toggle="tooltip" data-bs-placement="bottom" title="">0.7.3.9000</small>
+    <small class="nav-text text-muted me-auto" data-bs-toggle="tooltip" data-bs-placement="bottom" title="">0.7.4</small>
 
 
     <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbar" aria-controls="navbar" aria-expanded="false" aria-label="Toggle navigation">
@@ -59,8 +59,12 @@ A formal argument.</p></dd>
 </dl></div>
     <div class="section level2">
     <h2 id="value">Value<a class="anchor" aria-label="anchor" href="#value"></a></h2>
-    <p>TODO</p>
-    </div>
+    <p>Depending on the function prefix:</p><ul><li><p>If the check is successful, <code>assert_missing()</code> returns <code>x</code> invisibly,
+whereas <code>check_missing()</code> and <code>test_missing()</code> return <code>TRUE</code>.</p></li>
+<li><p>If the check is not successful, <code>assert_missing()</code> throws an error message,
+<code>test_missing()</code> returns <code>FALSE</code>, and <code>check_missing()</code> returns a string with
+the error message.</p></li>
+</ul></div>
     <div class="section level2">
     <h2 id="see-also">See also<a class="anchor" aria-label="anchor" href="#see-also"></a></h2>
     <div class="dont-index"><p>Other package helpers:
