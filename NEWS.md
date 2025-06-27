@@ -1,6 +1,8 @@
-# oeli development
+# oeli 0.7.4
 
 * Added R6 object `Simulator` that provides some convenience when running simulations.
+
+* Added function `occurrence_info()` that provides verbose information about absolute or relative occurrences.
 
 # oeli 0.7.3
 

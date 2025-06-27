@@ -31,7 +31,8 @@ round_data.frame(df, digits = 1)
 \seealso{
 Other data.frame helpers: 
 \code{\link{delete_columns_data.frame}()},
-\code{\link{group_data.frame}()}
+\code{\link{group_data.frame}()},
+\code{\link{occurrence_info}()}
 }
 \concept{data.frame helpers}
 \keyword{transformation}

@@ -28,6 +28,7 @@ delete_columns_data.frame(df = df, column_names = c("label", "number"))
 \seealso{
 Other data.frame helpers: 
 \code{\link{group_data.frame}()},
+\code{\link{occurrence_info}()},
 \code{\link{round_data.frame}()}
 }
 \concept{data.frame helpers}
