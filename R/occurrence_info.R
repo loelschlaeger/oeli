@@ -44,7 +44,7 @@ occurrence_info <- function(x, relative = FALSE, named = FALSE) {
   n <- ncol(x)
   m <- colnames(x)
   out <- character(n)
-  table_values <- sapply(x, table, useNA = "ifany")
+  table_values <- lapply(x, table, useNA = "ifany")
   for (i in seq_len(n)) {
     tab <- table_values[[i]] |> sort(decreasing = TRUE)
     occ <- if (relative) {
