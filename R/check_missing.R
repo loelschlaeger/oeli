@@ -8,7 +8,12 @@
 #' A formal argument.
 #'
 #' @return
-#' TODO
+#' Depending on the function prefix:
+#' - If the check is successful, `assert_missing()` returns `x` invisibly,
+#' whereas `check_missing()` and `test_missing()` return `TRUE`.
+#' - If the check is not successful, `assert_missing()` throws an error message,
+#' `test_missing()` returns `FALSE`, and `check_missing()` returns a string with
+#' the error message.
 #'
 #' @keywords validation
 #' @family package helpers

@@ -17,7 +17,14 @@ test_missing(x)
 A formal argument.}
 }
 \value{
-TODO
+Depending on the function prefix:
+\itemize{
+\item If the check is successful, \code{assert_missing()} returns \code{x} invisibly,
+whereas \code{check_missing()} and \code{test_missing()} return \code{TRUE}.
+\item If the check is not successful, \code{assert_missing()} throws an error message,
+\code{test_missing()} returns \code{FALSE}, and \code{check_missing()} returns a string with
+the error message.
+}
 }
 \description{
 These functions check whether a value was specified as an argument to a
