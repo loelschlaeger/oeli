@@ -10,6 +10,8 @@ License: GPL (>= 3)
 Encoding: UTF-8
 Config/testthat/edition: 3
 RoxygenNote: 7.3.2
+Depends:
+    R (>= 4.1.0)
 Imports: 
     benchmarkme,
     checkmate,
