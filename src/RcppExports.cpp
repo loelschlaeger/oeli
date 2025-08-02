@@ -14,6 +14,76 @@ Rcpp::Rostream<true>&  Rcpp::Rcout = Rcpp::Rcpp_cout_get();
 Rcpp::Rostream<false>& Rcpp::Rcerr = Rcpp::Rcpp_cerr_get();
 #endif
 
+// ddirichlet_cpp
+double ddirichlet_cpp(arma::vec const& x, arma::vec const& concentration, bool log);
+static SEXP _oeli_ddirichlet_cpp_try(SEXP xSEXP, SEXP concentrationSEXP, SEXP logSEXP) {
+BEGIN_RCPP
+    Rcpp::RObject rcpp_result_gen;
+    Rcpp::traits::input_parameter< arma::vec const& >::type x(xSEXP);
+    Rcpp::traits::input_parameter< arma::vec const& >::type concentration(concentrationSEXP);
+    Rcpp::traits::input_parameter< bool >::type log(logSEXP);
+    rcpp_result_gen = Rcpp::wrap(ddirichlet_cpp(x, concentration, log));
+    return rcpp_result_gen;
+END_RCPP_RETURN_ERROR
+}
+RcppExport SEXP _oeli_ddirichlet_cpp(SEXP xSEXP, SEXP concentrationSEXP, SEXP logSEXP) {
+    SEXP rcpp_result_gen;
+    {
+        Rcpp::RNGScope rcpp_rngScope_gen;
+        rcpp_result_gen = PROTECT(_oeli_ddirichlet_cpp_try(xSEXP, concentrationSEXP, logSEXP));
+    }
+    Rboolean rcpp_isInterrupt_gen = Rf_inherits(rcpp_result_gen, "interrupted-error");
+    if (rcpp_isInterrupt_gen) {
+        UNPROTECT(1);
+        Rf_onintr();
+    }
+    bool rcpp_isLongjump_gen = Rcpp::internal::isLongjumpSentinel(rcpp_result_gen);
+    if (rcpp_isLongjump_gen) {
+        Rcpp::internal::resumeJump(rcpp_result_gen);
+    }
+    Rboolean rcpp_isError_gen = Rf_inherits(rcpp_result_gen, "try-error");
+    if (rcpp_isError_gen) {
+        SEXP rcpp_msgSEXP_gen = Rf_asChar(rcpp_result_gen);
+        UNPROTECT(1);
+        Rf_error("%s", CHAR(rcpp_msgSEXP_gen));
+    }
+    UNPROTECT(1);
+    return rcpp_result_gen;
+}
+// rdirichlet_cpp
+arma::vec rdirichlet_cpp(arma::vec const& concentration);
+static SEXP _oeli_rdirichlet_cpp_try(SEXP concentrationSEXP) {
+BEGIN_RCPP
+    Rcpp::RObject rcpp_result_gen;
+    Rcpp::traits::input_parameter< arma::vec const& >::type concentration(concentrationSEXP);
+    rcpp_result_gen = Rcpp::wrap(rdirichlet_cpp(concentration));
+    return rcpp_result_gen;
+END_RCPP_RETURN_ERROR
+}
+RcppExport SEXP _oeli_rdirichlet_cpp(SEXP concentrationSEXP) {
+    SEXP rcpp_result_gen;
+    {
+        Rcpp::RNGScope rcpp_rngScope_gen;
+        rcpp_result_gen = PROTECT(_oeli_rdirichlet_cpp_try(concentrationSEXP));
+    }
+    Rboolean rcpp_isInterrupt_gen = Rf_inherits(rcpp_result_gen, "interrupted-error");
+    if (rcpp_isInterrupt_gen) {
+        UNPROTECT(1);
+        Rf_onintr();
+    }
+    bool rcpp_isLongjump_gen = Rcpp::internal::isLongjumpSentinel(rcpp_result_gen);
+    if (rcpp_isLongjump_gen) {
+        Rcpp::internal::resumeJump(rcpp_result_gen);
+    }
+    Rboolean rcpp_isError_gen = Rf_inherits(rcpp_result_gen, "try-error");
+    if (rcpp_isError_gen) {
+        SEXP rcpp_msgSEXP_gen = Rf_asChar(rcpp_result_gen);
+        UNPROTECT(1);
+        Rf_error("%s", CHAR(rcpp_msgSEXP_gen));
+    }
+    UNPROTECT(1);
+    return rcpp_result_gen;
+}
 // dmvnorm_cpp
 double dmvnorm_cpp(arma::vec const& x, arma::vec const& mean, arma::mat const& Sigma, bool log);
 RcppExport SEXP _oeli_dmvnorm_cpp(SEXP xSEXP, SEXP meanSEXP, SEXP SigmaSEXP, SEXP logSEXP) {
@@ -136,12 +206,16 @@ END_RCPP
 static int _oeli_RcppExport_validate(const char* sig) { 
     static std::set<std::string> signatures;
     if (signatures.empty()) {
+        signatures.insert("double(*ddirichlet_cpp)(arma::vec const&,arma::vec const&,bool)");
+        signatures.insert("arma::vec(*rdirichlet_cpp)(arma::vec const&)");
     }
     return signatures.find(sig) != signatures.end();
 }
 
 // registerCCallable (register entry points for exported C++ functions)
 RcppExport SEXP _oeli_RcppExport_registerCCallable() { 
+    R_RegisterCCallable("oeli", "_oeli_ddirichlet_cpp", (DL_FUNC)_oeli_ddirichlet_cpp_try);
+    R_RegisterCCallable("oeli", "_oeli_rdirichlet_cpp", (DL_FUNC)_oeli_rdirichlet_cpp_try);
     R_RegisterCCallable("oeli", "_oeli_RcppExport_validate", (DL_FUNC)_oeli_RcppExport_validate);
     return R_NilValue;
 }
@@ -149,6 +223,8 @@ RcppExport SEXP _oeli_RcppExport_registerCCallable() {
 RcppExport SEXP run_testthat_tests(SEXP);
 
 static const R_CallMethodDef CallEntries[] = {
+    {"_oeli_ddirichlet_cpp", (DL_FUNC) &_oeli_ddirichlet_cpp, 3},
+    {"_oeli_rdirichlet_cpp", (DL_FUNC) &_oeli_rdirichlet_cpp, 1},
     {"_oeli_dmvnorm_cpp", (DL_FUNC) &_oeli_dmvnorm_cpp, 4},
     {"_oeli_rmvnorm_cpp", (DL_FUNC) &_oeli_rmvnorm_cpp, 3},
     {"_oeli_dtnorm_cpp", (DL_FUNC) &_oeli_dtnorm_cpp, 6},

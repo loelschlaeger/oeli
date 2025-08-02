@@ -25,6 +25,48 @@ namespace oeli {
         }
     }
 
+    inline double ddirichlet_cpp(arma::vec const& x, arma::vec const& concentration, bool log = false) {
+        typedef SEXP(*Ptr_ddirichlet_cpp)(SEXP,SEXP,SEXP);
+        static Ptr_ddirichlet_cpp p_ddirichlet_cpp = NULL;
+        if (p_ddirichlet_cpp == NULL) {
+            validateSignature("double(*ddirichlet_cpp)(arma::vec const&,arma::vec const&,bool)");
+            p_ddirichlet_cpp = (Ptr_ddirichlet_cpp)R_GetCCallable("oeli", "_oeli_ddirichlet_cpp");
+        }
+        RObject rcpp_result_gen;
+        {
+            RNGScope RCPP_rngScope_gen;
+            rcpp_result_gen = p_ddirichlet_cpp(Shield<SEXP>(Rcpp::wrap(x)), Shield<SEXP>(Rcpp::wrap(concentration)), Shield<SEXP>(Rcpp::wrap(log)));
+        }
+        if (rcpp_result_gen.inherits("interrupted-error"))
+            throw Rcpp::internal::InterruptedException();
+        if (Rcpp::internal::isLongjumpSentinel(rcpp_result_gen))
+            throw Rcpp::LongjumpException(rcpp_result_gen);
+        if (rcpp_result_gen.inherits("try-error"))
+            throw Rcpp::exception(Rcpp::as<std::string>(rcpp_result_gen).c_str());
+        return Rcpp::as<double >(rcpp_result_gen);
+    }
+
+    inline arma::vec rdirichlet_cpp(arma::vec const& concentration) {
+        typedef SEXP(*Ptr_rdirichlet_cpp)(SEXP);
+        static Ptr_rdirichlet_cpp p_rdirichlet_cpp = NULL;
+        if (p_rdirichlet_cpp == NULL) {
+            validateSignature("arma::vec(*rdirichlet_cpp)(arma::vec const&)");
+            p_rdirichlet_cpp = (Ptr_rdirichlet_cpp)R_GetCCallable("oeli", "_oeli_rdirichlet_cpp");
+        }
+        RObject rcpp_result_gen;
+        {
+            RNGScope RCPP_rngScope_gen;
+            rcpp_result_gen = p_rdirichlet_cpp(Shield<SEXP>(Rcpp::wrap(concentration)));
+        }
+        if (rcpp_result_gen.inherits("interrupted-error"))
+            throw Rcpp::internal::InterruptedException();
+        if (Rcpp::internal::isLongjumpSentinel(rcpp_result_gen))
+            throw Rcpp::LongjumpException(rcpp_result_gen);
+        if (rcpp_result_gen.inherits("try-error"))
+            throw Rcpp::exception(Rcpp::as<std::string>(rcpp_result_gen).c_str());
+        return Rcpp::as<arma::vec >(rcpp_result_gen);
+    }
+
 }
 
 #endif // RCPP_oeli_RCPPEXPORTS_H_GEN_
