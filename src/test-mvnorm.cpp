@@ -1,5 +1,5 @@
 #include <testthat.h>
-#include "mvnorm.h"
+#include "../inst/include/mvnorm.h"
 
 context("dmvnorm_cpp") {
 

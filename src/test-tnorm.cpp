@@ -1,5 +1,5 @@
 #include <testthat.h>
-#include "tnorm.h"
+#include "../inst/include/tnorm.h"
 
 context("dtnorm_cpp") {
 
