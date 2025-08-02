@@ -1,10 +1,10 @@
 // [[Rcpp::depends("RcppArmadillo")]]
 #include <RcppArmadillo.h>
 
-//' @rdname ddirichlet
-//' @export
+// [[Rcpp::interfaces(cpp)]]
 // [[Rcpp::export]]
-double ddirichlet_cpp(
+
+double ddirichlet(
   arma::vec const& x, arma::vec const& concentration, bool log = false
 ) {
  int p = x.size();
@@ -22,12 +22,10 @@ double ddirichlet_cpp(
  return density;
 }
 
-//' @rdname ddirichlet
-//' @export
+// [[Rcpp::interfaces(cpp)]]
 // [[Rcpp::export]]
-arma::vec rdirichlet_cpp(
-  arma::vec const& concentration
-) {
+
+arma::vec rdirichlet(arma::vec const& concentration) {
  int p = concentration.size();
  arma::vec draw = arma::zeros<arma::vec>(p);
  double sum_term = 0;

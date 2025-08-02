@@ -61,3 +61,7 @@ rwishart_cpp <- function(df, scale, inv = FALSE) {
     .Call(`_oeli_rwishart_cpp`, df, scale, inv)
 }
 
+# Register entry points for exported C++ functions
+methods::setLoadAction(function(ns) {
+    .Call(`_oeli_RcppExport_registerCCallable`)
+})

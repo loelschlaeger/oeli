@@ -34,21 +34,7 @@ not included in base R, like the Dirichlet:
 ddirichlet(x = c(0.2, 0.3, 0.5), concentration = 1:3)
 #> [1] 4.5
 rdirichlet(concentration = 1:3)
-#> [1] 0.2832878 0.5086812 0.2080309
-```
-
-For faster computation, [Rcpp](https://www.rcpp.org) implementations are
-also available:
-
-``` r
-microbenchmark::microbenchmark(
-  "R"    = rmvnorm(mean = c(0, 0, 0), Sigma = diag(3)),
-  "Rcpp" = rmvnorm_cpp(mean = c(0, 0, 0), Sigma = diag(3))
-)
-#> Unit: microseconds
-#>  expr   min     lq    mean median     uq    max neval
-#>     R 275.3 295.65 345.847  310.1 332.45 2386.5   100
-#>  Rcpp   2.7   3.20   6.245    4.8   5.40  164.2   100
+#> [1] 0.07281307 0.59425537 0.33293156
 ```
 
 ### [Function helpers](https://loelschlaeger.de/oeli/reference/index.html#functional)
@@ -107,12 +93,12 @@ How to print a `matrix` without filling up the entire console?
 x <- matrix(rnorm(10000), ncol = 100, nrow = 100)
 print_matrix(x, rowdots = 4, coldots = 4, digits = 2, label = "what a big matrix")
 #> what a big matrix : 100 x 100 matrix of doubles 
-#>         [,1]  [,2]  [,3] ... [,100]
-#> [1,]    0.79 -0.43 -0.87 ...  -2.12
-#> [2,]   -1.11  1.98 -2.42 ...   1.65
-#> [3,]    1.66  1.76  0.25 ...  -2.97
-#> ...      ...   ...   ... ...    ...
-#> [100,]  0.44  0.28  0.53 ...  -1.75
+#>         [,1] [,2]  [,3] ... [,100]
+#> [1,]   -0.04 0.76 -0.24 ...  -1.86
+#> [2,]   -0.14 0.02  0.59 ...   0.37
+#> [3,]   -0.22 0.68 -0.55 ...   1.23
+#> ...      ...  ...   ... ...    ...
+#> [100,] -0.63 0.48 -1.59 ...  -0.55
 ```
 
 And what about a `data.frame`?
@@ -121,15 +107,15 @@ And what about a `data.frame`?
 x <- data.frame(x = rnorm(1000), y = LETTERS[1:10])
 print_data.frame(x, rows = 7, digits = 0)
 #>      x  y
-#> 1     0 A
-#> 2    -1 B
-#> 3     0 C
+#> 1     1 A
+#> 2     2 B
+#> 3    -1 C
 #> 4     0 D
 #> <993 rows hidden>
 #>          
-#> 998   0 H
+#> 998   1 H
 #> 999   0 I
-#> 1000  0 J
+#> 1000  1 J
 ```
 
 ### [Simulation helpers](https://loelschlaeger.de/oeli/reference/index.html#simulation)
@@ -158,20 +144,20 @@ data <- correlated_regressors(
   labels = labels, n = n, marginals = marginals, correlation = correlation
 )
 head(data)
-#>   P C        N1          N2         U
-#> 1 1 2 -3.619643  1.24813328 -1.782100
-#> 2 1 3 -4.117207  0.19133009 -1.585383
-#> 3 2 1  2.146791 -0.08796485 -1.290140
-#> 4 2 3 -3.501855  0.60817726 -1.688658
-#> 5 1 3  2.707852 -2.17507050 -1.912338
-#> 6 2 1 -2.222701  2.28324260 -1.646795
+#>   P C         N1          N2         U
+#> 1 1 3 -0.4957652 -0.62635146 -1.416922
+#> 2 1 3  2.0426480 -2.02656468 -1.777078
+#> 3 1 2 -0.7121018 -0.18063709 -1.550787
+#> 4 4 2 -2.3627092 -0.09519952 -1.321228
+#> 5 3 1 -1.1725161 -0.61699982 -1.040660
+#> 6 3 1 -4.2854744  1.32614010 -1.049777
 cor(data)
-#>              P          C          N1          N2           U
-#> P   1.00000000 -0.3164384 -0.08426915 -0.03743832  0.54776279
-#> C  -0.31643843  1.0000000  0.19326415 -0.50596805 -0.75090001
-#> N1 -0.08426915  0.1932641  1.00000000 -0.30000000 -0.26643345
-#> N2 -0.03743832 -0.5059680 -0.30000000  1.00000000  0.09397231
-#> U   0.54776279 -0.7509000 -0.26643345  0.09397231  1.00000000
+#>               P          C          N1           N2           U
+#> P   1.000000000 -0.3391114 -0.08397754 -0.003348344  0.56199395
+#> C  -0.339111376  1.0000000  0.28680765 -0.533034651 -0.74441109
+#> N1 -0.083977543  0.2868076  1.00000000 -0.300000000 -0.30630729
+#> N2 -0.003348344 -0.5330347 -0.30000000  1.000000000  0.08962678
+#> U   0.561993949 -0.7444111 -0.30630729  0.089626776  1.00000000
 ```
 
 ### [Transformation helpers](https://loelschlaeger.de/oeli/reference/index.html#transformation)

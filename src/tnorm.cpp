@@ -1,10 +1,10 @@
 // [[Rcpp::depends("RcppArmadillo")]]
 #include <RcppArmadillo.h>
 
-//' @rdname dtnorm
-//' @export
+// [[Rcpp::interfaces(cpp)]]
 // [[Rcpp::export]]
-double dtnorm_cpp(
+
+double dtnorm(
   double x, double mean, double sd, double point, bool above, bool log = false
 ) {
   double z = 0.0;
@@ -28,10 +28,10 @@ double dtnorm_cpp(
   return density;
 }
 
-//' @rdname dtnorm
-//' @export
+// [[Rcpp::interfaces(cpp)]]
 // [[Rcpp::export]]
-double dttnorm_cpp(
+
+double dttnorm(
   double x, double mean, double sd, double lower, double upper, bool log = false
 ) {
   if (x < lower || x > upper) return 0.0;
@@ -43,10 +43,10 @@ double dttnorm_cpp(
   return density;
 }
 
-//' @rdname dtnorm
-//' @export
+// [[Rcpp::interfaces(cpp)]]
 // [[Rcpp::export]]
-double rtnorm_cpp(
+
+double rtnorm(
   double mean, double sd, double point, bool above, bool log = false
 ) {
   double a,b;
@@ -62,10 +62,10 @@ double rtnorm_cpp(
   return draw;
 }
 
-//' @rdname dtnorm
-//' @export
+// [[Rcpp::interfaces(cpp)]]
 // [[Rcpp::export]]
-double rttnorm_cpp(
+
+double rttnorm(
   double mean, double sd, double lower, double upper, bool log = false
 ) {
   double a = R::pnorm((lower - mean) / sd, 0, 1, 1, 0);
