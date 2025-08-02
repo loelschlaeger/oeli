@@ -1,9 +1,8 @@
 // [[Rcpp::depends("RcppArmadillo")]]
 #include <RcppArmadillo.h>
 
-//' @rdname ddirichlet
-//' @export
-// [[Rcpp::export]]
+// [[Rcpp::interfaces(cpp)]]
+
 double ddirichlet_cpp(
   arma::vec const& x, arma::vec const& concentration, bool log = false
 ) {

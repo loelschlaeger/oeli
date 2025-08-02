@@ -39,15 +39,6 @@ ddirichlet(x = c(0.2, 0.3, 0.5), concentration = 1:3)
 rdirichlet(concentration = 1:3)
 ```
 
-For faster computation, [Rcpp](https://www.rcpp.org) implementations are also available:
-
-```{r, mvnorm_fast}
-microbenchmark::microbenchmark(
-  "R"    = rmvnorm(mean = c(0, 0, 0), Sigma = diag(3)),
-  "Rcpp" = rmvnorm_cpp(mean = c(0, 0, 0), Sigma = diag(3))
-)
-```
-
 ### [Function helpers](https://loelschlaeger.de/oeli/reference/index.html#functional)
 
 Retrieving default arguments of a `function`:

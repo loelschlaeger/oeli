@@ -61,7 +61,6 @@ rwishart(df = df, scale = scale, inv = TRUE)
 Other simulation helpers: 
 \code{\link{Simulator}},
 \code{\link{correlated_regressors}()},
-\code{\link{ddirichlet_cpp}()},
 \code{\link{dmvnorm_cpp}()},
 \code{\link{dtnorm_cpp}()},
 \code{\link{simulate_markov_chain}()}
