@@ -2,8 +2,8 @@
 #include <RcppArmadillo.h>
 
 // [[Rcpp::interfaces(cpp)]]
-//' @export
 // [[Rcpp::export]]
+
 double ddirichlet_cpp(
   arma::vec const& x, arma::vec const& concentration, bool log = false
 ) {
@@ -23,8 +23,8 @@ double ddirichlet_cpp(
 }
 
 // [[Rcpp::interfaces(cpp)]]
-//' @export
 // [[Rcpp::export]]
+
 arma::vec rdirichlet_cpp(
   arma::vec const& concentration
 ) {
