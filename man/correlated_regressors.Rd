@@ -83,6 +83,7 @@ This function heavily depends on the \code{{SimMultiCorrData}} package.
 \seealso{
 Other simulation helpers: 
 \code{\link{Simulator}},
+\code{\link{ddirichlet_cpp}()},
 \code{\link{dmvnorm_cpp}()},
 \code{\link{dtnorm_cpp}()},
 \code{\link{dwishart_cpp}()},

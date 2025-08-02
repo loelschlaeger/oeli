@@ -1,10 +1,10 @@
 // [[Rcpp::depends("RcppArmadillo")]]
 #include <RcppArmadillo.h>
 
-//' @rdname dmvnorm
-//' @export
+// [[Rcpp::interfaces(cpp)]]
 // [[Rcpp::export]]
-double dmvnorm_cpp(
+
+double dmvnorm(
    arma::vec const& x, arma::vec const& mean, arma::mat const& Sigma,
    bool log = false
 ) {
@@ -24,12 +24,10 @@ double dmvnorm_cpp(
   return density;
 }
 
-//' @rdname dmvnorm
-//' @export
+// [[Rcpp::interfaces(cpp)]]
 // [[Rcpp::export]]
-arma::vec rmvnorm_cpp(
-   arma::vec mean, arma::mat const& Sigma, bool log = false
-) {
+
+arma::vec rmvnorm(arma::vec mean, arma::mat const& Sigma, bool log = false) {
   int p = mean.size();
   arma::vec draw = arma::zeros<arma::vec>(p);
   if (arma::all(arma::vectorise(Sigma) == 0)) {

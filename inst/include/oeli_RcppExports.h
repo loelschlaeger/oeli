@@ -25,17 +25,17 @@ namespace oeli {
         }
     }
 
-    inline double ddirichlet_cpp(arma::vec const& x, arma::vec const& concentration, bool log = false) {
-        typedef SEXP(*Ptr_ddirichlet_cpp)(SEXP,SEXP,SEXP);
-        static Ptr_ddirichlet_cpp p_ddirichlet_cpp = NULL;
-        if (p_ddirichlet_cpp == NULL) {
-            validateSignature("double(*ddirichlet_cpp)(arma::vec const&,arma::vec const&,bool)");
-            p_ddirichlet_cpp = (Ptr_ddirichlet_cpp)R_GetCCallable("oeli", "_oeli_ddirichlet_cpp");
+    inline double ddirichlet(arma::vec const& x, arma::vec const& concentration, bool log = false) {
+        typedef SEXP(*Ptr_ddirichlet)(SEXP,SEXP,SEXP);
+        static Ptr_ddirichlet p_ddirichlet = NULL;
+        if (p_ddirichlet == NULL) {
+            validateSignature("double(*ddirichlet)(arma::vec const&,arma::vec const&,bool)");
+            p_ddirichlet = (Ptr_ddirichlet)R_GetCCallable("oeli", "_oeli_ddirichlet");
         }
         RObject rcpp_result_gen;
         {
             RNGScope RCPP_rngScope_gen;
-            rcpp_result_gen = p_ddirichlet_cpp(Shield<SEXP>(Rcpp::wrap(x)), Shield<SEXP>(Rcpp::wrap(concentration)), Shield<SEXP>(Rcpp::wrap(log)));
+            rcpp_result_gen = p_ddirichlet(Shield<SEXP>(Rcpp::wrap(x)), Shield<SEXP>(Rcpp::wrap(concentration)), Shield<SEXP>(Rcpp::wrap(log)));
         }
         if (rcpp_result_gen.inherits("interrupted-error"))
             throw Rcpp::internal::InterruptedException();
@@ -46,17 +46,17 @@ namespace oeli {
         return Rcpp::as<double >(rcpp_result_gen);
     }
 
-    inline arma::vec rdirichlet_cpp(arma::vec const& concentration) {
-        typedef SEXP(*Ptr_rdirichlet_cpp)(SEXP);
-        static Ptr_rdirichlet_cpp p_rdirichlet_cpp = NULL;
-        if (p_rdirichlet_cpp == NULL) {
-            validateSignature("arma::vec(*rdirichlet_cpp)(arma::vec const&)");
-            p_rdirichlet_cpp = (Ptr_rdirichlet_cpp)R_GetCCallable("oeli", "_oeli_rdirichlet_cpp");
+    inline arma::vec rdirichlet(arma::vec const& concentration) {
+        typedef SEXP(*Ptr_rdirichlet)(SEXP);
+        static Ptr_rdirichlet p_rdirichlet = NULL;
+        if (p_rdirichlet == NULL) {
+            validateSignature("arma::vec(*rdirichlet)(arma::vec const&)");
+            p_rdirichlet = (Ptr_rdirichlet)R_GetCCallable("oeli", "_oeli_rdirichlet");
         }
         RObject rcpp_result_gen;
         {
             RNGScope RCPP_rngScope_gen;
-            rcpp_result_gen = p_rdirichlet_cpp(Shield<SEXP>(Rcpp::wrap(concentration)));
+            rcpp_result_gen = p_rdirichlet(Shield<SEXP>(Rcpp::wrap(concentration)));
         }
         if (rcpp_result_gen.inherits("interrupted-error"))
             throw Rcpp::internal::InterruptedException();
@@ -65,6 +65,174 @@ namespace oeli {
         if (rcpp_result_gen.inherits("try-error"))
             throw Rcpp::exception(Rcpp::as<std::string>(rcpp_result_gen).c_str());
         return Rcpp::as<arma::vec >(rcpp_result_gen);
+    }
+
+    inline double dmvnorm(arma::vec const& x, arma::vec const& mean, arma::mat const& Sigma, bool log = false) {
+        typedef SEXP(*Ptr_dmvnorm)(SEXP,SEXP,SEXP,SEXP);
+        static Ptr_dmvnorm p_dmvnorm = NULL;
+        if (p_dmvnorm == NULL) {
+            validateSignature("double(*dmvnorm)(arma::vec const&,arma::vec const&,arma::mat const&,bool)");
+            p_dmvnorm = (Ptr_dmvnorm)R_GetCCallable("oeli", "_oeli_dmvnorm");
+        }
+        RObject rcpp_result_gen;
+        {
+            RNGScope RCPP_rngScope_gen;
+            rcpp_result_gen = p_dmvnorm(Shield<SEXP>(Rcpp::wrap(x)), Shield<SEXP>(Rcpp::wrap(mean)), Shield<SEXP>(Rcpp::wrap(Sigma)), Shield<SEXP>(Rcpp::wrap(log)));
+        }
+        if (rcpp_result_gen.inherits("interrupted-error"))
+            throw Rcpp::internal::InterruptedException();
+        if (Rcpp::internal::isLongjumpSentinel(rcpp_result_gen))
+            throw Rcpp::LongjumpException(rcpp_result_gen);
+        if (rcpp_result_gen.inherits("try-error"))
+            throw Rcpp::exception(Rcpp::as<std::string>(rcpp_result_gen).c_str());
+        return Rcpp::as<double >(rcpp_result_gen);
+    }
+
+    inline arma::vec rmvnorm(arma::vec mean, arma::mat const& Sigma, bool log = false) {
+        typedef SEXP(*Ptr_rmvnorm)(SEXP,SEXP,SEXP);
+        static Ptr_rmvnorm p_rmvnorm = NULL;
+        if (p_rmvnorm == NULL) {
+            validateSignature("arma::vec(*rmvnorm)(arma::vec,arma::mat const&,bool)");
+            p_rmvnorm = (Ptr_rmvnorm)R_GetCCallable("oeli", "_oeli_rmvnorm");
+        }
+        RObject rcpp_result_gen;
+        {
+            RNGScope RCPP_rngScope_gen;
+            rcpp_result_gen = p_rmvnorm(Shield<SEXP>(Rcpp::wrap(mean)), Shield<SEXP>(Rcpp::wrap(Sigma)), Shield<SEXP>(Rcpp::wrap(log)));
+        }
+        if (rcpp_result_gen.inherits("interrupted-error"))
+            throw Rcpp::internal::InterruptedException();
+        if (Rcpp::internal::isLongjumpSentinel(rcpp_result_gen))
+            throw Rcpp::LongjumpException(rcpp_result_gen);
+        if (rcpp_result_gen.inherits("try-error"))
+            throw Rcpp::exception(Rcpp::as<std::string>(rcpp_result_gen).c_str());
+        return Rcpp::as<arma::vec >(rcpp_result_gen);
+    }
+
+    inline double dtnorm(double x, double mean, double sd, double point, bool above, bool log = false) {
+        typedef SEXP(*Ptr_dtnorm)(SEXP,SEXP,SEXP,SEXP,SEXP,SEXP);
+        static Ptr_dtnorm p_dtnorm = NULL;
+        if (p_dtnorm == NULL) {
+            validateSignature("double(*dtnorm)(double,double,double,double,bool,bool)");
+            p_dtnorm = (Ptr_dtnorm)R_GetCCallable("oeli", "_oeli_dtnorm");
+        }
+        RObject rcpp_result_gen;
+        {
+            RNGScope RCPP_rngScope_gen;
+            rcpp_result_gen = p_dtnorm(Shield<SEXP>(Rcpp::wrap(x)), Shield<SEXP>(Rcpp::wrap(mean)), Shield<SEXP>(Rcpp::wrap(sd)), Shield<SEXP>(Rcpp::wrap(point)), Shield<SEXP>(Rcpp::wrap(above)), Shield<SEXP>(Rcpp::wrap(log)));
+        }
+        if (rcpp_result_gen.inherits("interrupted-error"))
+            throw Rcpp::internal::InterruptedException();
+        if (Rcpp::internal::isLongjumpSentinel(rcpp_result_gen))
+            throw Rcpp::LongjumpException(rcpp_result_gen);
+        if (rcpp_result_gen.inherits("try-error"))
+            throw Rcpp::exception(Rcpp::as<std::string>(rcpp_result_gen).c_str());
+        return Rcpp::as<double >(rcpp_result_gen);
+    }
+
+    inline double dttnorm(double x, double mean, double sd, double lower, double upper, bool log = false) {
+        typedef SEXP(*Ptr_dttnorm)(SEXP,SEXP,SEXP,SEXP,SEXP,SEXP);
+        static Ptr_dttnorm p_dttnorm = NULL;
+        if (p_dttnorm == NULL) {
+            validateSignature("double(*dttnorm)(double,double,double,double,double,bool)");
+            p_dttnorm = (Ptr_dttnorm)R_GetCCallable("oeli", "_oeli_dttnorm");
+        }
+        RObject rcpp_result_gen;
+        {
+            RNGScope RCPP_rngScope_gen;
+            rcpp_result_gen = p_dttnorm(Shield<SEXP>(Rcpp::wrap(x)), Shield<SEXP>(Rcpp::wrap(mean)), Shield<SEXP>(Rcpp::wrap(sd)), Shield<SEXP>(Rcpp::wrap(lower)), Shield<SEXP>(Rcpp::wrap(upper)), Shield<SEXP>(Rcpp::wrap(log)));
+        }
+        if (rcpp_result_gen.inherits("interrupted-error"))
+            throw Rcpp::internal::InterruptedException();
+        if (Rcpp::internal::isLongjumpSentinel(rcpp_result_gen))
+            throw Rcpp::LongjumpException(rcpp_result_gen);
+        if (rcpp_result_gen.inherits("try-error"))
+            throw Rcpp::exception(Rcpp::as<std::string>(rcpp_result_gen).c_str());
+        return Rcpp::as<double >(rcpp_result_gen);
+    }
+
+    inline double rtnorm(double mean, double sd, double point, bool above, bool log = false) {
+        typedef SEXP(*Ptr_rtnorm)(SEXP,SEXP,SEXP,SEXP,SEXP);
+        static Ptr_rtnorm p_rtnorm = NULL;
+        if (p_rtnorm == NULL) {
+            validateSignature("double(*rtnorm)(double,double,double,bool,bool)");
+            p_rtnorm = (Ptr_rtnorm)R_GetCCallable("oeli", "_oeli_rtnorm");
+        }
+        RObject rcpp_result_gen;
+        {
+            RNGScope RCPP_rngScope_gen;
+            rcpp_result_gen = p_rtnorm(Shield<SEXP>(Rcpp::wrap(mean)), Shield<SEXP>(Rcpp::wrap(sd)), Shield<SEXP>(Rcpp::wrap(point)), Shield<SEXP>(Rcpp::wrap(above)), Shield<SEXP>(Rcpp::wrap(log)));
+        }
+        if (rcpp_result_gen.inherits("interrupted-error"))
+            throw Rcpp::internal::InterruptedException();
+        if (Rcpp::internal::isLongjumpSentinel(rcpp_result_gen))
+            throw Rcpp::LongjumpException(rcpp_result_gen);
+        if (rcpp_result_gen.inherits("try-error"))
+            throw Rcpp::exception(Rcpp::as<std::string>(rcpp_result_gen).c_str());
+        return Rcpp::as<double >(rcpp_result_gen);
+    }
+
+    inline double rttnorm(double mean, double sd, double lower, double upper, bool log = false) {
+        typedef SEXP(*Ptr_rttnorm)(SEXP,SEXP,SEXP,SEXP,SEXP);
+        static Ptr_rttnorm p_rttnorm = NULL;
+        if (p_rttnorm == NULL) {
+            validateSignature("double(*rttnorm)(double,double,double,double,bool)");
+            p_rttnorm = (Ptr_rttnorm)R_GetCCallable("oeli", "_oeli_rttnorm");
+        }
+        RObject rcpp_result_gen;
+        {
+            RNGScope RCPP_rngScope_gen;
+            rcpp_result_gen = p_rttnorm(Shield<SEXP>(Rcpp::wrap(mean)), Shield<SEXP>(Rcpp::wrap(sd)), Shield<SEXP>(Rcpp::wrap(lower)), Shield<SEXP>(Rcpp::wrap(upper)), Shield<SEXP>(Rcpp::wrap(log)));
+        }
+        if (rcpp_result_gen.inherits("interrupted-error"))
+            throw Rcpp::internal::InterruptedException();
+        if (Rcpp::internal::isLongjumpSentinel(rcpp_result_gen))
+            throw Rcpp::LongjumpException(rcpp_result_gen);
+        if (rcpp_result_gen.inherits("try-error"))
+            throw Rcpp::exception(Rcpp::as<std::string>(rcpp_result_gen).c_str());
+        return Rcpp::as<double >(rcpp_result_gen);
+    }
+
+    inline double dwishart(arma::mat const& x, int const& df, arma::mat const& scale, bool log = false, bool inv = false) {
+        typedef SEXP(*Ptr_dwishart)(SEXP,SEXP,SEXP,SEXP,SEXP);
+        static Ptr_dwishart p_dwishart = NULL;
+        if (p_dwishart == NULL) {
+            validateSignature("double(*dwishart)(arma::mat const&,int const&,arma::mat const&,bool,bool)");
+            p_dwishart = (Ptr_dwishart)R_GetCCallable("oeli", "_oeli_dwishart");
+        }
+        RObject rcpp_result_gen;
+        {
+            RNGScope RCPP_rngScope_gen;
+            rcpp_result_gen = p_dwishart(Shield<SEXP>(Rcpp::wrap(x)), Shield<SEXP>(Rcpp::wrap(df)), Shield<SEXP>(Rcpp::wrap(scale)), Shield<SEXP>(Rcpp::wrap(log)), Shield<SEXP>(Rcpp::wrap(inv)));
+        }
+        if (rcpp_result_gen.inherits("interrupted-error"))
+            throw Rcpp::internal::InterruptedException();
+        if (Rcpp::internal::isLongjumpSentinel(rcpp_result_gen))
+            throw Rcpp::LongjumpException(rcpp_result_gen);
+        if (rcpp_result_gen.inherits("try-error"))
+            throw Rcpp::exception(Rcpp::as<std::string>(rcpp_result_gen).c_str());
+        return Rcpp::as<double >(rcpp_result_gen);
+    }
+
+    inline arma::mat rwishart(double df, arma::mat const& scale, bool inv = false) {
+        typedef SEXP(*Ptr_rwishart)(SEXP,SEXP,SEXP);
+        static Ptr_rwishart p_rwishart = NULL;
+        if (p_rwishart == NULL) {
+            validateSignature("arma::mat(*rwishart)(double,arma::mat const&,bool)");
+            p_rwishart = (Ptr_rwishart)R_GetCCallable("oeli", "_oeli_rwishart");
+        }
+        RObject rcpp_result_gen;
+        {
+            RNGScope RCPP_rngScope_gen;
+            rcpp_result_gen = p_rwishart(Shield<SEXP>(Rcpp::wrap(df)), Shield<SEXP>(Rcpp::wrap(scale)), Shield<SEXP>(Rcpp::wrap(inv)));
+        }
+        if (rcpp_result_gen.inherits("interrupted-error"))
+            throw Rcpp::internal::InterruptedException();
+        if (Rcpp::internal::isLongjumpSentinel(rcpp_result_gen))
+            throw Rcpp::LongjumpException(rcpp_result_gen);
+        if (rcpp_result_gen.inherits("try-error"))
+            throw Rcpp::exception(Rcpp::as<std::string>(rcpp_result_gen).c_str());
+        return Rcpp::as<arma::mat >(rcpp_result_gen);
     }
 
 }

@@ -1,10 +1,10 @@
 // [[Rcpp::depends("RcppArmadillo")]]
 #include <RcppArmadillo.h>
 
-//' @rdname dwishart
-//' @export
+// [[Rcpp::interfaces(cpp)]]
 // [[Rcpp::export]]
-double dwishart_cpp(
+
+double dwishart(
   arma::mat const& x, int const& df, arma::mat const& scale,
   bool log = false, bool inv = false
 ) {
@@ -31,10 +31,10 @@ double dwishart_cpp(
   return density;
 }
 
-//' @rdname dwishart
-//' @export
+// [[Rcpp::interfaces(cpp)]]
 // [[Rcpp::export]]
-arma::mat rwishart_cpp(
+
+arma::mat rwishart(
   double df, arma::mat const& scale, bool inv = false
 ) {
   int m = scale.n_rows;

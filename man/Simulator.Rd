@@ -92,6 +92,7 @@ object_restored$go(runs = 2)
 \seealso{
 Other simulation helpers: 
 \code{\link{correlated_regressors}()},
+\code{\link{ddirichlet_cpp}()},
 \code{\link{dmvnorm_cpp}()},
 \code{\link{dtnorm_cpp}()},
 \code{\link{dwishart_cpp}()},
