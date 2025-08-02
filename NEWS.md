@@ -1,3 +1,7 @@
+# oeli 0.7.5
+
+* Moved header files from `../src/` to `../inst/include/` to make them available externally.
+
 # oeli 0.7.4
 
 * Added R6 object `Simulator` that provides some convenience when running simulations.

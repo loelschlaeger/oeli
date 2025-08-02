@@ -1,5 +1,5 @@
 #include <testthat.h>
-#include "wishart.h"
+#include "../inst/include/wishart.h"
 
 context("wishart") {
 

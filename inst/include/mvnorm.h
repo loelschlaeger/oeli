@@ -1,5 +1,5 @@
-#ifndef MVNORM_H
-#define MVNORM_H
+#ifndef OELI_MVNORM_H
+#define OELI_MVNORM_H
 
 // [[Rcpp::depends("RcppArmadillo")]]
 #include <RcppArmadillo.h>

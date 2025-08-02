@@ -1,5 +1,5 @@
-#ifndef TNORM_H
-#define TNORM_H
+#ifndef OELI_TNORM_H
+#define OELI_TNORM_H
 
 // [[Rcpp::depends("RcppArmadillo")]]
 #include <RcppArmadillo.h>

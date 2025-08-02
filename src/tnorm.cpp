@@ -7,21 +7,21 @@
 double dtnorm_cpp(
   double x, double mean, double sd, double point, bool above, bool log = false
 ) {
-  double Z = 0.0;
+  double z = 0.0;
   double density = 0.0;
   if (above) {
-    Z = R::pnorm((point - mean) / sd, 0.0, 1.0, 0, 0);
+    z = R::pnorm((point - mean) / sd, 0.0, 1.0, 0, 0);
     if (x > point) {
       return 0.0;
     } else {
-      density = R::dnorm((x - mean) / sd, 0.0, 1.0, 0) / (sd * Z);
+      density = R::dnorm((x - mean) / sd, 0.0, 1.0, 0) / (sd * z);
     }
   } else {
-    Z = R::pnorm((point - mean) / sd, 0.0, 1.0, 1, 0);
+    z = R::pnorm((point - mean) / sd, 0.0, 1.0, 1, 0);
     if (x < point) {
       return 0.0;
     } else {
-      density = R::dnorm((x - mean) / sd, 0.0, 1.0, 0) / (sd * (1 - Z));
+      density = R::dnorm((x - mean) / sd, 0.0, 1.0, 0) / (sd * (1 - z));
     }
   }
   if (log) return std::log(density);

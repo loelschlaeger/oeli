@@ -1,5 +1,5 @@
-#ifndef DIRICHLET_H
-#define DIRICHLET_H
+#ifndef OELI_DIRICHLET_H
+#define OELI_DIRICHLET_H
 
 // [[Rcpp::depends("RcppArmadillo")]]
 #include <RcppArmadillo.h>

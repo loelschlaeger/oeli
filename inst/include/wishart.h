@@ -1,5 +1,5 @@
-#ifndef WISHART_H
-#define WISHART_H
+#ifndef OELI_WISHART_H
+#define OELI_WISHART_H
 
 // [[Rcpp::depends("RcppArmadillo")]]
 #include <RcppArmadillo.h>
