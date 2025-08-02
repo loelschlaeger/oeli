@@ -21,9 +21,8 @@ double ddirichlet_cpp(
  return density;
 }
 
-//' @rdname ddirichlet
-//' @export
-// [[Rcpp::export]]
+// [[Rcpp::interfaces(cpp)]]
+
 arma::vec rdirichlet_cpp(
   arma::vec const& concentration
 ) {

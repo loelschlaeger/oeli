@@ -25,27 +25,6 @@ namespace oeli {
         }
     }
 
-    inline arma::vec rdirichlet_cpp(arma::vec const& concentration) {
-        typedef SEXP(*Ptr_rdirichlet_cpp)(SEXP);
-        static Ptr_rdirichlet_cpp p_rdirichlet_cpp = NULL;
-        if (p_rdirichlet_cpp == NULL) {
-            validateSignature("arma::vec(*rdirichlet_cpp)(arma::vec const&)");
-            p_rdirichlet_cpp = (Ptr_rdirichlet_cpp)R_GetCCallable("oeli", "_oeli_rdirichlet_cpp");
-        }
-        RObject rcpp_result_gen;
-        {
-            RNGScope RCPP_rngScope_gen;
-            rcpp_result_gen = p_rdirichlet_cpp(Shield<SEXP>(Rcpp::wrap(concentration)));
-        }
-        if (rcpp_result_gen.inherits("interrupted-error"))
-            throw Rcpp::internal::InterruptedException();
-        if (Rcpp::internal::isLongjumpSentinel(rcpp_result_gen))
-            throw Rcpp::LongjumpException(rcpp_result_gen);
-        if (rcpp_result_gen.inherits("try-error"))
-            throw Rcpp::exception(Rcpp::as<std::string>(rcpp_result_gen).c_str());
-        return Rcpp::as<arma::vec >(rcpp_result_gen);
-    }
-
 }
 
 #endif // RCPP_oeli_RCPPEXPORTS_H_GEN_
