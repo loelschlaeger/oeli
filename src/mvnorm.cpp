@@ -5,23 +5,17 @@
 // [[Rcpp::export]]
 
 double dmvnorm(
-   arma::vec const& x, arma::vec const& mean, arma::mat const& Sigma,
-   bool log = false
+  arma::vec const& x, arma::vec const& mean, arma::mat const& Sigma,
+  bool log = false
 ) {
-  double density = 0.0;
-  if (arma::all(arma::vectorise(Sigma) == 0)) {
-    // if Sigma = 0, degenerate distribution
-    if (arma::all(x == mean)) {
-      density = std::numeric_limits<double>::infinity();
-    }
-  } else {
-    int p = x.size();
-    arma::mat quadform = trans(x-mean) * solve(Sigma, arma::eye(p,p)) * (x-mean);
-    double norm = pow(std::sqrt(2.0 * M_PI), -p) * pow(arma::det(Sigma), -0.5);
-    density = norm * exp(-0.5 * quadform(0,0));
-  }
-  if (log) return std::log(density);
-  return density;
+  int p = x.n_elem;
+  arma::vec diff = x - mean;
+  arma::mat L = arma::chol(Sigma, "lower");
+  arma::vec v = arma::solve(arma::trimatl(L), diff);
+  double quad = arma::dot(v, v);
+  double log_det = 2.0 * arma::sum(arma::log(L.diag()));
+  double log_density = -0.5 * (p * std::log(2.0 * M_PI) + log_det + quad);
+  return log ? log_density : std::exp(log_density);
 }
 
 // [[Rcpp::interfaces(cpp)]]

@@ -2,6 +2,8 @@
 
 * Moved header files from `../src/` to `../inst/include/` to make them available externally.
 
+* Removed degenerate case from `dmvnorm()`.
+
 # oeli 0.7.4
 
 * Added R6 object `Simulator` that provides some convenience when running simulations.

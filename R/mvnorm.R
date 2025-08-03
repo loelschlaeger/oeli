@@ -22,8 +22,6 @@
 #' @param Sigma \[`matrix()`\]\cr
 #' The covariance matrix of dimension `p`.
 #'
-#' It can also be a zero matrix.
-#'
 #' For `rmvnorm()`, arbitrary dimensions (i.e., full rows and corresponding
 #' columns) of `Sigma` can be `0`.
 #'
