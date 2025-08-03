@@ -28,8 +28,6 @@ convenience, then \code{rep(mean, p)} is considered.}
 \item{Sigma}{[\code{matrix()}]\cr
 The covariance matrix of dimension \code{p}.
 
-It can also be a zero matrix.
-
 For \code{rmvnorm()}, arbitrary dimensions (i.e., full rows and corresponding
 columns) of \code{Sigma} can be \code{0}.
 
