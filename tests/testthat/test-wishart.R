@@ -32,3 +32,4 @@ test_that("(Inverse-) Wishart can be drawn", {
   expect_equal(dim(rwishart(df = df, scale = scale, inv = TRUE)), c(2, 2))
   expect_error(dmvnorm(rwishart(df = 1, scale = numeric(3))))
 })
+

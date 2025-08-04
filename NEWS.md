@@ -4,6 +4,8 @@
 
 * Removed degenerate case from `dmvnorm()`.
 
+* Fixed a bug in sampling from the inverse Wishart distribution.
+
 # oeli 0.7.4
 
 * Added R6 object `Simulator` that provides some convenience when running simulations.

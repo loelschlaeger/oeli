@@ -33,8 +33,8 @@
 #'
 #' @examples
 #' x <- diag(2)
-#' df <- 4
-#' scale <- diag(2)
+#' df <- 6
+#' scale <- matrix(c(1, -0.3, -0.3, 0.8), ncol = 2)
 #'
 #' # compute density
 #' dwishart(x = x, df = df, scale = scale)
@@ -44,6 +44,18 @@
 #' # sample
 #' rwishart(df = df, scale = scale)
 #' rwishart(df = df, scale = scale, inv = TRUE)
+#'
+#' # expectation of Wishart is df * scale
+#' n <- 100
+#' replicate(n, rwishart(df = df, scale = scale), simplify = FALSE) |>
+#'   Reduce(f = "+") / n
+#' df * scale
+#'
+#' # expectation of inverse Wishart is scale / (df - p - 1)
+#' n <- 100
+#' replicate(n, rwishart(df = df, scale = scale, TRUE), simplify = FALSE) |>
+#'   Reduce(f = "+") / n
+#' scale / (df - 2 - 1)
 
 dwishart <- function(x, df, scale, log = FALSE, inv = FALSE) {
   assert_covariance_matrix(x)
