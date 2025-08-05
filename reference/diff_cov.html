@@ -143,18 +143,18 @@ taking differences such that the resulting vector is negative.</p>
 <span class="r-in"><span></span></span>
 <span class="r-in"><span><span class="co"># difference Sigma</span></span></span>
 <span class="r-in"><span><span class="op">(</span><span class="va">Sigma_diff</span> <span class="op">&lt;-</span> <span class="fu">diff_cov</span><span class="op">(</span><span class="va">Sigma</span>, ref <span class="op">=</span> <span class="va">k</span><span class="op">)</span><span class="op">)</span></span></span>
-<span class="r-out co"><span class="r-pr">#&gt;</span>           [,1]     [,2]      [,3]</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> [1,]  8.731993 2.954687 10.348964</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> [2,]  2.954687 1.639376  3.170485</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> [3,] 10.348964 3.170485 12.762971</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span>           [,1]     [,2]     [,3]</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> [1,] 0.9792507 1.793653 1.373000</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> [2,] 1.7936529 3.904229 2.839908</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> [3,] 1.3729998 2.839908 2.417890</span>
 <span class="r-in"><span></span></span>
 <span class="r-in"><span><span class="co"># un-difference Sigma</span></span></span>
 <span class="r-in"><span><span class="op">(</span><span class="va">Sigma_0</span> <span class="op">&lt;-</span> <span class="fu">undiff_cov</span><span class="op">(</span><span class="va">Sigma_diff</span>, ref <span class="op">=</span> <span class="va">k</span><span class="op">)</span><span class="op">)</span></span></span>
-<span class="r-out co"><span class="r-pr">#&gt;</span>           [,1] [,2]     [,3]      [,4]</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> [1,]  8.731993    0 2.954687 10.348964</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> [2,]  0.000000    0 0.000000  0.000000</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> [3,]  2.954687    0 1.639376  3.170485</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> [4,] 10.348964    0 3.170485 12.762971</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span>           [,1] [,2]     [,3]     [,4]</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> [1,] 0.9792507    0 1.793653 1.373000</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> [2,] 0.0000000    0 0.000000 0.000000</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> [3,] 1.7936529    0 3.904229 2.839908</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> [4,] 1.3729998    0 2.839908 2.417890</span>
 <span class="r-in"><span></span></span>
 <span class="r-in"><span><span class="co"># difference again</span></span></span>
 <span class="r-in"><span><span class="va">Sigma_diff_2</span> <span class="op">&lt;-</span> <span class="fu">diff_cov</span><span class="op">(</span><span class="va">Sigma_0</span>, ref <span class="op">=</span> <span class="va">k</span><span class="op">)</span></span></span>
