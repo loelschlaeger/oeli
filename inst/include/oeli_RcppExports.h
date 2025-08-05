@@ -88,6 +88,27 @@ namespace oeli {
         return Rcpp::as<double >(rcpp_result_gen);
     }
 
+    inline double pmvnorm(arma::vec const& x, arma::vec const& mean, arma::mat const& Sigma, double abseps = 1e-3) {
+        typedef SEXP(*Ptr_pmvnorm)(SEXP,SEXP,SEXP,SEXP);
+        static Ptr_pmvnorm p_pmvnorm = NULL;
+        if (p_pmvnorm == NULL) {
+            validateSignature("double(*pmvnorm)(arma::vec const&,arma::vec const&,arma::mat const&,double)");
+            p_pmvnorm = (Ptr_pmvnorm)R_GetCCallable("oeli", "_oeli_pmvnorm");
+        }
+        RObject rcpp_result_gen;
+        {
+            RNGScope RCPP_rngScope_gen;
+            rcpp_result_gen = p_pmvnorm(Shield<SEXP>(Rcpp::wrap(x)), Shield<SEXP>(Rcpp::wrap(mean)), Shield<SEXP>(Rcpp::wrap(Sigma)), Shield<SEXP>(Rcpp::wrap(abseps)));
+        }
+        if (rcpp_result_gen.inherits("interrupted-error"))
+            throw Rcpp::internal::InterruptedException();
+        if (Rcpp::internal::isLongjumpSentinel(rcpp_result_gen))
+            throw Rcpp::LongjumpException(rcpp_result_gen);
+        if (rcpp_result_gen.inherits("try-error"))
+            throw Rcpp::exception(Rcpp::as<std::string>(rcpp_result_gen).c_str());
+        return Rcpp::as<double >(rcpp_result_gen);
+    }
+
     inline arma::vec rmvnorm(arma::vec mean, arma::mat const& Sigma, bool log = false) {
         typedef SEXP(*Ptr_rmvnorm)(SEXP,SEXP,SEXP);
         static Ptr_rmvnorm p_rmvnorm = NULL;

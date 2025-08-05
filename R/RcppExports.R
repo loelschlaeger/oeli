@@ -21,6 +21,12 @@ dmvnorm_cpp <- function(x, mean, Sigma, log = FALSE) {
 
 #' @rdname dmvnorm
 #' @export
+pmvnorm_cpp <- function(x, mean, Sigma, abseps = 1e-3) {
+    .Call(`_oeli_pmvnorm_cpp`, x, mean, Sigma, abseps)
+}
+
+#' @rdname dmvnorm
+#' @export
 rmvnorm_cpp <- function(mean, Sigma, log = FALSE) {
     .Call(`_oeli_rmvnorm_cpp`, mean, Sigma, log)
 }

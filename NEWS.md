@@ -6,6 +6,8 @@
 
 * Fixed a bug in sampling from the inverse Wishart distribution.
 
+* Added function `pmvnorm()` that calculates the (multivariate) Gaussian CDF.
+
 # oeli 0.7.4
 
 * Added R6 object `Simulator` that provides some convenience when running simulations.

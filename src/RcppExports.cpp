@@ -122,6 +122,20 @@ BEGIN_RCPP
     return rcpp_result_gen;
 END_RCPP
 }
+// pmvnorm_cpp
+double pmvnorm_cpp(arma::vec const& x, arma::vec const& mean, arma::mat const& Sigma, double abseps);
+RcppExport SEXP _oeli_pmvnorm_cpp(SEXP xSEXP, SEXP meanSEXP, SEXP SigmaSEXP, SEXP absepsSEXP) {
+BEGIN_RCPP
+    Rcpp::RObject rcpp_result_gen;
+    Rcpp::RNGScope rcpp_rngScope_gen;
+    Rcpp::traits::input_parameter< arma::vec const& >::type x(xSEXP);
+    Rcpp::traits::input_parameter< arma::vec const& >::type mean(meanSEXP);
+    Rcpp::traits::input_parameter< arma::mat const& >::type Sigma(SigmaSEXP);
+    Rcpp::traits::input_parameter< double >::type abseps(absepsSEXP);
+    rcpp_result_gen = Rcpp::wrap(pmvnorm_cpp(x, mean, Sigma, abseps));
+    return rcpp_result_gen;
+END_RCPP
+}
 // rmvnorm_cpp
 arma::vec rmvnorm_cpp(arma::vec mean, arma::mat const& Sigma, bool log);
 RcppExport SEXP _oeli_rmvnorm_cpp(SEXP meanSEXP, SEXP SigmaSEXP, SEXP logSEXP) {
@@ -243,6 +257,43 @@ RcppExport SEXP _oeli_dmvnorm(SEXP xSEXP, SEXP meanSEXP, SEXP SigmaSEXP, SEXP lo
     {
         Rcpp::RNGScope rcpp_rngScope_gen;
         rcpp_result_gen = PROTECT(_oeli_dmvnorm_try(xSEXP, meanSEXP, SigmaSEXP, logSEXP));
+    }
+    Rboolean rcpp_isInterrupt_gen = Rf_inherits(rcpp_result_gen, "interrupted-error");
+    if (rcpp_isInterrupt_gen) {
+        UNPROTECT(1);
+        Rf_onintr();
+    }
+    bool rcpp_isLongjump_gen = Rcpp::internal::isLongjumpSentinel(rcpp_result_gen);
+    if (rcpp_isLongjump_gen) {
+        Rcpp::internal::resumeJump(rcpp_result_gen);
+    }
+    Rboolean rcpp_isError_gen = Rf_inherits(rcpp_result_gen, "try-error");
+    if (rcpp_isError_gen) {
+        SEXP rcpp_msgSEXP_gen = Rf_asChar(rcpp_result_gen);
+        UNPROTECT(1);
+        Rf_error("%s", CHAR(rcpp_msgSEXP_gen));
+    }
+    UNPROTECT(1);
+    return rcpp_result_gen;
+}
+// pmvnorm
+double pmvnorm(arma::vec const& x, arma::vec const& mean, arma::mat const& Sigma, double abseps);
+static SEXP _oeli_pmvnorm_try(SEXP xSEXP, SEXP meanSEXP, SEXP SigmaSEXP, SEXP absepsSEXP) {
+BEGIN_RCPP
+    Rcpp::RObject rcpp_result_gen;
+    Rcpp::traits::input_parameter< arma::vec const& >::type x(xSEXP);
+    Rcpp::traits::input_parameter< arma::vec const& >::type mean(meanSEXP);
+    Rcpp::traits::input_parameter< arma::mat const& >::type Sigma(SigmaSEXP);
+    Rcpp::traits::input_parameter< double >::type abseps(absepsSEXP);
+    rcpp_result_gen = Rcpp::wrap(pmvnorm(x, mean, Sigma, abseps));
+    return rcpp_result_gen;
+END_RCPP_RETURN_ERROR
+}
+RcppExport SEXP _oeli_pmvnorm(SEXP xSEXP, SEXP meanSEXP, SEXP SigmaSEXP, SEXP absepsSEXP) {
+    SEXP rcpp_result_gen;
+    {
+        Rcpp::RNGScope rcpp_rngScope_gen;
+        rcpp_result_gen = PROTECT(_oeli_pmvnorm_try(xSEXP, meanSEXP, SigmaSEXP, absepsSEXP));
     }
     Rboolean rcpp_isInterrupt_gen = Rf_inherits(rcpp_result_gen, "interrupted-error");
     if (rcpp_isInterrupt_gen) {
@@ -534,6 +585,7 @@ static int _oeli_RcppExport_validate(const char* sig) {
         signatures.insert("double(*ddirichlet)(arma::vec const&,arma::vec const&,bool)");
         signatures.insert("arma::vec(*rdirichlet)(arma::vec const&)");
         signatures.insert("double(*dmvnorm)(arma::vec const&,arma::vec const&,arma::mat const&,bool)");
+        signatures.insert("double(*pmvnorm)(arma::vec const&,arma::vec const&,arma::mat const&,double)");
         signatures.insert("arma::vec(*rmvnorm)(arma::vec,arma::mat const&,bool)");
         signatures.insert("double(*dtnorm)(double,double,double,double,bool,bool)");
         signatures.insert("double(*dttnorm)(double,double,double,double,double,bool)");
@@ -550,6 +602,7 @@ RcppExport SEXP _oeli_RcppExport_registerCCallable() {
     R_RegisterCCallable("oeli", "_oeli_ddirichlet", (DL_FUNC)_oeli_ddirichlet_try);
     R_RegisterCCallable("oeli", "_oeli_rdirichlet", (DL_FUNC)_oeli_rdirichlet_try);
     R_RegisterCCallable("oeli", "_oeli_dmvnorm", (DL_FUNC)_oeli_dmvnorm_try);
+    R_RegisterCCallable("oeli", "_oeli_pmvnorm", (DL_FUNC)_oeli_pmvnorm_try);
     R_RegisterCCallable("oeli", "_oeli_rmvnorm", (DL_FUNC)_oeli_rmvnorm_try);
     R_RegisterCCallable("oeli", "_oeli_dtnorm", (DL_FUNC)_oeli_dtnorm_try);
     R_RegisterCCallable("oeli", "_oeli_dttnorm", (DL_FUNC)_oeli_dttnorm_try);
@@ -569,6 +622,7 @@ static const R_CallMethodDef CallEntries[] = {
     {"_oeli_ddirichlet_cpp", (DL_FUNC) &_oeli_ddirichlet_cpp, 3},
     {"_oeli_rdirichlet_cpp", (DL_FUNC) &_oeli_rdirichlet_cpp, 1},
     {"_oeli_dmvnorm_cpp", (DL_FUNC) &_oeli_dmvnorm_cpp, 4},
+    {"_oeli_pmvnorm_cpp", (DL_FUNC) &_oeli_pmvnorm_cpp, 4},
     {"_oeli_rmvnorm_cpp", (DL_FUNC) &_oeli_rmvnorm_cpp, 3},
     {"_oeli_dtnorm_cpp", (DL_FUNC) &_oeli_dtnorm_cpp, 6},
     {"_oeli_dttnorm_cpp", (DL_FUNC) &_oeli_dttnorm_cpp, 6},
@@ -577,6 +631,7 @@ static const R_CallMethodDef CallEntries[] = {
     {"_oeli_dwishart_cpp", (DL_FUNC) &_oeli_dwishart_cpp, 5},
     {"_oeli_rwishart_cpp", (DL_FUNC) &_oeli_rwishart_cpp, 3},
     {"_oeli_dmvnorm", (DL_FUNC) &_oeli_dmvnorm, 4},
+    {"_oeli_pmvnorm", (DL_FUNC) &_oeli_pmvnorm, 4},
     {"_oeli_rmvnorm", (DL_FUNC) &_oeli_rmvnorm, 3},
     {"_oeli_dtnorm", (DL_FUNC) &_oeli_dtnorm, 6},
     {"_oeli_dttnorm", (DL_FUNC) &_oeli_dttnorm, 6},

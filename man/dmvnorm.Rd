@@ -2,16 +2,22 @@
 % Please edit documentation in R/RcppExports.R, R/mvnorm.R
 \name{dmvnorm_cpp}
 \alias{dmvnorm_cpp}
+\alias{pmvnorm_cpp}
 \alias{rmvnorm_cpp}
 \alias{dmvnorm}
+\alias{pmvnorm}
 \alias{rmvnorm}
 \title{Multivariate normal distribution}
 \usage{
 dmvnorm_cpp(x, mean, Sigma, log = FALSE)
 
+pmvnorm_cpp(x, mean, Sigma, abseps = 0.001)
+
 rmvnorm_cpp(mean, Sigma, log = FALSE)
 
 dmvnorm(x, mean, Sigma, log = FALSE)
+
+pmvnorm(x, mean, Sigma, abseps = 0.001)
 
 rmvnorm(n = 1, mean, Sigma, log = FALSE)
 }
@@ -41,8 +47,11 @@ For \code{dmvnorm()}: Return the logarithm of the density value?
 
 For \code{rmvnorm()}: Draw from a log-normal distribution?}
 
+\item{abseps}{[\code{numeric(1)}]\cr
+The absolute error tolerance.}
+
 \item{n}{[\code{integer(1)}]\cr
-An \code{integer}, the number of requested samples.}
+The number of requested samples.}
 }
 \value{
 For \code{dmvnorm()}: The density value.
@@ -55,11 +64,19 @@ a \code{matrix} of dimension \code{n} times \code{p} with samples as rows.
 The function \code{dmvnorm()} computes the density of a multivariate normal
 distribution.
 
+The function \code{pmvnorm()} computes the cumulative distribution function of a
+multivariate normal distribution.
+
 The function \code{rmvnorm()} samples from a multivariate normal distribution.
 
 The functions with suffix \verb{_cpp} perform no input checks, hence are faster.
 
 The univariate normal distribution is available as the special case \code{p = 1}.
+}
+\details{
+\code{pmvnorm()} just calls \code{mvtnorm::pmvnorm} with the randomized
+Quasi-Monte-Carlo procedure by Genz and Bretz. The argument \code{abseps} controls
+the accuracy of the Gaussian integral approximation.
 }
 \examples{
 x <- c(0, 0)
@@ -69,6 +86,9 @@ Sigma <- diag(2)
 # compute density
 dmvnorm(x = x, mean = mean, Sigma = Sigma)
 dmvnorm(x = x, mean = mean, Sigma = Sigma, log = TRUE)
+
+# compute CDF
+pmvnorm(x = x, mean = mean, Sigma = Sigma)
 
 # sample
 rmvnorm(n = 3, mean = mean, Sigma = Sigma)

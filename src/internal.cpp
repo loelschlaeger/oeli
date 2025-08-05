@@ -40,6 +40,17 @@ double dmvnorm_cpp(
 //' @export
 // [[Rcpp::export]]
 
+double pmvnorm_cpp(
+    arma::vec const& x, arma::vec const& mean, arma::mat const& Sigma,
+    double abseps = 1e-3
+) {
+  return pmvnorm(x, mean, Sigma, abseps);
+}
+
+//' @rdname dmvnorm
+//' @export
+// [[Rcpp::export]]
+
 arma::vec rmvnorm_cpp(
    arma::vec mean, arma::mat const& Sigma, bool log = false
 ) {

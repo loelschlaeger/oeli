@@ -4,11 +4,19 @@
 #' The function `dmvnorm()` computes the density of a multivariate normal
 #' distribution.
 #'
+#' The function `pmvnorm()` computes the cumulative distribution function of a
+#' multivariate normal distribution.
+#'
 #' The function `rmvnorm()` samples from a multivariate normal distribution.
 #'
 #' The functions with suffix `_cpp` perform no input checks, hence are faster.
 #'
 #' The univariate normal distribution is available as the special case `p = 1`.
+#'
+#' @details
+#' `pmvnorm()` just calls `mvtnorm::pmvnorm` with the randomized
+#' Quasi-Monte-Carlo procedure by Genz and Bretz. The argument `abseps` controls
+#' the accuracy of the Gaussian integral approximation.
 #'
 #' @param x \[`numeric()`\]\cr
 #' A quantile vector of length `p`.
@@ -35,8 +43,11 @@
 #'
 #' For `rmvnorm()`: Draw from a log-normal distribution?
 #'
+#' @param abseps \[`numeric(1)`\]\cr
+#' The absolute error tolerance.
+#'
 #' @param n \[`integer(1)`\]\cr
-#' An \code{integer}, the number of requested samples.
+#' The number of requested samples.
 #'
 #' @return
 #' For `dmvnorm()`: The density value.
@@ -57,6 +68,9 @@
 #' # compute density
 #' dmvnorm(x = x, mean = mean, Sigma = Sigma)
 #' dmvnorm(x = x, mean = mean, Sigma = Sigma, log = TRUE)
+#'
+#' # compute CDF
+#' pmvnorm(x = x, mean = mean, Sigma = Sigma)
 #'
 #' # sample
 #' rmvnorm(n = 3, mean = mean, Sigma = Sigma)
@@ -87,6 +101,36 @@ dmvnorm <- function(x, mean, Sigma, log = FALSE) {
     var_name = "log"
   )
   dmvnorm_cpp(x, mean, Sigma, log)
+}
+
+#' @rdname dmvnorm
+#' @export
+
+pmvnorm <- function(x, mean, Sigma, abseps = 1e-3) {
+  input_check_response(
+    check = check_numeric_vector(x, any.missing = FALSE, min.len = 1),
+    var_name = "x"
+  )
+  dim <- length(x)
+  if (checkmate::test_atomic_vector(mean, len = 1)) {
+    mean <- rep(mean, dim)
+  }
+  input_check_response(
+    check = check_numeric_vector(mean, any.missing = FALSE, len = dim),
+    var_name = "mean"
+  )
+  if (dim == 1 && checkmate::test_atomic_vector(Sigma, len = 1)) {
+    Sigma <- as.matrix(Sigma)
+  }
+  input_check_response(
+    check = check_covariance_matrix(Sigma, dim = dim),
+    var_name = "Sigma"
+  )
+  input_check_response(
+    check = checkmate::check_number(abseps, lower = 0, finite = TRUE),
+    var_name = "abseps"
+  )
+  pmvnorm_cpp(x, mean, Sigma, abseps)
 }
 
 #' @rdname dmvnorm

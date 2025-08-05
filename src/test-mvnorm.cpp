@@ -31,6 +31,26 @@ context("dmvnorm_cpp") {
 
 }
 
+context("pmvnorm_cpp") {
+
+  test_that("univariate normal CDF can be computed") {
+    arma::vec x = arma::zeros<arma::vec>(1);
+    arma::vec mean = arma::zeros<arma::vec>(1);
+    arma::mat Sigma = arma::eye<arma::mat>(1,1);
+    double prob = pmvnorm_cpp(x, mean, Sigma);
+    expect_true(prob == 0.5);
+  }
+
+  test_that("multivariate normal CDF can be computed") {
+    arma::vec x = arma::zeros<arma::vec>(2);
+    arma::vec mean = arma::zeros<arma::vec>(2);
+    arma::mat Sigma = arma::eye<arma::mat>(2,2);
+    double prob = pmvnorm_cpp(x, mean, Sigma);
+    expect_true(prob == 0.25);
+  }
+
+}
+
 context("rmvnorm_cpp") {
 
   test_that("univariate normal can be drawn") {
