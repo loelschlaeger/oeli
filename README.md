@@ -11,7 +11,7 @@ status](https://www.r-pkg.org/badges/version/oeli)](https://CRAN.R-project.org/p
 downloads](https://cranlogs.r-pkg.org/badges/last-month/oeli)](https://CRAN.R-project.org/package=oeli)
 [![R-CMD-check](https://github.com/loelschlaeger/oeli/actions/workflows/R-CMD-check.yaml/badge.svg)](https://github.com/loelschlaeger/oeli/actions/workflows/R-CMD-check.yaml)
 [![Codecov test
-coverage](https://codecov.io/gh/loelschlaeger/oeli/branch/master/graph/badge.svg)](https://app.codecov.io/gh/loelschlaeger/oeli?branch=master)
+coverage](https://codecov.io/gh/loelschlaeger/oeli/graph/badge.svg)](https://app.codecov.io/gh/loelschlaeger/oeli)
 <!-- badges: end -->
 
 This [R](https://CRAN.R-project.org) package provides helper functions I
@@ -163,19 +163,19 @@ data <- correlated_regressors(
 )
 head(data)
 #>   P C         N1         N2         U
-#> 1 0 3  0.3779594 -0.5399528 -1.664235
-#> 2 2 1 -1.9097841 -0.1398213 -1.142377
-#> 3 0 3 -3.8363473 -0.6662795 -1.493751
-#> 4 1 1 -2.2852178  1.0034751 -1.123158
-#> 5 4 1 -2.4448249  0.8829295 -1.029190
-#> 6 0 3 -0.8822268  1.1187363 -1.954928
+#> 1 0 3  2.9451097 -0.8638549 -1.921007
+#> 2 2 1 -5.1350957  1.3390663 -1.133347
+#> 3 3 1 -1.2722775 -0.1166058 -1.174671
+#> 4 2 2 -1.5969501  0.3877268 -1.493931
+#> 5 3 2 -0.3863015  0.5339768 -1.395497
+#> 6 5 1 -3.6924075  0.9798459 -1.066466
 cor(data)
-#>              P          C          N1          N2          U
-#> P   1.00000000 -0.2659247 -0.08918885  0.04813486  0.4908038
-#> C  -0.26592466  1.0000000  0.36584848 -0.55348374 -0.7370335
-#> N1 -0.08918885  0.3658485  1.00000000 -0.30000000 -0.3248601
-#> N2  0.04813486 -0.5534837 -0.30000000  1.00000000  0.1024402
-#> U   0.49080378 -0.7370335 -0.32486014  0.10244024  1.0000000
+#>               P          C          N1           N2           U
+#> P   1.000000000 -0.2598683 -0.02141804 -0.008708831  0.44863283
+#> C  -0.259868343  1.0000000  0.25880138 -0.523439321 -0.71222969
+#> N1 -0.021418038  0.2588014  1.00000000 -0.300000000 -0.24632069
+#> N2 -0.008708831 -0.5234393 -0.30000000  1.000000000  0.09679108
+#> U   0.448632829 -0.7122297 -0.24632069  0.096791077  1.00000000
 ```
 
 ### [Transformation helpers](https://loelschlaeger.de/oeli/reference/index.html#transformation)

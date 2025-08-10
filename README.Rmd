@@ -23,7 +23,7 @@ set.seed(1)
 [![CRAN status](https://www.r-pkg.org/badges/version/oeli)](https://CRAN.R-project.org/package=oeli)
 [![CRAN downloads](https://cranlogs.r-pkg.org/badges/last-month/oeli)](https://CRAN.R-project.org/package=oeli)
 [![R-CMD-check](https://github.com/loelschlaeger/oeli/actions/workflows/R-CMD-check.yaml/badge.svg)](https://github.com/loelschlaeger/oeli/actions/workflows/R-CMD-check.yaml)
-[![Codecov test coverage](https://codecov.io/gh/loelschlaeger/oeli/branch/master/graph/badge.svg)](https://app.codecov.io/gh/loelschlaeger/oeli?branch=master)
+[![Codecov test coverage](https://codecov.io/gh/loelschlaeger/oeli/graph/badge.svg)](https://app.codecov.io/gh/loelschlaeger/oeli)
 <!-- badges: end -->
 
 This [R](https://CRAN.R-project.org) package provides helper functions I found useful when developing R code - perhaps you will too! The released package version can be installed via:
