@@ -34,8 +34,26 @@ not included in base R, like the Dirichlet:
 ddirichlet(x = c(0.2, 0.3, 0.5), concentration = 1:3)
 #> [1] 4.5
 rdirichlet(concentration = 1:3)
-#> [1] 0.07281307 0.59425537 0.33293156
+#> [1] 0.01795087 0.41315984 0.56888929
 ```
+
+Or the mixture of Gaussian distributions:
+
+``` r
+x <- c(0, 0)
+mean <- matrix(c(1, 1, -1, -1), ncol = 2) # means in columns
+Sigma <- matrix(c(diag(2), 0.1 * diag(2)), ncol = 2) # vectorized covariances in columns
+proportions <- c(0.7, 0.3)
+dmixnorm(x = x, mean = mean, Sigma = Sigma, proportions = proportions)
+#> [1] 0.04100656
+pmixnorm(x = x, mean = mean, Sigma = Sigma, proportions = proportions)
+#> [1] 0.3171506
+rmixnorm(n = 1000, mean = mean, Sigma = Sigma, proportions = proportions) |>
+  as.data.frame() |> 
+  ggplot2::ggplot() + ggplot2::geom_point(ggplot2::aes(x = V1, y = V2))
+```
+
+<img src="man/figures/README-mixnorm-1.png" width="50%" style="display: block; margin: auto;" />
 
 ### [Function helpers](https://loelschlaeger.de/oeli/reference/index.html#functional)
 
@@ -93,12 +111,12 @@ How to print a `matrix` without filling up the entire console?
 x <- matrix(rnorm(10000), ncol = 100, nrow = 100)
 print_matrix(x, rowdots = 4, coldots = 4, digits = 2, label = "what a big matrix")
 #> what a big matrix : 100 x 100 matrix of doubles 
-#>         [,1] [,2]  [,3] ... [,100]
-#> [1,]   -0.04 0.76 -0.24 ...  -1.86
-#> [2,]   -0.14 0.02  0.59 ...   0.37
-#> [3,]   -0.22 0.68 -0.55 ...   1.23
-#> ...      ...  ...   ... ...    ...
-#> [100,] -0.63 0.48 -1.59 ...  -0.55
+#>         [,1]  [,2] [,3] ... [,100]
+#> [1,]    -0.3 -0.74 -0.1 ...   1.01
+#> [2,]    1.39 -2.06 1.29 ...   -0.5
+#> [3,]   -0.45 -1.57 0.43 ...   1.61
+#> ...      ...   ...  ... ...    ...
+#> [100,]  1.12  0.77 -1.6 ...  -0.08
 ```
 
 And what about a `data.frame`?
@@ -107,15 +125,15 @@ And what about a `data.frame`?
 x <- data.frame(x = rnorm(1000), y = LETTERS[1:10])
 print_data.frame(x, rows = 7, digits = 0)
 #>      x  y
-#> 1     1 A
-#> 2     2 B
-#> 3    -1 C
-#> 4     0 D
+#> 1     0 A
+#> 2     1 B
+#> 3     0 C
+#> 4    -1 D
 #> <993 rows hidden>
 #>          
-#> 998   1 H
+#> 998   0 H
 #> 999   0 I
-#> 1000  1 J
+#> 1000  2 J
 ```
 
 ### [Simulation helpers](https://loelschlaeger.de/oeli/reference/index.html#simulation)
@@ -144,20 +162,20 @@ data <- correlated_regressors(
   labels = labels, n = n, marginals = marginals, correlation = correlation
 )
 head(data)
-#>   P C         N1          N2         U
-#> 1 1 3 -0.4957652 -0.62635146 -1.416922
-#> 2 1 3  2.0426480 -2.02656468 -1.777078
-#> 3 1 2 -0.7121018 -0.18063709 -1.550787
-#> 4 4 2 -2.3627092 -0.09519952 -1.321228
-#> 5 3 1 -1.1725161 -0.61699982 -1.040660
-#> 6 3 1 -4.2854744  1.32614010 -1.049777
+#>   P C         N1         N2         U
+#> 1 0 3  0.3779594 -0.5399528 -1.664235
+#> 2 2 1 -1.9097841 -0.1398213 -1.142377
+#> 3 0 3 -3.8363473 -0.6662795 -1.493751
+#> 4 1 1 -2.2852178  1.0034751 -1.123158
+#> 5 4 1 -2.4448249  0.8829295 -1.029190
+#> 6 0 3 -0.8822268  1.1187363 -1.954928
 cor(data)
-#>               P          C          N1           N2           U
-#> P   1.000000000 -0.3391114 -0.08397754 -0.003348344  0.56199395
-#> C  -0.339111376  1.0000000  0.28680765 -0.533034651 -0.74441109
-#> N1 -0.083977543  0.2868076  1.00000000 -0.300000000 -0.30630729
-#> N2 -0.003348344 -0.5330347 -0.30000000  1.000000000  0.08962678
-#> U   0.561993949 -0.7444111 -0.30630729  0.089626776  1.00000000
+#>              P          C          N1          N2          U
+#> P   1.00000000 -0.2659247 -0.08918885  0.04813486  0.4908038
+#> C  -0.26592466  1.0000000  0.36584848 -0.55348374 -0.7370335
+#> N1 -0.08918885  0.3658485  1.00000000 -0.30000000 -0.3248601
+#> N2  0.04813486 -0.5534837 -0.30000000  1.00000000  0.1024402
+#> U   0.49080378 -0.7370335 -0.32486014  0.10244024  1.0000000
 ```
 
 ### [Transformation helpers](https://loelschlaeger.de/oeli/reference/index.html#transformation)
