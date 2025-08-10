@@ -93,8 +93,10 @@ Use this inverse Wishart distribution?</p></dd>
 <code><a href="Simulator.html">Simulator</a></code>,
 <code><a href="correlated_regressors.html">correlated_regressors</a>()</code>,
 <code><a href="ddirichlet.html">ddirichlet_cpp</a>()</code>,
+<code><a href="dmixnorm.html">dmixnorm_cpp</a>()</code>,
 <code><a href="dmvnorm.html">dmvnorm_cpp</a>()</code>,
 <code><a href="dtnorm.html">dtnorm_cpp</a>()</code>,
+<code><a href="gaussian_tv.html">gaussian_tv</a>()</code>,
 <code><a href="simulate_markov_chain.html">simulate_markov_chain</a>()</code></p></div>
     </div>
 
@@ -114,21 +116,21 @@ Use this inverse Wishart distribution?</p></dd>
 <span class="r-in"><span></span></span>
 <span class="r-in"><span><span class="co"># sample</span></span></span>
 <span class="r-in"><span><span class="fu">rwishart</span><span class="op">(</span>df <span class="op">=</span> <span class="va">df</span>, scale <span class="op">=</span> <span class="va">scale</span><span class="op">)</span></span></span>
-<span class="r-out co"><span class="r-pr">#&gt;</span>          [,1]     [,2]</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> [1,] 7.418453 1.722992</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> [2,] 1.722992 4.758561</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span>           [,1]      [,2]</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> [1,] 2.1687254 0.1936597</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> [2,] 0.1936597 8.0740677</span>
 <span class="r-in"><span><span class="fu">rwishart</span><span class="op">(</span>df <span class="op">=</span> <span class="va">df</span>, scale <span class="op">=</span> <span class="va">scale</span>, inv <span class="op">=</span> <span class="cn">TRUE</span><span class="op">)</span></span></span>
 <span class="r-out co"><span class="r-pr">#&gt;</span>             [,1]        [,2]</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> [1,]  0.27810060 -0.07010054</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> [2,] -0.07010054  0.05856666</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> [1,]  0.42597820 -0.05598708</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> [2,] -0.05598708  0.30358819</span>
 <span class="r-in"><span></span></span>
 <span class="r-in"><span><span class="co"># expectation of Wishart is df * scale</span></span></span>
 <span class="r-in"><span><span class="va">n</span> <span class="op">&lt;-</span> <span class="fl">100</span></span></span>
 <span class="r-in"><span><span class="fu"><a href="https://rdrr.io/r/base/lapply.html" class="external-link">replicate</a></span><span class="op">(</span><span class="va">n</span>, <span class="fu">rwishart</span><span class="op">(</span>df <span class="op">=</span> <span class="va">df</span>, scale <span class="op">=</span> <span class="va">scale</span><span class="op">)</span>, simplify <span class="op">=</span> <span class="cn">FALSE</span><span class="op">)</span> <span class="op">|&gt;</span></span></span>
 <span class="r-in"><span>  <span class="fu"><a href="https://rdrr.io/r/base/funprog.html" class="external-link">Reduce</a></span><span class="op">(</span>f <span class="op">=</span> <span class="st">"+"</span><span class="op">)</span> <span class="op">/</span> <span class="va">n</span></span></span>
 <span class="r-out co"><span class="r-pr">#&gt;</span>           [,1]      [,2]</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> [1,]  6.645653 -2.334999</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> [2,] -2.334999  4.636367</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> [1,]  5.709900 -1.582259</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> [2,] -1.582259  4.718137</span>
 <span class="r-in"><span><span class="va">df</span> <span class="op">*</span> <span class="va">scale</span></span></span>
 <span class="r-out co"><span class="r-pr">#&gt;</span>      [,1] [,2]</span>
 <span class="r-out co"><span class="r-pr">#&gt;</span> [1,]  6.0 -1.8</span>
@@ -138,9 +140,9 @@ Use this inverse Wishart distribution?</p></dd>
 <span class="r-in"><span><span class="va">n</span> <span class="op">&lt;-</span> <span class="fl">100</span></span></span>
 <span class="r-in"><span><span class="fu"><a href="https://rdrr.io/r/base/lapply.html" class="external-link">replicate</a></span><span class="op">(</span><span class="va">n</span>, <span class="fu">rwishart</span><span class="op">(</span>df <span class="op">=</span> <span class="va">df</span>, scale <span class="op">=</span> <span class="va">scale</span>, <span class="cn">TRUE</span><span class="op">)</span>, simplify <span class="op">=</span> <span class="cn">FALSE</span><span class="op">)</span> <span class="op">|&gt;</span></span></span>
 <span class="r-in"><span>  <span class="fu"><a href="https://rdrr.io/r/base/funprog.html" class="external-link">Reduce</a></span><span class="op">(</span>f <span class="op">=</span> <span class="st">"+"</span><span class="op">)</span> <span class="op">/</span> <span class="va">n</span></span></span>
-<span class="r-out co"><span class="r-pr">#&gt;</span>             [,1]        [,2]</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> [1,]  0.32643889 -0.09725389</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> [2,] -0.09725389  0.24448840</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span>            [,1]       [,2]</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> [1,]  0.3368217 -0.1180094</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> [2,] -0.1180094  0.2536776</span>
 <span class="r-in"><span><span class="va">scale</span> <span class="op">/</span> <span class="op">(</span><span class="va">df</span> <span class="op">-</span> <span class="fl">2</span> <span class="op">-</span> <span class="fl">1</span><span class="op">)</span></span></span>
 <span class="r-out co"><span class="r-pr">#&gt;</span>            [,1]       [,2]</span>
 <span class="r-out co"><span class="r-pr">#&gt;</span> [1,]  0.3333333 -0.1000000</span>

@@ -81,7 +81,7 @@ A quantile vector of length <code>p</code>.</p></dd>
 <dt id="arg-mean">mean<a class="anchor" aria-label="anchor" href="#arg-mean"></a></dt>
 <dd><p>[<code><a href="https://rdrr.io/r/base/numeric.html" class="external-link">numeric()</a></code>]<br>
 The mean vector of length <code>p</code>.</p>
-<p>For <code>dmvnorm()</code> and <code>rmvnorm()</code>, it can also be of length <code>1</code> for
+<p>For the functions without suffix <code>_cpp</code>, it can also be of length <code>1</code> for
 convenience, then <code>rep(mean, p)</code> is considered.</p></dd>
 
 
@@ -90,16 +90,15 @@ convenience, then <code>rep(mean, p)</code> is considered.</p></dd>
 The covariance matrix of dimension <code>p</code>.</p>
 <p>For <code>rmvnorm()</code>, arbitrary dimensions (i.e., full rows and corresponding
 columns) of <code>Sigma</code> can be <code>0</code>.</p>
-<p>For <code>dmvnorm()</code> and <code>rmvnorm()</code> and if <code>p = 1</code>, it can also be a single
-<code>numeric</code> for convenience. Note that <code>Sigma</code> is this case is a variance,
-which is a different format than in <code><a href="https://rdrr.io/r/stats/Normal.html" class="external-link">stats::dnorm()</a></code> or <code><a href="https://rdrr.io/r/stats/Normal.html" class="external-link">stats::rnorm</a></code>,
-which require a standard deviation.</p></dd>
+<p>For the functions without suffix <code>_cpp</code> and if <code>p = 1</code>, it can also be a
+single <code>numeric</code> for convenience. Note that <code>Sigma</code> is this case is a
+variance, which is a different format than in <code><a href="https://rdrr.io/r/stats/Normal.html" class="external-link">stats::dnorm()</a></code> or
+<code><a href="https://rdrr.io/r/stats/Normal.html" class="external-link">stats::rnorm</a></code>, which require a standard deviation.</p></dd>
 
 
 <dt id="arg-log">log<a class="anchor" aria-label="anchor" href="#arg-log"></a></dt>
 <dd><p>[<code>logical(1)</code>]<br>
-For <code>dmvnorm()</code>: Return the logarithm of the density value?</p>
-<p>For <code>rmvnorm()</code>: Draw from a log-normal distribution?</p></dd>
+Consider the log-normal distribution?</p></dd>
 
 
 <dt id="arg-abseps">abseps<a class="anchor" aria-label="anchor" href="#arg-abseps"></a></dt>
@@ -115,6 +114,7 @@ The number of requested samples.</p></dd>
     <div class="section level2">
     <h2 id="value">Value<a class="anchor" aria-label="anchor" href="#value"></a></h2>
     <p>For <code>dmvnorm()</code>: The density value.</p>
+<p>For <code>pmvnorm()</code>: The value of the distribution function.</p>
 <p>For <code>rmvnorm()</code>: If <code>n = 1</code> a <code>vector</code> of length <code>p</code> (note
 that it is a column vector for <code>rmvnorm_cpp()</code>), else
 a <code>matrix</code> of dimension <code>n</code> times <code>p</code> with samples as rows.</p>
@@ -131,8 +131,10 @@ the accuracy of the Gaussian integral approximation.</p>
 <code><a href="Simulator.html">Simulator</a></code>,
 <code><a href="correlated_regressors.html">correlated_regressors</a>()</code>,
 <code><a href="ddirichlet.html">ddirichlet_cpp</a>()</code>,
+<code><a href="dmixnorm.html">dmixnorm_cpp</a>()</code>,
 <code><a href="dtnorm.html">dtnorm_cpp</a>()</code>,
 <code><a href="dwishart.html">dwishart_cpp</a>()</code>,
+<code><a href="gaussian_tv.html">gaussian_tv</a>()</code>,
 <code><a href="simulate_markov_chain.html">simulate_markov_chain</a>()</code></p></div>
     </div>
 
@@ -154,12 +156,12 @@ the accuracy of the Gaussian integral approximation.</p>
 <span class="r-in"><span></span></span>
 <span class="r-in"><span><span class="co"># sample</span></span></span>
 <span class="r-in"><span><span class="fu">rmvnorm</span><span class="op">(</span>n <span class="op">=</span> <span class="fl">3</span>, mean <span class="op">=</span> <span class="va">mean</span>, Sigma <span class="op">=</span> <span class="va">Sigma</span><span class="op">)</span></span></span>
-<span class="r-out co"><span class="r-pr">#&gt;</span>          [,1]       [,2]</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> [1,] 0.201326  0.1113072</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> [2,] 1.290432 -0.1789433</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> [3,] 0.689619  1.3125645</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span>            [,1]        [,2]</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> [1,] -0.3260434  0.04184136</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> [2,] -0.8670785 -0.45665766</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> [3,] -0.2038290 -0.38998491</span>
 <span class="r-in"><span><span class="fu">rmvnorm</span><span class="op">(</span>mean <span class="op">=</span> <span class="va">mean</span>, Sigma <span class="op">=</span> <span class="va">Sigma</span>, log <span class="op">=</span> <span class="cn">TRUE</span><span class="op">)</span></span></span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> [1] 0.8438016 0.5036300</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> [1] 1.1525401 0.2878296</span>
 </code></pre></div>
     </div>
   </main><aside class="col-md-3"><nav id="toc" aria-label="Table of contents"><h2>On this page</h2>

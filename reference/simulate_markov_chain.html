@@ -71,9 +71,11 @@ A probability vector, the initial distribution.</p>
 <code><a href="Simulator.html">Simulator</a></code>,
 <code><a href="correlated_regressors.html">correlated_regressors</a>()</code>,
 <code><a href="ddirichlet.html">ddirichlet_cpp</a>()</code>,
+<code><a href="dmixnorm.html">dmixnorm_cpp</a>()</code>,
 <code><a href="dmvnorm.html">dmvnorm_cpp</a>()</code>,
 <code><a href="dtnorm.html">dtnorm_cpp</a>()</code>,
-<code><a href="dwishart.html">dwishart_cpp</a>()</code></p></div>
+<code><a href="dwishart.html">dwishart_cpp</a>()</code>,
+<code><a href="gaussian_tv.html">gaussian_tv</a>()</code></p></div>
     </div>
 
     <div class="section level2">
@@ -81,7 +83,7 @@ A probability vector, the initial distribution.</p>
     <div class="sourceCode"><pre class="sourceCode r"><code><span class="r-in"><span><span class="va">Gamma</span> <span class="op">&lt;-</span> <span class="fu"><a href="https://rdrr.io/r/base/matrix.html" class="external-link">matrix</a></span><span class="op">(</span><span class="fu"><a href="https://rdrr.io/r/base/c.html" class="external-link">c</a></span><span class="op">(</span><span class="fl">0.8</span>, <span class="fl">0.2</span>, <span class="fl">0.3</span>, <span class="fl">0.7</span><span class="op">)</span>, byrow <span class="op">=</span> <span class="cn">TRUE</span>, nrow <span class="op">=</span> <span class="fl">2</span><span class="op">)</span></span></span>
 <span class="r-in"><span><span class="va">delta</span> <span class="op">&lt;-</span> <span class="fu"><a href="https://rdrr.io/r/base/c.html" class="external-link">c</a></span><span class="op">(</span><span class="fl">0.6</span>, <span class="fl">0.4</span><span class="op">)</span></span></span>
 <span class="r-in"><span><span class="fu">simulate_markov_chain</span><span class="op">(</span>Gamma <span class="op">=</span> <span class="va">Gamma</span>, T <span class="op">=</span> <span class="fl">20</span>, delta <span class="op">=</span> <span class="va">delta</span><span class="op">)</span></span></span>
-<span class="r-out co"><span class="r-pr">#&gt;</span>  [1] 1 1 1 2 1 1 2 1 1 2 2 1 1 1 1 1 1 1 1 2</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span>  [1] 1 1 2 1 1 1 1 1 1 1 1 2 2 2 2 1 1 1 1 1</span>
 </code></pre></div>
     </div>
   </main><aside class="col-md-3"><nav id="toc" aria-label="Table of contents"><h2>On this page</h2>
