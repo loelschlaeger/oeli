@@ -13,6 +13,24 @@ rdirichlet_cpp <- function(concentration) {
     .Call(`_oeli_rdirichlet_cpp`, concentration)
 }
 
+#' @rdname dmixnorm
+#' @export
+dmixnorm_cpp <- function(x, mean, Sigma, proportions) {
+    .Call(`_oeli_dmixnorm_cpp`, x, mean, Sigma, proportions)
+}
+
+#' @rdname dmixnorm
+#' @export
+pmixnorm_cpp <- function(x, mean, Sigma, proportions, abseps = 1e-3) {
+    .Call(`_oeli_pmixnorm_cpp`, x, mean, Sigma, proportions, abseps)
+}
+
+#' @rdname dmixnorm
+#' @export
+rmixnorm_cpp <- function(mean, Sigma, proportions) {
+    .Call(`_oeli_rmixnorm_cpp`, mean, Sigma, proportions)
+}
+
 #' @rdname dmvnorm
 #' @export
 dmvnorm_cpp <- function(x, mean, Sigma, log = FALSE) {

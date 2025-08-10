@@ -106,11 +106,11 @@ gaussian_tv <- function(
     R <- chol(Sigma1)
     z <- backsolve(R, forwardsolve(t(R), mu_diff))
     delta <- sqrt(sum(z * z))
-    return(1 - 2 * pnorm(-delta / 2))
+    return(1 - 2 * stats::pnorm(-delta / 2))
   }
   if (method == "cubature" || (method == "auto" && p <= 2)) {
     s1 <- sqrt(diag(Sigma1)); s2 <- sqrt(diag(Sigma2))
-    k <- qnorm(1 - eps / (2 * p))
+    k <- stats::qnorm(1 - eps / (2 * p))
     lower <- pmin(mean1 - k * s1, mean2 - k * s2)
     upper <- pmax(mean1 + k * s1, mean2 + k * s2)
     min_f1_f2 <- function(x) {

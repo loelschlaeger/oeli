@@ -80,8 +80,10 @@ Other simulation helpers:
 \code{\link{Simulator}},
 \code{\link{correlated_regressors}()},
 \code{\link{ddirichlet_cpp}()},
+\code{\link{dmixnorm_cpp}()},
 \code{\link{dmvnorm_cpp}()},
 \code{\link{dwishart_cpp}()},
+\code{\link{gaussian_tv}()},
 \code{\link{simulate_markov_chain}()}
 }
 \concept{simulation helpers}

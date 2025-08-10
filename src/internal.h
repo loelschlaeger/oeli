@@ -10,6 +10,20 @@ double ddirichlet_cpp(
 
 arma::vec rdirichlet_cpp(arma::vec const& concentration);
 
+double dmixnorm_cpp(
+    arma::vec const& x, arma::mat const& mean, arma::mat const& Sigma,
+    arma::vec proportions
+);
+
+double pmixnorm_cpp(
+    arma::vec const& x, arma::mat const& mean, arma::mat const& Sigma,
+    arma::vec proportions, double abseps = 1e-3
+);
+
+arma::vec rmixnorm_cpp(
+    arma::mat const& mean, arma::mat const& Sigma, arma::vec proportions
+);
+
 double dmvnorm_cpp(
     arma::vec const& x, arma::vec const& mean, arma::mat const& Sigma,
     bool log = false
@@ -21,7 +35,7 @@ double pmvnorm_cpp(
 );
 
 arma::vec rmvnorm_cpp(
-    arma::vec mean, arma::mat const& Sigma, bool log = false
+    arma::vec const& mean, arma::mat const& Sigma, bool log = false
 );
 
 double dtnorm_cpp(

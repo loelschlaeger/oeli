@@ -18,6 +18,9 @@
 #' @param dist \[`numeric(1)`\]\cr
 #' Desired pairwise Euclidean distance between any two vertices.
 #'
+#' @param center \[`numeric(dim)`\]\cr
+#' Desired center.
+#'
 #' @return
 #' A matrix, where each column is a vertex of the simplex.
 #'

@@ -12,6 +12,8 @@
 
 * Added function `equidistant_vectors()` that generates equidistant vectors in Euclidean space.
 
+* Added functions `dmixnorm()`, `pmixnorm()`, and `rmixnorm()` that compute the density, cumulative distribution function, and samples from a mixture of multivariate normal distribution.
+
 # oeli 0.7.4
 
 * Added R6 object `Simulator` that provides some convenience when running simulations.

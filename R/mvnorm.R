@@ -24,7 +24,7 @@
 #' @param mean \[`numeric()`\]\cr
 #' The mean vector of length `p`.
 #'
-#' For `dmvnorm()` and `rmvnorm()`, it can also be of length `1` for
+#' For the functions without suffix `_cpp`, it can also be of length `1` for
 #' convenience, then `rep(mean, p)` is considered.
 #'
 #' @param Sigma \[`matrix()`\]\cr
@@ -33,15 +33,13 @@
 #' For `rmvnorm()`, arbitrary dimensions (i.e., full rows and corresponding
 #' columns) of `Sigma` can be `0`.
 #'
-#' For `dmvnorm()` and `rmvnorm()` and if `p = 1`, it can also be a single
-#' `numeric` for convenience. Note that `Sigma` is this case is a variance,
-#' which is a different format than in `stats::dnorm()` or `stats::rnorm`,
-#' which require a standard deviation.
+#' For the functions without suffix `_cpp` and if `p = 1`, it can also be a
+#' single `numeric` for convenience. Note that `Sigma` is this case is a
+#' variance, which is a different format than in `stats::dnorm()` or
+#' `stats::rnorm`, which require a standard deviation.
 #'
 #' @param log \[`logical(1)`\]\cr
-#' For `dmvnorm()`: Return the logarithm of the density value?
-#'
-#' For `rmvnorm()`: Draw from a log-normal distribution?
+#' Consider the log-normal distribution?
 #'
 #' @param abseps \[`numeric(1)`\]\cr
 #' The absolute error tolerance.
@@ -51,6 +49,8 @@
 #'
 #' @return
 #' For `dmvnorm()`: The density value.
+#'
+#' For `pmvnorm()`: The value of the distribution function.
 #'
 #' For `rmvnorm()`: If \code{n = 1} a \code{vector} of length \code{p} (note
 #' that it is a column vector for `rmvnorm_cpp()`), else

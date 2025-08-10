@@ -108,6 +108,48 @@ BEGIN_RCPP
     return rcpp_result_gen;
 END_RCPP
 }
+// dmixnorm_cpp
+double dmixnorm_cpp(arma::vec const& x, arma::mat const& mean, arma::mat const& Sigma, arma::vec proportions);
+RcppExport SEXP _oeli_dmixnorm_cpp(SEXP xSEXP, SEXP meanSEXP, SEXP SigmaSEXP, SEXP proportionsSEXP) {
+BEGIN_RCPP
+    Rcpp::RObject rcpp_result_gen;
+    Rcpp::RNGScope rcpp_rngScope_gen;
+    Rcpp::traits::input_parameter< arma::vec const& >::type x(xSEXP);
+    Rcpp::traits::input_parameter< arma::mat const& >::type mean(meanSEXP);
+    Rcpp::traits::input_parameter< arma::mat const& >::type Sigma(SigmaSEXP);
+    Rcpp::traits::input_parameter< arma::vec >::type proportions(proportionsSEXP);
+    rcpp_result_gen = Rcpp::wrap(dmixnorm_cpp(x, mean, Sigma, proportions));
+    return rcpp_result_gen;
+END_RCPP
+}
+// pmixnorm_cpp
+double pmixnorm_cpp(arma::vec const& x, arma::mat const& mean, arma::mat const& Sigma, arma::vec proportions, double abseps);
+RcppExport SEXP _oeli_pmixnorm_cpp(SEXP xSEXP, SEXP meanSEXP, SEXP SigmaSEXP, SEXP proportionsSEXP, SEXP absepsSEXP) {
+BEGIN_RCPP
+    Rcpp::RObject rcpp_result_gen;
+    Rcpp::RNGScope rcpp_rngScope_gen;
+    Rcpp::traits::input_parameter< arma::vec const& >::type x(xSEXP);
+    Rcpp::traits::input_parameter< arma::mat const& >::type mean(meanSEXP);
+    Rcpp::traits::input_parameter< arma::mat const& >::type Sigma(SigmaSEXP);
+    Rcpp::traits::input_parameter< arma::vec >::type proportions(proportionsSEXP);
+    Rcpp::traits::input_parameter< double >::type abseps(absepsSEXP);
+    rcpp_result_gen = Rcpp::wrap(pmixnorm_cpp(x, mean, Sigma, proportions, abseps));
+    return rcpp_result_gen;
+END_RCPP
+}
+// rmixnorm_cpp
+arma::vec rmixnorm_cpp(arma::mat const& mean, arma::mat const& Sigma, arma::vec proportions);
+RcppExport SEXP _oeli_rmixnorm_cpp(SEXP meanSEXP, SEXP SigmaSEXP, SEXP proportionsSEXP) {
+BEGIN_RCPP
+    Rcpp::RObject rcpp_result_gen;
+    Rcpp::RNGScope rcpp_rngScope_gen;
+    Rcpp::traits::input_parameter< arma::mat const& >::type mean(meanSEXP);
+    Rcpp::traits::input_parameter< arma::mat const& >::type Sigma(SigmaSEXP);
+    Rcpp::traits::input_parameter< arma::vec >::type proportions(proportionsSEXP);
+    rcpp_result_gen = Rcpp::wrap(rmixnorm_cpp(mean, Sigma, proportions));
+    return rcpp_result_gen;
+END_RCPP
+}
 // dmvnorm_cpp
 double dmvnorm_cpp(arma::vec const& x, arma::vec const& mean, arma::mat const& Sigma, bool log);
 RcppExport SEXP _oeli_dmvnorm_cpp(SEXP xSEXP, SEXP meanSEXP, SEXP SigmaSEXP, SEXP logSEXP) {
@@ -137,12 +179,12 @@ BEGIN_RCPP
 END_RCPP
 }
 // rmvnorm_cpp
-arma::vec rmvnorm_cpp(arma::vec mean, arma::mat const& Sigma, bool log);
+arma::vec rmvnorm_cpp(arma::vec const& mean, arma::mat const& Sigma, bool log);
 RcppExport SEXP _oeli_rmvnorm_cpp(SEXP meanSEXP, SEXP SigmaSEXP, SEXP logSEXP) {
 BEGIN_RCPP
     Rcpp::RObject rcpp_result_gen;
     Rcpp::RNGScope rcpp_rngScope_gen;
-    Rcpp::traits::input_parameter< arma::vec >::type mean(meanSEXP);
+    Rcpp::traits::input_parameter< arma::vec const& >::type mean(meanSEXP);
     Rcpp::traits::input_parameter< arma::mat const& >::type Sigma(SigmaSEXP);
     Rcpp::traits::input_parameter< bool >::type log(logSEXP);
     rcpp_result_gen = Rcpp::wrap(rmvnorm_cpp(mean, Sigma, log));
@@ -239,6 +281,117 @@ BEGIN_RCPP
     return rcpp_result_gen;
 END_RCPP
 }
+// dmixnorm
+double dmixnorm(arma::vec const& x, arma::mat const& mean, arma::mat const& Sigma, arma::vec proportions);
+static SEXP _oeli_dmixnorm_try(SEXP xSEXP, SEXP meanSEXP, SEXP SigmaSEXP, SEXP proportionsSEXP) {
+BEGIN_RCPP
+    Rcpp::RObject rcpp_result_gen;
+    Rcpp::traits::input_parameter< arma::vec const& >::type x(xSEXP);
+    Rcpp::traits::input_parameter< arma::mat const& >::type mean(meanSEXP);
+    Rcpp::traits::input_parameter< arma::mat const& >::type Sigma(SigmaSEXP);
+    Rcpp::traits::input_parameter< arma::vec >::type proportions(proportionsSEXP);
+    rcpp_result_gen = Rcpp::wrap(dmixnorm(x, mean, Sigma, proportions));
+    return rcpp_result_gen;
+END_RCPP_RETURN_ERROR
+}
+RcppExport SEXP _oeli_dmixnorm(SEXP xSEXP, SEXP meanSEXP, SEXP SigmaSEXP, SEXP proportionsSEXP) {
+    SEXP rcpp_result_gen;
+    {
+        Rcpp::RNGScope rcpp_rngScope_gen;
+        rcpp_result_gen = PROTECT(_oeli_dmixnorm_try(xSEXP, meanSEXP, SigmaSEXP, proportionsSEXP));
+    }
+    Rboolean rcpp_isInterrupt_gen = Rf_inherits(rcpp_result_gen, "interrupted-error");
+    if (rcpp_isInterrupt_gen) {
+        UNPROTECT(1);
+        Rf_onintr();
+    }
+    bool rcpp_isLongjump_gen = Rcpp::internal::isLongjumpSentinel(rcpp_result_gen);
+    if (rcpp_isLongjump_gen) {
+        Rcpp::internal::resumeJump(rcpp_result_gen);
+    }
+    Rboolean rcpp_isError_gen = Rf_inherits(rcpp_result_gen, "try-error");
+    if (rcpp_isError_gen) {
+        SEXP rcpp_msgSEXP_gen = Rf_asChar(rcpp_result_gen);
+        UNPROTECT(1);
+        Rf_error("%s", CHAR(rcpp_msgSEXP_gen));
+    }
+    UNPROTECT(1);
+    return rcpp_result_gen;
+}
+// pmixnorm
+double pmixnorm(arma::vec const& x, arma::mat const& mean, arma::mat const& Sigma, arma::vec proportions, double abseps);
+static SEXP _oeli_pmixnorm_try(SEXP xSEXP, SEXP meanSEXP, SEXP SigmaSEXP, SEXP proportionsSEXP, SEXP absepsSEXP) {
+BEGIN_RCPP
+    Rcpp::RObject rcpp_result_gen;
+    Rcpp::traits::input_parameter< arma::vec const& >::type x(xSEXP);
+    Rcpp::traits::input_parameter< arma::mat const& >::type mean(meanSEXP);
+    Rcpp::traits::input_parameter< arma::mat const& >::type Sigma(SigmaSEXP);
+    Rcpp::traits::input_parameter< arma::vec >::type proportions(proportionsSEXP);
+    Rcpp::traits::input_parameter< double >::type abseps(absepsSEXP);
+    rcpp_result_gen = Rcpp::wrap(pmixnorm(x, mean, Sigma, proportions, abseps));
+    return rcpp_result_gen;
+END_RCPP_RETURN_ERROR
+}
+RcppExport SEXP _oeli_pmixnorm(SEXP xSEXP, SEXP meanSEXP, SEXP SigmaSEXP, SEXP proportionsSEXP, SEXP absepsSEXP) {
+    SEXP rcpp_result_gen;
+    {
+        Rcpp::RNGScope rcpp_rngScope_gen;
+        rcpp_result_gen = PROTECT(_oeli_pmixnorm_try(xSEXP, meanSEXP, SigmaSEXP, proportionsSEXP, absepsSEXP));
+    }
+    Rboolean rcpp_isInterrupt_gen = Rf_inherits(rcpp_result_gen, "interrupted-error");
+    if (rcpp_isInterrupt_gen) {
+        UNPROTECT(1);
+        Rf_onintr();
+    }
+    bool rcpp_isLongjump_gen = Rcpp::internal::isLongjumpSentinel(rcpp_result_gen);
+    if (rcpp_isLongjump_gen) {
+        Rcpp::internal::resumeJump(rcpp_result_gen);
+    }
+    Rboolean rcpp_isError_gen = Rf_inherits(rcpp_result_gen, "try-error");
+    if (rcpp_isError_gen) {
+        SEXP rcpp_msgSEXP_gen = Rf_asChar(rcpp_result_gen);
+        UNPROTECT(1);
+        Rf_error("%s", CHAR(rcpp_msgSEXP_gen));
+    }
+    UNPROTECT(1);
+    return rcpp_result_gen;
+}
+// rmixnorm
+arma::vec rmixnorm(arma::mat const& mean, arma::mat const& Sigma, arma::vec proportions);
+static SEXP _oeli_rmixnorm_try(SEXP meanSEXP, SEXP SigmaSEXP, SEXP proportionsSEXP) {
+BEGIN_RCPP
+    Rcpp::RObject rcpp_result_gen;
+    Rcpp::traits::input_parameter< arma::mat const& >::type mean(meanSEXP);
+    Rcpp::traits::input_parameter< arma::mat const& >::type Sigma(SigmaSEXP);
+    Rcpp::traits::input_parameter< arma::vec >::type proportions(proportionsSEXP);
+    rcpp_result_gen = Rcpp::wrap(rmixnorm(mean, Sigma, proportions));
+    return rcpp_result_gen;
+END_RCPP_RETURN_ERROR
+}
+RcppExport SEXP _oeli_rmixnorm(SEXP meanSEXP, SEXP SigmaSEXP, SEXP proportionsSEXP) {
+    SEXP rcpp_result_gen;
+    {
+        Rcpp::RNGScope rcpp_rngScope_gen;
+        rcpp_result_gen = PROTECT(_oeli_rmixnorm_try(meanSEXP, SigmaSEXP, proportionsSEXP));
+    }
+    Rboolean rcpp_isInterrupt_gen = Rf_inherits(rcpp_result_gen, "interrupted-error");
+    if (rcpp_isInterrupt_gen) {
+        UNPROTECT(1);
+        Rf_onintr();
+    }
+    bool rcpp_isLongjump_gen = Rcpp::internal::isLongjumpSentinel(rcpp_result_gen);
+    if (rcpp_isLongjump_gen) {
+        Rcpp::internal::resumeJump(rcpp_result_gen);
+    }
+    Rboolean rcpp_isError_gen = Rf_inherits(rcpp_result_gen, "try-error");
+    if (rcpp_isError_gen) {
+        SEXP rcpp_msgSEXP_gen = Rf_asChar(rcpp_result_gen);
+        UNPROTECT(1);
+        Rf_error("%s", CHAR(rcpp_msgSEXP_gen));
+    }
+    UNPROTECT(1);
+    return rcpp_result_gen;
+}
 // dmvnorm
 double dmvnorm(arma::vec const& x, arma::vec const& mean, arma::mat const& Sigma, bool log);
 static SEXP _oeli_dmvnorm_try(SEXP xSEXP, SEXP meanSEXP, SEXP SigmaSEXP, SEXP logSEXP) {
@@ -314,11 +467,11 @@ RcppExport SEXP _oeli_pmvnorm(SEXP xSEXP, SEXP meanSEXP, SEXP SigmaSEXP, SEXP ab
     return rcpp_result_gen;
 }
 // rmvnorm
-arma::vec rmvnorm(arma::vec mean, arma::mat const& Sigma, bool log);
+arma::vec rmvnorm(arma::vec const& mean, arma::mat const& Sigma, bool log);
 static SEXP _oeli_rmvnorm_try(SEXP meanSEXP, SEXP SigmaSEXP, SEXP logSEXP) {
 BEGIN_RCPP
     Rcpp::RObject rcpp_result_gen;
-    Rcpp::traits::input_parameter< arma::vec >::type mean(meanSEXP);
+    Rcpp::traits::input_parameter< arma::vec const& >::type mean(meanSEXP);
     Rcpp::traits::input_parameter< arma::mat const& >::type Sigma(SigmaSEXP);
     Rcpp::traits::input_parameter< bool >::type log(logSEXP);
     rcpp_result_gen = Rcpp::wrap(rmvnorm(mean, Sigma, log));
@@ -584,9 +737,12 @@ static int _oeli_RcppExport_validate(const char* sig) {
     if (signatures.empty()) {
         signatures.insert("double(*ddirichlet)(arma::vec const&,arma::vec const&,bool)");
         signatures.insert("arma::vec(*rdirichlet)(arma::vec const&)");
+        signatures.insert("double(*dmixnorm)(arma::vec const&,arma::mat const&,arma::mat const&,arma::vec)");
+        signatures.insert("double(*pmixnorm)(arma::vec const&,arma::mat const&,arma::mat const&,arma::vec,double)");
+        signatures.insert("arma::vec(*rmixnorm)(arma::mat const&,arma::mat const&,arma::vec)");
         signatures.insert("double(*dmvnorm)(arma::vec const&,arma::vec const&,arma::mat const&,bool)");
         signatures.insert("double(*pmvnorm)(arma::vec const&,arma::vec const&,arma::mat const&,double)");
-        signatures.insert("arma::vec(*rmvnorm)(arma::vec,arma::mat const&,bool)");
+        signatures.insert("arma::vec(*rmvnorm)(arma::vec const&,arma::mat const&,bool)");
         signatures.insert("double(*dtnorm)(double,double,double,double,bool,bool)");
         signatures.insert("double(*dttnorm)(double,double,double,double,double,bool)");
         signatures.insert("double(*rtnorm)(double,double,double,bool,bool)");
@@ -601,6 +757,9 @@ static int _oeli_RcppExport_validate(const char* sig) {
 RcppExport SEXP _oeli_RcppExport_registerCCallable() { 
     R_RegisterCCallable("oeli", "_oeli_ddirichlet", (DL_FUNC)_oeli_ddirichlet_try);
     R_RegisterCCallable("oeli", "_oeli_rdirichlet", (DL_FUNC)_oeli_rdirichlet_try);
+    R_RegisterCCallable("oeli", "_oeli_dmixnorm", (DL_FUNC)_oeli_dmixnorm_try);
+    R_RegisterCCallable("oeli", "_oeli_pmixnorm", (DL_FUNC)_oeli_pmixnorm_try);
+    R_RegisterCCallable("oeli", "_oeli_rmixnorm", (DL_FUNC)_oeli_rmixnorm_try);
     R_RegisterCCallable("oeli", "_oeli_dmvnorm", (DL_FUNC)_oeli_dmvnorm_try);
     R_RegisterCCallable("oeli", "_oeli_pmvnorm", (DL_FUNC)_oeli_pmvnorm_try);
     R_RegisterCCallable("oeli", "_oeli_rmvnorm", (DL_FUNC)_oeli_rmvnorm_try);
@@ -621,6 +780,9 @@ static const R_CallMethodDef CallEntries[] = {
     {"_oeli_rdirichlet", (DL_FUNC) &_oeli_rdirichlet, 1},
     {"_oeli_ddirichlet_cpp", (DL_FUNC) &_oeli_ddirichlet_cpp, 3},
     {"_oeli_rdirichlet_cpp", (DL_FUNC) &_oeli_rdirichlet_cpp, 1},
+    {"_oeli_dmixnorm_cpp", (DL_FUNC) &_oeli_dmixnorm_cpp, 4},
+    {"_oeli_pmixnorm_cpp", (DL_FUNC) &_oeli_pmixnorm_cpp, 5},
+    {"_oeli_rmixnorm_cpp", (DL_FUNC) &_oeli_rmixnorm_cpp, 3},
     {"_oeli_dmvnorm_cpp", (DL_FUNC) &_oeli_dmvnorm_cpp, 4},
     {"_oeli_pmvnorm_cpp", (DL_FUNC) &_oeli_pmvnorm_cpp, 4},
     {"_oeli_rmvnorm_cpp", (DL_FUNC) &_oeli_rmvnorm_cpp, 3},
@@ -630,6 +792,9 @@ static const R_CallMethodDef CallEntries[] = {
     {"_oeli_rttnorm_cpp", (DL_FUNC) &_oeli_rttnorm_cpp, 5},
     {"_oeli_dwishart_cpp", (DL_FUNC) &_oeli_dwishart_cpp, 5},
     {"_oeli_rwishart_cpp", (DL_FUNC) &_oeli_rwishart_cpp, 3},
+    {"_oeli_dmixnorm", (DL_FUNC) &_oeli_dmixnorm, 4},
+    {"_oeli_pmixnorm", (DL_FUNC) &_oeli_pmixnorm, 5},
+    {"_oeli_rmixnorm", (DL_FUNC) &_oeli_rmixnorm, 3},
     {"_oeli_dmvnorm", (DL_FUNC) &_oeli_dmvnorm, 4},
     {"_oeli_pmvnorm", (DL_FUNC) &_oeli_pmvnorm, 4},
     {"_oeli_rmvnorm", (DL_FUNC) &_oeli_rmvnorm, 3},

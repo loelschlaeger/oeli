@@ -19,11 +19,15 @@ test_that("Multivariate normal density can be computed", {
     0.159
   )
   expect_equal(
+    round(dmvnorm(x = x, mean = mean[1], Sigma = Sigma, log = FALSE) * factor) / factor,
+    0.159
+  )
+  expect_equal(
     round(dmvnorm(x = x, mean = mean, Sigma = Sigma, log = TRUE) * factor) / factor,
     -1.838
   )
   expect_error(
-    dmvnorm(x = 1:2, mean = 1:3, Sigma = diag(4)),
+    dmvnorm(x = 1:2, mean = 1:3, Sigma = diag(2)),
     "Input `mean` is bad: Must have length 2, but has length 3"
   )
 })

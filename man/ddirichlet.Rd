@@ -57,6 +57,7 @@ rdirichlet(n = 4, concentration = 1:2)
 Other simulation helpers: 
 \code{\link{Simulator}},
 \code{\link{correlated_regressors}()},
+\code{\link{dmixnorm_cpp}()},
 \code{\link{dmvnorm_cpp}()},
 \code{\link{dtnorm_cpp}()},
 \code{\link{dwishart_cpp}()},

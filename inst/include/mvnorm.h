@@ -14,6 +14,8 @@ double pmvnorm(
     double abseps = 1e-3
 );
 
-arma::vec rmvnorm(arma::vec mean, arma::mat const& Sigma, bool log = false);
+arma::vec rmvnorm(
+    arma::vec const& mean, arma::mat const& Sigma, bool log = false
+);
 
 #endif

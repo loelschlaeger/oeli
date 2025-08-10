@@ -15,6 +15,9 @@ The number of vertices to return. Cannot be larger than \code{dim + 1}.}
 
 \item{dist}{[\code{numeric(1)}]\cr
 Desired pairwise Euclidean distance between any two vertices.}
+
+\item{center}{[\code{numeric(dim)}]\cr
+Desired center.}
 }
 \value{
 A matrix, where each column is a vertex of the simplex.

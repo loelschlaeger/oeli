@@ -1,6 +1,7 @@
 // [[Rcpp::depends("RcppArmadillo")]]
 #include <RcppArmadillo.h>
 #include "../inst/include/dirichlet.h"
+#include "../inst/include/mixnorm.h"
 #include "../inst/include/mvnorm.h"
 #include "../inst/include/tnorm.h"
 #include "../inst/include/wishart.h"
@@ -23,6 +24,38 @@ arma::vec rdirichlet_cpp(
    arma::vec const& concentration
 ) {
   return rdirichlet(concentration);
+}
+
+//' @rdname dmixnorm
+//' @export
+// [[Rcpp::export]]
+
+double dmixnorm_cpp(
+   arma::vec const& x, arma::mat const& mean, arma::mat const& Sigma,
+   arma::vec proportions
+) {
+   return dmixnorm(x, mean, Sigma, proportions);
+}
+
+//' @rdname dmixnorm
+//' @export
+// [[Rcpp::export]]
+
+double pmixnorm_cpp(
+   arma::vec const& x, arma::mat const& mean, arma::mat const& Sigma,
+   arma::vec proportions, double abseps = 1e-3
+) {
+  return pmixnorm(x, mean, Sigma, proportions, abseps);
+}
+
+//' @rdname dmixnorm
+//' @export
+// [[Rcpp::export]]
+
+arma::vec rmixnorm_cpp(
+   arma::mat const& mean, arma::mat const& Sigma, arma::vec proportions
+) {
+  return rmixnorm(mean, Sigma, proportions);
 }
 
 //' @rdname dmvnorm
@@ -52,7 +85,7 @@ double pmvnorm_cpp(
 // [[Rcpp::export]]
 
 arma::vec rmvnorm_cpp(
-   arma::vec mean, arma::mat const& Sigma, bool log = false
+   arma::vec const& mean, arma::mat const& Sigma, bool log = false
 ) {
   return rmvnorm(mean, Sigma, log);
 }

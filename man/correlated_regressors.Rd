@@ -84,6 +84,7 @@ This function heavily depends on the \code{{SimMultiCorrData}} package.
 Other simulation helpers: 
 \code{\link{Simulator}},
 \code{\link{ddirichlet_cpp}()},
+\code{\link{dmixnorm_cpp}()},
 \code{\link{dmvnorm_cpp}()},
 \code{\link{dtnorm_cpp}()},
 \code{\link{dwishart_cpp}()},

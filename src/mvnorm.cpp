@@ -67,7 +67,9 @@ double pmvnorm(
 // [[Rcpp::interfaces(cpp)]]
 // [[Rcpp::export]]
 
-arma::vec rmvnorm(arma::vec mean, arma::mat const& Sigma, bool log = false) {
+arma::vec rmvnorm(
+  arma::vec const& mean, arma::mat const& Sigma, bool log = false
+) {
   int p = mean.size();
   arma::vec draw = arma::zeros<arma::vec>(p);
   if (arma::all(arma::vectorise(Sigma) == 0)) {
