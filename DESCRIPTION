@@ -21,6 +21,7 @@ Imports:
     benchmarkme,
     checkmate,
     cli,
+    cubature,
     dplyr,
     future,
     future.apply,

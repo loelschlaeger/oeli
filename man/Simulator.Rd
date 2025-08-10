@@ -96,6 +96,7 @@ Other simulation helpers:
 \code{\link{dmvnorm_cpp}()},
 \code{\link{dtnorm_cpp}()},
 \code{\link{dwishart_cpp}()},
+\code{\link{gaussian_tv}()},
 \code{\link{simulate_markov_chain}()}
 }
 \concept{simulation helpers}

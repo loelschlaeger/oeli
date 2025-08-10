@@ -57,6 +57,7 @@
 #' @importFrom cli cli_text
 #' @importFrom cli cli_warn
 #' @importFrom cli style_hyperlink
+#' @importFrom cubature hcubature
 #' @importFrom dplyr arrange
 #' @importFrom dplyr bind_rows
 #' @importFrom dplyr filter

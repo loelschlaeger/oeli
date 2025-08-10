@@ -134,6 +134,7 @@ assert_numeric_vector(x)
 Other vector helpers: 
 \code{\link{check_probability_vector}()},
 \code{\link{chunk_vector}()},
+\code{\link{equidistant_vectors}()},
 \code{\link{insert_vector_entry}()},
 \code{\link{map_indices}()},
 \code{\link{match_numerics}()},

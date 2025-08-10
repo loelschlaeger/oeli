@@ -8,6 +8,10 @@
 
 * Added function `pmvnorm()` that calculates the (multivariate) Gaussian CDF.
 
+* Added function `gaussian_tv()` that calculates Gaussian total variation.
+
+* Added function `equidistant_vectors()` that generates equidistant vectors in Euclidean space.
+
 # oeli 0.7.4
 
 * Added R6 object `Simulator` that provides some convenience when running simulations.
