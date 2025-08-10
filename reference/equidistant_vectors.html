@@ -103,20 +103,20 @@ Desired center.</p></dd>
     <h2 id="ref-examples">Examples<a class="anchor" aria-label="anchor" href="#ref-examples"></a></h2>
     <div class="sourceCode"><pre class="sourceCode r"><code><span class="r-in"><span><span class="va">dim</span> <span class="op">&lt;-</span> <span class="va">n</span> <span class="op">&lt;-</span> <span class="fl">3</span></span></span>
 <span class="r-in"><span><span class="op">(</span><span class="va">dist</span> <span class="op">&lt;-</span> <span class="fu"><a href="https://rdrr.io/r/stats/Uniform.html" class="external-link">runif</a></span><span class="op">(</span><span class="fl">1</span><span class="op">)</span><span class="op">)</span></span></span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> [1] 0.003466493</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> [1] 0.8884956</span>
 <span class="r-in"><span><span class="op">(</span><span class="va">center</span> <span class="op">&lt;-</span> <span class="fu"><a href="https://rdrr.io/r/stats/Normal.html" class="external-link">rnorm</a></span><span class="op">(</span><span class="va">dim</span><span class="op">)</span><span class="op">)</span></span></span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> [1] -0.8807504 -0.6204636 -0.1680852</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> [1] -1.6545922 -1.5794826  0.7969991</span>
 <span class="r-in"><span><span class="op">(</span><span class="va">V</span> <span class="op">&lt;-</span> <span class="fu">equidistant_vectors</span><span class="op">(</span>dim <span class="op">=</span> <span class="va">dim</span>, n <span class="op">=</span> <span class="va">n</span>, dist <span class="op">=</span> <span class="va">dist</span>, center <span class="op">=</span> <span class="va">center</span><span class="op">)</span><span class="op">)</span></span></span>
-<span class="r-out co"><span class="r-pr">#&gt;</span>            [,1]       [,2]       [,3]</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> [1,] -0.8788635 -0.8816939 -0.8816939</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> [2,] -0.6207971 -0.6187957 -0.6217978</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> [3,] -0.1686630 -0.1686630 -0.1669297</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span>            [,1]       [,2]      [,3]</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> [1,] -1.1709565 -1.8964101 -1.896410</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> [2,] -1.6649781 -1.1520049 -1.921465</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> [3,]  0.6489165  0.6489165  1.093164</span>
 <span class="r-in"><span><span class="fu"><a href="https://rdrr.io/r/base/colSums.html" class="external-link">rowMeans</a></span><span class="op">(</span><span class="va">V</span><span class="op">)</span></span></span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> [1] -0.8807504 -0.6204636 -0.1680852</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> [1] -1.6545922 -1.5794826  0.7969991</span>
 <span class="r-in"><span><span class="fu"><a href="https://rdrr.io/r/stats/dist.html" class="external-link">dist</a></span><span class="op">(</span><span class="fu"><a href="https://rdrr.io/r/base/t.html" class="external-link">t</a></span><span class="op">(</span><span class="va">V</span><span class="op">)</span><span class="op">)</span></span></span>
-<span class="r-out co"><span class="r-pr">#&gt;</span>             1           2</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> 2 0.003466493            </span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> 3 0.003466493 0.003466493</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span>           1         2</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> 2 0.8884956          </span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> 3 0.8884956 0.8884956</span>
 </code></pre></div>
     </div>
   </main><aside class="col-md-3"><nav id="toc" aria-label="Table of contents"><h2>On this page</h2>
