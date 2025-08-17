@@ -103,20 +103,20 @@ Desired center.</p></dd>
     <h2 id="ref-examples">Examples<a class="anchor" aria-label="anchor" href="#ref-examples"></a></h2>
     <div class="sourceCode"><pre class="sourceCode r"><code><span class="r-in"><span><span class="va">dim</span> <span class="op">&lt;-</span> <span class="va">n</span> <span class="op">&lt;-</span> <span class="fl">3</span></span></span>
 <span class="r-in"><span><span class="op">(</span><span class="va">dist</span> <span class="op">&lt;-</span> <span class="fu"><a href="https://rdrr.io/r/stats/Uniform.html" class="external-link">runif</a></span><span class="op">(</span><span class="fl">1</span><span class="op">)</span><span class="op">)</span></span></span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> [1] 0.4619291</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> [1] 0.5541657</span>
 <span class="r-in"><span><span class="op">(</span><span class="va">center</span> <span class="op">&lt;-</span> <span class="fu"><a href="https://rdrr.io/r/stats/Normal.html" class="external-link">rnorm</a></span><span class="op">(</span><span class="va">dim</span><span class="op">)</span><span class="op">)</span></span></span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> [1] -1.2146660 -0.1867753  0.3763373</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> [1]  1.5689142  0.7388610 -0.3941402</span>
 <span class="r-in"><span><span class="op">(</span><span class="va">V</span> <span class="op">&lt;-</span> <span class="fu">equidistant_vectors</span><span class="op">(</span>dim <span class="op">=</span> <span class="va">dim</span>, n <span class="op">=</span> <span class="va">n</span>, dist <span class="op">=</span> <span class="va">dist</span>, center <span class="op">=</span> <span class="va">center</span><span class="op">)</span><span class="op">)</span></span></span>
-<span class="r-out co"><span class="r-pr">#&gt;</span>            [,1]        [,2]       [,3]</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> [1,] -0.9632236 -1.34038716 -1.3403872</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> [2,] -0.2312245  0.03547043 -0.3645719</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> [3,]  0.2993491  0.29934908  0.5303136</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span>            [,1]       [,2]       [,3]</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> [1,]  1.8705638  1.4180894  1.4180894</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> [2,]  0.6855364  1.0054841  0.5255625</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> [3,] -0.4865011 -0.4865011 -0.2094183</span>
 <span class="r-in"><span><span class="fu"><a href="https://rdrr.io/r/base/colSums.html" class="external-link">rowMeans</a></span><span class="op">(</span><span class="va">V</span><span class="op">)</span></span></span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> [1] -1.2146660 -0.1867753  0.3763373</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> [1]  1.5689142  0.7388610 -0.3941402</span>
 <span class="r-in"><span><span class="fu"><a href="https://rdrr.io/r/stats/dist.html" class="external-link">dist</a></span><span class="op">(</span><span class="fu"><a href="https://rdrr.io/r/base/t.html" class="external-link">t</a></span><span class="op">(</span><span class="va">V</span><span class="op">)</span><span class="op">)</span></span></span>
 <span class="r-out co"><span class="r-pr">#&gt;</span>           1         2</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> 2 0.4619291          </span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> 3 0.4619291 0.4619291</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> 2 0.5541657          </span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> 3 0.5541657 0.5541657</span>
 </code></pre></div>
     </div>
   </main><aside class="col-md-3"><nav id="toc" aria-label="Table of contents"><h2>On this page</h2>
