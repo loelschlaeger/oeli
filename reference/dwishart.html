@@ -117,20 +117,20 @@ Use this inverse Wishart distribution?</p></dd>
 <span class="r-in"><span><span class="co"># sample</span></span></span>
 <span class="r-in"><span><span class="fu">rwishart</span><span class="op">(</span>df <span class="op">=</span> <span class="va">df</span>, scale <span class="op">=</span> <span class="va">scale</span><span class="op">)</span></span></span>
 <span class="r-out co"><span class="r-pr">#&gt;</span>           [,1]      [,2]</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> [1,]  6.855566 -3.768449</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> [2,] -3.768449  4.025814</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> [1,] 1.6267708 0.1376118</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> [2,] 0.1376118 1.2135733</span>
 <span class="r-in"><span><span class="fu">rwishart</span><span class="op">(</span>df <span class="op">=</span> <span class="va">df</span>, scale <span class="op">=</span> <span class="va">scale</span>, inv <span class="op">=</span> <span class="cn">TRUE</span><span class="op">)</span></span></span>
-<span class="r-out co"><span class="r-pr">#&gt;</span>            [,1]       [,2]</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> [1,]  0.2745228 -0.1301208</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> [2,] -0.1301208  0.1213298</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span>             [,1]        [,2]</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> [1,]  0.26413407 -0.09769808</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> [2,] -0.09769808  0.21519985</span>
 <span class="r-in"><span></span></span>
 <span class="r-in"><span><span class="co"># expectation of Wishart is df * scale</span></span></span>
 <span class="r-in"><span><span class="va">n</span> <span class="op">&lt;-</span> <span class="fl">100</span></span></span>
 <span class="r-in"><span><span class="fu"><a href="https://rdrr.io/r/base/lapply.html" class="external-link">replicate</a></span><span class="op">(</span><span class="va">n</span>, <span class="fu">rwishart</span><span class="op">(</span>df <span class="op">=</span> <span class="va">df</span>, scale <span class="op">=</span> <span class="va">scale</span><span class="op">)</span>, simplify <span class="op">=</span> <span class="cn">FALSE</span><span class="op">)</span> <span class="op">|&gt;</span></span></span>
 <span class="r-in"><span>  <span class="fu"><a href="https://rdrr.io/r/base/funprog.html" class="external-link">Reduce</a></span><span class="op">(</span>f <span class="op">=</span> <span class="st">"+"</span><span class="op">)</span> <span class="op">/</span> <span class="va">n</span></span></span>
 <span class="r-out co"><span class="r-pr">#&gt;</span>           [,1]      [,2]</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> [1,]  5.415948 -1.253249</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> [2,] -1.253249  4.204838</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> [1,]  5.526061 -1.794899</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> [2,] -1.794899  4.917397</span>
 <span class="r-in"><span><span class="va">df</span> <span class="op">*</span> <span class="va">scale</span></span></span>
 <span class="r-out co"><span class="r-pr">#&gt;</span>      [,1] [,2]</span>
 <span class="r-out co"><span class="r-pr">#&gt;</span> [1,]  6.0 -1.8</span>
@@ -140,9 +140,9 @@ Use this inverse Wishart distribution?</p></dd>
 <span class="r-in"><span><span class="va">n</span> <span class="op">&lt;-</span> <span class="fl">100</span></span></span>
 <span class="r-in"><span><span class="fu"><a href="https://rdrr.io/r/base/lapply.html" class="external-link">replicate</a></span><span class="op">(</span><span class="va">n</span>, <span class="fu">rwishart</span><span class="op">(</span>df <span class="op">=</span> <span class="va">df</span>, scale <span class="op">=</span> <span class="va">scale</span>, <span class="cn">TRUE</span><span class="op">)</span>, simplify <span class="op">=</span> <span class="cn">FALSE</span><span class="op">)</span> <span class="op">|&gt;</span></span></span>
 <span class="r-in"><span>  <span class="fu"><a href="https://rdrr.io/r/base/funprog.html" class="external-link">Reduce</a></span><span class="op">(</span>f <span class="op">=</span> <span class="st">"+"</span><span class="op">)</span> <span class="op">/</span> <span class="va">n</span></span></span>
-<span class="r-out co"><span class="r-pr">#&gt;</span>            [,1]       [,2]</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> [1,]  0.3639447 -0.1311983</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> [2,] -0.1311983  0.3352633</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span>             [,1]        [,2]</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> [1,]  0.26455987 -0.09171914</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> [2,] -0.09171914  0.27451195</span>
 <span class="r-in"><span><span class="va">scale</span> <span class="op">/</span> <span class="op">(</span><span class="va">df</span> <span class="op">-</span> <span class="fl">2</span> <span class="op">-</span> <span class="fl">1</span><span class="op">)</span></span></span>
 <span class="r-out co"><span class="r-pr">#&gt;</span>            [,1]       [,2]</span>
 <span class="r-out co"><span class="r-pr">#&gt;</span> [1,]  0.3333333 -0.1000000</span>
