@@ -3,12 +3,15 @@ name: test-coverage.yaml
 on:
   push:
     branches: [master]
+  pull_request:
+
+permissions: read-all
 
 jobs:
   test-coverage:
     runs-on: ubuntu-latest
-    secrets:
-      codecov_token: ${{ secrets.CODECOV_TOKEN }}
+    env:
+      GITHUB_PAT: ${{ secrets.CODECOV_TOKEN }}
 
     steps:
       - uses: actions/checkout@v4
