@@ -12,9 +12,9 @@ A \code{tibble} with 54 rows and 8 columns:
 \item{date}{the date}
 \item{temp}{the temperature on that day at 12:00 noon; see details}
 \item{winner_men}{the men's winner}
-\item{time_men}{the men's winner's total time}
+\item{seconds_men}{the men's winner's total time in seconds}
 \item{winner_women}{the women's winner}
-\item{time_women}{the women's winner's total time}
+\item{seconds_women}{the women's winner's total time in seconds}
 }
 }
 \source{
