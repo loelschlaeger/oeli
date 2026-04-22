@@ -27,7 +27,7 @@ test_transition_probability_matrix(
 )
 }
 \arguments{
-\item{x}{[any]\cr
+\item{x}{[\code{any}]\cr
 Object to check.}
 
 \item{dim}{[\code{integer(1)}]\cr

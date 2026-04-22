@@ -19,7 +19,7 @@ assert_covariance_matrix(
 test_covariance_matrix(x, dim = NULL, tolerance = sqrt(.Machine$double.eps))
 }
 \arguments{
-\item{x}{[any]\cr
+\item{x}{[\code{any}]\cr
 Object to check.}
 
 \item{dim}{[\code{integer(1)}]\cr

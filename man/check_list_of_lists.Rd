@@ -18,7 +18,7 @@ assert_list_of_lists(
 test_list_of_lists(x, len = NULL)
 }
 \arguments{
-\item{x}{[any]\cr
+\item{x}{[\code{any}]\cr
 Object to check.}
 
 \item{len}{[\code{integer(1)}]\cr

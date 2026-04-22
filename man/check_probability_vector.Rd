@@ -19,7 +19,7 @@ assert_probability_vector(
 test_probability_vector(x, len = NULL, tolerance = sqrt(.Machine$double.eps))
 }
 \arguments{
-\item{x}{[any]\cr
+\item{x}{[\code{any}]\cr
 Object to check.}
 
 \item{len}{[\code{integer(1)}]\cr
