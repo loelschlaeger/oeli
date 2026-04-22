@@ -17,7 +17,7 @@ The functions with suffix _cpp perform no input checks, hence are faster."><meta
 
     <a class="navbar-brand me-2" href="../index.html">oeli</a>
 
-    <small class="nav-text text-muted me-auto" data-bs-toggle="tooltip" data-bs-placement="bottom" title="">0.7.5</small>
+    <small class="nav-text text-muted me-auto" data-bs-toggle="tooltip" data-bs-placement="bottom" title="">0.7.6</small>
 
 
     <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbar" aria-controls="navbar" aria-expanded="false" aria-label="Toggle navigation">
@@ -113,13 +113,13 @@ Return the logarithm of the density value?</p></dd>
     <h2 id="see-also">See also<a class="anchor" aria-label="anchor" href="#see-also"></a></h2>
     <div class="dont-index"><p>Other simulation helpers:
 <code><a href="Simulator.html">Simulator</a></code>,
-<code><a href="correlated_regressors.html">correlated_regressors</a>()</code>,
-<code><a href="ddirichlet.html">ddirichlet_cpp</a>()</code>,
-<code><a href="dmixnorm.html">dmixnorm_cpp</a>()</code>,
-<code><a href="dmvnorm.html">dmvnorm_cpp</a>()</code>,
-<code><a href="dwishart.html">dwishart_cpp</a>()</code>,
-<code><a href="gaussian_tv.html">gaussian_tv</a>()</code>,
-<code><a href="simulate_markov_chain.html">simulate_markov_chain</a>()</code></p></div>
+<code><a href="correlated_regressors.html">correlated_regressors()</a></code>,
+<code><a href="ddirichlet.html">ddirichlet_cpp()</a></code>,
+<code><a href="dmixnorm.html">dmixnorm_cpp()</a></code>,
+<code><a href="dmvnorm.html">dmvnorm_cpp()</a></code>,
+<code><a href="dwishart.html">dwishart_cpp()</a></code>,
+<code><a href="gaussian_tv.html">gaussian_tv()</a></code>,
+<code><a href="simulate_markov_chain.html">simulate_markov_chain()</a></code></p></div>
     </div>
 
     <div class="section level2">
@@ -136,12 +136,12 @@ Return the logarithm of the density value?</p></dd>
 <span class="r-in"><span></span></span>
 <span class="r-in"><span><span class="co"># sample</span></span></span>
 <span class="r-in"><span><span class="fu"><a href="dmvnorm.html">rmvnorm</a></span><span class="op">(</span>n <span class="op">=</span> <span class="fl">3</span>, mean <span class="op">=</span> <span class="va">mean</span>, Sigma <span class="op">=</span> <span class="va">Sigma</span><span class="op">)</span></span></span>
-<span class="r-out co"><span class="r-pr">#&gt;</span>            [,1]       [,2]</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> [1,] -0.8226153 -0.1876208</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> [2,] -0.2243747 -0.6454708</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> [3,] -0.2447819  1.4542537</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span>             [,1]       [,2]</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> [1,] -0.08899254  0.6775361</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> [2,]  0.99827776 -0.4606199</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> [3,] -0.11773810  2.0278604</span>
 <span class="r-in"><span><span class="fu"><a href="dmvnorm.html">rmvnorm</a></span><span class="op">(</span>mean <span class="op">=</span> <span class="va">mean</span>, Sigma <span class="op">=</span> <span class="va">Sigma</span>, log <span class="op">=</span> <span class="cn">TRUE</span><span class="op">)</span></span></span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> [1] 2.150667 1.777511</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> [1] 0.1791161 0.9525284</span>
 </code></pre></div>
     </div>
   </main><aside class="col-md-3"><nav id="toc" aria-label="Table of contents"><h2>On this page</h2>
@@ -153,7 +153,7 @@ Return the logarithm of the density value?</p></dd>
 </div>
 
 <div class="pkgdown-footer-right">
-  <p>Site built with <a href="https://pkgdown.r-lib.org/" class="external-link">pkgdown</a> 2.1.3.</p>
+  <p>Site built with <a href="https://pkgdown.r-lib.org/" class="external-link">pkgdown</a> 2.2.0.</p>
 </div>
 
     </footer></div>

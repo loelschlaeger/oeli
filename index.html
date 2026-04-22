@@ -28,7 +28,7 @@
 
     <a class="navbar-brand me-2" href="index.html">oeli</a>
 
-    <small class="nav-text text-muted me-auto" data-bs-toggle="tooltip" data-bs-placement="bottom" title="">0.7.5</small>
+    <small class="nav-text text-muted me-auto" data-bs-toggle="tooltip" data-bs-placement="bottom" title="">0.7.6</small>
 
 
     <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbar" aria-controls="navbar" aria-expanded="false" aria-label="Toggle navigation">
@@ -65,17 +65,40 @@
 <code class="sourceCode R"><span><span class="fu"><a href="https://rdrr.io/r/utils/install.packages.html" class="external-link">install.packages</a></span><span class="op">(</span><span class="st">"oeli"</span><span class="op">)</span></span></code></pre></div>
 <p>The following shows some demos. Click the headings for references on all available helpers in each category.</p>
 <div class="section level3">
+<h3 id="data">
+<a href="https://loelschlaeger.de/oeli/reference/index.html#data" class="external-link">Data</a><a class="anchor" aria-label="anchor" href="#data"></a>
+</h3>
+<p>The <code>hermann</code> data contains historical information on editions of the <a href="https://de.wikipedia.org/wiki/Hermannslauf" class="external-link">Hermannslauf</a>, including the date, temperature, and winning times for men and women:</p>
+<div class="sourceCode" id="cb2"><pre class="downlit sourceCode r">
+<code class="sourceCode R"><span><span class="va">hermann</span></span>
+<span><span class="co">#&gt; # A tibble: 54 × 8</span></span>
+<span><span class="co">#&gt; Loading required namespace: lubridate</span></span>
+<span><span class="co">#&gt;    edition  year date        temp winner_men  time_men   winner_women time_women</span></span>
+<span><span class="co">#&gt;      &lt;dbl&gt; &lt;dbl&gt; &lt;date&gt;     &lt;dbl&gt; &lt;chr&gt;       &lt;Period&gt;   &lt;chr&gt;        &lt;Period&gt;  </span></span>
+<span><span class="co">#&gt;  1       1  1972 1972-04-16    NA Helmut Bode 1H 51M 26S Lydia Günne… 3H 22M 0S </span></span>
+<span><span class="co">#&gt;  2       2  1973 1973-04-29    14 Helmut Bode 1H 53M 15S Irmhild Hol… 3H 2M 5S  </span></span>
+<span><span class="co">#&gt;  3       3  1974 1974-04-28    14 Achim Stob… 1H 55M 42S Liane Winter 2H 17M 0S </span></span>
+<span><span class="co">#&gt;  4       4  1975 1975-04-27    11 Klaus-Diet… 1H 52M 0S  Christine R… 2H 32M 4S </span></span>
+<span><span class="co">#&gt;  5       5  1976 1976-04-25    11 Heribert B… 1H 47M 33S Liane Winter 2H 6M 41S </span></span>
+<span><span class="co">#&gt;  6       6  1977 1977-04-24     9 Jim Hodey   1H 48M 23S Liane Winter 2H 6M 22S </span></span>
+<span><span class="co">#&gt;  7       7  1978 1978-04-30    16 Michael He… 1H 54M 16S Liane Winter 2H 7M 5S  </span></span>
+<span><span class="co">#&gt;  8       8  1979 1979-04-29     7 Billy Cain  1H 49M 47S Liane Winter 2H 8M 17S </span></span>
+<span><span class="co">#&gt;  9       9  1980 1980-04-27     9 Dieter Lip… 1H 51M 46S Liane Winter 2H 7M 28S </span></span>
+<span><span class="co">#&gt; 10      10  1981 1981-04-26    16 Helmut Sch… 1H 52M 15S Rotraud Zin… 2H 21M 16S</span></span>
+<span><span class="co">#&gt; # ℹ 44 more rows</span></span></code></pre></div>
+</div>
+<div class="section level3">
 <h3 id="distributions">
 <a href="https://loelschlaeger.de/oeli/reference/index.html#distribution" class="external-link">Distributions</a><a class="anchor" aria-label="anchor" href="#distributions"></a>
 </h3>
 <p>The package has density and sampling functions for some distributions not included in base R, like the Dirichlet:</p>
-<div class="sourceCode" id="cb2"><pre class="downlit sourceCode r">
+<div class="sourceCode" id="cb3"><pre class="downlit sourceCode r">
 <code class="sourceCode R"><span><span class="fu"><a href="reference/ddirichlet.html">ddirichlet</a></span><span class="op">(</span>x <span class="op">=</span> <span class="fu"><a href="https://rdrr.io/r/base/c.html" class="external-link">c</a></span><span class="op">(</span><span class="fl">0.2</span>, <span class="fl">0.3</span>, <span class="fl">0.5</span><span class="op">)</span>, concentration <span class="op">=</span> <span class="fl">1</span><span class="op">:</span><span class="fl">3</span><span class="op">)</span></span>
 <span><span class="co">#&gt; [1] 4.5</span></span>
 <span><span class="fu"><a href="reference/ddirichlet.html">rdirichlet</a></span><span class="op">(</span>concentration <span class="op">=</span> <span class="fl">1</span><span class="op">:</span><span class="fl">3</span><span class="op">)</span></span>
 <span><span class="co">#&gt; [1] 0.01795087 0.41315984 0.56888929</span></span></code></pre></div>
 <p>Or the mixture of Gaussian distributions:</p>
-<div class="sourceCode" id="cb3"><pre class="downlit sourceCode r">
+<div class="sourceCode" id="cb4"><pre class="downlit sourceCode r">
 <code class="sourceCode R"><span><span class="va">x</span> <span class="op">&lt;-</span> <span class="fu"><a href="https://rdrr.io/r/base/c.html" class="external-link">c</a></span><span class="op">(</span><span class="fl">0</span>, <span class="fl">0</span><span class="op">)</span></span>
 <span><span class="va">mean</span> <span class="op">&lt;-</span> <span class="fu"><a href="https://rdrr.io/r/base/matrix.html" class="external-link">matrix</a></span><span class="op">(</span><span class="fu"><a href="https://rdrr.io/r/base/c.html" class="external-link">c</a></span><span class="op">(</span><span class="fl">1</span>, <span class="fl">1</span>, <span class="op">-</span><span class="fl">1</span>, <span class="op">-</span><span class="fl">1</span><span class="op">)</span>, ncol <span class="op">=</span> <span class="fl">2</span><span class="op">)</span> <span class="co"># means in columns</span></span>
 <span><span class="va">Sigma</span> <span class="op">&lt;-</span> <span class="fu"><a href="https://rdrr.io/r/base/matrix.html" class="external-link">matrix</a></span><span class="op">(</span><span class="fu"><a href="https://rdrr.io/r/base/c.html" class="external-link">c</a></span><span class="op">(</span><span class="fu"><a href="https://rdrr.io/r/base/diag.html" class="external-link">diag</a></span><span class="op">(</span><span class="fl">2</span><span class="op">)</span>, <span class="fl">0.1</span> <span class="op">*</span> <span class="fu"><a href="https://rdrr.io/r/base/diag.html" class="external-link">diag</a></span><span class="op">(</span><span class="fl">2</span><span class="op">)</span><span class="op">)</span>, ncol <span class="op">=</span> <span class="fl">2</span><span class="op">)</span> <span class="co"># vectorized covariances in columns</span></span>
@@ -87,14 +110,14 @@
 <span><span class="fu"><a href="reference/dmixnorm.html">rmixnorm</a></span><span class="op">(</span>n <span class="op">=</span> <span class="fl">1000</span>, mean <span class="op">=</span> <span class="va">mean</span>, Sigma <span class="op">=</span> <span class="va">Sigma</span>, proportions <span class="op">=</span> <span class="va">proportions</span><span class="op">)</span> <span class="op">|&gt;</span></span>
 <span>  <span class="fu"><a href="https://rdrr.io/r/base/as.data.frame.html" class="external-link">as.data.frame</a></span><span class="op">(</span><span class="op">)</span> <span class="op">|&gt;</span> </span>
 <span>  <span class="fu">ggplot2</span><span class="fu">::</span><span class="fu"><a href="https://ggplot2.tidyverse.org/reference/ggplot.html" class="external-link">ggplot</a></span><span class="op">(</span><span class="op">)</span> <span class="op">+</span> <span class="fu">ggplot2</span><span class="fu">::</span><span class="fu"><a href="https://ggplot2.tidyverse.org/reference/geom_point.html" class="external-link">geom_point</a></span><span class="op">(</span><span class="fu">ggplot2</span><span class="fu">::</span><span class="fu"><a href="https://ggplot2.tidyverse.org/reference/aes.html" class="external-link">aes</a></span><span class="op">(</span>x <span class="op">=</span> <span class="va">V1</span>, y <span class="op">=</span> <span class="va">V2</span><span class="op">)</span><span class="op">)</span></span></code></pre></div>
-<p><img src="reference/figures/README-mixnorm-1.png" width="50%" style="display: block; margin: auto;"></p>
+<p><img src="reference/figures/README-mixnorm-1.png" alt="" width="50%" style="display: block; margin: auto;"></p>
 </div>
 <div class="section level3">
 <h3 id="function-helpers">
 <a href="https://loelschlaeger.de/oeli/reference/index.html#functional" class="external-link">Function helpers</a><a class="anchor" aria-label="anchor" href="#function-helpers"></a>
 </h3>
 <p>Retrieving default arguments of a <code>function</code>:</p>
-<div class="sourceCode" id="cb4"><pre class="downlit sourceCode r">
+<div class="sourceCode" id="cb5"><pre class="downlit sourceCode r">
 <code class="sourceCode R"><span><span class="va">f</span> <span class="op">&lt;-</span> <span class="kw">function</span><span class="op">(</span><span class="va">a</span>, <span class="va">b</span> <span class="op">=</span> <span class="fl">1</span>, <span class="va">c</span> <span class="op">=</span> <span class="st">""</span>, <span class="va">...</span><span class="op">)</span> <span class="op">{</span> <span class="op">}</span></span>
 <span><span class="fu"><a href="reference/function_defaults.html">function_defaults</a></span><span class="op">(</span><span class="va">f</span><span class="op">)</span></span>
 <span><span class="co">#&gt; $b</span></span>
@@ -108,7 +131,7 @@
 <a href="https://loelschlaeger.de/oeli/reference/index.html#indexing" class="external-link">Indexing helpers</a><a class="anchor" aria-label="anchor" href="#indexing-helpers"></a>
 </h3>
 <p>Create all possible permutations of vector elements:</p>
-<div class="sourceCode" id="cb5"><pre class="downlit sourceCode r">
+<div class="sourceCode" id="cb6"><pre class="downlit sourceCode r">
 <code class="sourceCode R"><span><span class="fu"><a href="reference/permutations.html">permutations</a></span><span class="op">(</span><span class="va">LETTERS</span><span class="op">[</span><span class="fl">1</span><span class="op">:</span><span class="fl">3</span><span class="op">]</span><span class="op">)</span></span>
 <span><span class="co">#&gt; [[1]]</span></span>
 <span><span class="co">#&gt; [1] "A" "B" "C"</span></span>
@@ -133,12 +156,12 @@
 <a href="https://loelschlaeger.de/oeli/reference/index.html#packaging" class="external-link">Package helpers</a><a class="anchor" aria-label="anchor" href="#package-helpers"></a>
 </h3>
 <p>Quickly have a basic logo for your new package:</p>
-<div class="sourceCode" id="cb6"><pre class="downlit sourceCode r">
+<div class="sourceCode" id="cb7"><pre class="downlit sourceCode r">
 <code class="sourceCode R"><span><span class="va">logo</span> <span class="op">&lt;-</span> <span class="fu"><a href="reference/package_logo.html">package_logo</a></span><span class="op">(</span><span class="st">"my_package"</span>, brackets <span class="op">=</span> <span class="cn">TRUE</span><span class="op">)</span></span>
 <span><span class="fu"><a href="https://rdrr.io/r/base/print.html" class="external-link">print</a></span><span class="op">(</span><span class="va">logo</span><span class="op">)</span></span></code></pre></div>
-<p><img src="reference/figures/README-package_logo-1.png" width="50%" style="display: block; margin: auto;"></p>
+<p><img src="reference/figures/README-package_logo-1.png" alt="" width="50%" style="display: block; margin: auto;"></p>
 <p>How to print a <code>matrix</code> without filling up the entire console?</p>
-<div class="sourceCode" id="cb7"><pre class="downlit sourceCode r">
+<div class="sourceCode" id="cb8"><pre class="downlit sourceCode r">
 <code class="sourceCode R"><span><span class="va">x</span> <span class="op">&lt;-</span> <span class="fu"><a href="https://rdrr.io/r/base/matrix.html" class="external-link">matrix</a></span><span class="op">(</span><span class="fu"><a href="https://rdrr.io/r/stats/Normal.html" class="external-link">rnorm</a></span><span class="op">(</span><span class="fl">10000</span><span class="op">)</span>, ncol <span class="op">=</span> <span class="fl">100</span>, nrow <span class="op">=</span> <span class="fl">100</span><span class="op">)</span></span>
 <span><span class="fu"><a href="reference/print_matrix.html">print_matrix</a></span><span class="op">(</span><span class="va">x</span>, rowdots <span class="op">=</span> <span class="fl">4</span>, coldots <span class="op">=</span> <span class="fl">4</span>, digits <span class="op">=</span> <span class="fl">2</span>, label <span class="op">=</span> <span class="st">"what a big matrix"</span><span class="op">)</span></span>
 <span><span class="co">#&gt; what a big matrix : 100 x 100 matrix of doubles </span></span>
@@ -149,7 +172,7 @@
 <span><span class="co">#&gt; ...      ...   ...  ... ...    ...</span></span>
 <span><span class="co">#&gt; [100,]  1.12  0.77 -1.6 ...  -0.08</span></span></code></pre></div>
 <p>And what about a <code>data.frame</code>?</p>
-<div class="sourceCode" id="cb8"><pre class="downlit sourceCode r">
+<div class="sourceCode" id="cb9"><pre class="downlit sourceCode r">
 <code class="sourceCode R"><span><span class="va">x</span> <span class="op">&lt;-</span> <span class="fu"><a href="https://rdrr.io/r/base/data.frame.html" class="external-link">data.frame</a></span><span class="op">(</span>x <span class="op">=</span> <span class="fu"><a href="https://rdrr.io/r/stats/Normal.html" class="external-link">rnorm</a></span><span class="op">(</span><span class="fl">1000</span><span class="op">)</span>, y <span class="op">=</span> <span class="va">LETTERS</span><span class="op">[</span><span class="fl">1</span><span class="op">:</span><span class="fl">10</span><span class="op">]</span><span class="op">)</span></span>
 <span><span class="fu"><a href="reference/print_data.frame.html">print_data.frame</a></span><span class="op">(</span><span class="va">x</span>, rows <span class="op">=</span> <span class="fl">7</span>, digits <span class="op">=</span> <span class="fl">0</span><span class="op">)</span></span>
 <span><span class="co">#&gt;      x  y</span></span>
@@ -168,7 +191,7 @@
 <a href="https://loelschlaeger.de/oeli/reference/index.html#simulation" class="external-link">Simulation helpers</a><a class="anchor" aria-label="anchor" href="#simulation-helpers"></a>
 </h3>
 <p>Let’s simulate correlated regressor values from different marginal distributions:</p>
-<div class="sourceCode" id="cb9"><pre class="downlit sourceCode r">
+<div class="sourceCode" id="cb10"><pre class="downlit sourceCode r">
 <code class="sourceCode R"><span><span class="va">labels</span> <span class="op">&lt;-</span> <span class="fu"><a href="https://rdrr.io/r/base/c.html" class="external-link">c</a></span><span class="op">(</span><span class="st">"P"</span>, <span class="st">"C"</span>, <span class="st">"N1"</span>, <span class="st">"N2"</span>, <span class="st">"U"</span><span class="op">)</span></span>
 <span><span class="va">n</span> <span class="op">&lt;-</span> <span class="fl">100</span></span>
 <span><span class="va">marginals</span> <span class="op">&lt;-</span> <span class="fu"><a href="https://rdrr.io/r/base/list.html" class="external-link">list</a></span><span class="op">(</span></span>
@@ -189,27 +212,27 @@
 <span>  labels <span class="op">=</span> <span class="va">labels</span>, n <span class="op">=</span> <span class="va">n</span>, marginals <span class="op">=</span> <span class="va">marginals</span>, correlation <span class="op">=</span> <span class="va">correlation</span></span>
 <span><span class="op">)</span></span>
 <span><span class="fu"><a href="https://rdrr.io/r/utils/head.html" class="external-link">head</a></span><span class="op">(</span><span class="va">data</span><span class="op">)</span></span>
-<span><span class="co">#&gt;   P C         N1         N2         U</span></span>
-<span><span class="co">#&gt; 1 0 3  2.9451097 -0.8638549 -1.921007</span></span>
-<span><span class="co">#&gt; 2 2 1 -5.1350957  1.3390663 -1.133347</span></span>
-<span><span class="co">#&gt; 3 3 1 -1.2722775 -0.1166058 -1.174671</span></span>
-<span><span class="co">#&gt; 4 2 2 -1.5969501  0.3877268 -1.493931</span></span>
-<span><span class="co">#&gt; 5 3 2 -0.3863015  0.5339768 -1.395497</span></span>
-<span><span class="co">#&gt; 6 5 1 -3.6924075  0.9798459 -1.066466</span></span>
+<span><span class="co">#&gt;   P C         N1            N2         U</span></span>
+<span><span class="co">#&gt; 1 5 1 -3.3144847  0.0622969529 -1.074193</span></span>
+<span><span class="co">#&gt; 2 1 2 -2.8085858 -0.6306880612 -1.253218</span></span>
+<span><span class="co">#&gt; 3 0 2  0.4622740  0.0103025945 -1.485493</span></span>
+<span><span class="co">#&gt; 4 2 3 -0.6346636 -0.2965156618 -1.536019</span></span>
+<span><span class="co">#&gt; 5 1 3  1.1983462 -2.5617480668 -1.739988</span></span>
+<span><span class="co">#&gt; 6 2 3 -0.7981938  0.0007150796 -1.617020</span></span>
 <span><span class="fu"><a href="https://rdrr.io/r/stats/cor.html" class="external-link">cor</a></span><span class="op">(</span><span class="va">data</span><span class="op">)</span></span>
-<span><span class="co">#&gt;               P          C          N1           N2           U</span></span>
-<span><span class="co">#&gt; P   1.000000000 -0.2598683 -0.02141804 -0.008708831  0.44863283</span></span>
-<span><span class="co">#&gt; C  -0.259868343  1.0000000  0.25880138 -0.523439321 -0.71222969</span></span>
-<span><span class="co">#&gt; N1 -0.021418038  0.2588014  1.00000000 -0.300000000 -0.24632069</span></span>
-<span><span class="co">#&gt; N2 -0.008708831 -0.5234393 -0.30000000  1.000000000  0.09679108</span></span>
-<span><span class="co">#&gt; U   0.448632829 -0.7122297 -0.24632069  0.096791077  1.00000000</span></span></code></pre></div>
+<span><span class="co">#&gt;              P          C          N1          N2          U</span></span>
+<span><span class="co">#&gt; P   1.00000000 -0.3306149 -0.09045314  0.01061425  0.5087675</span></span>
+<span><span class="co">#&gt; C  -0.33061493  1.0000000  0.29490752 -0.55282073 -0.7660546</span></span>
+<span><span class="co">#&gt; N1 -0.09045314  0.2949075  1.00000000 -0.30000000 -0.2887367</span></span>
+<span><span class="co">#&gt; N2  0.01061425 -0.5528207 -0.30000000  1.00000000  0.1074298</span></span>
+<span><span class="co">#&gt; U   0.50876746 -0.7660546 -0.28873665  0.10742984  1.0000000</span></span></code></pre></div>
 </div>
 <div class="section level3">
 <h3 id="transformation-helpers">
 <a href="https://loelschlaeger.de/oeli/reference/index.html#transformation" class="external-link">Transformation helpers</a><a class="anchor" aria-label="anchor" href="#transformation-helpers"></a>
 </h3>
 <p>The <code><a href="reference/group_data.frame.html">group_data.frame()</a></code> function groups a given <code>data.frame</code> based on the values in a specified column:</p>
-<div class="sourceCode" id="cb10"><pre class="downlit sourceCode r">
+<div class="sourceCode" id="cb11"><pre class="downlit sourceCode r">
 <code class="sourceCode R"><span><span class="va">df</span> <span class="op">&lt;-</span> <span class="fu"><a href="https://rdrr.io/r/base/data.frame.html" class="external-link">data.frame</a></span><span class="op">(</span><span class="st">"label"</span> <span class="op">=</span> <span class="fu"><a href="https://rdrr.io/r/base/c.html" class="external-link">c</a></span><span class="op">(</span><span class="st">"A"</span>, <span class="st">"B"</span><span class="op">)</span>, <span class="st">"number"</span> <span class="op">=</span> <span class="fl">1</span><span class="op">:</span><span class="fl">10</span><span class="op">)</span></span>
 <span><span class="fu"><a href="reference/group_data.frame.html">group_data.frame</a></span><span class="op">(</span>df <span class="op">=</span> <span class="va">df</span>, by <span class="op">=</span> <span class="st">"label"</span><span class="op">)</span></span>
 <span><span class="co">#&gt; $A</span></span>
@@ -233,7 +256,7 @@
 <a href="https://loelschlaeger.de/oeli/reference/index.html#validation" class="external-link">Validation helpers</a><a class="anchor" aria-label="anchor" href="#validation-helpers"></a>
 </h3>
 <p>Is my matrix a proper transition probability matrix?</p>
-<div class="sourceCode" id="cb11"><pre class="downlit sourceCode r">
+<div class="sourceCode" id="cb12"><pre class="downlit sourceCode r">
 <code class="sourceCode R"><span><span class="va">matrix</span> <span class="op">&lt;-</span> <span class="fu"><a href="https://rdrr.io/r/base/diag.html" class="external-link">diag</a></span><span class="op">(</span><span class="fl">4</span><span class="op">)</span></span>
 <span><span class="va">matrix</span><span class="op">[</span><span class="fl">1</span>, <span class="fl">2</span><span class="op">]</span> <span class="op">&lt;-</span> <span class="fl">1</span></span>
 <span><span class="fu"><a href="reference/check_transition_probability_matrix.html">check_transition_probability_matrix</a></span><span class="op">(</span><span class="va">matrix</span><span class="op">)</span></span>
@@ -292,7 +315,7 @@
 </div>
 
 <div class="pkgdown-footer-right">
-  <p>Site built with <a href="https://pkgdown.r-lib.org/" class="external-link">pkgdown</a> 2.1.3.</p>
+  <p>Site built with <a href="https://pkgdown.r-lib.org/" class="external-link">pkgdown</a> 2.2.0.</p>
 </div>
 
     </footer>
