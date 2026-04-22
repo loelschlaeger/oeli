@@ -49,3 +49,4 @@ Suggests:
 URL: https://github.com/loelschlaeger/oeli, http://loelschlaeger.de/oeli/
 BugReports: https://github.com/loelschlaeger/oeli/issues
 Roxygen: list(markdown = TRUE)
+LazyData: true

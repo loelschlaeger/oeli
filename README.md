@@ -25,6 +25,31 @@ install.packages("oeli")
 The following shows some demos. Click the headings for references on all
 available helpers in each category.
 
+### [Data](https://loelschlaeger.de/oeli/reference/index.html#data)
+
+The `hermann` data contains historical information on editions of the
+[Hermannslauf](https://de.wikipedia.org/wiki/Hermannslauf), including
+the date, temperature, and winning times for men and women:
+
+``` r
+hermann
+#> # A tibble: 54 × 8
+#> Loading required namespace: lubridate
+#>    edition  year date        temp winner_men  time_men   winner_women time_women
+#>      <dbl> <dbl> <date>     <dbl> <chr>       <Period>   <chr>        <Period>  
+#>  1       1  1972 1972-04-16    NA Helmut Bode 1H 51M 26S Lydia Günne… 3H 22M 0S 
+#>  2       2  1973 1973-04-29    14 Helmut Bode 1H 53M 15S Irmhild Hol… 3H 2M 5S  
+#>  3       3  1974 1974-04-28    14 Achim Stob… 1H 55M 42S Liane Winter 2H 17M 0S 
+#>  4       4  1975 1975-04-27    11 Klaus-Diet… 1H 52M 0S  Christine R… 2H 32M 4S 
+#>  5       5  1976 1976-04-25    11 Heribert B… 1H 47M 33S Liane Winter 2H 6M 41S 
+#>  6       6  1977 1977-04-24     9 Jim Hodey   1H 48M 23S Liane Winter 2H 6M 22S 
+#>  7       7  1978 1978-04-30    16 Michael He… 1H 54M 16S Liane Winter 2H 7M 5S  
+#>  8       8  1979 1979-04-29     7 Billy Cain  1H 49M 47S Liane Winter 2H 8M 17S 
+#>  9       9  1980 1980-04-27     9 Dieter Lip… 1H 51M 46S Liane Winter 2H 7M 28S 
+#> 10      10  1981 1981-04-26    16 Helmut Sch… 1H 52M 15S Rotraud Zin… 2H 21M 16S
+#> # ℹ 44 more rows
+```
+
 ### [Distributions](https://loelschlaeger.de/oeli/reference/index.html#distribution)
 
 The package has density and sampling functions for some distributions
@@ -53,7 +78,7 @@ rmixnorm(n = 1000, mean = mean, Sigma = Sigma, proportions = proportions) |>
   ggplot2::ggplot() + ggplot2::geom_point(ggplot2::aes(x = V1, y = V2))
 ```
 
-<img src="man/figures/README-mixnorm-1.png" width="50%" style="display: block; margin: auto;" />
+<img src="man/figures/README-mixnorm-1.png" alt="" width="50%" style="display: block; margin: auto;" />
 
 ### [Function helpers](https://loelschlaeger.de/oeli/reference/index.html#functional)
 
@@ -103,7 +128,7 @@ logo <- package_logo("my_package", brackets = TRUE)
 print(logo)
 ```
 
-<img src="man/figures/README-package_logo-1.png" width="50%" style="display: block; margin: auto;" />
+<img src="man/figures/README-package_logo-1.png" alt="" width="50%" style="display: block; margin: auto;" />
 
 How to print a `matrix` without filling up the entire console?
 
@@ -162,20 +187,20 @@ data <- correlated_regressors(
   labels = labels, n = n, marginals = marginals, correlation = correlation
 )
 head(data)
-#>   P C         N1         N2         U
-#> 1 0 3  2.9451097 -0.8638549 -1.921007
-#> 2 2 1 -5.1350957  1.3390663 -1.133347
-#> 3 3 1 -1.2722775 -0.1166058 -1.174671
-#> 4 2 2 -1.5969501  0.3877268 -1.493931
-#> 5 3 2 -0.3863015  0.5339768 -1.395497
-#> 6 5 1 -3.6924075  0.9798459 -1.066466
+#>   P C         N1            N2         U
+#> 1 5 1 -3.3144847  0.0622969529 -1.074193
+#> 2 1 2 -2.8085858 -0.6306880612 -1.253218
+#> 3 0 2  0.4622740  0.0103025945 -1.485493
+#> 4 2 3 -0.6346636 -0.2965156618 -1.536019
+#> 5 1 3  1.1983462 -2.5617480668 -1.739988
+#> 6 2 3 -0.7981938  0.0007150796 -1.617020
 cor(data)
-#>               P          C          N1           N2           U
-#> P   1.000000000 -0.2598683 -0.02141804 -0.008708831  0.44863283
-#> C  -0.259868343  1.0000000  0.25880138 -0.523439321 -0.71222969
-#> N1 -0.021418038  0.2588014  1.00000000 -0.300000000 -0.24632069
-#> N2 -0.008708831 -0.5234393 -0.30000000  1.000000000  0.09679108
-#> U   0.448632829 -0.7122297 -0.24632069  0.096791077  1.00000000
+#>              P          C          N1          N2          U
+#> P   1.00000000 -0.3306149 -0.09045314  0.01061425  0.5087675
+#> C  -0.33061493  1.0000000  0.29490752 -0.55282073 -0.7660546
+#> N1 -0.09045314  0.2949075  1.00000000 -0.30000000 -0.2887367
+#> N2  0.01061425 -0.5528207 -0.30000000  1.00000000  0.1074298
+#> U   0.50876746 -0.7660546 -0.28873665  0.10742984  1.0000000
 ```
 
 ### [Transformation helpers](https://loelschlaeger.de/oeli/reference/index.html#transformation)

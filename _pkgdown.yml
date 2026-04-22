@@ -12,6 +12,10 @@ authors:
     href: https://loelschlaeger.de
 
 reference:
+- subtitle: Data
+  desc: These datasets are available with this package.
+- contents:
+  - has_keyword("data")
 - subtitle: Distribution
   desc: These functions help to work with distributions.
 - contents:

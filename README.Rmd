@@ -34,6 +34,14 @@ install.packages("oeli")
 
 The following shows some demos. Click the headings for references on all available helpers in each category.
 
+### [Data](https://loelschlaeger.de/oeli/reference/index.html#data)
+
+The `hermann` data contains historical information on editions of the [Hermannslauf](https://de.wikipedia.org/wiki/Hermannslauf), including the date, temperature, and winning times for men and women:
+
+```{r, hermann}
+hermann
+```
+
 ### [Distributions](https://loelschlaeger.de/oeli/reference/index.html#distribution)
 
 The package has density and sampling functions for some distributions not included in base R, like the Dirichlet:
