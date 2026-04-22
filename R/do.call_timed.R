@@ -17,7 +17,8 @@
 #'
 #' @keywords simulation
 #' @family function helpers
-#' @export
+#' @export do.call_timed
+#' @usage do.call_timed(what, args, units = "secs")
 #'
 #' @examples
 #' \dontrun{

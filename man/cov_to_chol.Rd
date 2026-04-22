@@ -45,6 +45,7 @@ all.equal(cov, chol_to_cov(chol))
 Other matrix helpers: 
 \code{\link{check_correlation_matrix}()},
 \code{\link{check_covariance_matrix}()},
+\code{\link{check_one_hot_matrix}()},
 \code{\link{check_transition_probability_matrix}()},
 \code{\link{diff_cov}()},
 \code{\link{insert_matrix_column}()},

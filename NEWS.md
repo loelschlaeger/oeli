@@ -1,3 +1,13 @@
+# oeli 0.7.6
+
+* Addressed #6.
+
+* Updated documentation. 
+
+* Added data `hermann`.
+
+* Added functions `check_one_hot_matrix()`, `test_one_hot_matrix()`, and `assert_one_hot_matrix()`.
+
 # oeli 0.7.5
 
 * Moved header files from `../src/` to `../inst/include/` to make them available externally.

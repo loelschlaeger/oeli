@@ -1,7 +1,7 @@
 Package: oeli
 Type: Package
 Title: Some Utilities for Developing Data Science Software
-Version: 0.7.5
+Version: 0.7.6
 Authors@R: person(
     given = "Lennart", 
     family = "Oelschl\u00e4ger", 
@@ -38,7 +38,7 @@ Imports:
     utils
 LinkingTo:
     mvtnorm,
-    Rcpp,
+    Rcpp (>= 1.1.1),
     RcppArmadillo,
     testthat
 Suggests:

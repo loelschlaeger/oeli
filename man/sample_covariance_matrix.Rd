@@ -35,6 +35,7 @@ sample_covariance_matrix(dim = 3)
 Other matrix helpers: 
 \code{\link{check_correlation_matrix}()},
 \code{\link{check_covariance_matrix}()},
+\code{\link{check_one_hot_matrix}()},
 \code{\link{check_transition_probability_matrix}()},
 \code{\link{cov_to_chol}()},
 \code{\link{diff_cov}()},

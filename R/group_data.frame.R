@@ -17,7 +17,8 @@
 #'
 #' @keywords transformation
 #' @family data.frame helpers
-#' @export
+#' @export group_data.frame
+#' @usage group_data.frame(df, by, keep_by = TRUE)
 #'
 #' @examples
 #' df <- data.frame("label" = c("A", "B"), "number" = 1:10)
