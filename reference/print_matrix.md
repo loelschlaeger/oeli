@@ -91,12 +91,12 @@ print_matrix(x = 1:3, coldots = 2)
 #> 1 ... 3
 print_matrix(x = matrix(rnorm(99), ncol = 1), label = "single column matrix")
 #> single column matrix : 99 x 1 matrix of doubles 
-#>        [,1]
-#> [1,]  -0.63
-#> [2,]   0.79
-#> [3,]   -1.3
-#> ...     ...
-#> [99,] -0.28
+#>       [,1]
+#> [1,]  1.03
+#> [2,]  0.57
+#> [3,]  0.54
+#> ...    ...
+#> [99,] -1.5
 print_matrix(x = matrix(1:100, nrow = 1), label = "single row matrix")
 #> single row matrix : 1 x 100 matrix of doubles 
 #>      [,1] [,2] [,3] ... [,100]

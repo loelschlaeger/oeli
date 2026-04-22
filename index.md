@@ -20,20 +20,20 @@ the date, temperature, and winning times for men and women:
 ``` r
 hermann
 #> # A tibble: 54 × 8
-#> Loading required namespace: lubridate
-#>    edition  year date        temp winner_men  time_men   winner_women time_women
-#>      <dbl> <dbl> <date>     <dbl> <chr>       <Period>   <chr>        <Period>  
-#>  1       1  1972 1972-04-16    NA Helmut Bode 1H 51M 26S Lydia Günne… 3H 22M 0S 
-#>  2       2  1973 1973-04-29    14 Helmut Bode 1H 53M 15S Irmhild Hol… 3H 2M 5S  
-#>  3       3  1974 1974-04-28    14 Achim Stob… 1H 55M 42S Liane Winter 2H 17M 0S 
-#>  4       4  1975 1975-04-27    11 Klaus-Diet… 1H 52M 0S  Christine R… 2H 32M 4S 
-#>  5       5  1976 1976-04-25    11 Heribert B… 1H 47M 33S Liane Winter 2H 6M 41S 
-#>  6       6  1977 1977-04-24     9 Jim Hodey   1H 48M 23S Liane Winter 2H 6M 22S 
-#>  7       7  1978 1978-04-30    16 Michael He… 1H 54M 16S Liane Winter 2H 7M 5S  
-#>  8       8  1979 1979-04-29     7 Billy Cain  1H 49M 47S Liane Winter 2H 8M 17S 
-#>  9       9  1980 1980-04-27     9 Dieter Lip… 1H 51M 46S Liane Winter 2H 7M 28S 
-#> 10      10  1981 1981-04-26    16 Helmut Sch… 1H 52M 15S Rotraud Zin… 2H 21M 16S
+#>    edition  year date        temp winner_men        seconds_men winner_women  
+#>      <dbl> <dbl> <date>     <dbl> <chr>                   <dbl> <chr>         
+#>  1       1  1972 1972-04-16    NA Helmut Bode              6686 Lydia Günnewig
+#>  2       2  1973 1973-04-29    14 Helmut Bode              6795 Irmhild Holste
+#>  3       3  1974 1974-04-28    14 Achim Stober             6942 Liane Winter  
+#>  4       4  1975 1975-04-27    11 Klaus-Dieter Holz        6720 Christine Ross
+#>  5       5  1976 1976-04-25    11 Heribert Bulk            6453 Liane Winter  
+#>  6       6  1977 1977-04-24     9 Jim Hodey                6503 Liane Winter  
+#>  7       7  1978 1978-04-30    16 Michael Heine            6856 Liane Winter  
+#>  8       8  1979 1979-04-29     7 Billy Cain               6587 Liane Winter  
+#>  9       9  1980 1980-04-27     9 Dieter Lippe             6706 Liane Winter  
+#> 10      10  1981 1981-04-26    16 Helmut Schmidt           6735 Rotraud Zinner
 #> # ℹ 44 more rows
+#> # ℹ 1 more variable: seconds_women <dbl>
 ```
 
 ### [Distributions](https://loelschlaeger.de/oeli/reference/index.html#distribution)
@@ -173,20 +173,20 @@ data <- correlated_regressors(
   labels = labels, n = n, marginals = marginals, correlation = correlation
 )
 head(data)
-#>   P C         N1            N2         U
-#> 1 5 1 -3.3144847  0.0622969529 -1.074193
-#> 2 1 2 -2.8085858 -0.6306880612 -1.253218
-#> 3 0 2  0.4622740  0.0103025945 -1.485493
-#> 4 2 3 -0.6346636 -0.2965156618 -1.536019
-#> 5 1 3  1.1983462 -2.5617480668 -1.739988
-#> 6 2 3 -0.7981938  0.0007150796 -1.617020
+#>   P C        N1         N2         U
+#> 1 3 3  0.854606 -1.1509971 -1.575507
+#> 2 3 3 -3.801998  0.5696389 -1.784321
+#> 3 4 3 -1.024611 -1.0414976 -1.333803
+#> 4 0 3 -0.490758 -0.9806894 -1.840349
+#> 5 1 3 -1.681134  0.7511786 -1.939042
+#> 6 2 1 -2.814986  0.7984411 -1.367265
 cor(data)
 #>              P          C          N1          N2          U
-#> P   1.00000000 -0.3306149 -0.09045314  0.01061425  0.5087675
-#> C  -0.33061493  1.0000000  0.29490752 -0.55282073 -0.7660546
-#> N1 -0.09045314  0.2949075  1.00000000 -0.30000000 -0.2887367
-#> N2  0.01061425 -0.5528207 -0.30000000  1.00000000  0.1074298
-#> U   0.50876746 -0.7660546 -0.28873665  0.10742984  1.0000000
+#> P   1.00000000 -0.2287181 -0.08793083 -0.02476611  0.4877251
+#> C  -0.22871807  1.0000000  0.28573358 -0.52539377 -0.7628656
+#> N1 -0.08793083  0.2857336  1.00000000 -0.30000000 -0.2694518
+#> N2 -0.02476611 -0.5253938 -0.30000000  1.00000000  0.1138354
+#> U   0.48772506 -0.7628656 -0.26945184  0.11383544  1.0000000
 ```
 
 ### [Transformation helpers](https://loelschlaeger.de/oeli/reference/index.html#transformation)

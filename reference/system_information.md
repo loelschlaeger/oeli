@@ -43,7 +43,7 @@ Other package helpers:
 ``` r
 system_information()
 #> $machine
-#> [1] "AMD EPYC 9V74 80-Core Processor"
+#> [1] "AMD EPYC 7763 64-Core Processor"
 #> 
 #> $cores
 #> [1] 4

@@ -213,7 +213,7 @@ progressr::handlers(global = TRUE)} # }
 # 4. Evaluate `f` `runs` times at each parameter combination (backup is optional):
 path <- file.path(tempdir(), paste0("backup_", format(Sys.time(), "%Y-%m-%d-%H-%M-%S")))
 object$go(runs = 2, backup = TRUE, path = path)
-#> Saving backup to path /tmp/Rtmpveziqm/backup_2026-04-22-22-00-37.
+#> Saving backup to path /tmp/RtmpWxT7KY/backup_2026-04-22-22-09-05.
 #> Started simulation with 4 cases...
 #> Simulation complete, 0 cases failed.
 
@@ -222,10 +222,10 @@ object$results
 #> # A tibble: 4 × 4
 #>   .case .seconds       .input           .output  
 #>   <int> <drtn>         <list>           <list>   
-#> 1     1 0.5169528 secs <named list [1]> <dbl [1]>
-#> 2     2 0.2302775 secs <named list [1]> <dbl [1]>
-#> 3     3 0.6743672 secs <named list [1]> <dbl [1]>
-#> 4     4 0.6663496 secs <named list [1]> <dbl [1]>
+#> 1     1 0.5169051 secs <named list [1]> <dbl [1]>
+#> 2     2 0.2302802 secs <named list [1]> <dbl [1]>
+#> 3     3 0.6744037 secs <named list [1]> <dbl [1]>
+#> 4     4 0.6663687 secs <named list [1]> <dbl [1]>
 
 # 6. Check if cases are pending or if an error occurred:
 object$cases

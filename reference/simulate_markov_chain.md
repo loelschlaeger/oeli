@@ -49,5 +49,5 @@ Other simulation helpers:
 Gamma <- matrix(c(0.8, 0.2, 0.3, 0.7), byrow = TRUE, nrow = 2)
 delta <- c(0.6, 0.4)
 simulate_markov_chain(Gamma = Gamma, T = 20, delta = delta)
-#>  [1] 2 2 2 2 1 1 2 1 1 1 1 1 1 1 1 1 1 1 1 1
+#>  [1] 2 1 1 1 1 1 1 1 1 2 1 1 2 1 1 1 1 1 2 2
 ```
