@@ -103,7 +103,7 @@ mean2 <- c(1, 1)
 Sigma1 <- matrix(c(1, 0.2, 0.2, 1), ncol = 2)
 Sigma2 <- matrix(c(1.5, -0.3, -0.3, 1), ncol = 2)
 gaussian_tv(mean1, mean2, Sigma1, Sigma2, method = "mc", n = 1e3)
-#> [1] 0.5346443
+#> [1] 0.5095226
 #> attr(,"se")
-#> [1] 0.009136482
+#> [1] 0.009143605
 ```

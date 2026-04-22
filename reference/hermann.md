@@ -44,17 +44,17 @@ A `tibble` with 54 rows and 8 columns:
 
   the men's winner
 
-- time_men:
+- seconds_men:
 
-  the men's winner's total time
+  the men's winner's total time in seconds
 
 - winner_women:
 
   the women's winner
 
-- time_women:
+- seconds_women:
 
-  the women's winner's total time
+  the women's winner's total time in seconds
 
 ## Source
 
