@@ -149,7 +149,10 @@ correlated_regressors <- function(
             marginals[labels[p]], names = "strict", any.missing = FALSE
           ),
           "marginals",
-          prefix = paste0("Element {.val ", labels[p], "} in input {.var {var_name}} is bad:")
+          prefix = paste0(
+            "Element {.val ", labels[p], "} in input ",
+            "{.var {var_name}} is bad:"
+          )
         )
         type <- marginals[[labels[p]]][["type"]]
         input_check_response(
@@ -158,7 +161,10 @@ correlated_regressors <- function(
             c("poisson", "categorical", "normal", "uniform")
           ),
           "marginals",
-          prefix = paste0("Element {.val type} of element {.val ", labels[p], "} in input {.var {var_name}} is bad:")
+          prefix = paste0(
+            "Element {.val type} of element {.val ", labels[p],
+            "} in input {.var {var_name}} is bad:"
+          )
         )
         if (type == "poisson") {
 
@@ -166,7 +172,10 @@ correlated_regressors <- function(
           input_check_response(
             checkmate::check_number(lam, lower = 0, finite = TRUE),
             "marginals",
-            prefix = paste0("Element {.val lambda} of element {.val ", labels[p], "} in input {.var {var_name}} is bad:")
+            prefix = paste0(
+              "Element {.val lambda} of element {.val ", labels[p],
+              "} in input {.var {var_name}} is bad:"
+            )
           )
           marginals_class[p] <- "pois"
           marginals_info[p] <- paste0("Poisson(lambda = ", lam, ")")
@@ -177,7 +186,10 @@ correlated_regressors <- function(
           input_check_response(
             check_probability_vector(cat_prob_p),
             "marginals",
-            prefix = paste0("Element {.val p} of element {.val ", labels[p], "} in input {.var {var_name}} is bad:")
+            prefix = paste0(
+              "Element {.val p} of element {.val ", labels[p],
+              "} in input {.var {var_name}} is bad:"
+            )
           )
           marginal <- c(marginal, list(cumsum(cat_prob_p)[-length(cat_prob_p)]))
           marginals_class[p] <- "cat"
@@ -191,13 +203,19 @@ correlated_regressors <- function(
           input_check_response(
             checkmate::check_number(normal_mean_p, finite = TRUE),
             "marginals",
-            prefix = paste0("Element {.val mean} of element {.val ", labels[p], "} in input {.var {var_name}} is bad:")
+            prefix = paste0(
+              "Element {.val mean} of element {.val ", labels[p],
+              "} in input {.var {var_name}} is bad:"
+            )
           )
           normal_sd_p <- marginals[[labels[p]]][["sd"]]
           input_check_response(
             checkmate::check_number(normal_sd_p, lower = 0, finite = TRUE),
             "marginals",
-            prefix = paste0("Element {.val sd} of element {.val ", labels[p], "} in input {.var {var_name}} is bad:")
+            prefix = paste0(
+              "Element {.val sd} of element {.val ", labels[p],
+              "} in input {.var {var_name}} is bad:"
+            )
           )
           M <- cbind(M, SimMultiCorrData::calc_theory(
             Dist = "Gaussian",
@@ -214,13 +232,21 @@ correlated_regressors <- function(
           input_check_response(
             checkmate::check_number(uniform_min_p, finite = TRUE),
             "marginals",
-            prefix = paste0("Element {.val min} of element {.val ", labels[p], "} in input {.var {var_name}} is bad:")
+            prefix = paste0(
+              "Element {.val min} of element {.val ", labels[p],
+              "} in input {.var {var_name}} is bad:"
+            )
           )
           uniform_max_p <- marginals[[labels[p]]][["max"]]
           input_check_response(
-            checkmate::check_number(uniform_max_p, lower = uniform_min_p, finite = TRUE),
+            checkmate::check_number(
+              uniform_max_p, lower = uniform_min_p, finite = TRUE
+            ),
             "marginals",
-            prefix = paste0("Element {.val max} of element {.val ", labels[p], "} in input {.var {var_name}} is bad:")
+            prefix = paste0(
+              "Element {.val max} of element {.val ", labels[p],
+              "} in input {.var {var_name}} is bad:"
+            )
           )
           M <- cbind(M, SimMultiCorrData::calc_theory(
             Dist = "Uniform",
@@ -249,7 +275,9 @@ correlated_regressors <- function(
     }
 
     ### adapt order of correlation
-    marginals_class <- factor(marginals_class, levels = c("cat", "cont", "pois"), ordered = TRUE)
+    marginals_class <- factor(
+      marginals_class, levels = c("cat", "cont", "pois"), ordered = TRUE
+    )
     marginals_order <- order(marginals_class)
     ordering_operator <- diag(P)[marginals_order, ]
     correlation <- ordering_operator %*% correlation %*% t(ordering_operator)
@@ -278,7 +306,10 @@ correlated_regressors <- function(
     ### check for failure
     if (inherits(valid, "fail")) {
       cli::cli_abort(
-        "Unable to fit {.var correlation} with {.var marginals}, please check specification.",
+        paste(
+          "Unable to fit {.var correlation} with {.var marginals},",
+          "please check specification."
+        ),
         call = NULL
       )
     }

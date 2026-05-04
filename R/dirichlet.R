@@ -44,7 +44,9 @@
 ddirichlet <- function(x, concentration, log = FALSE) {
   checkmate::assert_numeric(x, lower = 0, upper = 1, any.missing = FALSE)
   stopifnot("'x' must sum up to 1" = sum(x) == 1)
-  checkmate::assert_numeric(concentration, lower = 0, any.missing = FALSE, len = length(x))
+  checkmate::assert_numeric(
+    concentration, lower = 0, any.missing = FALSE, len = length(x)
+  )
   checkmate::assert_flag(log)
   ddirichlet_cpp(x, concentration, log)
 }

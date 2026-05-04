@@ -20,7 +20,10 @@
 
 merge_lists <- function(...) {
   inputs <- list(...)
-  lapply(inputs, function(input) checkmate::assert_list(input, names = "unique"))
+  lapply(
+    inputs,
+    function(input) checkmate::assert_list(input, names = "unique")
+  )
   final <- list()
   for (input in inputs) {
     for (element in names(input)) {

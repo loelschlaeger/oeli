@@ -11,7 +11,7 @@
 #'
 #' Can also be a single value.
 #'
-#' @param p \[`integer())`\]\cr
+#' @param p \[`integer()`\]\cr
 #' The position(s) where to add the column, one or more of:
 #' - \code{p = 0} appends the column left
 #' - \code{p = ncol(A)} appends the column right
@@ -48,7 +48,8 @@ insert_matrix_column <- function(A, x, p) {
   n <- ncol(A)
   checkmate::assert_atomic_vector(x)
   stopifnot(
-    "'x' must be of length 1 or nrow(A)" = length(x) == 1 || length(x) == nrow(A)
+    "'x' must be of length 1 or nrow(A)" =
+      length(x) == 1 || length(x) == nrow(A)
   )
   checkmate::assert_integerish(
     p, lower = 0, upper = n, unique = TRUE, max.len = n + 1

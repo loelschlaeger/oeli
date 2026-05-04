@@ -15,7 +15,9 @@ meta_dict <- Dictionary$new(
   value_names = c("label", "type"),
   value_assert = alist(
     label = checkmate::assert_string(),
-    type = checkmate::assert_choice(choices = c("numeric", "factor", "character"))
+    type = checkmate::assert_choice(
+      choices = c("numeric", "factor", "character")
+    )
   ),
   allow_overwrite = FALSE,
   keys_reserved = c("id"),
@@ -62,6 +64,7 @@ Other package helpers:
 \code{\link{Storage}},
 \code{\link{check_missing}()},
 \code{\link{find_namespace_calls}()},
+\code{\link{find_pkg_functions}()},
 \code{\link{identical_structure}()},
 \code{\link{input_check_response}()},
 \code{\link{match_arg}()},
@@ -126,7 +129,7 @@ Optionally the name for the alias variable.}
 The names of the values connected to a key.}
 
 \item{\code{value_assert}}{[\code{alist(1)}]\cr
-For each element in \code{value_names}, \code{values_assert} \emph{can} have an
+For each element in \code{value_names}, \code{value_assert} \emph{can} have an
 identically named element of the form \code{checkmate::assert*(...)}, where
 \code{...} can be any argument for the assertion function except for the
 \code{x} argument.}

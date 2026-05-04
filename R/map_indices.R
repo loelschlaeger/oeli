@@ -33,7 +33,9 @@
 
 map_indices <- function(indices, n) {
   input_check_response(
-    check = checkmate::check_integerish(indices, lower = 1, any.missing = FALSE),
+    check = checkmate::check_integerish(
+      indices, lower = 1, any.missing = FALSE
+    ),
     var_name = "indices"
   )
   input_check_response(

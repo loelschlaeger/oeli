@@ -18,7 +18,7 @@
 #' @export
 
 unexpected_error <- function(
-    msg = "Ups, an unexpected error occured.",
+    msg = "Oops, an unexpected error occurred.",
     issue_link = "https://github.com/loelschlaeger/oeli/issues") {
   checkmate::assert_string(msg, min.chars = 1)
   checkmate::assert_string(

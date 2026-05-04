@@ -5,7 +5,7 @@
 \title{Handling of an unexpected error}
 \usage{
 unexpected_error(
-  msg = "Ups, an unexpected error occured.",
+  msg = "Oops, an unexpected error occurred.",
   issue_link = "https://github.com/loelschlaeger/oeli/issues"
 )
 }
@@ -29,6 +29,7 @@ Other package helpers:
 \code{\link{Storage}},
 \code{\link{check_missing}()},
 \code{\link{find_namespace_calls}()},
+\code{\link{find_pkg_functions}()},
 \code{\link{identical_structure}()},
 \code{\link{input_check_response}()},
 \code{\link{match_arg}()},

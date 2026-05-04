@@ -1,3 +1,9 @@
+# oeli 0.7.6.9000
+
+* Added function `find_pkg_functions()` to list R functions in a package.
+
+* Small documentation fixes.
+
 # oeli 0.7.6
 
 * Addressed #6.

@@ -8,8 +8,8 @@ find_namespace_calls(path = "R", triple_colon = FALSE, as_list = FALSE)
 }
 \arguments{
 \item{path}{[\code{character(1)}]\cr
-The path name to a folder. All \code{.R} files in this folder and sub-directories
-will be searched.}
+The path name to a folder. All \code{.R} files in this folder and
+subdirectories will be searched.}
 
 \item{triple_colon}{[\code{logical(1)}]\cr
 Also search for \code{:::}?}
@@ -35,6 +35,7 @@ Other package helpers:
 \code{\link{Dictionary}},
 \code{\link{Storage}},
 \code{\link{check_missing}()},
+\code{\link{find_pkg_functions}()},
 \code{\link{identical_structure}()},
 \code{\link{input_check_response}()},
 \code{\link{match_arg}()},

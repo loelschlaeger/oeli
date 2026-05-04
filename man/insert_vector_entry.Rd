@@ -13,7 +13,7 @@ A \code{vector}.}
 \item{x}{[\code{atomic(1)}]\cr
 The entry to be added.}
 
-\item{p}{[\verb{integer())}]\cr
+\item{p}{[\code{integer()}]\cr
 The position(s) where to add the value, one or more of:
 \itemize{
 \item \code{p = 0} appends the value left
