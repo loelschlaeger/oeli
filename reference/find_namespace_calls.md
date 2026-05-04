@@ -15,7 +15,7 @@ find_namespace_calls(path = "R", triple_colon = FALSE, as_list = FALSE)
 
   \[`character(1)`\]  
   The path name to a folder. All `.R` files in this folder and
-  sub-directories will be searched.
+  subdirectories will be searched.
 
 - triple_colon:
 
@@ -38,6 +38,7 @@ Other package helpers:
 [`Dictionary`](http://loelschlaeger.de/oeli/reference/Dictionary.md),
 [`Storage`](http://loelschlaeger.de/oeli/reference/Storage.md),
 [`check_missing()`](http://loelschlaeger.de/oeli/reference/check_missing.md),
+[`find_pkg_functions()`](http://loelschlaeger.de/oeli/reference/find_pkg_functions.md),
 [`identical_structure()`](http://loelschlaeger.de/oeli/reference/identical_structure.md),
 [`input_check_response()`](http://loelschlaeger.de/oeli/reference/input_check_response.md),
 [`match_arg()`](http://loelschlaeger.de/oeli/reference/match_arg.md),

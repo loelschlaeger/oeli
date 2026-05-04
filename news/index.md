@@ -1,6 +1,16 @@
 # Changelog
 
+## oeli 0.7.6.9000
+
+- Added function
+  [`find_pkg_functions()`](http://loelschlaeger.de/oeli/reference/find_pkg_functions.md)
+  to list R functions in a package.
+
+- Small documentation fixes.
+
 ## oeli 0.7.6
+
+CRAN release: 2026-04-23
 
 - Addressed [\#6](https://github.com/loelschlaeger/oeli/issues/6).
 

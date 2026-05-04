@@ -8,6 +8,7 @@ Other package helpers:
 [`Storage`](http://loelschlaeger.de/oeli/reference/Storage.md),
 [`check_missing()`](http://loelschlaeger.de/oeli/reference/check_missing.md),
 [`find_namespace_calls()`](http://loelschlaeger.de/oeli/reference/find_namespace_calls.md),
+[`find_pkg_functions()`](http://loelschlaeger.de/oeli/reference/find_pkg_functions.md),
 [`identical_structure()`](http://loelschlaeger.de/oeli/reference/identical_structure.md),
 [`input_check_response()`](http://loelschlaeger.de/oeli/reference/input_check_response.md),
 [`match_arg()`](http://loelschlaeger.de/oeli/reference/match_arg.md),
@@ -83,7 +84,7 @@ Initializing a new `Dictionary` object.
 - `value_assert`:
 
   \[`alist(1)`\]  
-  For each element in `value_names`, `values_assert` *can* have an
+  For each element in `value_names`, `value_assert` *can* have an
   identically named element of the form `checkmate::assert*(...)`, where
   `...` can be any argument for the assertion function except for the
   `x` argument.
@@ -198,7 +199,9 @@ meta_dict <- Dictionary$new(
   value_names = c("label", "type"),
   value_assert = alist(
     label = checkmate::assert_string(),
-    type = checkmate::assert_choice(choices = c("numeric", "factor", "character"))
+    type = checkmate::assert_choice(
+      choices = c("numeric", "factor", "character")
+    )
   ),
   allow_overwrite = FALSE,
   keys_reserved = c("id"),

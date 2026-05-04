@@ -42,6 +42,7 @@ Other package helpers:
 [`Dictionary`](http://loelschlaeger.de/oeli/reference/Dictionary.md),
 [`check_missing()`](http://loelschlaeger.de/oeli/reference/check_missing.md),
 [`find_namespace_calls()`](http://loelschlaeger.de/oeli/reference/find_namespace_calls.md),
+[`find_pkg_functions()`](http://loelschlaeger.de/oeli/reference/find_pkg_functions.md),
 [`identical_structure()`](http://loelschlaeger.de/oeli/reference/identical_structure.md),
 [`input_check_response()`](http://loelschlaeger.de/oeli/reference/input_check_response.md),
 [`match_arg()`](http://loelschlaeger.de/oeli/reference/match_arg.md),
@@ -408,7 +409,7 @@ my_storage$get("all") # get all elements
 #> [[5]]
 #> function (x, ...) 
 #> UseMethod("mean")
-#> <bytecode: 0x5594c75621c0>
+#> <bytecode: 0x560f25691618>
 #> <environment: namespace:base>
 #> 
 my_storage$get(c("text", "!text"))
@@ -429,7 +430,7 @@ my_storage$get(c("text", "!text"), logical = "or")
 #> [[5]]
 #> function (x, ...) 
 #> UseMethod("mean")
-#> <bytecode: 0x5594c75621c0>
+#> <bytecode: 0x560f25691618>
 #> <environment: namespace:base>
 #> 
 
@@ -441,7 +442,7 @@ my_storage$get(ids = 4:5)
 #> [[2]]
 #> function (x, ...) 
 #> UseMethod("mean")
-#> <bytecode: 0x5594c75621c0>
+#> <bytecode: 0x560f25691618>
 #> <environment: namespace:base>
 #> 
 my_storage$get(ids = 4:5, id_names = TRUE) # add the ids as names
@@ -451,7 +452,7 @@ my_storage$get(ids = 4:5, id_names = TRUE) # add the ids as names
 #> $`5`
 #> function (x, ...) 
 #> UseMethod("mean")
-#> <bytecode: 0x5594c75621c0>
+#> <bytecode: 0x560f25691618>
 #> <environment: namespace:base>
 #> 
 ```

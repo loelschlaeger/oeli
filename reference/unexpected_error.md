@@ -7,7 +7,7 @@ linking to an issue site with the request to submit an issue.
 
 ``` r
 unexpected_error(
-  msg = "Ups, an unexpected error occured.",
+  msg = "Oops, an unexpected error occurred.",
   issue_link = "https://github.com/loelschlaeger/oeli/issues"
 )
 ```
@@ -35,6 +35,7 @@ Other package helpers:
 [`Storage`](http://loelschlaeger.de/oeli/reference/Storage.md),
 [`check_missing()`](http://loelschlaeger.de/oeli/reference/check_missing.md),
 [`find_namespace_calls()`](http://loelschlaeger.de/oeli/reference/find_namespace_calls.md),
+[`find_pkg_functions()`](http://loelschlaeger.de/oeli/reference/find_pkg_functions.md),
 [`identical_structure()`](http://loelschlaeger.de/oeli/reference/identical_structure.md),
 [`input_check_response()`](http://loelschlaeger.de/oeli/reference/input_check_response.md),
 [`match_arg()`](http://loelschlaeger.de/oeli/reference/match_arg.md),

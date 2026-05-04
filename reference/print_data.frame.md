@@ -56,6 +56,7 @@ Other package helpers:
 [`Storage`](http://loelschlaeger.de/oeli/reference/Storage.md),
 [`check_missing()`](http://loelschlaeger.de/oeli/reference/check_missing.md),
 [`find_namespace_calls()`](http://loelschlaeger.de/oeli/reference/find_namespace_calls.md),
+[`find_pkg_functions()`](http://loelschlaeger.de/oeli/reference/find_pkg_functions.md),
 [`identical_structure()`](http://loelschlaeger.de/oeli/reference/identical_structure.md),
 [`input_check_response()`](http://loelschlaeger.de/oeli/reference/input_check_response.md),
 [`match_arg()`](http://loelschlaeger.de/oeli/reference/match_arg.md),
@@ -71,62 +72,62 @@ Other package helpers:
 x <- data.frame(1:10, LETTERS[1:10], stats::rnorm(10))
 print_data.frame(x, rows = 7)
 #>    X1.10 LETTERS.1.10. stats..rnorm.10.
-#> 1   1    A              0.007431986    
-#> 2   2    B             -0.966692216    
-#> 3   3    C             -0.559471897    
-#> 4   4    D             -0.344785381    
+#> 1   1    A             -0.78574622     
+#> 2   2    B             -1.12608238     
+#> 3   3    C             -0.49991849     
+#> 4   4    D             -0.06151036     
 #> 
 #> <3 rows hidden>
 #>                                        
-#> 8   8    H              0.604286488    
-#> 9   9    I             -1.172899215    
-#> 10 10    J             -2.127598879    
+#> 8   8    H              0.74062587     
+#> 9   9    I             -0.93833060     
+#> 10 10    J              1.02570916     
 print_data.frame(x, rows = 7, cols = 2)
 #>    X1.10 <1 col hidden> stats..rnorm.10.
-#> 1   1          -         0.007431986    
-#> 2   2          -        -0.966692216    
-#> 3   3          -        -0.559471897    
-#> 4   4          -        -0.344785381    
+#> 1   1          -        -0.78574622     
+#> 2   2          -        -1.12608238     
+#> 3   3          -        -0.49991849     
+#> 4   4          -        -0.06151036     
 #> 
 #> <3 rows hidden>
 #>                                         
-#> 8   8          -         0.604286488    
-#> 9   9          -        -1.172899215    
-#> 10 10          -        -2.127598879    
+#> 8   8          -         0.74062587     
+#> 9   9          -        -0.93833060     
+#> 10 10          -         1.02570916     
 print_data.frame(x, rows = 7, cols = 2, digits = 1)
 #>    X1.10 <1 col hidden> stats..rnorm.10.
-#> 1   1          -         0.0            
-#> 2   2          -        -1.0            
-#> 3   3          -        -0.6            
-#> 4   4          -        -0.3            
+#> 1   1          -        -0.8            
+#> 2   2          -        -1.1            
+#> 3   3          -        -0.5            
+#> 4   4          -        -0.1            
 #> 
 #> <3 rows hidden>
 #>                                         
-#> 8   8          -         0.6            
-#> 9   9          -        -1.2            
-#> 10 10          -        -2.1            
+#> 8   8          -         0.7            
+#> 9   9          -        -0.9            
+#> 10 10          -         1.0            
 print_data.frame(x, rows = 7, cols = 2, digits = 1, row.names = FALSE)
 #>  X1.10 <1 col hidden> stats..rnorm.10.
-#>   1          -         0.0            
-#>   2          -        -1.0            
-#>   3          -        -0.6            
-#>   4          -        -0.3            
+#>   1          -        -0.8            
+#>   2          -        -1.1            
+#>   3          -        -0.5            
+#>   4          -        -0.1            
 #> 
 #> <3 rows hidden>
 #>                                       
-#>   8          -         0.6            
-#>   9          -        -1.2            
-#>  10          -        -2.1            
+#>   8          -         0.7            
+#>   9          -        -0.9            
+#>  10          -         1.0            
 print_data.frame(x, rows = 7, cols = 2, digits = 1, col.names = FALSE)
 #>       <1 col hidden>     
-#> 1   1       -         0.0
-#> 2   2       -        -1.0
-#> 3   3       -        -0.6
-#> 4   4       -        -0.3
+#> 1   1       -        -0.8
+#> 2   2       -        -1.1
+#> 3   3       -        -0.5
+#> 4   4       -        -0.1
 #> 
 #> <3 rows hidden>
 #>                          
-#> 8   8       -         0.6
-#> 9   9       -        -1.2
-#> 10 10       -        -2.1
+#> 8   8       -         0.7
+#> 9   9       -        -0.9
+#> 10 10       -         1.0
 ```

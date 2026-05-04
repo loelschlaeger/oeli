@@ -24,7 +24,7 @@ insert_matrix_column(A, x, p)
 
 - p:
 
-  \[`integer())`\]  
+  \[[`integer()`](https://rdrr.io/r/base/integer.html)\]  
   The position(s) where to add the column, one or more of:
 
   - `p = 0` appends the column left

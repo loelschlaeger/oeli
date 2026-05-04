@@ -112,8 +112,8 @@ pmixnorm(x = x, mean = mean, Sigma = Sigma, proportions = proportions)
 
 # sample
 rmixnorm(n = 3, mean = mean, Sigma = Sigma, proportions = proportions)
-#>            [,1]       [,2]
-#> [1,]  0.3211793 -0.8718302
-#> [2,] -2.5205032 -1.1316242
-#> [3,] -1.3094168 -0.4523907
+#>            [,1]        [,2]
+#> [1,]  0.6601036 -1.63976423
+#> [2,]  0.2018030  0.09332544
+#> [3,] -0.9450978 -3.20484851
 ```

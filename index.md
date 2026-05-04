@@ -5,6 +5,7 @@ found useful when developing R code - perhaps you will too! The released
 package version can be installed via:
 
 ``` r
+
 install.packages("oeli")
 ```
 
@@ -18,6 +19,7 @@ The `hermann` data contains historical information on editions of the
 the date, temperature, and winning times for men and women:
 
 ``` r
+
 hermann
 #> # A tibble: 54 × 8
 #>    edition  year date        temp winner_men        seconds_men winner_women  
@@ -42,6 +44,7 @@ The package has density and sampling functions for some distributions
 not included in base R, like the Dirichlet:
 
 ``` r
+
 ddirichlet(x = c(0.2, 0.3, 0.5), concentration = 1:3)
 #> [1] 4.5
 rdirichlet(concentration = 1:3)
@@ -51,6 +54,7 @@ rdirichlet(concentration = 1:3)
 Or the mixture of Gaussian distributions:
 
 ``` r
+
 x <- c(0, 0)
 mean <- matrix(c(1, 1, -1, -1), ncol = 2) # means in columns
 Sigma <- matrix(c(diag(2), 0.1 * diag(2)), ncol = 2) # vectorized covariances in columns
@@ -71,6 +75,7 @@ rmixnorm(n = 1000, mean = mean, Sigma = Sigma, proportions = proportions) |>
 Retrieving default arguments of a `function`:
 
 ``` r
+
 f <- function(a, b = 1, c = "", ...) { }
 function_defaults(f)
 #> $b
@@ -85,6 +90,7 @@ function_defaults(f)
 Create all possible permutations of vector elements:
 
 ``` r
+
 permutations(LETTERS[1:3])
 #> [[1]]
 #> [1] "A" "B" "C"
@@ -110,6 +116,7 @@ permutations(LETTERS[1:3])
 Quickly have a basic logo for your new package:
 
 ``` r
+
 logo <- package_logo("my_package", brackets = TRUE)
 print(logo)
 ```
@@ -119,6 +126,7 @@ print(logo)
 How to print a `matrix` without filling up the entire console?
 
 ``` r
+
 x <- matrix(rnorm(10000), ncol = 100, nrow = 100)
 print_matrix(x, rowdots = 4, coldots = 4, digits = 2, label = "what a big matrix")
 #> what a big matrix : 100 x 100 matrix of doubles 
@@ -133,6 +141,7 @@ print_matrix(x, rowdots = 4, coldots = 4, digits = 2, label = "what a big matrix
 And what about a `data.frame`?
 
 ``` r
+
 x <- data.frame(x = rnorm(1000), y = LETTERS[1:10])
 print_data.frame(x, rows = 7, digits = 0)
 #>      x  y
@@ -153,6 +162,7 @@ Let’s simulate correlated regressor values from different marginal
 distributions:
 
 ``` r
+
 labels <- c("P", "C", "N1", "N2", "U")
 n <- 100
 marginals <- list(
@@ -197,6 +207,7 @@ function groups a given `data.frame` based on the values in a specified
 column:
 
 ``` r
+
 df <- data.frame("label" = c("A", "B"), "number" = 1:10)
 group_data.frame(df = df, by = "label")
 #> $A
@@ -221,6 +232,7 @@ group_data.frame(df = df, by = "label")
 Is my matrix a proper transition probability matrix?
 
 ``` r
+
 matrix <- diag(4)
 matrix[1, 2] <- 1
 check_transition_probability_matrix(matrix)

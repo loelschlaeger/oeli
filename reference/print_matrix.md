@@ -69,6 +69,7 @@ Other package helpers:
 [`Storage`](http://loelschlaeger.de/oeli/reference/Storage.md),
 [`check_missing()`](http://loelschlaeger.de/oeli/reference/check_missing.md),
 [`find_namespace_calls()`](http://loelschlaeger.de/oeli/reference/find_namespace_calls.md),
+[`find_pkg_functions()`](http://loelschlaeger.de/oeli/reference/find_pkg_functions.md),
 [`identical_structure()`](http://loelschlaeger.de/oeli/reference/identical_structure.md),
 [`input_check_response()`](http://loelschlaeger.de/oeli/reference/input_check_response.md),
 [`match_arg()`](http://loelschlaeger.de/oeli/reference/match_arg.md),
@@ -91,12 +92,12 @@ print_matrix(x = 1:3, coldots = 2)
 #> 1 ... 3
 print_matrix(x = matrix(rnorm(99), ncol = 1), label = "single column matrix")
 #> single column matrix : 99 x 1 matrix of doubles 
-#>       [,1]
-#> [1,]  1.03
-#> [2,]  0.57
-#> [3,]  0.54
-#> ...    ...
-#> [99,] -1.5
+#>        [,1]
+#> [1,]   0.32
+#> [2,]  -0.36
+#> [3,]   0.17
+#> ...     ...
+#> [99,] -0.38
 print_matrix(x = matrix(1:100, nrow = 1), label = "single row matrix")
 #> single row matrix : 1 x 100 matrix of doubles 
 #>      [,1] [,2] [,3] ... [,100]

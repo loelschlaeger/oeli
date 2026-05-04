@@ -7,7 +7,7 @@
 
     <a class="navbar-brand me-2" href="../index.html">oeli</a>
 
-    <small class="nav-text text-muted me-auto" data-bs-toggle="tooltip" data-bs-placement="bottom" title="">0.7.6</small>
+    <small class="nav-text text-muted me-auto" data-bs-toggle="tooltip" data-bs-placement="bottom" title="">0.7.6.9000</small>
 
 
     <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbar" aria-controls="navbar" aria-expanded="false" aria-label="Toggle navigation">
@@ -43,6 +43,7 @@
 <code><a href="Storage.html">Storage</a></code>,
 <code><a href="check_missing.html">check_missing()</a></code>,
 <code><a href="find_namespace_calls.html">find_namespace_calls()</a></code>,
+<code><a href="find_pkg_functions.html">find_pkg_functions()</a></code>,
 <code><a href="identical_structure.html">identical_structure()</a></code>,
 <code><a href="input_check_response.html">input_check_response()</a></code>,
 <code><a href="match_arg.html">match_arg()</a></code>,
@@ -113,7 +114,7 @@ The names of the values connected to a key.</p></dd>
 
 <dt><code>value_assert</code></dt>
 <dd><p>[<code>alist(1)</code>]<br>
-For each element in <code>value_names</code>, <code>values_assert</code> <em>can</em> have an
+For each element in <code>value_names</code>, <code>value_assert</code> <em>can</em> have an
 identically named element of the form <code>checkmate::assert*(...)</code>, where
 <code>...</code> can be any argument for the assertion function except for the
 <code>x</code> argument.</p></dd>
@@ -230,7 +231,9 @@ available keys.</p></dd>
 <span class="r-in"><span>  value_names <span class="op">=</span> <span class="fu"><a href="https://rdrr.io/r/base/c.html" class="external-link">c</a></span><span class="op">(</span><span class="st">"label"</span>, <span class="st">"type"</span><span class="op">)</span>,</span></span>
 <span class="r-in"><span>  value_assert <span class="op">=</span> <span class="fu"><a href="https://rdrr.io/r/base/list.html" class="external-link">alist</a></span><span class="op">(</span></span></span>
 <span class="r-in"><span>    label <span class="op">=</span> <span class="fu">checkmate</span><span class="fu">::</span><span class="fu"><a href="https://mllg.github.io/checkmate/reference/checkString.html" class="external-link">assert_string</a></span><span class="op">(</span><span class="op">)</span>,</span></span>
-<span class="r-in"><span>    type <span class="op">=</span> <span class="fu">checkmate</span><span class="fu">::</span><span class="fu"><a href="https://mllg.github.io/checkmate/reference/checkChoice.html" class="external-link">assert_choice</a></span><span class="op">(</span>choices <span class="op">=</span> <span class="fu"><a href="https://rdrr.io/r/base/c.html" class="external-link">c</a></span><span class="op">(</span><span class="st">"numeric"</span>, <span class="st">"factor"</span>, <span class="st">"character"</span><span class="op">)</span><span class="op">)</span></span></span>
+<span class="r-in"><span>    type <span class="op">=</span> <span class="fu">checkmate</span><span class="fu">::</span><span class="fu"><a href="https://mllg.github.io/checkmate/reference/checkChoice.html" class="external-link">assert_choice</a></span><span class="op">(</span></span></span>
+<span class="r-in"><span>      choices <span class="op">=</span> <span class="fu"><a href="https://rdrr.io/r/base/c.html" class="external-link">c</a></span><span class="op">(</span><span class="st">"numeric"</span>, <span class="st">"factor"</span>, <span class="st">"character"</span><span class="op">)</span></span></span>
+<span class="r-in"><span>    <span class="op">)</span></span></span>
 <span class="r-in"><span>  <span class="op">)</span>,</span></span>
 <span class="r-in"><span>  allow_overwrite <span class="op">=</span> <span class="cn">FALSE</span>,</span></span>
 <span class="r-in"><span>  keys_reserved <span class="op">=</span> <span class="fu"><a href="https://rdrr.io/r/base/c.html" class="external-link">c</a></span><span class="op">(</span><span class="st">"id"</span><span class="op">)</span>,</span></span>

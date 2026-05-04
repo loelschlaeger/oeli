@@ -22,7 +22,7 @@ insert_vector_entry(v, x, p)
 
 - p:
 
-  \[`integer())`\]  
+  \[[`integer()`](https://rdrr.io/r/base/integer.html)\]  
   The position(s) where to add the value, one or more of:
 
   - `p = 0` appends the value left

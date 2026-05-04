@@ -105,6 +105,9 @@ These functions help to build a package.
 - [`find_namespace_calls()`](http://loelschlaeger.de/oeli/reference/find_namespace_calls.md)
   : Namespace calls
 
+- [`find_pkg_functions()`](http://loelschlaeger.de/oeli/reference/find_pkg_functions.md)
+  : Find R functions in a package
+
 - [`input_check_response()`](http://loelschlaeger.de/oeli/reference/input_check_response.md)
   : Standardized response to input check
 
