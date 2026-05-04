@@ -71,8 +71,11 @@ print(object)
 future::plan(future::sequential)
 progressr::handlers(global = TRUE)}
 
-# 4. Evaluate `f` `runs` times at each parameter combination (backup is optional):
-path <- file.path(tempdir(), paste0("backup_", format(Sys.time(), "\%Y-\%m-\%d-\%H-\%M-\%S")))
+# 4. Evaluate `f` `runs` times at each parameter combination:
+path <- file.path(
+  tempdir(),
+  paste0("backup_", format(Sys.time(), "\%Y-\%m-\%d-\%H-\%M-\%S"))
+)
 object$go(runs = 2, backup = TRUE, path = path)
 
 # 5. Access the results:

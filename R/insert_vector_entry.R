@@ -9,7 +9,7 @@
 #' @param x \[`atomic(1)`\]\cr
 #' The entry to be added.
 #'
-#' @param p \[`integer())`\]\cr
+#' @param p \[`integer()`\]\cr
 #' The position(s) where to add the value, one or more of:
 #' - \code{p = 0} appends the value left
 #' - \code{p = length(v)} appends the value right

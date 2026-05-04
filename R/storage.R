@@ -108,7 +108,10 @@ Storage <- R6::R6Class(
         stop("please specify the object 'x' to be added", call. = FALSE)
       }
       if (missing(identifier)) {
-        stop("please specify at least one entry for 'identifier'", call. = FALSE)
+        stop(
+          "please specify at least one entry for 'identifier'",
+          call. = FALSE
+        )
       }
       private$check_input(
         identifier = identifier, confirm = confirm,
@@ -342,8 +345,13 @@ Storage <- R6::R6Class(
     confirm_default = FALSE,
     missing_default = NA,
     .hide_warnings = FALSE,
-    check_input = function(identifier = NULL, confirm = NULL, ids = NULL, missing_identifier = NULL,
-                           logical = NULL) {
+    check_input = function(
+        identifier = NULL,
+        confirm = NULL,
+        ids = NULL,
+        missing_identifier = NULL,
+        logical = NULL
+      ) {
       ### check 'identifier' input
       if (!is.null(identifier)) {
         checkmate::assert_character(identifier, any.missing = FALSE)
@@ -406,9 +414,14 @@ Storage <- R6::R6Class(
       }
       return(identifier)
     },
-    user_confirm = function(action = character(), identifier = character(), ids = integer(),
-                            missing_identifier = self$missing_identifier, complete = TRUE,
-                            logical = "and") {
+    user_confirm = function(
+        action = character(),
+        identifier = character(),
+        ids = integer(),
+        missing_identifier = self$missing_identifier,
+        complete = TRUE,
+        logical = "and"
+      ) {
       checkmate::assert_flag(complete)
       cat("You are about to", action)
       if (any(identifier == "all")) {
@@ -521,7 +534,9 @@ Storage <- R6::R6Class(
 
       ### check for identifier and inverse identifier
       for (i in identifier) {
-        i_inverse <- ifelse(startsWith(i, "!"), substring(i, first = 2), paste0("!", i))
+        i_inverse <- ifelse(
+          startsWith(i, "!"), substring(i, first = 2), paste0("!", i)
+        )
         if (i %in% identifier && i_inverse %in% identifier) {
           if (logical == "and") {
             identifier <- integer()

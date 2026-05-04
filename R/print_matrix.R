@@ -142,7 +142,10 @@ print_matrix <- function(
       }
     }
     if (details) {
-      cat(paste(dim(x), collapse = " x "), "matrix of", paste0(typeof(x), "s"), "\n")
+      cat(
+        paste(dim(x), collapse = " x "), "matrix of",
+        paste0(typeof(x), "s"), "\n"
+      )
     }
     if (simplify) {
       cat(paste("[", paste(apply(res, 1, paste, collapse = " "),

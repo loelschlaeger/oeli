@@ -15,7 +15,7 @@ The column to be added, of length \code{nrow(A)}.
 
 Can also be a single value.}
 
-\item{p}{[\verb{integer())}]\cr
+\item{p}{[\code{integer()}]\cr
 The position(s) where to add the column, one or more of:
 \itemize{
 \item \code{p = 0} appends the column left

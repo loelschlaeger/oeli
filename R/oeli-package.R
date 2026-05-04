@@ -1,4 +1,5 @@
 #' @keywords internal
+#' @encoding UTF-8
 #' @useDynLib oeli, .registration=TRUE
 "_PACKAGE"
 

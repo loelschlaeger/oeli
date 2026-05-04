@@ -5,7 +5,7 @@
 \title{Handling of an unexpected error}
 \usage{
 unexpected_error(
-  msg = "Ups, an unexpected error occured.",
+  msg = "Oops, an unexpected error occurred.",
   issue_link = "https://github.com/loelschlaeger/oeli/issues"
 )
 }

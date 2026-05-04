@@ -1,4 +1,5 @@
-# hermann_web <- rvest::read_html("https://de.wikipedia.org/wiki/Hermannslauf") |>
+# hermann_url <- "https://de.wikipedia.org/wiki/Hermannslauf"
+# hermann_web <- rvest::read_html(hermann_url) |>
 #   rvest::html_nodes("table") |>
 #   rvest::html_table(fill = TRUE)
 #
@@ -6,7 +7,11 @@
 #   dplyr::select(1:3) |>
 #   dplyr::filter(Jahr != 2020) |>
 #   dplyr::mutate(Zeit = lubridate::hms(Zeit)) |>
-#   dplyr::rename("year" = "Jahr", "winner_men" = "Männer", "time_men" = "Zeit") |>
+#   dplyr::rename(
+#     "year" = "Jahr",
+#     "winner_men" = "Männer",
+#     "time_men" = "Zeit"
+#   ) |>
 #   tsibble::as_tsibble(index = year) |>
 #   tsibble::fill_gaps()
 #
@@ -14,7 +19,11 @@
 #   dplyr::select(1, 4:5) |>
 #   dplyr::filter(Jahr != 2020) |>
 #   dplyr::mutate(Zeit = lubridate::hms(Zeit)) |>
-#   dplyr::rename("year" = "Jahr", "winner_women" = "Frauen", "time_women" = "Zeit") |>
+#   dplyr::rename(
+#     "year" = "Jahr",
+#     "winner_women" = "Frauen",
+#     "time_women" = "Zeit"
+#   ) |>
 #   tsibble::as_tsibble(index = year) |>
 #   tsibble::fill_gaps()
 #
@@ -134,6 +143,7 @@
 #' @source <https://de.wikipedia.org/wiki/Hermannslauf>
 #'
 #' @keywords data
+#' @encoding UTF-8
 #' @family data
 
 "hermann"
