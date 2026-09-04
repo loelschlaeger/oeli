@@ -39,8 +39,8 @@ dmvnorm_cpp <- function(x, mean, Sigma, log = FALSE) {
 
 #' @rdname dmvnorm
 #' @export
-pmvnorm_cpp <- function(x, mean, Sigma, abseps = 1e-3) {
-    .Call(`_oeli_pmvnorm_cpp`, x, mean, Sigma, abseps)
+pmvnorm_cpp <- function(x, mean, Sigma, abseps = 1e-3, lower = NULL, method = "genz", draws = 500L) {
+    .Call(`_oeli_pmvnorm_cpp`, x, mean, Sigma, abseps, lower, method, draws)
 }
 
 #' @rdname dmvnorm

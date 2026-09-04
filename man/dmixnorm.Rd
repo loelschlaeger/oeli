@@ -66,9 +66,10 @@ The functions with suffix \verb{_cpp} perform no input checks, hence are faster.
 The univariate normal mixture is available as the special case \code{p = 1}.
 }
 \details{
-\code{pmixnorm()} is based on \code{mvtnorm::pmvnorm} with the randomized
-Quasi-Monte-Carlo procedure by Genz and Bretz. The argument \code{abseps} controls
-the accuracy of the Gaussian integral approximation.
+\code{pmixnorm()} is based on \code{\link[=pmvnorm]{pmvnorm()}}, which is exact for \code{p <= 3} and uses
+the randomized Quasi-Monte-Carlo procedure by Genz and Bretz otherwise. The
+argument \code{abseps} controls the accuracy of the Gaussian integral
+approximation.
 }
 \examples{
 x <- c(0, 0)
@@ -86,15 +87,15 @@ pmixnorm(x = x, mean = mean, Sigma = Sigma, proportions = proportions)
 rmixnorm(n = 3, mean = mean, Sigma = Sigma, proportions = proportions)
 }
 \seealso{
-Other simulation helpers: 
+Other simulation helpers:
 \code{\link{Simulator}},
-\code{\link{correlated_regressors}()},
-\code{\link{ddirichlet_cpp}()},
-\code{\link{dmvnorm_cpp}()},
-\code{\link{dtnorm_cpp}()},
-\code{\link{dwishart_cpp}()},
-\code{\link{gaussian_tv}()},
-\code{\link{simulate_markov_chain}()}
+\code{\link[=correlated_regressors]{correlated_regressors()}},
+\code{\link[=ddirichlet_cpp]{ddirichlet_cpp()}},
+\code{\link[=dmvnorm_cpp]{dmvnorm_cpp()}},
+\code{\link[=dtnorm_cpp]{dtnorm_cpp()}},
+\code{\link[=dwishart_cpp]{dwishart_cpp()}},
+\code{\link[=gaussian_tv]{gaussian_tv()}},
+\code{\link[=simulate_markov_chain]{simulate_markov_chain()}}
 }
 \concept{simulation helpers}
 \keyword{distribution}

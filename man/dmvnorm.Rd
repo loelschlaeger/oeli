@@ -11,13 +11,29 @@
 \usage{
 dmvnorm_cpp(x, mean, Sigma, log = FALSE)
 
-pmvnorm_cpp(x, mean, Sigma, abseps = 0.001)
+pmvnorm_cpp(
+  x,
+  mean,
+  Sigma,
+  abseps = 0.001,
+  lower = NULL,
+  method = "genz",
+  draws = 500L
+)
 
 rmvnorm_cpp(mean, Sigma, log = FALSE)
 
 dmvnorm(x, mean, Sigma, log = FALSE)
 
-pmvnorm(x, mean, Sigma, abseps = 0.001)
+pmvnorm(
+  x,
+  mean,
+  Sigma,
+  abseps = 0.001,
+  lower = NULL,
+  method = "genz",
+  draws = 500
+)
 
 rmvnorm(n = 1, mean, Sigma, log = FALSE)
 }
@@ -46,7 +62,19 @@ variance, which is a different format than in \code{stats::dnorm()} or
 Consider the log-normal distribution?}
 
 \item{abseps}{[\code{numeric(1)}]\cr
-The absolute error tolerance.}
+The absolute error tolerance for \code{method = "genz"}.}
+
+\item{lower}{[\code{numeric()} | \code{NULL}]\cr
+Optionally lower limits of length \code{p}, where \code{NULL} corresponds to \code{-Inf}.
+
+For the functions without suffix \verb{_cpp}, it can also be of length \code{1} for
+convenience, then \code{rep(lower, p)} is considered.}
+
+\item{method}{[\code{character(1)}]\cr
+Either \code{"genz"} or \code{"ghk"}, see the details.}
+
+\item{draws}{[\code{integer(1)}]\cr
+The number of Halton points for \code{method = "ghk"}.}
 
 \item{n}{[\code{integer(1)}]\cr
 The number of requested samples.}
@@ -54,7 +82,8 @@ The number of requested samples.}
 \value{
 For \code{dmvnorm()}: The density value.
 
-For \code{pmvnorm()}: The value of the distribution function.
+For \code{pmvnorm()}: The value of the distribution function or the rectangle
+probability.
 
 For \code{rmvnorm()}: If \code{n = 1} a \code{vector} of length \code{p} (note
 that it is a column vector for \code{rmvnorm_cpp()}), else
@@ -65,7 +94,8 @@ The function \code{dmvnorm()} computes the density of a multivariate normal
 distribution.
 
 The function \code{pmvnorm()} computes the cumulative distribution function of a
-multivariate normal distribution.
+multivariate normal distribution, or the probability of a rectangle if
+\code{lower} is specified.
 
 The function \code{rmvnorm()} samples from a multivariate normal distribution.
 
@@ -74,9 +104,20 @@ The functions with suffix \verb{_cpp} perform no input checks, hence are faster.
 The univariate normal distribution is available as the special case \code{p = 1}.
 }
 \details{
-\code{pmvnorm()} just calls \code{mvtnorm::pmvnorm} with the randomized
-Quasi-Monte-Carlo procedure by Genz and Bretz. The argument \code{abseps} controls
-the accuracy of the Gaussian integral approximation.
+For \code{p <= 3}, \code{pmvnorm()} computes the probability exactly: the bivariate
+case uses the algorithm of Genz (2004) and the trivariate case integrates
+the bivariate probability conditional on the third component.
+
+For \code{p > 3}, the argument \code{method} selects the approximation:
+\itemize{
+\item \code{"genz"} calls \code{mvtnorm::pmvnorm} with the randomized Quasi-Monte-Carlo
+procedure by Genz and Bretz. The argument \code{abseps} controls the accuracy
+of the Gaussian integral approximation.
+\item \code{"ghk"} uses the Geweke-Hajivassiliou-Keane simulator on \code{draws}
+quasi-random Halton points. The result is deterministic and smooth in
+\code{x}, \code{mean}, and \code{Sigma}, which makes it suitable for likelihood
+evaluations, and its accuracy increases with \code{draws}.
+}
 }
 \examples{
 x <- c(0, 0)
@@ -90,20 +131,26 @@ dmvnorm(x = x, mean = mean, Sigma = Sigma, log = TRUE)
 # compute CDF
 pmvnorm(x = x, mean = mean, Sigma = Sigma)
 
+# compute rectangle probability
+pmvnorm(x = x, mean = mean, Sigma = Sigma, lower = -1)
+
+# simulate in higher dimensions
+pmvnorm(x = rep(0, 5), mean = 0, Sigma = diag(5), method = "ghk")
+
 # sample
 rmvnorm(n = 3, mean = mean, Sigma = Sigma)
 rmvnorm(mean = mean, Sigma = Sigma, log = TRUE)
 }
 \seealso{
-Other simulation helpers: 
+Other simulation helpers:
 \code{\link{Simulator}},
-\code{\link{correlated_regressors}()},
-\code{\link{ddirichlet_cpp}()},
-\code{\link{dmixnorm_cpp}()},
-\code{\link{dtnorm_cpp}()},
-\code{\link{dwishart_cpp}()},
-\code{\link{gaussian_tv}()},
-\code{\link{simulate_markov_chain}()}
+\code{\link[=correlated_regressors]{correlated_regressors()}},
+\code{\link[=ddirichlet_cpp]{ddirichlet_cpp()}},
+\code{\link[=dmixnorm_cpp]{dmixnorm_cpp()}},
+\code{\link[=dtnorm_cpp]{dtnorm_cpp()}},
+\code{\link[=dwishart_cpp]{dwishart_cpp()}},
+\code{\link[=gaussian_tv]{gaussian_tv()}},
+\code{\link[=simulate_markov_chain]{simulate_markov_chain()}}
 }
 \concept{simulation helpers}
 \keyword{distribution}

@@ -5,7 +5,8 @@
 #' distribution.
 #'
 #' The function `pmvnorm()` computes the cumulative distribution function of a
-#' multivariate normal distribution.
+#' multivariate normal distribution, or the probability of a rectangle if
+#' `lower` is specified.
 #'
 #' The function `rmvnorm()` samples from a multivariate normal distribution.
 #'
@@ -14,9 +15,20 @@
 #' The univariate normal distribution is available as the special case `p = 1`.
 #'
 #' @details
-#' `pmvnorm()` just calls `mvtnorm::pmvnorm` with the randomized
-#' Quasi-Monte-Carlo procedure by Genz and Bretz. The argument `abseps` controls
-#' the accuracy of the Gaussian integral approximation.
+#' For `p <= 3`, `pmvnorm()` computes the probability exactly: the bivariate
+#' case uses the algorithm of Genz (2004) and the trivariate case integrates
+#' the bivariate probability conditional on the third component.
+#'
+#' For `p > 3`, the argument `method` selects the approximation:
+#'
+#' * `"genz"` calls `mvtnorm::pmvnorm` with the randomized Quasi-Monte-Carlo
+#'   procedure by Genz and Bretz. The argument `abseps` controls the accuracy
+#'   of the Gaussian integral approximation.
+#'
+#' * `"ghk"` uses the Geweke-Hajivassiliou-Keane simulator on `draws`
+#'   quasi-random Halton points. The result is deterministic and smooth in
+#'   `x`, `mean`, and `Sigma`, which makes it suitable for likelihood
+#'   evaluations, and its accuracy increases with `draws`.
 #'
 #' @param x \[`numeric()`\]\cr
 #' A quantile vector of length `p`.
@@ -42,7 +54,19 @@
 #' Consider the log-normal distribution?
 #'
 #' @param abseps \[`numeric(1)`\]\cr
-#' The absolute error tolerance.
+#' The absolute error tolerance for `method = "genz"`.
+#'
+#' @param lower \[`numeric()` | `NULL`\]\cr
+#' Optionally lower limits of length `p`, where `NULL` corresponds to `-Inf`.
+#'
+#' For the functions without suffix `_cpp`, it can also be of length `1` for
+#' convenience, then `rep(lower, p)` is considered.
+#'
+#' @param method \[`character(1)`\]\cr
+#' Either `"genz"` or `"ghk"`, see the details.
+#'
+#' @param draws \[`integer(1)`\]\cr
+#' The number of Halton points for `method = "ghk"`.
 #'
 #' @param n \[`integer(1)`\]\cr
 #' The number of requested samples.
@@ -50,7 +74,8 @@
 #' @return
 #' For `dmvnorm()`: The density value.
 #'
-#' For `pmvnorm()`: The value of the distribution function.
+#' For `pmvnorm()`: The value of the distribution function or the rectangle
+#' probability.
 #'
 #' For `rmvnorm()`: If \code{n = 1} a \code{vector} of length \code{p} (note
 #' that it is a column vector for `rmvnorm_cpp()`), else
@@ -71,6 +96,12 @@
 #'
 #' # compute CDF
 #' pmvnorm(x = x, mean = mean, Sigma = Sigma)
+#'
+#' # compute rectangle probability
+#' pmvnorm(x = x, mean = mean, Sigma = Sigma, lower = -1)
+#'
+#' # simulate in higher dimensions
+#' pmvnorm(x = rep(0, 5), mean = 0, Sigma = diag(5), method = "ghk")
 #'
 #' # sample
 #' rmvnorm(n = 3, mean = mean, Sigma = Sigma)
@@ -106,7 +137,9 @@ dmvnorm <- function(x, mean, Sigma, log = FALSE) {
 #' @rdname dmvnorm
 #' @export
 
-pmvnorm <- function(x, mean, Sigma, abseps = 1e-3) {
+pmvnorm <- function(
+    x, mean, Sigma, abseps = 1e-3, lower = NULL, method = "genz", draws = 500
+) {
   input_check_response(
     check = check_numeric_vector(x, any.missing = FALSE, min.len = 1),
     var_name = "x"
@@ -130,7 +163,24 @@ pmvnorm <- function(x, mean, Sigma, abseps = 1e-3) {
     check = checkmate::check_number(abseps, lower = 0, finite = TRUE),
     var_name = "abseps"
   )
-  pmvnorm_cpp(x, mean, Sigma, abseps)
+  if (checkmate::test_atomic_vector(lower, len = 1)) {
+    lower <- rep(lower, dim)
+  }
+  input_check_response(
+    check = check_numeric_vector(
+      lower, any.missing = FALSE, len = dim, null.ok = TRUE
+    ),
+    var_name = "lower"
+  )
+  input_check_response(
+    check = checkmate::check_choice(method, c("genz", "ghk")),
+    var_name = "method"
+  )
+  input_check_response(
+    check = checkmate::check_int(draws, lower = 2),
+    var_name = "draws"
+  )
+  pmvnorm_cpp(x, mean, Sigma, abseps, lower, method, draws)
 }
 
 #' @rdname dmvnorm

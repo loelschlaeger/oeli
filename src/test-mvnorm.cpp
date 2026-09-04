@@ -49,6 +49,25 @@ context("pmvnorm_cpp") {
     expect_true(prob == 0.25);
   }
 
+  test_that("bivariate and trivariate normal CDF are exact") {
+    int factor = 1000;
+    arma::vec x2 = arma::zeros<arma::vec>(2);
+    arma::mat Sigma2 = arma::mat(2, 2).fill(0.5) + 0.5 * arma::eye(2, 2);
+    double prob2 = pmvnorm_cpp(x2, x2, Sigma2);
+    expect_true(round(prob2 * factor) / factor == 0.333);
+    arma::vec x3 = arma::zeros<arma::vec>(3);
+    arma::mat Sigma3 = arma::mat(3, 3).fill(0.5) + 0.5 * arma::eye(3, 3);
+    double prob3 = pmvnorm_cpp(x3, x3, Sigma3);
+    expect_true(round(prob3 * factor) / factor == 0.25);
+  }
+
+  test_that("multivariate normal CDF can be simulated") {
+    arma::vec x = arma::zeros<arma::vec>(4);
+    arma::mat Sigma = arma::mat(4, 4).fill(0.5) + 0.5 * arma::eye(4, 4);
+    double prob = pmvnorm_cpp(x, x, Sigma, 1e-3, R_NilValue, "ghk", 500);
+    expect_true(std::abs(prob - 0.2) < 0.01);
+  }
+
 }
 
 context("rmvnorm_cpp") {

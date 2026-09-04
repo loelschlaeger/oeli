@@ -58,6 +58,39 @@ test_that("Multivariate normal CDF can be computed", {
   )
 })
 
+test_that("Multivariate normal rectangle probability can be computed", {
+  Sigma <- matrix(c(1, 0.5, 0.5, 1), ncol = 2)
+  factor <- 1000
+  expect_equal(
+    round(pmvnorm(x = c(0, 0), mean = 0, Sigma = Sigma) * factor) / factor,
+    0.333
+  )
+  expect_equal(
+    pmvnorm(x = c(1, 1), mean = 0, Sigma = diag(2), lower = -1),
+    (pnorm(1) - pnorm(-1))^2
+  )
+  Sigma3 <- matrix(0.5, 3, 3) + diag(0.5, 3)
+  expect_equal(pmvnorm(x = rep(0, 3), mean = 0, Sigma = Sigma3), 0.25)
+  Sigma4 <- matrix(0.5, 4, 4) + diag(0.5, 4)
+  expect_equal(
+    pmvnorm(x = rep(0, 4), mean = 0, Sigma = Sigma4, method = "ghk"), 0.2,
+    tolerance = 0.01
+  )
+  expect_identical(
+    pmvnorm(x = rep(0, 4), mean = 0, Sigma = Sigma4, method = "ghk"),
+    pmvnorm(x = rep(0, 4), mean = 0, Sigma = Sigma4, method = "ghk")
+  )
+  expect_equal(pmvnorm(x = c(0, 0), mean = 0, Sigma = diag(2), lower = 0), 0)
+  expect_error(
+    pmvnorm(x = c(0, 0), mean = 0, Sigma = diag(2), method = "exact"),
+    "Input `method` is bad"
+  )
+  expect_error(
+    pmvnorm(x = c(0, 0), mean = 0, Sigma = diag(2), lower = 1:3),
+    "Input `lower` is bad"
+  )
+})
+
 test_that("Univariate normal can be drawn", {
   mean <- 0
   Sigma <- 1

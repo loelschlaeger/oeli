@@ -165,8 +165,8 @@ BEGIN_RCPP
 END_RCPP
 }
 // pmvnorm_cpp
-double pmvnorm_cpp(arma::vec const& x, arma::vec const& mean, arma::mat const& Sigma, double abseps);
-RcppExport SEXP _oeli_pmvnorm_cpp(SEXP xSEXP, SEXP meanSEXP, SEXP SigmaSEXP, SEXP absepsSEXP) {
+double pmvnorm_cpp(arma::vec const& x, arma::vec const& mean, arma::mat const& Sigma, double abseps, Rcpp::Nullable<Rcpp::NumericVector> lower, std::string method, int draws);
+RcppExport SEXP _oeli_pmvnorm_cpp(SEXP xSEXP, SEXP meanSEXP, SEXP SigmaSEXP, SEXP absepsSEXP, SEXP lowerSEXP, SEXP methodSEXP, SEXP drawsSEXP) {
 BEGIN_RCPP
     Rcpp::RObject rcpp_result_gen;
     Rcpp::RNGScope rcpp_rngScope_gen;
@@ -174,7 +174,10 @@ BEGIN_RCPP
     Rcpp::traits::input_parameter< arma::vec const& >::type mean(meanSEXP);
     Rcpp::traits::input_parameter< arma::mat const& >::type Sigma(SigmaSEXP);
     Rcpp::traits::input_parameter< double >::type abseps(absepsSEXP);
-    rcpp_result_gen = Rcpp::wrap(pmvnorm_cpp(x, mean, Sigma, abseps));
+    Rcpp::traits::input_parameter< Rcpp::Nullable<Rcpp::NumericVector> >::type lower(lowerSEXP);
+    Rcpp::traits::input_parameter< std::string >::type method(methodSEXP);
+    Rcpp::traits::input_parameter< int >::type draws(drawsSEXP);
+    rcpp_result_gen = Rcpp::wrap(pmvnorm_cpp(x, mean, Sigma, abseps, lower, method, draws));
     return rcpp_result_gen;
 END_RCPP
 }
@@ -430,23 +433,26 @@ RcppExport SEXP _oeli_dmvnorm(SEXP xSEXP, SEXP meanSEXP, SEXP SigmaSEXP, SEXP lo
     return rcpp_result_gen;
 }
 // pmvnorm
-double pmvnorm(arma::vec const& x, arma::vec const& mean, arma::mat const& Sigma, double abseps);
-static SEXP _oeli_pmvnorm_try(SEXP xSEXP, SEXP meanSEXP, SEXP SigmaSEXP, SEXP absepsSEXP) {
+double pmvnorm(arma::vec const& x, arma::vec const& mean, arma::mat const& Sigma, double abseps, Rcpp::Nullable<Rcpp::NumericVector> lower, std::string method, int draws);
+static SEXP _oeli_pmvnorm_try(SEXP xSEXP, SEXP meanSEXP, SEXP SigmaSEXP, SEXP absepsSEXP, SEXP lowerSEXP, SEXP methodSEXP, SEXP drawsSEXP) {
 BEGIN_RCPP
     Rcpp::RObject rcpp_result_gen;
     Rcpp::traits::input_parameter< arma::vec const& >::type x(xSEXP);
     Rcpp::traits::input_parameter< arma::vec const& >::type mean(meanSEXP);
     Rcpp::traits::input_parameter< arma::mat const& >::type Sigma(SigmaSEXP);
     Rcpp::traits::input_parameter< double >::type abseps(absepsSEXP);
-    rcpp_result_gen = Rcpp::wrap(pmvnorm(x, mean, Sigma, abseps));
+    Rcpp::traits::input_parameter< Rcpp::Nullable<Rcpp::NumericVector> >::type lower(lowerSEXP);
+    Rcpp::traits::input_parameter< std::string >::type method(methodSEXP);
+    Rcpp::traits::input_parameter< int >::type draws(drawsSEXP);
+    rcpp_result_gen = Rcpp::wrap(pmvnorm(x, mean, Sigma, abseps, lower, method, draws));
     return rcpp_result_gen;
 END_RCPP_RETURN_ERROR
 }
-RcppExport SEXP _oeli_pmvnorm(SEXP xSEXP, SEXP meanSEXP, SEXP SigmaSEXP, SEXP absepsSEXP) {
+RcppExport SEXP _oeli_pmvnorm(SEXP xSEXP, SEXP meanSEXP, SEXP SigmaSEXP, SEXP absepsSEXP, SEXP lowerSEXP, SEXP methodSEXP, SEXP drawsSEXP) {
     SEXP rcpp_result_gen;
     {
         Rcpp::RNGScope rcpp_rngScope_gen;
-        rcpp_result_gen = PROTECT(_oeli_pmvnorm_try(xSEXP, meanSEXP, SigmaSEXP, absepsSEXP));
+        rcpp_result_gen = PROTECT(_oeli_pmvnorm_try(xSEXP, meanSEXP, SigmaSEXP, absepsSEXP, lowerSEXP, methodSEXP, drawsSEXP));
     }
     Rboolean rcpp_isInterrupt_gen = Rf_inherits(rcpp_result_gen, "interrupted-error");
     if (rcpp_isInterrupt_gen) {
@@ -741,7 +747,7 @@ static int _oeli_RcppExport_validate(const char* sig) {
         signatures.insert("double(*pmixnorm)(arma::vec const&,arma::mat const&,arma::mat const&,arma::vec,double)");
         signatures.insert("arma::vec(*rmixnorm)(arma::mat const&,arma::mat const&,arma::vec)");
         signatures.insert("double(*dmvnorm)(arma::vec const&,arma::vec const&,arma::mat const&,bool)");
-        signatures.insert("double(*pmvnorm)(arma::vec const&,arma::vec const&,arma::mat const&,double)");
+        signatures.insert("double(*pmvnorm)(arma::vec const&,arma::vec const&,arma::mat const&,double,Rcpp::Nullable<Rcpp::NumericVector>,std::string,int)");
         signatures.insert("arma::vec(*rmvnorm)(arma::vec const&,arma::mat const&,bool)");
         signatures.insert("double(*dtnorm)(double,double,double,double,bool,bool)");
         signatures.insert("double(*dttnorm)(double,double,double,double,double,bool)");
@@ -784,7 +790,7 @@ static const R_CallMethodDef CallEntries[] = {
     {"_oeli_pmixnorm_cpp", (DL_FUNC) &_oeli_pmixnorm_cpp, 5},
     {"_oeli_rmixnorm_cpp", (DL_FUNC) &_oeli_rmixnorm_cpp, 3},
     {"_oeli_dmvnorm_cpp", (DL_FUNC) &_oeli_dmvnorm_cpp, 4},
-    {"_oeli_pmvnorm_cpp", (DL_FUNC) &_oeli_pmvnorm_cpp, 4},
+    {"_oeli_pmvnorm_cpp", (DL_FUNC) &_oeli_pmvnorm_cpp, 7},
     {"_oeli_rmvnorm_cpp", (DL_FUNC) &_oeli_rmvnorm_cpp, 3},
     {"_oeli_dtnorm_cpp", (DL_FUNC) &_oeli_dtnorm_cpp, 6},
     {"_oeli_dttnorm_cpp", (DL_FUNC) &_oeli_dttnorm_cpp, 6},
@@ -796,7 +802,7 @@ static const R_CallMethodDef CallEntries[] = {
     {"_oeli_pmixnorm", (DL_FUNC) &_oeli_pmixnorm, 5},
     {"_oeli_rmixnorm", (DL_FUNC) &_oeli_rmixnorm, 3},
     {"_oeli_dmvnorm", (DL_FUNC) &_oeli_dmvnorm, 4},
-    {"_oeli_pmvnorm", (DL_FUNC) &_oeli_pmvnorm, 4},
+    {"_oeli_pmvnorm", (DL_FUNC) &_oeli_pmvnorm, 7},
     {"_oeli_rmvnorm", (DL_FUNC) &_oeli_rmvnorm, 3},
     {"_oeli_dtnorm", (DL_FUNC) &_oeli_dtnorm, 6},
     {"_oeli_dttnorm", (DL_FUNC) &_oeli_dttnorm, 6},

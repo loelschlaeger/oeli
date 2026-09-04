@@ -74,10 +74,12 @@ double dmvnorm_cpp(
 // [[Rcpp::export]]
 
 double pmvnorm_cpp(
-    arma::vec const& x, arma::vec const& mean, arma::mat const& Sigma,
-    double abseps = 1e-3
+   arma::vec const& x, arma::vec const& mean, arma::mat const& Sigma,
+   double abseps = 1e-3,
+   Rcpp::Nullable<Rcpp::NumericVector> lower = R_NilValue,
+   std::string method = "genz", int draws = 500
 ) {
-  return pmvnorm(x, mean, Sigma, abseps);
+  return pmvnorm(x, mean, Sigma, abseps, lower, method, draws);
 }
 
 //' @rdname dmvnorm

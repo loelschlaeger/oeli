@@ -151,17 +151,17 @@ namespace oeli {
         return Rcpp::as<double >(rcpp_result_gen);
     }
 
-    inline double pmvnorm(arma::vec const& x, arma::vec const& mean, arma::mat const& Sigma, double abseps = 1e-3) {
-        typedef SEXP(*Ptr_pmvnorm)(SEXP,SEXP,SEXP,SEXP);
+    inline double pmvnorm(arma::vec const& x, arma::vec const& mean, arma::mat const& Sigma, double abseps = 1e-3, Rcpp::Nullable<Rcpp::NumericVector> lower = R_NilValue, std::string method = "genz", int draws = 500) {
+        typedef SEXP(*Ptr_pmvnorm)(SEXP,SEXP,SEXP,SEXP,SEXP,SEXP,SEXP);
         static Ptr_pmvnorm p_pmvnorm = NULL;
         if (p_pmvnorm == NULL) {
-            validateSignature("double(*pmvnorm)(arma::vec const&,arma::vec const&,arma::mat const&,double)");
+            validateSignature("double(*pmvnorm)(arma::vec const&,arma::vec const&,arma::mat const&,double,Rcpp::Nullable<Rcpp::NumericVector>,std::string,int)");
             p_pmvnorm = (Ptr_pmvnorm)R_GetCCallable("oeli", "_oeli_pmvnorm");
         }
         RObject rcpp_result_gen;
         {
             RNGScope RCPP_rngScope_gen;
-            rcpp_result_gen = p_pmvnorm(Shield<SEXP>(Rcpp::wrap(x)), Shield<SEXP>(Rcpp::wrap(mean)), Shield<SEXP>(Rcpp::wrap(Sigma)), Shield<SEXP>(Rcpp::wrap(abseps)));
+            rcpp_result_gen = p_pmvnorm(Shield<SEXP>(Rcpp::wrap(x)), Shield<SEXP>(Rcpp::wrap(mean)), Shield<SEXP>(Rcpp::wrap(Sigma)), Shield<SEXP>(Rcpp::wrap(abseps)), Shield<SEXP>(Rcpp::wrap(lower)), Shield<SEXP>(Rcpp::wrap(method)), Shield<SEXP>(Rcpp::wrap(draws)));
         }
         if (rcpp_result_gen.inherits("interrupted-error"))
             throw Rcpp::internal::InterruptedException();

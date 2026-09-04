@@ -15,9 +15,10 @@
 #' The univariate normal mixture is available as the special case `p = 1`.
 #'
 #' @details
-#' `pmixnorm()` is based on `mvtnorm::pmvnorm` with the randomized
-#' Quasi-Monte-Carlo procedure by Genz and Bretz. The argument `abseps` controls
-#' the accuracy of the Gaussian integral approximation.
+#' `pmixnorm()` is based on [pmvnorm()], which is exact for `p <= 3` and uses
+#' the randomized Quasi-Monte-Carlo procedure by Genz and Bretz otherwise. The
+#' argument `abseps` controls the accuracy of the Gaussian integral
+#' approximation.
 #'
 #' @param x \[`numeric(p)`\]\cr
 #' A quantile vector of length `p`, where `p` is the dimension.
