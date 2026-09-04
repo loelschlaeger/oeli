@@ -35,7 +35,7 @@ Other package helpers:
 
 ### Public methods
 
-- [`Dictionary$new()`](#method-Dictionary-new)
+- [`Dictionary$new()`](#method-Dictionary-initialize)
 
 - [`Dictionary$add()`](#method-Dictionary-add)
 
@@ -47,7 +47,7 @@ Other package helpers:
 
 ------------------------------------------------------------------------
 
-### Method `new()`
+### `Dictionary$new()`
 
 Initializing a new `Dictionary` object.
 
@@ -113,7 +113,7 @@ Initializing a new `Dictionary` object.
 
 ------------------------------------------------------------------------
 
-### Method `add()`
+### `Dictionary$add()`
 
 Adding an element to the dictionary.
 
@@ -137,7 +137,7 @@ Adding an element to the dictionary.
 
 ------------------------------------------------------------------------
 
-### Method [`get()`](https://rdrr.io/r/base/get.html)
+### `Dictionary$get()`
 
 Getting elements from the dictionary.
 
@@ -162,7 +162,7 @@ Getting elements from the dictionary.
 
 ------------------------------------------------------------------------
 
-### Method [`remove()`](https://rdrr.io/r/base/rm.html)
+### `Dictionary$remove()`
 
 Removing elements from the dictionary (and associated alias, if any).
 
@@ -180,7 +180,7 @@ Removing elements from the dictionary (and associated alias, if any).
 
 ------------------------------------------------------------------------
 
-### Method [`print()`](https://rdrr.io/r/base/print.html)
+### `Dictionary$print()`
 
 Printing details of the dictionary.
 

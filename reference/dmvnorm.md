@@ -4,7 +4,8 @@ The function `dmvnorm()` computes the density of a multivariate normal
 distribution.
 
 The function `pmvnorm()` computes the cumulative distribution function
-of a multivariate normal distribution.
+of a multivariate normal distribution, or the probability of a rectangle
+if `lower` is specified.
 
 The function `rmvnorm()` samples from a multivariate normal
 distribution.
@@ -20,13 +21,29 @@ The univariate normal distribution is available as the special case
 ``` r
 dmvnorm_cpp(x, mean, Sigma, log = FALSE)
 
-pmvnorm_cpp(x, mean, Sigma, abseps = 0.001)
+pmvnorm_cpp(
+  x,
+  mean,
+  Sigma,
+  abseps = 0.001,
+  lower = NULL,
+  method = "genz",
+  draws = 500L
+)
 
 rmvnorm_cpp(mean, Sigma, log = FALSE)
 
 dmvnorm(x, mean, Sigma, log = FALSE)
 
-pmvnorm(x, mean, Sigma, abseps = 0.001)
+pmvnorm(
+  x,
+  mean,
+  Sigma,
+  abseps = 0.001,
+  lower = NULL,
+  method = "genz",
+  draws = 500
+)
 
 rmvnorm(n = 1, mean, Sigma, log = FALSE)
 ```
@@ -69,7 +86,26 @@ rmvnorm(n = 1, mean, Sigma, log = FALSE)
 - abseps:
 
   \[`numeric(1)`\]  
-  The absolute error tolerance.
+  The absolute error tolerance for `method = "genz"`.
+
+- lower:
+
+  \[[`numeric()`](https://rdrr.io/r/base/numeric.html) \| `NULL`\]  
+  Optionally lower limits of length `p`, where `NULL` corresponds to
+  `-Inf`.
+
+  For the functions without suffix `_cpp`, it can also be of length `1`
+  for convenience, then `rep(lower, p)` is considered.
+
+- method:
+
+  \[`character(1)`\]  
+  Either `"genz"` or `"ghk"`, see the details.
+
+- draws:
+
+  \[`integer(1)`\]  
+  The number of Halton points for `method = "ghk"`.
 
 - n:
 
@@ -80,7 +116,8 @@ rmvnorm(n = 1, mean, Sigma, log = FALSE)
 
 For `dmvnorm()`: The density value.
 
-For `pmvnorm()`: The value of the distribution function.
+For `pmvnorm()`: The value of the distribution function or the rectangle
+probability.
 
 For `rmvnorm()`: If `n = 1` a `vector` of length `p` (note that it is a
 column vector for `rmvnorm_cpp()`), else a `matrix` of dimension `n`
@@ -88,11 +125,22 @@ times `p` with samples as rows.
 
 ## Details
 
-`pmvnorm()` just calls
-[`mvtnorm::pmvnorm`](https://rdrr.io/pkg/mvtnorm/man/pmvnorm.html) with
-the randomized Quasi-Monte-Carlo procedure by Genz and Bretz. The
-argument `abseps` controls the accuracy of the Gaussian integral
-approximation.
+For `p <= 3`, `pmvnorm()` computes the probability exactly: the
+bivariate case uses the algorithm of Genz (2004) and the trivariate case
+integrates the bivariate probability conditional on the third component.
+
+For `p > 3`, the argument `method` selects the approximation:
+
+- `"genz"` calls
+  [`mvtnorm::pmvnorm`](https://rdrr.io/pkg/mvtnorm/man/pmvnorm.html)
+  with the randomized Quasi-Monte-Carlo procedure by Genz and Bretz. The
+  argument `abseps` controls the accuracy of the Gaussian integral
+  approximation.
+
+- `"ghk"` uses the Geweke-Hajivassiliou-Keane simulator on `draws`
+  quasi-random Halton points. The result is deterministic and smooth in
+  `x`, `mean`, and `Sigma`, which makes it suitable for likelihood
+  evaluations, and its accuracy increases with `draws`.
 
 ## See also
 
@@ -123,12 +171,20 @@ dmvnorm(x = x, mean = mean, Sigma = Sigma, log = TRUE)
 pmvnorm(x = x, mean = mean, Sigma = Sigma)
 #> [1] 0.25
 
+# compute rectangle probability
+pmvnorm(x = x, mean = mean, Sigma = Sigma, lower = -1)
+#> [1] 0.1165162
+
+# simulate in higher dimensions
+pmvnorm(x = rep(0, 5), mean = 0, Sigma = diag(5), method = "ghk")
+#> [1] 0.03125
+
 # sample
 rmvnorm(n = 3, mean = mean, Sigma = Sigma)
-#>            [,1]       [,2]
-#> [1,] -0.1563074  1.6373427
-#> [2,] -0.4883842  0.1869418
-#> [3,]  0.1837407 -1.1150458
+#>             [,1]       [,2]
+#> [1,]  1.93641109  1.5883862
+#> [2,]  0.63401992 -0.7439856
+#> [3,] -0.08252008  0.2888077
 rmvnorm(mean = mean, Sigma = Sigma, log = TRUE)
-#> [1] 1.4021332 0.7175747
+#> [1] 2.9972184 0.5614115
 ```

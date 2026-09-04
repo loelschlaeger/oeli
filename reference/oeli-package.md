@@ -17,3 +17,7 @@ Useful links:
 ## Author
 
 **Maintainer**: Lennart Oelschläger <oelschlaeger.lennart@gmail.com>
+
+Authors:
+
+- Lennart Oelschläger <oelschlaeger.lennart@gmail.com>

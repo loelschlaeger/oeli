@@ -77,10 +77,10 @@ times `p` with samples as rows.
 ## Details
 
 `pmixnorm()` is based on
-[`mvtnorm::pmvnorm`](https://rdrr.io/pkg/mvtnorm/man/pmvnorm.html) with
-the randomized Quasi-Monte-Carlo procedure by Genz and Bretz. The
-argument `abseps` controls the accuracy of the Gaussian integral
-approximation.
+[`pmvnorm()`](http://loelschlaeger.de/oeli/reference/dmvnorm.md), which
+is exact for `p <= 3` and uses the randomized Quasi-Monte-Carlo
+procedure by Genz and Bretz otherwise. The argument `abseps` controls
+the accuracy of the Gaussian integral approximation.
 
 ## See also
 
@@ -113,7 +113,7 @@ pmixnorm(x = x, mean = mean, Sigma = Sigma, proportions = proportions)
 # sample
 rmixnorm(n = 3, mean = mean, Sigma = Sigma, proportions = proportions)
 #>            [,1]        [,2]
-#> [1,]  0.6601036 -1.63976423
-#> [2,]  0.2018030  0.09332544
-#> [3,] -0.9450978 -3.20484851
+#> [1,] -1.2082905 -1.50530194
+#> [2,] -0.3080863  0.04331989
+#> [3,] -0.7578455 -0.59816303
 ```

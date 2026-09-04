@@ -79,7 +79,7 @@ Other package helpers:
 
 ### Public methods
 
-- [`Storage$new()`](#method-Storage-new)
+- [`Storage$new()`](#method-Storage-initialize)
 
 - [`Storage$add()`](#method-Storage-add)
 
@@ -95,7 +95,7 @@ Other package helpers:
 
 ------------------------------------------------------------------------
 
-### Method `new()`
+### `Storage$new()`
 
 Initializing a `Storage` object.
 
@@ -105,7 +105,7 @@ Initializing a `Storage` object.
 
 ------------------------------------------------------------------------
 
-### Method `add()`
+### `Storage$add()`
 
 Adding an element.
 
@@ -143,7 +143,7 @@ Adding an element.
 
 ------------------------------------------------------------------------
 
-### Method [`get()`](https://rdrr.io/r/base/get.html)
+### `Storage$get()`
 
 Getting elements.
 
@@ -200,7 +200,7 @@ Getting elements.
 
 ------------------------------------------------------------------------
 
-### Method [`remove()`](https://rdrr.io/r/base/rm.html)
+### `Storage$remove()`
 
 removing elements
 
@@ -257,7 +257,7 @@ removing elements
 
 ------------------------------------------------------------------------
 
-### Method `number()`
+### `Storage$number()`
 
 Computing the number of identified elements.
 
@@ -302,7 +302,7 @@ Computing the number of identified elements.
 
 ------------------------------------------------------------------------
 
-### Method `indices()`
+### `Storage$indices()`
 
 Returning indices based on defined identifiers.
 
@@ -341,7 +341,7 @@ Returning indices based on defined identifiers.
 
 ------------------------------------------------------------------------
 
-### Method [`print()`](https://rdrr.io/r/base/print.html)
+### `Storage$print()`
 
 Printing details of the saved elements.
 
@@ -409,7 +409,7 @@ my_storage$get("all") # get all elements
 #> [[5]]
 #> function (x, ...) 
 #> UseMethod("mean")
-#> <bytecode: 0x560f25691618>
+#> <bytecode: 0x55f768aea510>
 #> <environment: namespace:base>
 #> 
 my_storage$get(c("text", "!text"))
@@ -430,7 +430,7 @@ my_storage$get(c("text", "!text"), logical = "or")
 #> [[5]]
 #> function (x, ...) 
 #> UseMethod("mean")
-#> <bytecode: 0x560f25691618>
+#> <bytecode: 0x55f768aea510>
 #> <environment: namespace:base>
 #> 
 
@@ -442,7 +442,7 @@ my_storage$get(ids = 4:5)
 #> [[2]]
 #> function (x, ...) 
 #> UseMethod("mean")
-#> <bytecode: 0x560f25691618>
+#> <bytecode: 0x55f768aea510>
 #> <environment: namespace:base>
 #> 
 my_storage$get(ids = 4:5, id_names = TRUE) # add the ids as names
@@ -452,7 +452,7 @@ my_storage$get(ids = 4:5, id_names = TRUE) # add the ids as names
 #> $`5`
 #> function (x, ...) 
 #> UseMethod("mean")
-#> <bytecode: 0x560f25691618>
+#> <bytecode: 0x55f768aea510>
 #> <environment: namespace:base>
 #> 
 ```

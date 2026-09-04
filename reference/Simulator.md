@@ -78,7 +78,7 @@ Other simulation helpers:
 
 ### Public methods
 
-- [`Simulator$new()`](#method-Simulator-new)
+- [`Simulator$new()`](#method-Simulator-initialize)
 
 - [`Simulator$print()`](#method-Simulator-print)
 
@@ -88,7 +88,7 @@ Other simulation helpers:
 
 ------------------------------------------------------------------------
 
-### Method `new()`
+### `Simulator$new()`
 
 Initialize a `Simulator` object, either a new one or from backup.
 
@@ -114,7 +114,7 @@ Initialize a `Simulator` object, either a new one or from backup.
 
 ------------------------------------------------------------------------
 
-### Method [`print()`](https://rdrr.io/r/base/print.html)
+### `Simulator$print()`
 
 Print method.
 
@@ -124,7 +124,7 @@ Print method.
 
 ------------------------------------------------------------------------
 
-### Method `define()`
+### `Simulator$define()`
 
 Define function and arguments for a new `Simulator` object.
 
@@ -150,7 +150,7 @@ Define function and arguments for a new `Simulator` object.
 
 ------------------------------------------------------------------------
 
-### Method `go()`
+### `Simulator$go()`
 
 Run simulations.
 
@@ -216,7 +216,7 @@ path <- file.path(
   paste0("backup_", format(Sys.time(), "%Y-%m-%d-%H-%M-%S"))
 )
 object$go(runs = 2, backup = TRUE, path = path)
-#> Saving backup to path /tmp/Rtmpm3VfGF/backup_2026-05-04-15-52-50.
+#> Saving backup to path /tmp/RtmpeIcEID/backup_2026-09-04-10-52-14.
 #> Started simulation with 4 cases...
 #> Simulation complete, 0 cases failed.
 
@@ -225,10 +225,10 @@ object$results
 #> # A tibble: 4 × 4
 #>   .case .seconds       .input           .output  
 #>   <int> <drtn>         <list>           <list>   
-#> 1     1 0.5169106 secs <named list [1]> <dbl [1]>
-#> 2     2 0.2302663 secs <named list [1]> <dbl [1]>
-#> 3     3 0.6743886 secs <named list [1]> <dbl [1]>
-#> 4     4 0.6663818 secs <named list [1]> <dbl [1]>
+#> 1     1 0.5168788 secs <named list [1]> <dbl [1]>
+#> 2     2 0.2302203 secs <named list [1]> <dbl [1]>
+#> 3     3 0.6743634 secs <named list [1]> <dbl [1]>
+#> 4     4 0.6663392 secs <named list [1]> <dbl [1]>
 
 # 6. Check if cases are pending or if an error occurred:
 object$cases
