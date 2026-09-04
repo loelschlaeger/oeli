@@ -24,17 +24,17 @@ y <- c(0.1, 1.5, -1.2)
 match_numerics(x, y)
 }
 \seealso{
-Other vector helpers: 
-\code{\link{check_numeric_vector}()},
-\code{\link{check_probability_vector}()},
-\code{\link{chunk_vector}()},
-\code{\link{equidistant_vectors}()},
-\code{\link{insert_vector_entry}()},
-\code{\link{map_indices}()},
-\code{\link{permutations}()},
-\code{\link{split_vector_at}()},
-\code{\link{subsets}()},
-\code{\link{vector_occurrence}()}
+Other vector helpers:
+\code{\link[=check_numeric_vector]{check_numeric_vector()}},
+\code{\link[=check_probability_vector]{check_probability_vector()}},
+\code{\link[=chunk_vector]{chunk_vector()}},
+\code{\link[=equidistant_vectors]{equidistant_vectors()}},
+\code{\link[=insert_vector_entry]{insert_vector_entry()}},
+\code{\link[=map_indices]{map_indices()}},
+\code{\link[=permutations]{permutations()}},
+\code{\link[=split_vector_at]{split_vector_at()}},
+\code{\link[=subsets]{subsets()}},
+\code{\link[=vector_occurrence]{vector_occurrence()}}
 }
 \concept{vector helpers}
 \keyword{indexing}

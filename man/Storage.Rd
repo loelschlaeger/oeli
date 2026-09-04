@@ -66,122 +66,122 @@ my_storage$get(ids = 4:5)
 my_storage$get(ids = 4:5, id_names = TRUE) # add the ids as names
 }
 \seealso{
-Other package helpers: 
+Other package helpers:
 \code{\link{Dictionary}},
-\code{\link{check_missing}()},
-\code{\link{find_namespace_calls}()},
-\code{\link{find_pkg_functions}()},
-\code{\link{identical_structure}()},
-\code{\link{input_check_response}()},
-\code{\link{match_arg}()},
-\code{\link{package_logo}()},
-\code{\link{print_data.frame}()},
-\code{\link{print_matrix}()},
-\code{\link{system_information}()},
-\code{\link{unexpected_error}()},
-\code{\link{user_confirm}()}
+\code{\link[=check_missing]{check_missing()}},
+\code{\link[=find_namespace_calls]{find_namespace_calls()}},
+\code{\link[=find_pkg_functions]{find_pkg_functions()}},
+\code{\link[=identical_structure]{identical_structure()}},
+\code{\link[=input_check_response]{input_check_response()}},
+\code{\link[=match_arg]{match_arg()}},
+\code{\link[=package_logo]{package_logo()}},
+\code{\link[=print_data.frame]{print_data.frame()}},
+\code{\link[=print_matrix]{print_matrix()}},
+\code{\link[=system_information]{system_information()}},
+\code{\link[=unexpected_error]{unexpected_error()}},
+\code{\link[=user_confirm]{user_confirm()}}
 }
 \concept{package helpers}
 \keyword{indexing}
 \section{Active bindings}{
-\if{html}{\out{<div class="r6-active-bindings">}}
-\describe{
-\item{\code{identifier}}{[\code{character()}]\cr
+  \if{html}{\out{<div class="r6-active-bindings">}}
+  \describe{
+    \item{\code{identifier}}{[\code{character()}]\cr
 The identifiers used.}
 
-\item{\code{confirm}}{[\code{logical(1)}]\cr
+    \item{\code{confirm}}{[\code{logical(1)}]\cr
 The default value for confirmations.}
 
-\item{\code{missing_identifier}}{[\code{logical(1)}]\cr
+    \item{\code{missing_identifier}}{[\code{logical(1)}]\cr
 The default value for not specified identifiers.}
 
-\item{\code{hide_warnings}}{[\code{logical(1)}]\cr
+    \item{\code{hide_warnings}}{[\code{logical(1)}]\cr
 Hide warnings (for example if unknown identifiers are selected)?}
-}
-\if{html}{\out{</div>}}
+  }
+  \if{html}{\out{</div>}}
 }
 \section{Methods}{
 \subsection{Public methods}{
-\itemize{
-\item \href{#method-Storage-new}{\code{Storage$new()}}
-\item \href{#method-Storage-add}{\code{Storage$add()}}
-\item \href{#method-Storage-get}{\code{Storage$get()}}
-\item \href{#method-Storage-remove}{\code{Storage$remove()}}
-\item \href{#method-Storage-number}{\code{Storage$number()}}
-\item \href{#method-Storage-indices}{\code{Storage$indices()}}
-\item \href{#method-Storage-print}{\code{Storage$print()}}
-}
+  \itemize{
+    \item \href{#method-Storage-initialize}{\code{Storage$new()}}
+    \item \href{#method-Storage-add}{\code{Storage$add()}}
+    \item \href{#method-Storage-get}{\code{Storage$get()}}
+    \item \href{#method-Storage-remove}{\code{Storage$remove()}}
+    \item \href{#method-Storage-number}{\code{Storage$number()}}
+    \item \href{#method-Storage-indices}{\code{Storage$indices()}}
+    \item \href{#method-Storage-print}{\code{Storage$print()}}
+  }
 }
 \if{html}{\out{<hr>}}
-\if{html}{\out{<a id="method-Storage-new"></a>}}
-\if{latex}{\out{\hypertarget{method-Storage-new}{}}}
-\subsection{Method \code{new()}}{
-Initializing a \code{Storage} object.
-\subsection{Usage}{
-\if{html}{\out{<div class="r">}}\preformatted{Storage$new()}\if{html}{\out{</div>}}
+\if{html}{\out{<a id="method-Storage-initialize"></a>}}
+\if{latex}{\out{\hypertarget{method-Storage-initialize}{}}}
+\subsection{\code{Storage$new()}}{
+  Initializing a \code{Storage} object.
+  \subsection{Usage}{
+    \if{html}{\out{<div class="r">}}
+    \preformatted{Storage$new()}
+    \if{html}{\out{</div>}}
+  }
 }
 
-}
 \if{html}{\out{<hr>}}
 \if{html}{\out{<a id="method-Storage-add"></a>}}
 \if{latex}{\out{\hypertarget{method-Storage-add}{}}}
-\subsection{Method \code{add()}}{
-Adding an element.
-\subsection{Usage}{
-\if{html}{\out{<div class="r">}}\preformatted{Storage$add(
+\subsection{\code{Storage$add()}}{
+  Adding an element.
+  \subsection{Usage}{
+    \if{html}{\out{<div class="r">}}
+    \preformatted{Storage$add(
   x,
   identifier,
   confirm = interactive() & self$confirm,
   missing_identifier = self$missing_identifier
-)}\if{html}{\out{</div>}}
-}
-
-\subsection{Arguments}{
-\if{html}{\out{<div class="arguments">}}
-\describe{
-\item{\code{x}}{[\code{any}]\cr
+)}
+    \if{html}{\out{</div>}}
+  }
+  \subsection{Arguments}{
+    \if{html}{\out{<div class="arguments">}}
+    \describe{
+      \item{\code{x}}{[\code{any}]\cr
 An object to be saved.}
-
-\item{\code{identifier}}{[\code{character()}]\cr
+      \item{\code{identifier}}{[\code{character()}]\cr
 Pne or more identifiers (the identifier \code{"all"} is reserved to select
 all elements).}
-
-\item{\code{confirm}}{[\code{logical(1)}]\cr
+      \item{\code{confirm}}{[\code{logical(1)}]\cr
 Prompted for confirmation?}
-
-\item{\code{missing_identifier}}{[\code{logical(1)} | NA]\cr
+      \item{\code{missing_identifier}}{[\code{logical(1)} | NA]\cr
 The value for not specified identifiers.}
+    }
+    \if{html}{\out{</div>}}
+  }
 }
-\if{html}{\out{</div>}}
-}
-}
+
 \if{html}{\out{<hr>}}
 \if{html}{\out{<a id="method-Storage-get"></a>}}
 \if{latex}{\out{\hypertarget{method-Storage-get}{}}}
-\subsection{Method \code{get()}}{
-Getting elements.
-\subsection{Usage}{
-\if{html}{\out{<div class="r">}}\preformatted{Storage$get(
+\subsection{\code{Storage$get()}}{
+  Getting elements.
+  \subsection{Usage}{
+    \if{html}{\out{<div class="r">}}
+    \preformatted{Storage$get(
   identifier = character(),
   ids = integer(),
   logical = "and",
   confirm = interactive() & self$confirm,
   missing_identifier = self$missing_identifier,
   id_names = FALSE
-)}\if{html}{\out{</div>}}
-}
-
-\subsection{Arguments}{
-\if{html}{\out{<div class="arguments">}}
-\describe{
-\item{\code{identifier}}{[\code{character()}]\cr
+)}
+    \if{html}{\out{</div>}}
+  }
+  \subsection{Arguments}{
+    \if{html}{\out{<div class="arguments">}}
+    \describe{
+      \item{\code{identifier}}{[\code{character()}]\cr
 Pne or more identifiers (the identifier \code{"all"} is reserved to select
 all elements).}
-
-\item{\code{ids}}{[\code{integer()}]\cr
+      \item{\code{ids}}{[\code{integer()}]\cr
 One or more ids.}
-
-\item{\code{logical}}{[\code{character(1)}]\cr
+      \item{\code{logical}}{[\code{character(1)}]\cr
 In the case that multiple identifiers are selected, how should they be
 combined? Options are:
 \itemize{
@@ -190,46 +190,43 @@ combined? Options are:
 \item \code{"or"}: the identifiers are combined with logical or (at least one
 identifier must be \code{TRUE})
 }}
-
-\item{\code{confirm}}{[\code{logical(1)}]\cr
+      \item{\code{confirm}}{[\code{logical(1)}]\cr
 Prompted for confirmation?}
-
-\item{\code{missing_identifier}}{[\code{logical(1)} | NA]\cr
+      \item{\code{missing_identifier}}{[\code{logical(1)} | NA]\cr
 The value for not specified identifiers.}
-
-\item{\code{id_names}}{[\code{logical(1)}]\cr
+      \item{\code{id_names}}{[\code{logical(1)}]\cr
 Name the elements according to their ids?}
+    }
+    \if{html}{\out{</div>}}
+  }
 }
-\if{html}{\out{</div>}}
-}
-}
+
 \if{html}{\out{<hr>}}
 \if{html}{\out{<a id="method-Storage-remove"></a>}}
 \if{latex}{\out{\hypertarget{method-Storage-remove}{}}}
-\subsection{Method \code{remove()}}{
-removing elements
-\subsection{Usage}{
-\if{html}{\out{<div class="r">}}\preformatted{Storage$remove(
+\subsection{\code{Storage$remove()}}{
+  removing elements
+  \subsection{Usage}{
+    \if{html}{\out{<div class="r">}}
+    \preformatted{Storage$remove(
   identifier = character(),
   ids = integer(),
   logical = "and",
   confirm = interactive() & self$confirm,
   missing_identifier = self$missing_identifier,
   shift_ids = TRUE
-)}\if{html}{\out{</div>}}
-}
-
-\subsection{Arguments}{
-\if{html}{\out{<div class="arguments">}}
-\describe{
-\item{\code{identifier}}{[\code{character()}]\cr
+)}
+    \if{html}{\out{</div>}}
+  }
+  \subsection{Arguments}{
+    \if{html}{\out{<div class="arguments">}}
+    \describe{
+      \item{\code{identifier}}{[\code{character()}]\cr
 Pne or more identifiers (the identifier \code{"all"} is reserved to select
 all elements).}
-
-\item{\code{ids}}{[\code{integer()}]\cr
+      \item{\code{ids}}{[\code{integer()}]\cr
 One or more ids.}
-
-\item{\code{logical}}{[\code{character(1)}]\cr
+      \item{\code{logical}}{[\code{character(1)}]\cr
 In the case that multiple identifiers are selected, how should they be
 combined? Options are:
 \itemize{
@@ -238,44 +235,41 @@ combined? Options are:
 \item \code{"or"}: the identifiers are combined with logical or (at least one
 identifier must be \code{TRUE})
 }}
-
-\item{\code{confirm}}{[\code{logical(1)}]\cr
+      \item{\code{confirm}}{[\code{logical(1)}]\cr
 Prompted for confirmation?}
-
-\item{\code{missing_identifier}}{[\code{logical(1)} | NA]\cr
+      \item{\code{missing_identifier}}{[\code{logical(1)} | NA]\cr
 The value for not specified identifiers.}
-
-\item{\code{shift_ids}}{[\code{logical(1)}]\cr
+      \item{\code{shift_ids}}{[\code{logical(1)}]\cr
 Shift ids when in-between elements are removed?}
+    }
+    \if{html}{\out{</div>}}
+  }
 }
-\if{html}{\out{</div>}}
-}
-}
+
 \if{html}{\out{<hr>}}
 \if{html}{\out{<a id="method-Storage-number"></a>}}
 \if{latex}{\out{\hypertarget{method-Storage-number}{}}}
-\subsection{Method \code{number()}}{
-Computing the number of identified elements.
-\subsection{Usage}{
-\if{html}{\out{<div class="r">}}\preformatted{Storage$number(
+\subsection{\code{Storage$number()}}{
+  Computing the number of identified elements.
+  \subsection{Usage}{
+    \if{html}{\out{<div class="r">}}
+    \preformatted{Storage$number(
   identifier = "all",
   missing_identifier = self$missing_identifier,
   logical = "and",
   confirm = FALSE
-)}\if{html}{\out{</div>}}
-}
-
-\subsection{Arguments}{
-\if{html}{\out{<div class="arguments">}}
-\describe{
-\item{\code{identifier}}{[\code{character()}]\cr
+)}
+    \if{html}{\out{</div>}}
+  }
+  \subsection{Arguments}{
+    \if{html}{\out{<div class="arguments">}}
+    \describe{
+      \item{\code{identifier}}{[\code{character()}]\cr
 Pne or more identifiers (the identifier \code{"all"} is reserved to select
 all elements).}
-
-\item{\code{missing_identifier}}{[\code{logical(1)} | NA]\cr
+      \item{\code{missing_identifier}}{[\code{logical(1)} | NA]\cr
 The value for not specified identifiers.}
-
-\item{\code{logical}}{[\code{character(1)}]\cr
+      \item{\code{logical}}{[\code{character(1)}]\cr
 In the case that multiple identifiers are selected, how should they be
 combined? Options are:
 \itemize{
@@ -284,34 +278,34 @@ combined? Options are:
 \item \code{"or"}: the identifiers are combined with logical or (at least one
 identifier must be \code{TRUE})
 }}
-
-\item{\code{confirm}}{[\code{logical(1)}]\cr
+      \item{\code{confirm}}{[\code{logical(1)}]\cr
 Prompted for confirmation?}
+    }
+    \if{html}{\out{</div>}}
+  }
 }
-\if{html}{\out{</div>}}
-}
-}
+
 \if{html}{\out{<hr>}}
 \if{html}{\out{<a id="method-Storage-indices"></a>}}
 \if{latex}{\out{\hypertarget{method-Storage-indices}{}}}
-\subsection{Method \code{indices()}}{
-Returning indices based on defined identifiers.
-\subsection{Usage}{
-\if{html}{\out{<div class="r">}}\preformatted{Storage$indices(
+\subsection{\code{Storage$indices()}}{
+  Returning indices based on defined identifiers.
+  \subsection{Usage}{
+    \if{html}{\out{<div class="r">}}
+    \preformatted{Storage$indices(
   identifier = "all",
   logical = "and",
   confirm = interactive() & self$confirm
-)}\if{html}{\out{</div>}}
-}
-
-\subsection{Arguments}{
-\if{html}{\out{<div class="arguments">}}
-\describe{
-\item{\code{identifier}}{[\code{character()}]\cr
+)}
+    \if{html}{\out{</div>}}
+  }
+  \subsection{Arguments}{
+    \if{html}{\out{<div class="arguments">}}
+    \describe{
+      \item{\code{identifier}}{[\code{character()}]\cr
 Pne or more identifiers (the identifier \code{"all"} is reserved to select
 all elements).}
-
-\item{\code{logical}}{[\code{character(1)}]\cr
+      \item{\code{logical}}{[\code{character(1)}]\cr
 In the case that multiple identifiers are selected, how should they be
 combined? Options are:
 \itemize{
@@ -320,28 +314,30 @@ combined? Options are:
 \item \code{"or"}: the identifiers are combined with logical or (at least one
 identifier must be \code{TRUE})
 }}
-
-\item{\code{confirm}}{[\code{logical(1)}]\cr
+      \item{\code{confirm}}{[\code{logical(1)}]\cr
 Prompted for confirmation?}
+    }
+    \if{html}{\out{</div>}}
+  }
 }
-\if{html}{\out{</div>}}
-}
-}
+
 \if{html}{\out{<hr>}}
 \if{html}{\out{<a id="method-Storage-print"></a>}}
 \if{latex}{\out{\hypertarget{method-Storage-print}{}}}
-\subsection{Method \code{print()}}{
-Printing details of the saved elements.
-\subsection{Usage}{
-\if{html}{\out{<div class="r">}}\preformatted{Storage$print(...)}\if{html}{\out{</div>}}
+\subsection{\code{Storage$print()}}{
+  Printing details of the saved elements.
+  \subsection{Usage}{
+    \if{html}{\out{<div class="r">}}
+    \preformatted{Storage$print(...)}
+    \if{html}{\out{</div>}}
+  }
+  \subsection{Arguments}{
+    \if{html}{\out{<div class="arguments">}}
+    \describe{
+      \item{\code{...}}{Currently not used.}
+    }
+    \if{html}{\out{</div>}}
+  }
 }
 
-\subsection{Arguments}{
-\if{html}{\out{<div class="arguments">}}
-\describe{
-\item{\code{...}}{Currently not used.}
-}
-\if{html}{\out{</div>}}
-}
-}
 }

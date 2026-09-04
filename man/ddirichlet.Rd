@@ -54,15 +54,15 @@ rdirichlet(concentration = 1:3)
 rdirichlet(n = 4, concentration = 1:2)
 }
 \seealso{
-Other simulation helpers: 
+Other simulation helpers:
 \code{\link{Simulator}},
-\code{\link{correlated_regressors}()},
-\code{\link{dmixnorm_cpp}()},
-\code{\link{dmvnorm_cpp}()},
-\code{\link{dtnorm_cpp}()},
-\code{\link{dwishart_cpp}()},
-\code{\link{gaussian_tv}()},
-\code{\link{simulate_markov_chain}()}
+\code{\link[=correlated_regressors]{correlated_regressors()}},
+\code{\link[=dmixnorm_cpp]{dmixnorm_cpp()}},
+\code{\link[=dmvnorm_cpp]{dmvnorm_cpp()}},
+\code{\link[=dtnorm_cpp]{dtnorm_cpp()}},
+\code{\link[=dwishart_cpp]{dwishart_cpp()}},
+\code{\link[=gaussian_tv]{gaussian_tv()}},
+\code{\link[=simulate_markov_chain]{simulate_markov_chain()}}
 }
 \concept{simulation helpers}
 \keyword{distribution}

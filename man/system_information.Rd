@@ -23,20 +23,20 @@ This function returns a \code{list} of general system level information.
 system_information()
 }
 \seealso{
-Other package helpers: 
+Other package helpers:
 \code{\link{Dictionary}},
 \code{\link{Storage}},
-\code{\link{check_missing}()},
-\code{\link{find_namespace_calls}()},
-\code{\link{find_pkg_functions}()},
-\code{\link{identical_structure}()},
-\code{\link{input_check_response}()},
-\code{\link{match_arg}()},
-\code{\link{package_logo}()},
-\code{\link{print_data.frame}()},
-\code{\link{print_matrix}()},
-\code{\link{unexpected_error}()},
-\code{\link{user_confirm}()}
+\code{\link[=check_missing]{check_missing()}},
+\code{\link[=find_namespace_calls]{find_namespace_calls()}},
+\code{\link[=find_pkg_functions]{find_pkg_functions()}},
+\code{\link[=identical_structure]{identical_structure()}},
+\code{\link[=input_check_response]{input_check_response()}},
+\code{\link[=match_arg]{match_arg()}},
+\code{\link[=package_logo]{package_logo()}},
+\code{\link[=print_data.frame]{print_data.frame()}},
+\code{\link[=print_matrix]{print_matrix()}},
+\code{\link[=unexpected_error]{unexpected_error()}},
+\code{\link[=user_confirm]{user_confirm()}}
 }
 \concept{package helpers}
 \keyword{validation}

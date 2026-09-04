@@ -24,19 +24,19 @@ that fulfills the properties of a transition probability matrix.
 sample_transition_probability_matrix(dim = 3)
 }
 \seealso{
-Other matrix helpers: 
-\code{\link{check_correlation_matrix}()},
-\code{\link{check_covariance_matrix}()},
-\code{\link{check_one_hot_matrix}()},
-\code{\link{check_transition_probability_matrix}()},
-\code{\link{cov_to_chol}()},
-\code{\link{diff_cov}()},
-\code{\link{insert_matrix_column}()},
-\code{\link{matrix_diagonal_indices}()},
-\code{\link{matrix_indices}()},
-\code{\link{sample_correlation_matrix}()},
-\code{\link{sample_covariance_matrix}()},
-\code{\link{stationary_distribution}()}
+Other matrix helpers:
+\code{\link[=check_correlation_matrix]{check_correlation_matrix()}},
+\code{\link[=check_covariance_matrix]{check_covariance_matrix()}},
+\code{\link[=check_one_hot_matrix]{check_one_hot_matrix()}},
+\code{\link[=check_transition_probability_matrix]{check_transition_probability_matrix()}},
+\code{\link[=cov_to_chol]{cov_to_chol()}},
+\code{\link[=diff_cov]{diff_cov()}},
+\code{\link[=insert_matrix_column]{insert_matrix_column()}},
+\code{\link[=matrix_diagonal_indices]{matrix_diagonal_indices()}},
+\code{\link[=matrix_indices]{matrix_indices()}},
+\code{\link[=sample_correlation_matrix]{sample_correlation_matrix()}},
+\code{\link[=sample_covariance_matrix]{sample_covariance_matrix()}},
+\code{\link[=stationary_distribution]{stationary_distribution()}}
 }
 \concept{matrix helpers}
 \keyword{simulation}

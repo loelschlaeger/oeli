@@ -21,8 +21,8 @@ contributed an element with the same name.
 merge_lists(list("a" = 1, "b" = 2), list("b" = 3, "c" = 4, "d" = NULL))
 }
 \seealso{
-Other list helpers: 
-\code{\link{check_list_of_lists}()}
+Other list helpers:
+\code{\link[=check_list_of_lists]{check_list_of_lists()}}
 }
 \concept{list helpers}
 \keyword{transformation}

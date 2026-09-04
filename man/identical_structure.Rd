@@ -31,20 +31,20 @@ identical_structure(diag(2), data.frame(diag(2)))
 Inspired by \url{https://stackoverflow.com/a/45548885/15157768}.
 }
 \seealso{
-Other package helpers: 
+Other package helpers:
 \code{\link{Dictionary}},
 \code{\link{Storage}},
-\code{\link{check_missing}()},
-\code{\link{find_namespace_calls}()},
-\code{\link{find_pkg_functions}()},
-\code{\link{input_check_response}()},
-\code{\link{match_arg}()},
-\code{\link{package_logo}()},
-\code{\link{print_data.frame}()},
-\code{\link{print_matrix}()},
-\code{\link{system_information}()},
-\code{\link{unexpected_error}()},
-\code{\link{user_confirm}()}
+\code{\link[=check_missing]{check_missing()}},
+\code{\link[=find_namespace_calls]{find_namespace_calls()}},
+\code{\link[=find_pkg_functions]{find_pkg_functions()}},
+\code{\link[=input_check_response]{input_check_response()}},
+\code{\link[=match_arg]{match_arg()}},
+\code{\link[=package_logo]{package_logo()}},
+\code{\link[=print_data.frame]{print_data.frame()}},
+\code{\link[=print_matrix]{print_matrix()}},
+\code{\link[=system_information]{system_information()}},
+\code{\link[=unexpected_error]{unexpected_error()}},
+\code{\link[=user_confirm]{user_confirm()}}
 }
 \concept{package helpers}
 \keyword{validation}

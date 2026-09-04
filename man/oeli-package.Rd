@@ -23,5 +23,10 @@ Useful links:
 \author{
 \strong{Maintainer}: Lennart Oelschläger \email{oelschlaeger.lennart@gmail.com}
 
+Authors:
+\itemize{
+  \item Lennart Oelschläger \email{oelschlaeger.lennart@gmail.com}
+}
+
 }
 \keyword{internal}

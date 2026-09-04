@@ -30,15 +30,15 @@ delta <- c(0.6, 0.4)
 simulate_markov_chain(Gamma = Gamma, T = 20, delta = delta)
 }
 \seealso{
-Other simulation helpers: 
+Other simulation helpers:
 \code{\link{Simulator}},
-\code{\link{correlated_regressors}()},
-\code{\link{ddirichlet_cpp}()},
-\code{\link{dmixnorm_cpp}()},
-\code{\link{dmvnorm_cpp}()},
-\code{\link{dtnorm_cpp}()},
-\code{\link{dwishart_cpp}()},
-\code{\link{gaussian_tv}()}
+\code{\link[=correlated_regressors]{correlated_regressors()}},
+\code{\link[=ddirichlet_cpp]{ddirichlet_cpp()}},
+\code{\link[=dmixnorm_cpp]{dmixnorm_cpp()}},
+\code{\link[=dmvnorm_cpp]{dmvnorm_cpp()}},
+\code{\link[=dtnorm_cpp]{dtnorm_cpp()}},
+\code{\link[=dwishart_cpp]{dwishart_cpp()}},
+\code{\link[=gaussian_tv]{gaussian_tv()}}
 }
 \concept{simulation helpers}
 \keyword{simulation}

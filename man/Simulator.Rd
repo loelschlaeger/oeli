@@ -93,127 +93,131 @@ print(object_restored)
 object_restored$go(runs = 2)
 }
 \seealso{
-Other simulation helpers: 
-\code{\link{correlated_regressors}()},
-\code{\link{ddirichlet_cpp}()},
-\code{\link{dmixnorm_cpp}()},
-\code{\link{dmvnorm_cpp}()},
-\code{\link{dtnorm_cpp}()},
-\code{\link{dwishart_cpp}()},
-\code{\link{gaussian_tv}()},
-\code{\link{simulate_markov_chain}()}
+Other simulation helpers:
+\code{\link[=correlated_regressors]{correlated_regressors()}},
+\code{\link[=ddirichlet_cpp]{ddirichlet_cpp()}},
+\code{\link[=dmixnorm_cpp]{dmixnorm_cpp()}},
+\code{\link[=dmvnorm_cpp]{dmvnorm_cpp()}},
+\code{\link[=dtnorm_cpp]{dtnorm_cpp()}},
+\code{\link[=dwishart_cpp]{dwishart_cpp()}},
+\code{\link[=gaussian_tv]{gaussian_tv()}},
+\code{\link[=simulate_markov_chain]{simulate_markov_chain()}}
 }
 \concept{simulation helpers}
 \keyword{simulation}
 \section{Active bindings}{
-\if{html}{\out{<div class="r6-active-bindings">}}
-\describe{
-\item{\code{results}}{[\code{tibble}, read-only]\cr
+  \if{html}{\out{<div class="r6-active-bindings">}}
+  \describe{
+    \item{\code{results}}{[\code{tibble}, read-only]\cr
 The simulation results.}
 
-\item{\code{cases}}{[\code{tibble}, read-only]\cr
+    \item{\code{cases}}{[\code{tibble}, read-only]\cr
 The simulation cases.}
-}
-\if{html}{\out{</div>}}
+  }
+  \if{html}{\out{</div>}}
 }
 \section{Methods}{
 \subsection{Public methods}{
-\itemize{
-\item \href{#method-Simulator-new}{\code{Simulator$new()}}
-\item \href{#method-Simulator-print}{\code{Simulator$print()}}
-\item \href{#method-Simulator-define}{\code{Simulator$define()}}
-\item \href{#method-Simulator-go}{\code{Simulator$go()}}
-}
+  \itemize{
+    \item \href{#method-Simulator-initialize}{\code{Simulator$new()}}
+    \item \href{#method-Simulator-print}{\code{Simulator$print()}}
+    \item \href{#method-Simulator-define}{\code{Simulator$define()}}
+    \item \href{#method-Simulator-go}{\code{Simulator$go()}}
+  }
 }
 \if{html}{\out{<hr>}}
-\if{html}{\out{<a id="method-Simulator-new"></a>}}
-\if{latex}{\out{\hypertarget{method-Simulator-new}{}}}
-\subsection{Method \code{new()}}{
-Initialize a \code{Simulator} object, either a new one or from backup.
-\subsection{Usage}{
-\if{html}{\out{<div class="r">}}\preformatted{Simulator$new(
+\if{html}{\out{<a id="method-Simulator-initialize"></a>}}
+\if{latex}{\out{\hypertarget{method-Simulator-initialize}{}}}
+\subsection{\code{Simulator$new()}}{
+  Initialize a \code{Simulator} object, either a new one or from backup.
+  \subsection{Usage}{
+    \if{html}{\out{<div class="r">}}
+    \preformatted{Simulator$new(
   use_backup = NULL,
   verbose = getOption("verbose", default = FALSE)
-)}\if{html}{\out{</div>}}
-}
-
-\subsection{Arguments}{
-\if{html}{\out{<div class="arguments">}}
-\describe{
-\item{\code{use_backup}}{[\code{NULL} | \code{character(1)}]\cr
+)}
+    \if{html}{\out{</div>}}
+  }
+  \subsection{Arguments}{
+    \if{html}{\out{<div class="arguments">}}
+    \describe{
+      \item{\code{use_backup}}{[\code{NULL} | \code{character(1)}]\cr
 Optionally a path to a backup folder previously used in \verb{$go()}.}
-
-\item{\code{verbose}}{[\code{logical(1)}]\cr
+      \item{\code{verbose}}{[\code{logical(1)}]\cr
 Provide info? Does not include progress updates. For that, see details.}
+    }
+    \if{html}{\out{</div>}}
+  }
 }
-\if{html}{\out{</div>}}
-}
-}
+
 \if{html}{\out{<hr>}}
 \if{html}{\out{<a id="method-Simulator-print"></a>}}
 \if{latex}{\out{\hypertarget{method-Simulator-print}{}}}
-\subsection{Method \code{print()}}{
-Print method.
-\subsection{Usage}{
-\if{html}{\out{<div class="r">}}\preformatted{Simulator$print()}\if{html}{\out{</div>}}
+\subsection{\code{Simulator$print()}}{
+  Print method.
+  \subsection{Usage}{
+    \if{html}{\out{<div class="r">}}
+    \preformatted{Simulator$print()}
+    \if{html}{\out{</div>}}
+  }
 }
 
-}
 \if{html}{\out{<hr>}}
 \if{html}{\out{<a id="method-Simulator-define"></a>}}
 \if{latex}{\out{\hypertarget{method-Simulator-define}{}}}
-\subsection{Method \code{define()}}{
-Define function and arguments for a new \code{Simulator} object.
-\subsection{Usage}{
-\if{html}{\out{<div class="r">}}\preformatted{Simulator$define(f, ...)}\if{html}{\out{</div>}}
-}
-
-\subsection{Arguments}{
-\if{html}{\out{<div class="arguments">}}
-\describe{
-\item{\code{f}}{[\code{function}]\cr
+\subsection{\code{Simulator$define()}}{
+  Define function and arguments for a new \code{Simulator} object.
+  \subsection{Usage}{
+    \if{html}{\out{<div class="r">}}
+    \preformatted{Simulator$define(f, ...)}
+    \if{html}{\out{</div>}}
+  }
+  \subsection{Arguments}{
+    \if{html}{\out{<div class="arguments">}}
+    \describe{
+      \item{\code{f}}{[\code{function}]\cr
 A \code{function} to evaluate.}
-
-\item{\code{...}}{Arguments for \code{f}. Each value must be
+      \item{\code{...}}{Arguments for \code{f}. Each value must be
 \enumerate{
 \item named after an argument of \code{f}, and
 \item a \code{list}, where each element is a variant of that argument for \code{f}.
 }}
+    }
+    \if{html}{\out{</div>}}
+  }
 }
-\if{html}{\out{</div>}}
-}
-}
+
 \if{html}{\out{<hr>}}
 \if{html}{\out{<a id="method-Simulator-go"></a>}}
 \if{latex}{\out{\hypertarget{method-Simulator-go}{}}}
-\subsection{Method \code{go()}}{
-Run simulations.
-\subsection{Usage}{
-\if{html}{\out{<div class="r">}}\preformatted{Simulator$go(
+\subsection{\code{Simulator$go()}}{
+  Run simulations.
+  \subsection{Usage}{
+    \if{html}{\out{<div class="r">}}
+    \preformatted{Simulator$go(
   runs = 0,
   backup = FALSE,
   path = paste0("backup_", format(Sys.time(), "\%Y-\%m-\%d-\%H-\%M-\%S"))
-)}\if{html}{\out{</div>}}
-}
-
-\subsection{Arguments}{
-\if{html}{\out{<div class="arguments">}}
-\describe{
-\item{\code{runs}}{[\code{integer(1)}]\cr
+)}
+    \if{html}{\out{</div>}}
+  }
+  \subsection{Arguments}{
+    \if{html}{\out{<div class="arguments">}}
+    \describe{
+      \item{\code{runs}}{[\code{integer(1)}]\cr
 The number of (additional) simulation runs.
 
 If \code{runs = 0}, only pending cases (if any) are solved.}
-
-\item{\code{backup}}{[\code{logical(1)}]\cr
+      \item{\code{backup}}{[\code{logical(1)}]\cr
 Create a backup under \code{path}?}
-
-\item{\code{path}}{[\code{character(1)}]\cr
+      \item{\code{path}}{[\code{character(1)}]\cr
 Only relevant, if \code{backup = TRUE}.
 
 In this case, a path for a new folder, which does not yet exist and
 allows reading and writing.}
+    }
+    \if{html}{\out{</div>}}
+  }
 }
-\if{html}{\out{</div>}}
-}
-}
+
 }

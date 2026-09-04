@@ -27,10 +27,10 @@ element occurrences in \code{data.frame} columns.
 occurrence_info(datasets::warpbreaks, relative = FALSE, named = TRUE)
 }
 \seealso{
-Other data.frame helpers: 
-\code{\link{delete_columns_data.frame}()},
-\code{\link{group_data.frame}()},
-\code{\link{round_data.frame}()}
+Other data.frame helpers:
+\code{\link[=delete_columns_data.frame]{delete_columns_data.frame()}},
+\code{\link[=group_data.frame]{group_data.frame()}},
+\code{\link[=round_data.frame]{round_data.frame()}}
 }
 \concept{data.frame helpers}
 \keyword{packaging}

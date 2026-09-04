@@ -28,10 +28,10 @@ group_data.frame(df = df, by = "label")
 group_data.frame(df = df, by = "label", keep_by = FALSE)
 }
 \seealso{
-Other data.frame helpers: 
-\code{\link{delete_columns_data.frame}()},
-\code{\link{occurrence_info}()},
-\code{\link{round_data.frame}()}
+Other data.frame helpers:
+\code{\link[=delete_columns_data.frame]{delete_columns_data.frame()}},
+\code{\link[=occurrence_info]{occurrence_info()}},
+\code{\link[=round_data.frame]{round_data.frame()}}
 }
 \concept{data.frame helpers}
 \keyword{transformation}

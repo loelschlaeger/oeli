@@ -47,8 +47,8 @@ assert_list_of_lists(L)
 }
 }
 \seealso{
-Other list helpers: 
-\code{\link{merge_lists}()}
+Other list helpers:
+\code{\link[=merge_lists]{merge_lists()}}
 }
 \concept{list helpers}
 \keyword{validation}

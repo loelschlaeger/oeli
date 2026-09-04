@@ -51,17 +51,17 @@ assert_probability_vector(p)
 }
 }
 \seealso{
-Other vector helpers: 
-\code{\link{check_numeric_vector}()},
-\code{\link{chunk_vector}()},
-\code{\link{equidistant_vectors}()},
-\code{\link{insert_vector_entry}()},
-\code{\link{map_indices}()},
-\code{\link{match_numerics}()},
-\code{\link{permutations}()},
-\code{\link{split_vector_at}()},
-\code{\link{subsets}()},
-\code{\link{vector_occurrence}()}
+Other vector helpers:
+\code{\link[=check_numeric_vector]{check_numeric_vector()}},
+\code{\link[=chunk_vector]{chunk_vector()}},
+\code{\link[=equidistant_vectors]{equidistant_vectors()}},
+\code{\link[=insert_vector_entry]{insert_vector_entry()}},
+\code{\link[=map_indices]{map_indices()}},
+\code{\link[=match_numerics]{match_numerics()}},
+\code{\link[=permutations]{permutations()}},
+\code{\link[=split_vector_at]{split_vector_at()}},
+\code{\link[=subsets]{subsets()}},
+\code{\link[=vector_occurrence]{vector_occurrence()}}
 }
 \concept{vector helpers}
 \keyword{validation}

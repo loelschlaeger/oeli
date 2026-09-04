@@ -29,17 +29,17 @@ split_vector_at(x, c(2, 3, 5, 7))
 Based on https://stackoverflow.com/a/19274414.
 }
 \seealso{
-Other vector helpers: 
-\code{\link{check_numeric_vector}()},
-\code{\link{check_probability_vector}()},
-\code{\link{chunk_vector}()},
-\code{\link{equidistant_vectors}()},
-\code{\link{insert_vector_entry}()},
-\code{\link{map_indices}()},
-\code{\link{match_numerics}()},
-\code{\link{permutations}()},
-\code{\link{subsets}()},
-\code{\link{vector_occurrence}()}
+Other vector helpers:
+\code{\link[=check_numeric_vector]{check_numeric_vector()}},
+\code{\link[=check_probability_vector]{check_probability_vector()}},
+\code{\link[=chunk_vector]{chunk_vector()}},
+\code{\link[=equidistant_vectors]{equidistant_vectors()}},
+\code{\link[=insert_vector_entry]{insert_vector_entry()}},
+\code{\link[=map_indices]{map_indices()}},
+\code{\link[=match_numerics]{match_numerics()}},
+\code{\link[=permutations]{permutations()}},
+\code{\link[=subsets]{subsets()}},
+\code{\link[=vector_occurrence]{vector_occurrence()}}
 }
 \concept{vector helpers}
 \keyword{transformation}

@@ -29,10 +29,10 @@ df <- data.frame("label" = c("A", "B"), "number" = rnorm(10))
 round_data.frame(df, digits = 1)
 }
 \seealso{
-Other data.frame helpers: 
-\code{\link{delete_columns_data.frame}()},
-\code{\link{group_data.frame}()},
-\code{\link{occurrence_info}()}
+Other data.frame helpers:
+\code{\link[=delete_columns_data.frame]{delete_columns_data.frame()}},
+\code{\link[=group_data.frame]{group_data.frame()}},
+\code{\link[=occurrence_info]{occurrence_info()}}
 }
 \concept{data.frame helpers}
 \keyword{transformation}

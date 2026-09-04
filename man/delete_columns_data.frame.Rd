@@ -26,10 +26,10 @@ delete_columns_data.frame(df = df, column_names = "number")
 delete_columns_data.frame(df = df, column_names = c("label", "number"))
 }
 \seealso{
-Other data.frame helpers: 
-\code{\link{group_data.frame}()},
-\code{\link{occurrence_info}()},
-\code{\link{round_data.frame}()}
+Other data.frame helpers:
+\code{\link[=group_data.frame]{group_data.frame()}},
+\code{\link[=occurrence_info]{occurrence_info()}},
+\code{\link[=round_data.frame]{round_data.frame()}}
 }
 \concept{data.frame helpers}
 \keyword{transformation}

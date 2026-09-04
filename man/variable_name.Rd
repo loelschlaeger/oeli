@@ -27,14 +27,14 @@ f <- function(x) variable_name(x)
 f(x = a)
 }
 \seealso{
-Other function helpers: 
-\code{\link{do.call_timed}()},
-\code{\link{function_arguments}()},
-\code{\link{function_body}()},
-\code{\link{function_defaults}()},
-\code{\link{quiet}()},
-\code{\link{timed}()},
-\code{\link{try_silent}()}
+Other function helpers:
+\code{\link[=do.call_timed]{do.call_timed()}},
+\code{\link[=function_arguments]{function_arguments()}},
+\code{\link[=function_body]{function_body()}},
+\code{\link[=function_defaults]{function_defaults()}},
+\code{\link[=quiet]{quiet()}},
+\code{\link[=timed]{timed()}},
+\code{\link[=try_silent]{try_silent()}}
 }
 \concept{function helpers}
 \keyword{functional}

@@ -75,15 +75,15 @@ Sigma2 <- matrix(c(1.5, -0.3, -0.3, 1), ncol = 2)
 gaussian_tv(mean1, mean2, Sigma1, Sigma2, method = "mc", n = 1e3)
 }
 \seealso{
-Other simulation helpers: 
+Other simulation helpers:
 \code{\link{Simulator}},
-\code{\link{correlated_regressors}()},
-\code{\link{ddirichlet_cpp}()},
-\code{\link{dmixnorm_cpp}()},
-\code{\link{dmvnorm_cpp}()},
-\code{\link{dtnorm_cpp}()},
-\code{\link{dwishart_cpp}()},
-\code{\link{simulate_markov_chain}()}
+\code{\link[=correlated_regressors]{correlated_regressors()}},
+\code{\link[=ddirichlet_cpp]{ddirichlet_cpp()}},
+\code{\link[=dmixnorm_cpp]{dmixnorm_cpp()}},
+\code{\link[=dmvnorm_cpp]{dmvnorm_cpp()}},
+\code{\link[=dtnorm_cpp]{dtnorm_cpp()}},
+\code{\link[=dwishart_cpp]{dwishart_cpp()}},
+\code{\link[=simulate_markov_chain]{simulate_markov_chain()}}
 }
 \concept{simulation helpers}
 \keyword{distribution}
