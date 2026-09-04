@@ -44,7 +44,7 @@ Other package helpers:
 ``` r
 system_information()
 #> $machine
-#> [1] "Intel(R) Xeon(R) Platinum 8370C CPU @ 2.80GHz"
+#> [1] "AMD EPYC 7763 64-Core Processor"
 #> 
 #> $cores
 #> [1] 4

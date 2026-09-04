@@ -409,7 +409,7 @@ my_storage$get("all") # get all elements
 #> [[5]]
 #> function (x, ...) 
 #> UseMethod("mean")
-#> <bytecode: 0x55f768aea510>
+#> <bytecode: 0x55acf91246d0>
 #> <environment: namespace:base>
 #> 
 my_storage$get(c("text", "!text"))
@@ -430,7 +430,7 @@ my_storage$get(c("text", "!text"), logical = "or")
 #> [[5]]
 #> function (x, ...) 
 #> UseMethod("mean")
-#> <bytecode: 0x55f768aea510>
+#> <bytecode: 0x55acf91246d0>
 #> <environment: namespace:base>
 #> 
 
@@ -442,7 +442,7 @@ my_storage$get(ids = 4:5)
 #> [[2]]
 #> function (x, ...) 
 #> UseMethod("mean")
-#> <bytecode: 0x55f768aea510>
+#> <bytecode: 0x55acf91246d0>
 #> <environment: namespace:base>
 #> 
 my_storage$get(ids = 4:5, id_names = TRUE) # add the ids as names
@@ -452,7 +452,7 @@ my_storage$get(ids = 4:5, id_names = TRUE) # add the ids as names
 #> $`5`
 #> function (x, ...) 
 #> UseMethod("mean")
-#> <bytecode: 0x55f768aea510>
+#> <bytecode: 0x55acf91246d0>
 #> <environment: namespace:base>
 #> 
 ```

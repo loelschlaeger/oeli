@@ -216,7 +216,7 @@ path <- file.path(
   paste0("backup_", format(Sys.time(), "%Y-%m-%d-%H-%M-%S"))
 )
 object$go(runs = 2, backup = TRUE, path = path)
-#> Saving backup to path /tmp/RtmpeIcEID/backup_2026-09-04-10-52-14.
+#> Saving backup to path /tmp/RtmpdpGqFG/backup_2026-09-04-11-41-36.
 #> Started simulation with 4 cases...
 #> Simulation complete, 0 cases failed.
 
@@ -225,10 +225,10 @@ object$results
 #> # A tibble: 4 × 4
 #>   .case .seconds       .input           .output  
 #>   <int> <drtn>         <list>           <list>   
-#> 1     1 0.5168788 secs <named list [1]> <dbl [1]>
-#> 2     2 0.2302203 secs <named list [1]> <dbl [1]>
-#> 3     3 0.6743634 secs <named list [1]> <dbl [1]>
-#> 4     4 0.6663392 secs <named list [1]> <dbl [1]>
+#> 1     1 0.5169466 secs <named list [1]> <dbl [1]>
+#> 2     2 0.2302561 secs <named list [1]> <dbl [1]>
+#> 3     3 0.6744332 secs <named list [1]> <dbl [1]>
+#> 4     4 0.6663902 secs <named list [1]> <dbl [1]>
 
 # 6. Check if cases are pending or if an error occurred:
 object$cases
