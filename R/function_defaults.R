@@ -33,7 +33,10 @@ function_defaults <- function(f, exclude = NULL) {
     "exclude"
   )
   formals_f <- formals(f)
-  formals_f <- formals_f[!sapply(formals_f, is.symbol)]
+  no_default <- vapply(formals_f, function(arg) {
+    is.symbol(arg) && !nzchar(as.character(arg))
+  }, logical(1))
+  formals_f <- formals_f[!no_default]
   formals_f <- formals_f[!names(formals_f) %in% exclude]
   return(formals_f)
 }

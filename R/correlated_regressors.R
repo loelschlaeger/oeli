@@ -168,17 +168,18 @@ correlated_regressors <- function(
         )
         if (type == "poisson") {
 
-          lam <- c(lam, marginals[[labels[p]]][["lambda"]])
+          lambda_p <- marginals[[labels[p]]][["lambda"]]
           input_check_response(
-            checkmate::check_number(lam, lower = 0, finite = TRUE),
+            checkmate::check_number(lambda_p, lower = 0, finite = TRUE),
             "marginals",
             prefix = paste0(
               "Element {.val lambda} of element {.val ", labels[p],
               "} in input {.var {var_name}} is bad:"
             )
           )
+          lam <- c(lam, lambda_p)
           marginals_class[p] <- "pois"
-          marginals_info[p] <- paste0("Poisson(lambda = ", lam, ")")
+          marginals_info[p] <- paste0("Poisson(lambda = ", lambda_p, ")")
 
         } else if (type == "categorical") {
 
@@ -282,8 +283,14 @@ correlated_regressors <- function(
     ordering_operator <- diag(P)[marginals_order, ]
     correlation <- ordering_operator %*% correlation %*% t(ordering_operator)
 
+    ### SimMultiCorrData reseeds R's generator, so the seed comes from the
+    ### current stream to keep the simulation reproducible under set.seed()
+    seed <- sample.int(.Machine$integer.max, 1)
+
     ### make sure 'correlation' is within upper and lower correlation limits
-    valid <- try_silent(quiet(SimMultiCorrData::valid_corr(
+    ### (only relevant for more than one regressor)
+    valid <- if (P == 1) list() else
+      try_silent(quiet(SimMultiCorrData::valid_corr(
       k_cat = sum(marginals_class == "cat"),
       k_cont = sum(marginals_class == "cont"),
       k_pois = sum(marginals_class == "pois"),
@@ -300,7 +307,7 @@ correlated_regressors <- function(
       size = size,
       prob = prob,
       rho = correlation,
-      seed = NULL
+      seed = seed
     )))
 
     ### check for failure
@@ -315,7 +322,7 @@ correlated_regressors <- function(
     }
 
     ### report info about correlation limits
-    for (i in 1:(P - 1)) {
+    for (i in seq_len(P - 1)) {
       for (j in (i + 1):P) {
         if (correlation[i, j] < valid$L_rho[i, j]) {
           cli::cli_warn(
@@ -335,8 +342,9 @@ correlated_regressors <- function(
     }
 
     ### simulate data from marginal distributions
+    ### ('rcorrvar' needs at least two observations)
     sim_out <- quiet(SimMultiCorrData::rcorrvar(
-      n = n,
+      n = max(n, 2),
       k_cat = sum(marginals_class == "cat"),
       k_cont = sum(marginals_class == "cont"),
       k_pois = sum(marginals_class == "pois"),
@@ -353,18 +361,18 @@ correlated_regressors <- function(
       size = size,
       prob = prob,
       rho = correlation,
-      seed = NULL
+      seed = seed
     ))
 
-    #### obtain regressors
-    data <- cbind(
+    #### obtain regressors (classes without regressors are empty)
+    data <- do.call(cbind, Filter(length, list(
       sim_out$ordinal_variables,
       sim_out$continuous_variables,
       sim_out$Poisson_variables
-    )
+    )))
 
     ### adapt order of regressors and add column names
-    data <- data[, order(marginals_order)]
+    data <- data[seq_len(n), order(marginals_order), drop = FALSE]
     colnames(data) <- labels
   }
 

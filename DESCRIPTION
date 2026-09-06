@@ -1,7 +1,7 @@
 Package: oeli
 Type: Package
 Title: Some Utilities for Developing Data Science Software
-Version: 0.7.7
+Version: 0.7.8
 Authors@R: person(
     given = "Lennart", 
     family = "Oelschl\u00e4ger", 

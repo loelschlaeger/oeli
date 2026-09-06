@@ -7,10 +7,10 @@
 #' @param x \[`data.frame`\]\cr
 #' The object to check for occurrences.
 #'
-#' @param relative \[`logical(1)` \]\cr
-#' The number of rows or columns to be printed, greater or equal `2`.
+#' @param relative \[`logical(1)`\]\cr
+#' Report relative (in percent) instead of absolute occurrences?
 #'
-#' @param named \[`logical(1)` \]\cr
+#' @param named \[`logical(1)`\]\cr
 #' Prepend column names of `x` (if not `NA`)?
 #'
 #' @return

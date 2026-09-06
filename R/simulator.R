@@ -117,7 +117,8 @@ Simulator <- R6::R6Class(
           check = checkmate::check_file_exists(
             file.path(use_backup, "Simulator_object.rds"), extension = ".rds",
             access = "r"
-          )
+          ),
+          var_name = "use_backup"
         )
         self_old <- readRDS(file.path(use_backup, "Simulator_object.rds"))
         list2env(

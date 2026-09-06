@@ -27,7 +27,7 @@ check_list_of_lists <- function(x, len = NULL) {
     return(res)
   }
   for (i in seq_along(x)) {
-    res <- checkmate::check_list(x[[i]], len = len)
+    res <- checkmate::check_list(x[[i]])
     if (!isTRUE(res)) {
       return(paste("Check for element", i, "failed:", res))
     }

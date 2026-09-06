@@ -7,10 +7,10 @@
 subsets(v, n = seq_along(v))
 }
 \arguments{
-\item{v}{[atomic()`]\cr
+\item{v}{[\code{atomic()}]\cr
 A vector of elements.}
 
-\item{n}{[integer(1)`]\cr
+\item{n}{[\code{integer()}]\cr
 The requested subset sizes.}
 }
 \value{

@@ -7,11 +7,11 @@
 chunk_vector(x, n, type = 1, strict = FALSE)
 }
 \arguments{
-\item{x}{[atomic()`]\cr
+\item{x}{[\code{atomic()}]\cr
 A vector of elements.}
 
 \item{n}{[\code{integer(1)}]\cr
-A number smaller or equal \code{length(x)}.}
+The number of chunks (\code{type = 1}) or the chunk size (\code{type = 2}).}
 
 \item{type}{[\code{1} | \code{2}]\cr
 Either

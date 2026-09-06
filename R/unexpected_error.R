@@ -23,7 +23,7 @@ unexpected_error <- function(
   checkmate::assert_string(msg, min.chars = 1)
   checkmate::assert_string(
     issue_link,
-    pattern = "^https://github.com/[[:alpha:]]*/[[:alpha:]]*/issues$"
+    pattern = "^https://github.com/[[:alnum:]._-]+/[[:alnum:]._-]+/issues$"
   )
   cli::cli_abort(
     c(

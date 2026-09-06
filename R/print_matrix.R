@@ -60,6 +60,7 @@ print_matrix <- function(
   add_dots <- function(x, pos) {
     if (length(x) > pos) c(x[seq_len(pos - 1)], "...", x[length(x)]) else x
   }
+  input <- x
   if (is.numeric(x)) x <- round(x, digits)
   if (!is.null(label)) cat(label, ": ")
   if (length(x) == 1) {
@@ -158,5 +159,5 @@ print_matrix <- function(
       )
     }
   }
-  return(invisible(x))
+  return(invisible(input))
 }

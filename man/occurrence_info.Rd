@@ -10,10 +10,10 @@ occurrence_info(x, relative = FALSE, named = FALSE)
 \item{x}{[\code{data.frame}]\cr
 The object to check for occurrences.}
 
-\item{relative}{[\code{logical(1)} ]\cr
-The number of rows or columns to be printed, greater or equal \code{2}.}
+\item{relative}{[\code{logical(1)}]\cr
+Report relative (in percent) instead of absolute occurrences?}
 
-\item{named}{[\code{logical(1)} ]\cr
+\item{named}{[\code{logical(1)}]\cr
 Prepend column names of \code{x} (if not \code{NA})?}
 }
 \value{

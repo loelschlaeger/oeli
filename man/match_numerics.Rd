@@ -8,7 +8,7 @@ match_numerics(x, y)
 }
 \arguments{
 \item{x, y}{[\code{numeric()}]\cr
-Two vectors of the same length.}
+Two vectors of the same length without missing values.}
 }
 \value{
 An \code{integer} vector of length \code{length(x)} with the positions of
@@ -16,7 +16,7 @@ An \code{integer} vector of length \code{length(x)} with the positions of
 }
 \description{
 This function matches the indices of two numeric vectors as good as possible
-(that means with the smallest possible sum of deviations).
+(that means with the smallest possible sum of absolute deviations).
 }
 \examples{
 x <- c(-1, 0, 1)

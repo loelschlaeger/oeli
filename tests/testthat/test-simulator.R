@@ -88,7 +88,8 @@ test_that("backup works", {
   h <- function(x, y = 1) x + y
   sim <- Simulator$new(verbose = FALSE)
   sim$define(f = h, x = as.list(1:2))
-  path <- file.path(tempdir(), paste0(sample(letters, size = 26), collapse = ""))
+  path <- tempfile("backup")
+  on.exit(unlink(path, recursive = TRUE), add = TRUE)
   sim$go(runs = 2, backup = TRUE, path = path)
   sim_restored <- Simulator$new(use_backup = path)
   expect_error(sim_restored$define(), "Definition already provided.")

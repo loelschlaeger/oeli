@@ -9,7 +9,7 @@ system_information()
 \value{
 A \code{list} with elements:
 \itemize{
-\item \code{maschine}, the model name of the device
+\item \code{machine}, the model name of the device
 \item \code{cores}, the number of cores
 \item \code{ram}, the size of the RAM
 \item \code{os}, the operating system

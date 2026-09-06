@@ -8,7 +8,7 @@
 #' @param dim \[`integer(1)`\]\cr
 #' The dimension.
 #'
-#' @param df \[`integer(1)`\]\cr
+#' @param df \[`numeric(1)`\]\cr
 #' The degrees of freedom of the inverse Wishart distribution greater or equal
 #' \code{dim}.
 #'

@@ -10,7 +10,7 @@ sample_covariance_matrix(dim, df = dim, scale = diag(dim), diag = FALSE)
 \item{dim}{[\code{integer(1)}]\cr
 The dimension.}
 
-\item{df}{[\code{integer(1)}]\cr
+\item{df}{[\code{numeric(1)}]\cr
 The degrees of freedom of the inverse Wishart distribution greater or equal
 \code{dim}.}
 

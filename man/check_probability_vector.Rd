@@ -40,7 +40,7 @@ Same as documented in \code{\link[checkmate]{check_numeric}}.
 }
 \description{
 These functions check whether the input fulfills the properties of a
-probability matrix.
+probability vector.
 }
 \examples{
 p <- c(0.2, 0.3, 0.6)

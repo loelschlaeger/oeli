@@ -88,7 +88,7 @@ find_namespace_calls <- function(
               "^[a-zA-Z0-9\\.]+:::+([a-zA-Z0-9_\\.]+).*",
               "\\1", match
             )
-            full_call <- paste0(pkg, "::: ", fun)
+            full_call <- paste0(pkg, ":::", fun)
           } else {
             pkg <- sub("^([a-zA-Z0-9\\.]+)::.*", "\\1", match)
             fun <- sub(
@@ -114,7 +114,9 @@ find_namespace_calls <- function(
     data.frame(
       file = character(0),
       line_number = integer(0),
-      call = character(0)
+      call = character(0),
+      pkg = character(0),
+      fun = character(0)
     )
   } else {
     do.call(rbind, lapply(matches, as.data.frame, stringsAsFactors = FALSE))

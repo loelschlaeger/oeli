@@ -7,7 +7,7 @@
 split_vector_at(x, at)
 }
 \arguments{
-\item{x}{[atomic()`]\cr
+\item{x}{[\code{atomic()}]\cr
 A vector of elements.}
 
 \item{at}{[\code{integer()}]\cr

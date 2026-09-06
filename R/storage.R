@@ -21,7 +21,7 @@
 #' case via the method argument.
 #'
 #' @param identifier \[`character()`\]\cr
-#' Pne or more identifiers (the identifier \code{"all"} is reserved to select
+#' One or more identifiers (the identifier \code{"all"} is reserved to select
 #' all elements).
 #'
 #' @param ids \[`integer()`\]\cr
@@ -198,7 +198,7 @@ Storage <- R6::R6Class(
             call. = FALSE, immediate. = FALSE
           )
         }
-        return(list())
+        return(invisible(self))
       }
 
       ### inform user about action and request confirmation
@@ -222,7 +222,7 @@ Storage <- R6::R6Class(
       }
       if (shift_ids) {
         private$elements[ids] <- NULL
-        private$ids <- private$ids[-ids, ]
+        private$ids <- private$ids[-ids, , drop = FALSE]
       } else {
         private$elements[ids] <- list(NULL)
         private$ids[ids, ] <- NA
@@ -270,7 +270,7 @@ Storage <- R6::R6Class(
       if (confirm) {
         private$user_confirm(
           action = "get indices of",
-          identifier = identifier, missing_identifier = missing_identifier,
+          identifier = identifier, missing_identifier = self$missing_identifier,
           complete = FALSE, logical = logical
         )
       }
@@ -409,7 +409,7 @@ Storage <- R6::R6Class(
           }
           identifier <- identifier[-unknown]
         } else {
-          unknown_error()
+          unexpected_error()
         }
       }
       return(identifier)
@@ -450,7 +450,7 @@ Storage <- R6::R6Class(
             } else if (logical == "or") {
               cat("with at least one of these identifiers:\n")
             } else {
-              unknown_error()
+              unexpected_error()
             }
           }
           identifier_bool <- private$translate_identifier(identifier)
@@ -475,7 +475,7 @@ Storage <- R6::R6Class(
       if (nrow(private$ids) == 0) {
         private$ids[1, ] <- NA
         private$ids[, identifier] <- NA
-        private$ids <- private$ids[0, ]
+        private$ids <- private$ids[0, , drop = FALSE]
       } else {
         private$ids[, identifier] <- missing_identifier
       }
@@ -587,7 +587,7 @@ Storage <- R6::R6Class(
       } else if (logical == "or") {
         ids <- unique(unlist(ids))
       } else {
-        unknown_error()
+        unexpected_error()
       }
       checkmate::assert_integerish(ids, lower = 1, any.missing = FALSE)
       if (length(ids) == 0) {

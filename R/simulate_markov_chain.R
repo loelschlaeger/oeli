@@ -44,7 +44,7 @@ simulate_markov_chain <- function(
   N <- length(delta)
   markov_chain <- numeric(T)
   markov_chain[1] <- sample(1:N, 1, prob = delta)
-  for (t in 2:T) {
+  for (t in seq_len(T)[-1]) {
     markov_chain[t] <- sample(1:N, 1, prob = Gamma[markov_chain[t - 1], ])
   }
   markov_chain

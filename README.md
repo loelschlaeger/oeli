@@ -52,8 +52,8 @@ hermann
 
 ### [Distributions](https://loelschlaeger.de/oeli/reference/index.html#distribution)
 
-The package has density and sampling functions for some distributions
-not included in base R, like the Dirichlet:
+The package has density, distribution, and sampling functions for some
+distributions not included in base R, like the Dirichlet:
 
 ``` r
 ddirichlet(x = c(0.2, 0.3, 0.5), concentration = 1:3)
@@ -187,20 +187,20 @@ data <- correlated_regressors(
   labels = labels, n = n, marginals = marginals, correlation = correlation
 )
 head(data)
-#>   P C        N1         N2         U
-#> 1 3 3  0.854606 -1.1509971 -1.575507
-#> 2 3 3 -3.801998  0.5696389 -1.784321
-#> 3 4 3 -1.024611 -1.0414976 -1.333803
-#> 4 0 3 -0.490758 -0.9806894 -1.840349
-#> 5 1 3 -1.681134  0.7511786 -1.939042
-#> 6 2 1 -2.814986  0.7984411 -1.367265
+#>   P C         N1          N2         U
+#> 1 1 3 -0.2639087  1.03744770 -1.967141
+#> 2 2 2 -2.6490852 -0.07953713 -1.447575
+#> 3 6 2 -2.9088358  0.76451947 -1.349912
+#> 4 3 1 -2.0271716  0.71366233 -1.203348
+#> 5 2 2 -2.9575259  1.48483964 -1.761985
+#> 6 1 1 -2.3084523  0.69903349 -1.108059
 cor(data)
-#>              P          C          N1          N2          U
-#> P   1.00000000 -0.2287181 -0.08793083 -0.02476611  0.4877251
-#> C  -0.22871807  1.0000000  0.28573358 -0.52539377 -0.7628656
-#> N1 -0.08793083  0.2857336  1.00000000 -0.30000000 -0.2694518
-#> N2 -0.02476611 -0.5253938 -0.30000000  1.00000000  0.1138354
-#> U   0.48772506 -0.7628656 -0.26945184  0.11383544  1.0000000
+#>               P          C         N1           N2           U
+#> P   1.000000000 -0.2764394 -0.1144705 -0.001553849  0.52206175
+#> C  -0.276439406  1.0000000  0.3139378 -0.507244805 -0.74380375
+#> N1 -0.114470491  0.3139378  1.0000000 -0.300000000 -0.30842026
+#> N2 -0.001553849 -0.5072448 -0.3000000  1.000000000  0.07643132
+#> U   0.522061747 -0.7438037 -0.3084203  0.076431315  1.00000000
 ```
 
 ### [Transformation helpers](https://loelschlaeger.de/oeli/reference/index.html#transformation)

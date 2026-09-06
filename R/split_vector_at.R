@@ -3,7 +3,7 @@
 #' @description
 #' This function splits a vector at specific positions.
 #'
-#' @param x \[atomic()`\]\cr
+#' @param x \[`atomic()`\]\cr
 #' A vector of elements.
 #'
 #' @param at \[`integer()`\]\cr

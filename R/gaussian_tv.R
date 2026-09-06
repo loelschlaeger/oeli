@@ -127,7 +127,6 @@ gaussian_tv <- function(
   )
   n1 <- n %/% 2
   n2 <- n - n1
-  X1 <- rmvnorm(n = 1, mean1, Sigma1)
   X1 <- replicate(n1, rmvnorm(n = 1, mean1, Sigma1), simplify = TRUE)
   X2 <- replicate(n2, rmvnorm(n = 1, mean2, Sigma2), simplify = TRUE)
   X  <- cbind(X1, X2)

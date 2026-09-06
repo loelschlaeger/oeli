@@ -121,10 +121,12 @@ Dictionary <- R6::R6Class(
         value_assert,
         types = "call", any.missing = FALSE
       )
-      checkmate::assert_names(
-        names(value_assert),
-        type = "unique", subset.of = value_names
-      )
+      if (length(value_assert) > 0) {
+        checkmate::assert_names(
+          names(value_assert),
+          type = "unique", subset.of = value_names
+        )
+      }
       checkmate::assert_flag(allow_overwrite)
       checkmate::assert_character(
         keys_reserved,
@@ -197,11 +199,7 @@ Dictionary <- R6::R6Class(
         warning("The key '", key, "' does not exist.", call. = FALSE)
       } else {
         private$.storage <- within(private$.storage, rm(list = key))
-        if (private$.alias_activated) {
-          private$.alias_list <- lapply(
-            private$.alias_list, function(alias) alias[!key %in% alias]
-          )
-        }
+        private$.remove_alias(key)
       }
       invisible(self)
     },
@@ -261,6 +259,7 @@ Dictionary <- R6::R6Class(
       input_names_required <- c(private$.key_name, private$.value_names)
       checkmate::assert_names(
         names(inputs),
+        must.include = input_names_required,
         subset.of = c(input_names_required, private$.alias_name)
       )
       checkmate::assert_string(inputs[[private$.key_name]])
@@ -296,11 +295,18 @@ Dictionary <- R6::R6Class(
     .add_to_storage = function(inputs) {
       key <- inputs[[private$.key_name]]
       private$.storage[[key]] <- inputs[private$.value_names]
-      if (private$.alias_activated && !is.null(inputs[[private$.alias_name]])) {
+      if (private$.alias_activated) {
+        private$.remove_alias(key)
         for (alias in inputs[[private$.alias_name]]) {
           private$.alias_list[[alias]] <- c(private$.alias_list[[alias]], key)
         }
       }
+    },
+
+    .remove_alias = function(key) {
+      private$.alias_list <- Filter(length, lapply(
+        private$.alias_list, function(alias) alias[alias != key]
+      ))
     },
 
     .key_exists = function(key) {

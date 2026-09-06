@@ -5,11 +5,11 @@
 #' - splits a vector into \code{n} chunks of equal size (\code{type = 1}),
 #' - splits a vector into chunks of size \code{n} (\code{type = 2}).
 #'
-#' @param x \[atomic()`\]\cr
+#' @param x \[`atomic()`\]\cr
 #' A vector of elements.
 #'
 #' @param n \[`integer(1)`\]\cr
-#' A number smaller or equal \code{length(x)}.
+#' The number of chunks (\code{type = 1}) or the chunk size (\code{type = 2}).
 #'
 #' @param type \[`1` | `2`\]\cr
 #' Either

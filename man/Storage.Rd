@@ -145,7 +145,7 @@ Hide warnings (for example if unknown identifiers are selected)?}
       \item{\code{x}}{[\code{any}]\cr
 An object to be saved.}
       \item{\code{identifier}}{[\code{character()}]\cr
-Pne or more identifiers (the identifier \code{"all"} is reserved to select
+One or more identifiers (the identifier \code{"all"} is reserved to select
 all elements).}
       \item{\code{confirm}}{[\code{logical(1)}]\cr
 Prompted for confirmation?}
@@ -177,7 +177,7 @@ The value for not specified identifiers.}
     \if{html}{\out{<div class="arguments">}}
     \describe{
       \item{\code{identifier}}{[\code{character()}]\cr
-Pne or more identifiers (the identifier \code{"all"} is reserved to select
+One or more identifiers (the identifier \code{"all"} is reserved to select
 all elements).}
       \item{\code{ids}}{[\code{integer()}]\cr
 One or more ids.}
@@ -222,7 +222,7 @@ Name the elements according to their ids?}
     \if{html}{\out{<div class="arguments">}}
     \describe{
       \item{\code{identifier}}{[\code{character()}]\cr
-Pne or more identifiers (the identifier \code{"all"} is reserved to select
+One or more identifiers (the identifier \code{"all"} is reserved to select
 all elements).}
       \item{\code{ids}}{[\code{integer()}]\cr
 One or more ids.}
@@ -265,7 +265,7 @@ Shift ids when in-between elements are removed?}
     \if{html}{\out{<div class="arguments">}}
     \describe{
       \item{\code{identifier}}{[\code{character()}]\cr
-Pne or more identifiers (the identifier \code{"all"} is reserved to select
+One or more identifiers (the identifier \code{"all"} is reserved to select
 all elements).}
       \item{\code{missing_identifier}}{[\code{logical(1)} | NA]\cr
 The value for not specified identifiers.}
@@ -303,7 +303,7 @@ Prompted for confirmation?}
     \if{html}{\out{<div class="arguments">}}
     \describe{
       \item{\code{identifier}}{[\code{character()}]\cr
-Pne or more identifiers (the identifier \code{"all"} is reserved to select
+One or more identifiers (the identifier \code{"all"} is reserved to select
 all elements).}
       \item{\code{logical}}{[\code{character(1)}]\cr
 In the case that multiple identifiers are selected, how should they be

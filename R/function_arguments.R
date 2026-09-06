@@ -28,14 +28,16 @@
 function_arguments <- function(f, with_default = TRUE, with_ellipsis = TRUE) {
   checkmate::assert_function(f)
   checkmate::assert_flag(with_default)
+  checkmate::assert_flag(with_ellipsis)
   args <- formals(f)
   if (is.null(args)) {
     return(character())
   }
   if (!with_default) {
-    args <- args[sapply(seq_along(args), function(n) {
-      any(!nzchar(args[[n]]) & is.name(args[[n]]))
-    })]
+    no_default <- vapply(args, function(arg) {
+      is.symbol(arg) && !nzchar(as.character(arg))
+    }, logical(1))
+    args <- args[no_default]
   }
   if (!with_ellipsis) {
     args <- args[names(args) != "..."]

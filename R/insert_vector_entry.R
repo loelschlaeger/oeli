@@ -40,12 +40,12 @@
 insert_vector_entry <- function(v, x, p) {
   checkmate::assert_atomic_vector(v)
   n <- length(v)
-  checkmate::assert_atomic_vector(x, max.len = 1)
   checkmate::assert_integerish(
     p, lower = 0, upper = n, unique = TRUE, max.len = n + 1
   )
   if (length(p) == 0) {
     return(v)
   }
+  checkmate::assert_atomic_vector(x, len = 1)
   c(v, rep(x, length(p)))[order(c(seq_along(v), p + 0.5))]
 }

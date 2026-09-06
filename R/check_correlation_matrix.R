@@ -50,7 +50,7 @@ check_correlation_matrix <- function(
   if (any(x < -1 | x > 1)) {
     return("Must have values between -1 and 1")
   }
-  if (any(eigen(x)$value < -tolerance)) {
+  if (any(eigen(x, symmetric = TRUE, only.values = TRUE)$values < -tolerance)) {
     return("Must have positive eigenvalues only")
   }
   if (!is.null(dim)) {

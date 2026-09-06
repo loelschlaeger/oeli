@@ -2,7 +2,7 @@
 #'
 #' @description
 #' These functions check whether the input fulfills the properties of a
-#' probability matrix.
+#' probability vector.
 #'
 #' @param tolerance \[`numeric(1)`\]\cr
 #' A non-negative tolerance value.

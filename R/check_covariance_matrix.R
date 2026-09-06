@@ -50,7 +50,7 @@ check_covariance_matrix <- function(
   if (any(abs(x - t(x)) > tolerance)) {
     return("Must be symmetric")
   }
-  if (any(eigen(x)$value < -tolerance)) {
+  if (any(eigen(x, symmetric = TRUE, only.values = TRUE)$values < -tolerance)) {
     return("Must have positive eigenvalues only")
   }
   if (!is.null(dim)) {

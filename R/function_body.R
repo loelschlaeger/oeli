@@ -7,7 +7,7 @@
 #' A \code{function}.
 #'
 #' @param braces \[`logical(1)`\]\cr
-#' Remove \code{"{"} and \code{"}"} at start and end (if any)?
+#' Keep \code{"{"} and \code{"}"} at start and end (if any)?
 #'
 #' @param nchar \[`integer(1)`\]\cr
 #' The maximum number of characters before abbreviation, at least \code{3}.

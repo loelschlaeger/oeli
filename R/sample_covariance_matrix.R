@@ -22,7 +22,7 @@
 sample_covariance_matrix <- function(
     dim, df = dim, scale = diag(dim), diag = FALSE) {
   checkmate::assert_count(dim, positive = TRUE)
-  checkmate::assert_int(df, lower = dim)
+  checkmate::assert_number(df, lower = dim)
   assert_covariance_matrix(scale, dim = dim)
   checkmate::assert_flag(diag)
   cov <- rwishart(df = df, scale = scale, inv = TRUE)

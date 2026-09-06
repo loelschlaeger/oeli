@@ -47,7 +47,10 @@ check_transition_probability_matrix <- function(
     return("Must have row sums equal to 1")
   }
   if (!is.null(dim)) {
-    checkmate::assert_count(dim, positive = TRUE)
+    input_check_response(
+      check = checkmate::check_count(dim, positive = TRUE),
+      var_name = "dim"
+    )
     if (nrow(x) != dim) {
       return(paste("Must be of dimension", dim))
     }
