@@ -16,6 +16,12 @@ test_that("Mixture normal density can be computed", {
     p,
     dmixnorm(x = x, mean = mean, Sigma = Sigma, proportions = proportions * 2)
   )
+  expect_equal(
+    dmixnorm(
+      x = x, mean = mean, Sigma = Sigma, proportions = proportions, log = TRUE
+    ),
+    log(p)
+  )
 
   ### multivariate
   x <- c(0, 0)
@@ -57,6 +63,12 @@ test_that("Mixture normal CDF can be computed", {
   expect_equal(
     p,
     pmixnorm(x = x, mean = mean, Sigma = Sigma, proportions = proportions * 2)
+  )
+  expect_equal(
+    pmixnorm(
+      x = x, mean = mean, Sigma = Sigma, proportions = proportions, lower = 0
+    ),
+    p - pmixnorm(x = 0, mean = mean, Sigma = Sigma, proportions = proportions)
   )
 
   ### multivariate

@@ -15,10 +15,8 @@
 #' The univariate normal mixture is available as the special case `p = 1`.
 #'
 #' @details
-#' `pmixnorm()` is based on [pmvnorm()], which is exact for `p <= 3` and uses
-#' the randomized Quasi-Monte-Carlo procedure by Genz and Bretz otherwise. The
-#' argument `abseps` controls the accuracy of the Gaussian integral
-#' approximation.
+#' `pmixnorm()` is based on [pmvnorm()], which is exact for `p <= 3` and
+#' approximates the probability by the method selected in `method` otherwise.
 #'
 #' @param x \[`numeric(p)`\]\cr
 #' A quantile vector of length `p`, where `p` is the dimension.
@@ -34,16 +32,19 @@
 #'
 #' If proportions do not sum to unity, they are rescaled to do so.
 #'
-#' @param abseps \[`numeric(1)`\]\cr
-#' The absolute error tolerance.
+#' @param log \[`logical(1)`\]\cr
+#' For `dmixnorm()`, return the logarithm of the density value?
 #'
-#' @param n \[`integer(1)`\]\cr
-#' The number of requested samples.
+#' For `rmixnorm()`, return the exponential of the draw, which is a draw from
+#' the mixture of log-normal distributions?
+#'
+#' @inheritParams dmvnorm
 #'
 #' @return
 #' For `dmixnorm()`: The density value.
 #'
-#' For `pmixnorm()`: The value of the distribution function.
+#' For `pmixnorm()`: The value of the distribution function or the rectangle
+#' probability.
 #'
 #' For `rmixnorm()`: If \code{n = 1} a \code{vector} of length \code{p} (note
 #' that it is a column vector for `rmixnorm_cpp()`), else
@@ -61,14 +62,22 @@
 #'
 #' # compute density
 #' dmixnorm(x = x, mean = mean, Sigma = Sigma, proportions = proportions)
+#' dmixnorm(
+#'   x = x, mean = mean, Sigma = Sigma, proportions = proportions, log = TRUE
+#' )
 #'
 #' # compute CDF
 #' pmixnorm(x = x, mean = mean, Sigma = Sigma, proportions = proportions)
 #'
+#' # compute rectangle probability
+#' pmixnorm(
+#'   x = x, mean = mean, Sigma = Sigma, proportions = proportions, lower = -1
+#' )
+#'
 #' # sample
 #' rmixnorm(n = 3, mean = mean, Sigma = Sigma, proportions = proportions)
 
-dmixnorm <- function(x, mean, Sigma, proportions) {
+dmixnorm <- function(x, mean, Sigma, proportions, log = FALSE) {
   input_check_response(
     check = check_numeric_vector(x, any.missing = FALSE, min.len = 1),
     var_name = "x"
@@ -101,13 +110,20 @@ dmixnorm <- function(x, mean, Sigma, proportions) {
     ),
     var_name = "proportions"
   )
-  dmixnorm_cpp(x, mean, Sigma, proportions)
+  input_check_response(
+    check = checkmate::check_flag(log),
+    var_name = "log"
+  )
+  dmixnorm_cpp(x, mean, Sigma, proportions, log)
 }
 
 #' @rdname dmixnorm
 #' @export
 
-pmixnorm <- function(x, mean, Sigma, proportions, abseps = 1e-3) {
+pmixnorm <- function(
+    x, mean, Sigma, proportions, abseps = 1e-3, lower = NULL, method = "genz",
+    draws = 500
+) {
   input_check_response(
     check = check_numeric_vector(x, any.missing = FALSE, min.len = 1),
     var_name = "x"
@@ -140,15 +156,36 @@ pmixnorm <- function(x, mean, Sigma, proportions, abseps = 1e-3) {
     ),
     var_name = "proportions"
   )
-  pmixnorm_cpp(x, mean, Sigma, proportions, abseps)
+  input_check_response(
+    check = checkmate::check_number(abseps, lower = 0, finite = TRUE),
+    var_name = "abseps"
+  )
+  if (checkmate::test_atomic_vector(lower, len = 1)) {
+    lower <- rep(lower, dim)
+  }
+  input_check_response(
+    check = check_numeric_vector(
+      lower, any.missing = FALSE, len = dim, null.ok = TRUE
+    ),
+    var_name = "lower"
+  )
+  input_check_response(
+    check = checkmate::check_choice(method, c("genz", "ghk")),
+    var_name = "method"
+  )
+  input_check_response(
+    check = checkmate::check_int(draws, lower = 2),
+    var_name = "draws"
+  )
+  pmixnorm_cpp(x, mean, Sigma, proportions, abseps, lower, method, draws)
 }
 
 #' @rdname dmixnorm
 #' @export
 
-rmixnorm <- function(n = 1, mean, Sigma, proportions) {
+rmixnorm <- function(n = 1, mean, Sigma, proportions, log = FALSE) {
   input_check_response(
-    check = checkmate::check_int(n),
+    check = checkmate::check_int(n, lower = 1),
     var_name = "n"
   )
   input_check_response(
@@ -179,8 +216,12 @@ rmixnorm <- function(n = 1, mean, Sigma, proportions) {
     ),
     var_name = "proportions"
   )
+  input_check_response(
+    check = checkmate::check_flag(log),
+    var_name = "log"
+  )
   sample <- replicate(
-    n = n, rmixnorm_cpp(mean, Sigma, proportions), simplify = TRUE
+    n = n, rmixnorm_cpp(mean, Sigma, proportions, log), simplify = TRUE
   )
   if (n == 1) {
     drop(sample)

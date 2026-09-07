@@ -13,14 +13,14 @@ rwishart_cpp(df, scale, inv = FALSE)
 
 dwishart(x, df, scale, log = FALSE, inv = FALSE)
 
-rwishart(df, scale, inv = FALSE)
+rwishart(n = 1, df, scale, inv = FALSE)
 }
 \arguments{
 \item{x}{[\code{matrix()}]\cr
 A covariance matrix of dimension \code{p}.}
 
-\item{df}{[\code{integer()}]\cr
-The degrees of freedom greater of equal \code{p}.}
+\item{df}{[\code{numeric(1)}]\cr
+The degrees of freedom, at least \code{p}.}
 
 \item{scale}{[\code{matrix()}]\cr
 The scale covariance matrix of dimension \code{p}.}
@@ -30,11 +30,15 @@ Return the logarithm of the density value?}
 
 \item{inv}{[\code{logical(1)}]\cr
 Use this inverse Wishart distribution?}
+
+\item{n}{[\code{integer(1)}]\cr
+The number of requested samples.}
 }
 \value{
 For \code{dwishart()}: The density value.
 
-For \code{rwishart()}: A \code{matrix}, the random draw.
+For \code{rwishart()}: If \code{n = 1} a \code{matrix} of dimension \code{p} times \code{p}, else
+an \code{array} of dimension \code{p} times \code{p} times \code{n} with the draws as slices.
 }
 \description{
 The function \code{dwishart()} computes the density of a Wishart distribution.
@@ -58,15 +62,11 @@ rwishart(df = df, scale = scale)
 rwishart(df = df, scale = scale, inv = TRUE)
 
 # expectation of Wishart is df * scale
-n <- 100
-replicate(n, rwishart(df = df, scale = scale), simplify = FALSE) |>
-  Reduce(f = "+") / n
+apply(rwishart(n = 100, df = df, scale = scale), 1:2, mean)
 df * scale
 
 # expectation of inverse Wishart is scale / (df - p - 1)
-n <- 100
-replicate(n, rwishart(df = df, scale = scale, TRUE), simplify = FALSE) |>
-  Reduce(f = "+") / n
+apply(rwishart(n = 100, df = df, scale = scale, inv = TRUE), 1:2, mean)
 scale / (df - 2 - 1)
 }
 \seealso{

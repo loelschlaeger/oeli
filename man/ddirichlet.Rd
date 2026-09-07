@@ -26,13 +26,13 @@ A concentration vector of the same length as \code{x}.}
 Return the logarithm of the density value?}
 
 \item{n}{[\code{integer(1)}]\cr
-The number of samples.}
+The number of requested samples.}
 }
 \value{
 For \code{ddirichlet()}: The density value.
 
-For \code{rdirichlet()}: If \code{n = 1} a \code{vector} of length \code{p}, else
-a \code{matrix} of dimension \code{n} times \code{p} with samples as rows.
+For \code{rdirichlet()}: If \code{n = 1} a \code{vector} of length \code{p}, else a \code{matrix} of
+dimension \code{n} times \code{p} with samples as rows.
 }
 \description{
 The function \code{ddirichlet()} computes the density of a Dirichlet distribution.

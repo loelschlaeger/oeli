@@ -9,17 +9,35 @@
 \alias{rmixnorm}
 \title{Mixture of normal distributions}
 \usage{
-dmixnorm_cpp(x, mean, Sigma, proportions)
+dmixnorm_cpp(x, mean, Sigma, proportions, log = FALSE)
 
-pmixnorm_cpp(x, mean, Sigma, proportions, abseps = 0.001)
+pmixnorm_cpp(
+  x,
+  mean,
+  Sigma,
+  proportions,
+  abseps = 0.001,
+  lower = NULL,
+  method = "genz",
+  draws = 500L
+)
 
-rmixnorm_cpp(mean, Sigma, proportions)
+rmixnorm_cpp(mean, Sigma, proportions, log = FALSE)
 
-dmixnorm(x, mean, Sigma, proportions)
+dmixnorm(x, mean, Sigma, proportions, log = FALSE)
 
-pmixnorm(x, mean, Sigma, proportions, abseps = 0.001)
+pmixnorm(
+  x,
+  mean,
+  Sigma,
+  proportions,
+  abseps = 0.001,
+  lower = NULL,
+  method = "genz",
+  draws = 500
+)
 
-rmixnorm(n = 1, mean, Sigma, proportions)
+rmixnorm(n = 1, mean, Sigma, proportions, log = FALSE)
 }
 \arguments{
 \item{x}{[\code{numeric(p)}]\cr
@@ -36,8 +54,26 @@ The non-negative mixing proportions for each components.
 
 If proportions do not sum to unity, they are rescaled to do so.}
 
+\item{log}{[\code{logical(1)}]\cr
+For \code{dmixnorm()}, return the logarithm of the density value?
+
+For \code{rmixnorm()}, return the exponential of the draw, which is a draw from
+the mixture of log-normal distributions?}
+
 \item{abseps}{[\code{numeric(1)}]\cr
-The absolute error tolerance.}
+The absolute error tolerance for \code{method = "genz"}.}
+
+\item{lower}{[\code{numeric()} | \code{NULL}]\cr
+Optionally lower limits of length \code{p}, where \code{NULL} corresponds to \code{-Inf}.
+
+For the functions without suffix \verb{_cpp}, it can also be of length \code{1} for
+convenience, then \code{rep(lower, p)} is considered.}
+
+\item{method}{[\code{character(1)}]\cr
+Either \code{"genz"} or \code{"ghk"}, see the details.}
+
+\item{draws}{[\code{integer(1)}]\cr
+The number of Halton points for \code{method = "ghk"}.}
 
 \item{n}{[\code{integer(1)}]\cr
 The number of requested samples.}
@@ -45,7 +81,8 @@ The number of requested samples.}
 \value{
 For \code{dmixnorm()}: The density value.
 
-For \code{pmixnorm()}: The value of the distribution function.
+For \code{pmixnorm()}: The value of the distribution function or the rectangle
+probability.
 
 For \code{rmixnorm()}: If \code{n = 1} a \code{vector} of length \code{p} (note
 that it is a column vector for \code{rmixnorm_cpp()}), else
@@ -66,10 +103,8 @@ The functions with suffix \verb{_cpp} perform no input checks, hence are faster.
 The univariate normal mixture is available as the special case \code{p = 1}.
 }
 \details{
-\code{pmixnorm()} is based on \code{\link[=pmvnorm]{pmvnorm()}}, which is exact for \code{p <= 3} and uses
-the randomized Quasi-Monte-Carlo procedure by Genz and Bretz otherwise. The
-argument \code{abseps} controls the accuracy of the Gaussian integral
-approximation.
+\code{pmixnorm()} is based on \code{\link[=pmvnorm]{pmvnorm()}}, which is exact for \code{p <= 3} and
+approximates the probability by the method selected in \code{method} otherwise.
 }
 \examples{
 x <- c(0, 0)
@@ -79,9 +114,17 @@ proportions <- c(0.7, 0.3)
 
 # compute density
 dmixnorm(x = x, mean = mean, Sigma = Sigma, proportions = proportions)
+dmixnorm(
+  x = x, mean = mean, Sigma = Sigma, proportions = proportions, log = TRUE
+)
 
 # compute CDF
 pmixnorm(x = x, mean = mean, Sigma = Sigma, proportions = proportions)
+
+# compute rectangle probability
+pmixnorm(
+  x = x, mean = mean, Sigma = Sigma, proportions = proportions, lower = -1
+)
 
 # sample
 rmixnorm(n = 3, mean = mean, Sigma = Sigma, proportions = proportions)

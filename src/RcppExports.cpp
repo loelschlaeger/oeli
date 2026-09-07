@@ -4,8 +4,6 @@
 #include "../inst/include/oeli.h"
 #include <RcppArmadillo.h>
 #include <Rcpp.h>
-#include <string>
-#include <set>
 
 using namespace Rcpp;
 
@@ -14,76 +12,6 @@ Rcpp::Rostream<true>&  Rcpp::Rcout = Rcpp::Rcpp_cout_get();
 Rcpp::Rostream<false>& Rcpp::Rcerr = Rcpp::Rcpp_cerr_get();
 #endif
 
-// ddirichlet
-double ddirichlet(arma::vec const& x, arma::vec const& concentration, bool log);
-static SEXP _oeli_ddirichlet_try(SEXP xSEXP, SEXP concentrationSEXP, SEXP logSEXP) {
-BEGIN_RCPP
-    Rcpp::RObject rcpp_result_gen;
-    Rcpp::traits::input_parameter< arma::vec const& >::type x(xSEXP);
-    Rcpp::traits::input_parameter< arma::vec const& >::type concentration(concentrationSEXP);
-    Rcpp::traits::input_parameter< bool >::type log(logSEXP);
-    rcpp_result_gen = Rcpp::wrap(ddirichlet(x, concentration, log));
-    return rcpp_result_gen;
-END_RCPP_RETURN_ERROR
-}
-RcppExport SEXP _oeli_ddirichlet(SEXP xSEXP, SEXP concentrationSEXP, SEXP logSEXP) {
-    SEXP rcpp_result_gen;
-    {
-        Rcpp::RNGScope rcpp_rngScope_gen;
-        rcpp_result_gen = PROTECT(_oeli_ddirichlet_try(xSEXP, concentrationSEXP, logSEXP));
-    }
-    Rboolean rcpp_isInterrupt_gen = Rf_inherits(rcpp_result_gen, "interrupted-error");
-    if (rcpp_isInterrupt_gen) {
-        UNPROTECT(1);
-        Rf_onintr();
-    }
-    bool rcpp_isLongjump_gen = Rcpp::internal::isLongjumpSentinel(rcpp_result_gen);
-    if (rcpp_isLongjump_gen) {
-        Rcpp::internal::resumeJump(rcpp_result_gen);
-    }
-    Rboolean rcpp_isError_gen = Rf_inherits(rcpp_result_gen, "try-error");
-    if (rcpp_isError_gen) {
-        SEXP rcpp_msgSEXP_gen = Rf_asChar(rcpp_result_gen);
-        UNPROTECT(1);
-        (Rf_error)("%s", CHAR(rcpp_msgSEXP_gen));
-    }
-    UNPROTECT(1);
-    return rcpp_result_gen;
-}
-// rdirichlet
-arma::vec rdirichlet(arma::vec const& concentration);
-static SEXP _oeli_rdirichlet_try(SEXP concentrationSEXP) {
-BEGIN_RCPP
-    Rcpp::RObject rcpp_result_gen;
-    Rcpp::traits::input_parameter< arma::vec const& >::type concentration(concentrationSEXP);
-    rcpp_result_gen = Rcpp::wrap(rdirichlet(concentration));
-    return rcpp_result_gen;
-END_RCPP_RETURN_ERROR
-}
-RcppExport SEXP _oeli_rdirichlet(SEXP concentrationSEXP) {
-    SEXP rcpp_result_gen;
-    {
-        Rcpp::RNGScope rcpp_rngScope_gen;
-        rcpp_result_gen = PROTECT(_oeli_rdirichlet_try(concentrationSEXP));
-    }
-    Rboolean rcpp_isInterrupt_gen = Rf_inherits(rcpp_result_gen, "interrupted-error");
-    if (rcpp_isInterrupt_gen) {
-        UNPROTECT(1);
-        Rf_onintr();
-    }
-    bool rcpp_isLongjump_gen = Rcpp::internal::isLongjumpSentinel(rcpp_result_gen);
-    if (rcpp_isLongjump_gen) {
-        Rcpp::internal::resumeJump(rcpp_result_gen);
-    }
-    Rboolean rcpp_isError_gen = Rf_inherits(rcpp_result_gen, "try-error");
-    if (rcpp_isError_gen) {
-        SEXP rcpp_msgSEXP_gen = Rf_asChar(rcpp_result_gen);
-        UNPROTECT(1);
-        (Rf_error)("%s", CHAR(rcpp_msgSEXP_gen));
-    }
-    UNPROTECT(1);
-    return rcpp_result_gen;
-}
 // ddirichlet_cpp
 double ddirichlet_cpp(arma::vec const& x, arma::vec const& concentration, bool log);
 RcppExport SEXP _oeli_ddirichlet_cpp(SEXP xSEXP, SEXP concentrationSEXP, SEXP logSEXP) {
@@ -109,8 +37,8 @@ BEGIN_RCPP
 END_RCPP
 }
 // dmixnorm_cpp
-double dmixnorm_cpp(arma::vec const& x, arma::mat const& mean, arma::mat const& Sigma, arma::vec proportions);
-RcppExport SEXP _oeli_dmixnorm_cpp(SEXP xSEXP, SEXP meanSEXP, SEXP SigmaSEXP, SEXP proportionsSEXP) {
+double dmixnorm_cpp(arma::vec const& x, arma::mat const& mean, arma::mat const& Sigma, arma::vec proportions, bool log);
+RcppExport SEXP _oeli_dmixnorm_cpp(SEXP xSEXP, SEXP meanSEXP, SEXP SigmaSEXP, SEXP proportionsSEXP, SEXP logSEXP) {
 BEGIN_RCPP
     Rcpp::RObject rcpp_result_gen;
     Rcpp::RNGScope rcpp_rngScope_gen;
@@ -118,13 +46,14 @@ BEGIN_RCPP
     Rcpp::traits::input_parameter< arma::mat const& >::type mean(meanSEXP);
     Rcpp::traits::input_parameter< arma::mat const& >::type Sigma(SigmaSEXP);
     Rcpp::traits::input_parameter< arma::vec >::type proportions(proportionsSEXP);
-    rcpp_result_gen = Rcpp::wrap(dmixnorm_cpp(x, mean, Sigma, proportions));
+    Rcpp::traits::input_parameter< bool >::type log(logSEXP);
+    rcpp_result_gen = Rcpp::wrap(dmixnorm_cpp(x, mean, Sigma, proportions, log));
     return rcpp_result_gen;
 END_RCPP
 }
 // pmixnorm_cpp
-double pmixnorm_cpp(arma::vec const& x, arma::mat const& mean, arma::mat const& Sigma, arma::vec proportions, double abseps);
-RcppExport SEXP _oeli_pmixnorm_cpp(SEXP xSEXP, SEXP meanSEXP, SEXP SigmaSEXP, SEXP proportionsSEXP, SEXP absepsSEXP) {
+double pmixnorm_cpp(arma::vec const& x, arma::mat const& mean, arma::mat const& Sigma, arma::vec proportions, double abseps, Rcpp::Nullable<Rcpp::NumericVector> lower, std::string method, int draws);
+RcppExport SEXP _oeli_pmixnorm_cpp(SEXP xSEXP, SEXP meanSEXP, SEXP SigmaSEXP, SEXP proportionsSEXP, SEXP absepsSEXP, SEXP lowerSEXP, SEXP methodSEXP, SEXP drawsSEXP) {
 BEGIN_RCPP
     Rcpp::RObject rcpp_result_gen;
     Rcpp::RNGScope rcpp_rngScope_gen;
@@ -133,20 +62,24 @@ BEGIN_RCPP
     Rcpp::traits::input_parameter< arma::mat const& >::type Sigma(SigmaSEXP);
     Rcpp::traits::input_parameter< arma::vec >::type proportions(proportionsSEXP);
     Rcpp::traits::input_parameter< double >::type abseps(absepsSEXP);
-    rcpp_result_gen = Rcpp::wrap(pmixnorm_cpp(x, mean, Sigma, proportions, abseps));
+    Rcpp::traits::input_parameter< Rcpp::Nullable<Rcpp::NumericVector> >::type lower(lowerSEXP);
+    Rcpp::traits::input_parameter< std::string >::type method(methodSEXP);
+    Rcpp::traits::input_parameter< int >::type draws(drawsSEXP);
+    rcpp_result_gen = Rcpp::wrap(pmixnorm_cpp(x, mean, Sigma, proportions, abseps, lower, method, draws));
     return rcpp_result_gen;
 END_RCPP
 }
 // rmixnorm_cpp
-arma::vec rmixnorm_cpp(arma::mat const& mean, arma::mat const& Sigma, arma::vec proportions);
-RcppExport SEXP _oeli_rmixnorm_cpp(SEXP meanSEXP, SEXP SigmaSEXP, SEXP proportionsSEXP) {
+arma::vec rmixnorm_cpp(arma::mat const& mean, arma::mat const& Sigma, arma::vec proportions, bool log);
+RcppExport SEXP _oeli_rmixnorm_cpp(SEXP meanSEXP, SEXP SigmaSEXP, SEXP proportionsSEXP, SEXP logSEXP) {
 BEGIN_RCPP
     Rcpp::RObject rcpp_result_gen;
     Rcpp::RNGScope rcpp_rngScope_gen;
     Rcpp::traits::input_parameter< arma::mat const& >::type mean(meanSEXP);
     Rcpp::traits::input_parameter< arma::mat const& >::type Sigma(SigmaSEXP);
     Rcpp::traits::input_parameter< arma::vec >::type proportions(proportionsSEXP);
-    rcpp_result_gen = Rcpp::wrap(rmixnorm_cpp(mean, Sigma, proportions));
+    Rcpp::traits::input_parameter< bool >::type log(logSEXP);
+    rcpp_result_gen = Rcpp::wrap(rmixnorm_cpp(mean, Sigma, proportions, log));
     return rcpp_result_gen;
 END_RCPP
 }
@@ -257,13 +190,13 @@ BEGIN_RCPP
 END_RCPP
 }
 // dwishart_cpp
-double dwishart_cpp(arma::mat const& x, int const& df, arma::mat const& scale, bool log, bool inv);
+double dwishart_cpp(arma::mat const& x, double df, arma::mat const& scale, bool log, bool inv);
 RcppExport SEXP _oeli_dwishart_cpp(SEXP xSEXP, SEXP dfSEXP, SEXP scaleSEXP, SEXP logSEXP, SEXP invSEXP) {
 BEGIN_RCPP
     Rcpp::RObject rcpp_result_gen;
     Rcpp::RNGScope rcpp_rngScope_gen;
     Rcpp::traits::input_parameter< arma::mat const& >::type x(xSEXP);
-    Rcpp::traits::input_parameter< int const& >::type df(dfSEXP);
+    Rcpp::traits::input_parameter< double >::type df(dfSEXP);
     Rcpp::traits::input_parameter< arma::mat const& >::type scale(scaleSEXP);
     Rcpp::traits::input_parameter< bool >::type log(logSEXP);
     Rcpp::traits::input_parameter< bool >::type inv(invSEXP);
@@ -284,511 +217,15 @@ BEGIN_RCPP
     return rcpp_result_gen;
 END_RCPP
 }
-// dmixnorm
-double dmixnorm(arma::vec const& x, arma::mat const& mean, arma::mat const& Sigma, arma::vec proportions);
-static SEXP _oeli_dmixnorm_try(SEXP xSEXP, SEXP meanSEXP, SEXP SigmaSEXP, SEXP proportionsSEXP) {
-BEGIN_RCPP
-    Rcpp::RObject rcpp_result_gen;
-    Rcpp::traits::input_parameter< arma::vec const& >::type x(xSEXP);
-    Rcpp::traits::input_parameter< arma::mat const& >::type mean(meanSEXP);
-    Rcpp::traits::input_parameter< arma::mat const& >::type Sigma(SigmaSEXP);
-    Rcpp::traits::input_parameter< arma::vec >::type proportions(proportionsSEXP);
-    rcpp_result_gen = Rcpp::wrap(dmixnorm(x, mean, Sigma, proportions));
-    return rcpp_result_gen;
-END_RCPP_RETURN_ERROR
-}
-RcppExport SEXP _oeli_dmixnorm(SEXP xSEXP, SEXP meanSEXP, SEXP SigmaSEXP, SEXP proportionsSEXP) {
-    SEXP rcpp_result_gen;
-    {
-        Rcpp::RNGScope rcpp_rngScope_gen;
-        rcpp_result_gen = PROTECT(_oeli_dmixnorm_try(xSEXP, meanSEXP, SigmaSEXP, proportionsSEXP));
-    }
-    Rboolean rcpp_isInterrupt_gen = Rf_inherits(rcpp_result_gen, "interrupted-error");
-    if (rcpp_isInterrupt_gen) {
-        UNPROTECT(1);
-        Rf_onintr();
-    }
-    bool rcpp_isLongjump_gen = Rcpp::internal::isLongjumpSentinel(rcpp_result_gen);
-    if (rcpp_isLongjump_gen) {
-        Rcpp::internal::resumeJump(rcpp_result_gen);
-    }
-    Rboolean rcpp_isError_gen = Rf_inherits(rcpp_result_gen, "try-error");
-    if (rcpp_isError_gen) {
-        SEXP rcpp_msgSEXP_gen = Rf_asChar(rcpp_result_gen);
-        UNPROTECT(1);
-        (Rf_error)("%s", CHAR(rcpp_msgSEXP_gen));
-    }
-    UNPROTECT(1);
-    return rcpp_result_gen;
-}
-// pmixnorm
-double pmixnorm(arma::vec const& x, arma::mat const& mean, arma::mat const& Sigma, arma::vec proportions, double abseps);
-static SEXP _oeli_pmixnorm_try(SEXP xSEXP, SEXP meanSEXP, SEXP SigmaSEXP, SEXP proportionsSEXP, SEXP absepsSEXP) {
-BEGIN_RCPP
-    Rcpp::RObject rcpp_result_gen;
-    Rcpp::traits::input_parameter< arma::vec const& >::type x(xSEXP);
-    Rcpp::traits::input_parameter< arma::mat const& >::type mean(meanSEXP);
-    Rcpp::traits::input_parameter< arma::mat const& >::type Sigma(SigmaSEXP);
-    Rcpp::traits::input_parameter< arma::vec >::type proportions(proportionsSEXP);
-    Rcpp::traits::input_parameter< double >::type abseps(absepsSEXP);
-    rcpp_result_gen = Rcpp::wrap(pmixnorm(x, mean, Sigma, proportions, abseps));
-    return rcpp_result_gen;
-END_RCPP_RETURN_ERROR
-}
-RcppExport SEXP _oeli_pmixnorm(SEXP xSEXP, SEXP meanSEXP, SEXP SigmaSEXP, SEXP proportionsSEXP, SEXP absepsSEXP) {
-    SEXP rcpp_result_gen;
-    {
-        Rcpp::RNGScope rcpp_rngScope_gen;
-        rcpp_result_gen = PROTECT(_oeli_pmixnorm_try(xSEXP, meanSEXP, SigmaSEXP, proportionsSEXP, absepsSEXP));
-    }
-    Rboolean rcpp_isInterrupt_gen = Rf_inherits(rcpp_result_gen, "interrupted-error");
-    if (rcpp_isInterrupt_gen) {
-        UNPROTECT(1);
-        Rf_onintr();
-    }
-    bool rcpp_isLongjump_gen = Rcpp::internal::isLongjumpSentinel(rcpp_result_gen);
-    if (rcpp_isLongjump_gen) {
-        Rcpp::internal::resumeJump(rcpp_result_gen);
-    }
-    Rboolean rcpp_isError_gen = Rf_inherits(rcpp_result_gen, "try-error");
-    if (rcpp_isError_gen) {
-        SEXP rcpp_msgSEXP_gen = Rf_asChar(rcpp_result_gen);
-        UNPROTECT(1);
-        (Rf_error)("%s", CHAR(rcpp_msgSEXP_gen));
-    }
-    UNPROTECT(1);
-    return rcpp_result_gen;
-}
-// rmixnorm
-arma::vec rmixnorm(arma::mat const& mean, arma::mat const& Sigma, arma::vec proportions);
-static SEXP _oeli_rmixnorm_try(SEXP meanSEXP, SEXP SigmaSEXP, SEXP proportionsSEXP) {
-BEGIN_RCPP
-    Rcpp::RObject rcpp_result_gen;
-    Rcpp::traits::input_parameter< arma::mat const& >::type mean(meanSEXP);
-    Rcpp::traits::input_parameter< arma::mat const& >::type Sigma(SigmaSEXP);
-    Rcpp::traits::input_parameter< arma::vec >::type proportions(proportionsSEXP);
-    rcpp_result_gen = Rcpp::wrap(rmixnorm(mean, Sigma, proportions));
-    return rcpp_result_gen;
-END_RCPP_RETURN_ERROR
-}
-RcppExport SEXP _oeli_rmixnorm(SEXP meanSEXP, SEXP SigmaSEXP, SEXP proportionsSEXP) {
-    SEXP rcpp_result_gen;
-    {
-        Rcpp::RNGScope rcpp_rngScope_gen;
-        rcpp_result_gen = PROTECT(_oeli_rmixnorm_try(meanSEXP, SigmaSEXP, proportionsSEXP));
-    }
-    Rboolean rcpp_isInterrupt_gen = Rf_inherits(rcpp_result_gen, "interrupted-error");
-    if (rcpp_isInterrupt_gen) {
-        UNPROTECT(1);
-        Rf_onintr();
-    }
-    bool rcpp_isLongjump_gen = Rcpp::internal::isLongjumpSentinel(rcpp_result_gen);
-    if (rcpp_isLongjump_gen) {
-        Rcpp::internal::resumeJump(rcpp_result_gen);
-    }
-    Rboolean rcpp_isError_gen = Rf_inherits(rcpp_result_gen, "try-error");
-    if (rcpp_isError_gen) {
-        SEXP rcpp_msgSEXP_gen = Rf_asChar(rcpp_result_gen);
-        UNPROTECT(1);
-        (Rf_error)("%s", CHAR(rcpp_msgSEXP_gen));
-    }
-    UNPROTECT(1);
-    return rcpp_result_gen;
-}
-// dmvnorm
-double dmvnorm(arma::vec const& x, arma::vec const& mean, arma::mat const& Sigma, bool log);
-static SEXP _oeli_dmvnorm_try(SEXP xSEXP, SEXP meanSEXP, SEXP SigmaSEXP, SEXP logSEXP) {
-BEGIN_RCPP
-    Rcpp::RObject rcpp_result_gen;
-    Rcpp::traits::input_parameter< arma::vec const& >::type x(xSEXP);
-    Rcpp::traits::input_parameter< arma::vec const& >::type mean(meanSEXP);
-    Rcpp::traits::input_parameter< arma::mat const& >::type Sigma(SigmaSEXP);
-    Rcpp::traits::input_parameter< bool >::type log(logSEXP);
-    rcpp_result_gen = Rcpp::wrap(dmvnorm(x, mean, Sigma, log));
-    return rcpp_result_gen;
-END_RCPP_RETURN_ERROR
-}
-RcppExport SEXP _oeli_dmvnorm(SEXP xSEXP, SEXP meanSEXP, SEXP SigmaSEXP, SEXP logSEXP) {
-    SEXP rcpp_result_gen;
-    {
-        Rcpp::RNGScope rcpp_rngScope_gen;
-        rcpp_result_gen = PROTECT(_oeli_dmvnorm_try(xSEXP, meanSEXP, SigmaSEXP, logSEXP));
-    }
-    Rboolean rcpp_isInterrupt_gen = Rf_inherits(rcpp_result_gen, "interrupted-error");
-    if (rcpp_isInterrupt_gen) {
-        UNPROTECT(1);
-        Rf_onintr();
-    }
-    bool rcpp_isLongjump_gen = Rcpp::internal::isLongjumpSentinel(rcpp_result_gen);
-    if (rcpp_isLongjump_gen) {
-        Rcpp::internal::resumeJump(rcpp_result_gen);
-    }
-    Rboolean rcpp_isError_gen = Rf_inherits(rcpp_result_gen, "try-error");
-    if (rcpp_isError_gen) {
-        SEXP rcpp_msgSEXP_gen = Rf_asChar(rcpp_result_gen);
-        UNPROTECT(1);
-        (Rf_error)("%s", CHAR(rcpp_msgSEXP_gen));
-    }
-    UNPROTECT(1);
-    return rcpp_result_gen;
-}
-// pmvnorm
-double pmvnorm(arma::vec const& x, arma::vec const& mean, arma::mat const& Sigma, double abseps, Rcpp::Nullable<Rcpp::NumericVector> lower, std::string method, int draws);
-static SEXP _oeli_pmvnorm_try(SEXP xSEXP, SEXP meanSEXP, SEXP SigmaSEXP, SEXP absepsSEXP, SEXP lowerSEXP, SEXP methodSEXP, SEXP drawsSEXP) {
-BEGIN_RCPP
-    Rcpp::RObject rcpp_result_gen;
-    Rcpp::traits::input_parameter< arma::vec const& >::type x(xSEXP);
-    Rcpp::traits::input_parameter< arma::vec const& >::type mean(meanSEXP);
-    Rcpp::traits::input_parameter< arma::mat const& >::type Sigma(SigmaSEXP);
-    Rcpp::traits::input_parameter< double >::type abseps(absepsSEXP);
-    Rcpp::traits::input_parameter< Rcpp::Nullable<Rcpp::NumericVector> >::type lower(lowerSEXP);
-    Rcpp::traits::input_parameter< std::string >::type method(methodSEXP);
-    Rcpp::traits::input_parameter< int >::type draws(drawsSEXP);
-    rcpp_result_gen = Rcpp::wrap(pmvnorm(x, mean, Sigma, abseps, lower, method, draws));
-    return rcpp_result_gen;
-END_RCPP_RETURN_ERROR
-}
-RcppExport SEXP _oeli_pmvnorm(SEXP xSEXP, SEXP meanSEXP, SEXP SigmaSEXP, SEXP absepsSEXP, SEXP lowerSEXP, SEXP methodSEXP, SEXP drawsSEXP) {
-    SEXP rcpp_result_gen;
-    {
-        Rcpp::RNGScope rcpp_rngScope_gen;
-        rcpp_result_gen = PROTECT(_oeli_pmvnorm_try(xSEXP, meanSEXP, SigmaSEXP, absepsSEXP, lowerSEXP, methodSEXP, drawsSEXP));
-    }
-    Rboolean rcpp_isInterrupt_gen = Rf_inherits(rcpp_result_gen, "interrupted-error");
-    if (rcpp_isInterrupt_gen) {
-        UNPROTECT(1);
-        Rf_onintr();
-    }
-    bool rcpp_isLongjump_gen = Rcpp::internal::isLongjumpSentinel(rcpp_result_gen);
-    if (rcpp_isLongjump_gen) {
-        Rcpp::internal::resumeJump(rcpp_result_gen);
-    }
-    Rboolean rcpp_isError_gen = Rf_inherits(rcpp_result_gen, "try-error");
-    if (rcpp_isError_gen) {
-        SEXP rcpp_msgSEXP_gen = Rf_asChar(rcpp_result_gen);
-        UNPROTECT(1);
-        (Rf_error)("%s", CHAR(rcpp_msgSEXP_gen));
-    }
-    UNPROTECT(1);
-    return rcpp_result_gen;
-}
-// rmvnorm
-arma::vec rmvnorm(arma::vec const& mean, arma::mat const& Sigma, bool log);
-static SEXP _oeli_rmvnorm_try(SEXP meanSEXP, SEXP SigmaSEXP, SEXP logSEXP) {
-BEGIN_RCPP
-    Rcpp::RObject rcpp_result_gen;
-    Rcpp::traits::input_parameter< arma::vec const& >::type mean(meanSEXP);
-    Rcpp::traits::input_parameter< arma::mat const& >::type Sigma(SigmaSEXP);
-    Rcpp::traits::input_parameter< bool >::type log(logSEXP);
-    rcpp_result_gen = Rcpp::wrap(rmvnorm(mean, Sigma, log));
-    return rcpp_result_gen;
-END_RCPP_RETURN_ERROR
-}
-RcppExport SEXP _oeli_rmvnorm(SEXP meanSEXP, SEXP SigmaSEXP, SEXP logSEXP) {
-    SEXP rcpp_result_gen;
-    {
-        Rcpp::RNGScope rcpp_rngScope_gen;
-        rcpp_result_gen = PROTECT(_oeli_rmvnorm_try(meanSEXP, SigmaSEXP, logSEXP));
-    }
-    Rboolean rcpp_isInterrupt_gen = Rf_inherits(rcpp_result_gen, "interrupted-error");
-    if (rcpp_isInterrupt_gen) {
-        UNPROTECT(1);
-        Rf_onintr();
-    }
-    bool rcpp_isLongjump_gen = Rcpp::internal::isLongjumpSentinel(rcpp_result_gen);
-    if (rcpp_isLongjump_gen) {
-        Rcpp::internal::resumeJump(rcpp_result_gen);
-    }
-    Rboolean rcpp_isError_gen = Rf_inherits(rcpp_result_gen, "try-error");
-    if (rcpp_isError_gen) {
-        SEXP rcpp_msgSEXP_gen = Rf_asChar(rcpp_result_gen);
-        UNPROTECT(1);
-        (Rf_error)("%s", CHAR(rcpp_msgSEXP_gen));
-    }
-    UNPROTECT(1);
-    return rcpp_result_gen;
-}
-// dtnorm
-double dtnorm(double x, double mean, double sd, double point, bool above, bool log);
-static SEXP _oeli_dtnorm_try(SEXP xSEXP, SEXP meanSEXP, SEXP sdSEXP, SEXP pointSEXP, SEXP aboveSEXP, SEXP logSEXP) {
-BEGIN_RCPP
-    Rcpp::RObject rcpp_result_gen;
-    Rcpp::traits::input_parameter< double >::type x(xSEXP);
-    Rcpp::traits::input_parameter< double >::type mean(meanSEXP);
-    Rcpp::traits::input_parameter< double >::type sd(sdSEXP);
-    Rcpp::traits::input_parameter< double >::type point(pointSEXP);
-    Rcpp::traits::input_parameter< bool >::type above(aboveSEXP);
-    Rcpp::traits::input_parameter< bool >::type log(logSEXP);
-    rcpp_result_gen = Rcpp::wrap(dtnorm(x, mean, sd, point, above, log));
-    return rcpp_result_gen;
-END_RCPP_RETURN_ERROR
-}
-RcppExport SEXP _oeli_dtnorm(SEXP xSEXP, SEXP meanSEXP, SEXP sdSEXP, SEXP pointSEXP, SEXP aboveSEXP, SEXP logSEXP) {
-    SEXP rcpp_result_gen;
-    {
-        Rcpp::RNGScope rcpp_rngScope_gen;
-        rcpp_result_gen = PROTECT(_oeli_dtnorm_try(xSEXP, meanSEXP, sdSEXP, pointSEXP, aboveSEXP, logSEXP));
-    }
-    Rboolean rcpp_isInterrupt_gen = Rf_inherits(rcpp_result_gen, "interrupted-error");
-    if (rcpp_isInterrupt_gen) {
-        UNPROTECT(1);
-        Rf_onintr();
-    }
-    bool rcpp_isLongjump_gen = Rcpp::internal::isLongjumpSentinel(rcpp_result_gen);
-    if (rcpp_isLongjump_gen) {
-        Rcpp::internal::resumeJump(rcpp_result_gen);
-    }
-    Rboolean rcpp_isError_gen = Rf_inherits(rcpp_result_gen, "try-error");
-    if (rcpp_isError_gen) {
-        SEXP rcpp_msgSEXP_gen = Rf_asChar(rcpp_result_gen);
-        UNPROTECT(1);
-        (Rf_error)("%s", CHAR(rcpp_msgSEXP_gen));
-    }
-    UNPROTECT(1);
-    return rcpp_result_gen;
-}
-// dttnorm
-double dttnorm(double x, double mean, double sd, double lower, double upper, bool log);
-static SEXP _oeli_dttnorm_try(SEXP xSEXP, SEXP meanSEXP, SEXP sdSEXP, SEXP lowerSEXP, SEXP upperSEXP, SEXP logSEXP) {
-BEGIN_RCPP
-    Rcpp::RObject rcpp_result_gen;
-    Rcpp::traits::input_parameter< double >::type x(xSEXP);
-    Rcpp::traits::input_parameter< double >::type mean(meanSEXP);
-    Rcpp::traits::input_parameter< double >::type sd(sdSEXP);
-    Rcpp::traits::input_parameter< double >::type lower(lowerSEXP);
-    Rcpp::traits::input_parameter< double >::type upper(upperSEXP);
-    Rcpp::traits::input_parameter< bool >::type log(logSEXP);
-    rcpp_result_gen = Rcpp::wrap(dttnorm(x, mean, sd, lower, upper, log));
-    return rcpp_result_gen;
-END_RCPP_RETURN_ERROR
-}
-RcppExport SEXP _oeli_dttnorm(SEXP xSEXP, SEXP meanSEXP, SEXP sdSEXP, SEXP lowerSEXP, SEXP upperSEXP, SEXP logSEXP) {
-    SEXP rcpp_result_gen;
-    {
-        Rcpp::RNGScope rcpp_rngScope_gen;
-        rcpp_result_gen = PROTECT(_oeli_dttnorm_try(xSEXP, meanSEXP, sdSEXP, lowerSEXP, upperSEXP, logSEXP));
-    }
-    Rboolean rcpp_isInterrupt_gen = Rf_inherits(rcpp_result_gen, "interrupted-error");
-    if (rcpp_isInterrupt_gen) {
-        UNPROTECT(1);
-        Rf_onintr();
-    }
-    bool rcpp_isLongjump_gen = Rcpp::internal::isLongjumpSentinel(rcpp_result_gen);
-    if (rcpp_isLongjump_gen) {
-        Rcpp::internal::resumeJump(rcpp_result_gen);
-    }
-    Rboolean rcpp_isError_gen = Rf_inherits(rcpp_result_gen, "try-error");
-    if (rcpp_isError_gen) {
-        SEXP rcpp_msgSEXP_gen = Rf_asChar(rcpp_result_gen);
-        UNPROTECT(1);
-        (Rf_error)("%s", CHAR(rcpp_msgSEXP_gen));
-    }
-    UNPROTECT(1);
-    return rcpp_result_gen;
-}
-// rtnorm
-double rtnorm(double mean, double sd, double point, bool above, bool log);
-static SEXP _oeli_rtnorm_try(SEXP meanSEXP, SEXP sdSEXP, SEXP pointSEXP, SEXP aboveSEXP, SEXP logSEXP) {
-BEGIN_RCPP
-    Rcpp::RObject rcpp_result_gen;
-    Rcpp::traits::input_parameter< double >::type mean(meanSEXP);
-    Rcpp::traits::input_parameter< double >::type sd(sdSEXP);
-    Rcpp::traits::input_parameter< double >::type point(pointSEXP);
-    Rcpp::traits::input_parameter< bool >::type above(aboveSEXP);
-    Rcpp::traits::input_parameter< bool >::type log(logSEXP);
-    rcpp_result_gen = Rcpp::wrap(rtnorm(mean, sd, point, above, log));
-    return rcpp_result_gen;
-END_RCPP_RETURN_ERROR
-}
-RcppExport SEXP _oeli_rtnorm(SEXP meanSEXP, SEXP sdSEXP, SEXP pointSEXP, SEXP aboveSEXP, SEXP logSEXP) {
-    SEXP rcpp_result_gen;
-    {
-        Rcpp::RNGScope rcpp_rngScope_gen;
-        rcpp_result_gen = PROTECT(_oeli_rtnorm_try(meanSEXP, sdSEXP, pointSEXP, aboveSEXP, logSEXP));
-    }
-    Rboolean rcpp_isInterrupt_gen = Rf_inherits(rcpp_result_gen, "interrupted-error");
-    if (rcpp_isInterrupt_gen) {
-        UNPROTECT(1);
-        Rf_onintr();
-    }
-    bool rcpp_isLongjump_gen = Rcpp::internal::isLongjumpSentinel(rcpp_result_gen);
-    if (rcpp_isLongjump_gen) {
-        Rcpp::internal::resumeJump(rcpp_result_gen);
-    }
-    Rboolean rcpp_isError_gen = Rf_inherits(rcpp_result_gen, "try-error");
-    if (rcpp_isError_gen) {
-        SEXP rcpp_msgSEXP_gen = Rf_asChar(rcpp_result_gen);
-        UNPROTECT(1);
-        (Rf_error)("%s", CHAR(rcpp_msgSEXP_gen));
-    }
-    UNPROTECT(1);
-    return rcpp_result_gen;
-}
-// rttnorm
-double rttnorm(double mean, double sd, double lower, double upper, bool log);
-static SEXP _oeli_rttnorm_try(SEXP meanSEXP, SEXP sdSEXP, SEXP lowerSEXP, SEXP upperSEXP, SEXP logSEXP) {
-BEGIN_RCPP
-    Rcpp::RObject rcpp_result_gen;
-    Rcpp::traits::input_parameter< double >::type mean(meanSEXP);
-    Rcpp::traits::input_parameter< double >::type sd(sdSEXP);
-    Rcpp::traits::input_parameter< double >::type lower(lowerSEXP);
-    Rcpp::traits::input_parameter< double >::type upper(upperSEXP);
-    Rcpp::traits::input_parameter< bool >::type log(logSEXP);
-    rcpp_result_gen = Rcpp::wrap(rttnorm(mean, sd, lower, upper, log));
-    return rcpp_result_gen;
-END_RCPP_RETURN_ERROR
-}
-RcppExport SEXP _oeli_rttnorm(SEXP meanSEXP, SEXP sdSEXP, SEXP lowerSEXP, SEXP upperSEXP, SEXP logSEXP) {
-    SEXP rcpp_result_gen;
-    {
-        Rcpp::RNGScope rcpp_rngScope_gen;
-        rcpp_result_gen = PROTECT(_oeli_rttnorm_try(meanSEXP, sdSEXP, lowerSEXP, upperSEXP, logSEXP));
-    }
-    Rboolean rcpp_isInterrupt_gen = Rf_inherits(rcpp_result_gen, "interrupted-error");
-    if (rcpp_isInterrupt_gen) {
-        UNPROTECT(1);
-        Rf_onintr();
-    }
-    bool rcpp_isLongjump_gen = Rcpp::internal::isLongjumpSentinel(rcpp_result_gen);
-    if (rcpp_isLongjump_gen) {
-        Rcpp::internal::resumeJump(rcpp_result_gen);
-    }
-    Rboolean rcpp_isError_gen = Rf_inherits(rcpp_result_gen, "try-error");
-    if (rcpp_isError_gen) {
-        SEXP rcpp_msgSEXP_gen = Rf_asChar(rcpp_result_gen);
-        UNPROTECT(1);
-        (Rf_error)("%s", CHAR(rcpp_msgSEXP_gen));
-    }
-    UNPROTECT(1);
-    return rcpp_result_gen;
-}
-// dwishart
-double dwishart(arma::mat const& x, int const& df, arma::mat const& scale, bool log, bool inv);
-static SEXP _oeli_dwishart_try(SEXP xSEXP, SEXP dfSEXP, SEXP scaleSEXP, SEXP logSEXP, SEXP invSEXP) {
-BEGIN_RCPP
-    Rcpp::RObject rcpp_result_gen;
-    Rcpp::traits::input_parameter< arma::mat const& >::type x(xSEXP);
-    Rcpp::traits::input_parameter< int const& >::type df(dfSEXP);
-    Rcpp::traits::input_parameter< arma::mat const& >::type scale(scaleSEXP);
-    Rcpp::traits::input_parameter< bool >::type log(logSEXP);
-    Rcpp::traits::input_parameter< bool >::type inv(invSEXP);
-    rcpp_result_gen = Rcpp::wrap(dwishart(x, df, scale, log, inv));
-    return rcpp_result_gen;
-END_RCPP_RETURN_ERROR
-}
-RcppExport SEXP _oeli_dwishart(SEXP xSEXP, SEXP dfSEXP, SEXP scaleSEXP, SEXP logSEXP, SEXP invSEXP) {
-    SEXP rcpp_result_gen;
-    {
-        Rcpp::RNGScope rcpp_rngScope_gen;
-        rcpp_result_gen = PROTECT(_oeli_dwishart_try(xSEXP, dfSEXP, scaleSEXP, logSEXP, invSEXP));
-    }
-    Rboolean rcpp_isInterrupt_gen = Rf_inherits(rcpp_result_gen, "interrupted-error");
-    if (rcpp_isInterrupt_gen) {
-        UNPROTECT(1);
-        Rf_onintr();
-    }
-    bool rcpp_isLongjump_gen = Rcpp::internal::isLongjumpSentinel(rcpp_result_gen);
-    if (rcpp_isLongjump_gen) {
-        Rcpp::internal::resumeJump(rcpp_result_gen);
-    }
-    Rboolean rcpp_isError_gen = Rf_inherits(rcpp_result_gen, "try-error");
-    if (rcpp_isError_gen) {
-        SEXP rcpp_msgSEXP_gen = Rf_asChar(rcpp_result_gen);
-        UNPROTECT(1);
-        (Rf_error)("%s", CHAR(rcpp_msgSEXP_gen));
-    }
-    UNPROTECT(1);
-    return rcpp_result_gen;
-}
-// rwishart
-arma::mat rwishart(double df, arma::mat const& scale, bool inv);
-static SEXP _oeli_rwishart_try(SEXP dfSEXP, SEXP scaleSEXP, SEXP invSEXP) {
-BEGIN_RCPP
-    Rcpp::RObject rcpp_result_gen;
-    Rcpp::traits::input_parameter< double >::type df(dfSEXP);
-    Rcpp::traits::input_parameter< arma::mat const& >::type scale(scaleSEXP);
-    Rcpp::traits::input_parameter< bool >::type inv(invSEXP);
-    rcpp_result_gen = Rcpp::wrap(rwishart(df, scale, inv));
-    return rcpp_result_gen;
-END_RCPP_RETURN_ERROR
-}
-RcppExport SEXP _oeli_rwishart(SEXP dfSEXP, SEXP scaleSEXP, SEXP invSEXP) {
-    SEXP rcpp_result_gen;
-    {
-        Rcpp::RNGScope rcpp_rngScope_gen;
-        rcpp_result_gen = PROTECT(_oeli_rwishart_try(dfSEXP, scaleSEXP, invSEXP));
-    }
-    Rboolean rcpp_isInterrupt_gen = Rf_inherits(rcpp_result_gen, "interrupted-error");
-    if (rcpp_isInterrupt_gen) {
-        UNPROTECT(1);
-        Rf_onintr();
-    }
-    bool rcpp_isLongjump_gen = Rcpp::internal::isLongjumpSentinel(rcpp_result_gen);
-    if (rcpp_isLongjump_gen) {
-        Rcpp::internal::resumeJump(rcpp_result_gen);
-    }
-    Rboolean rcpp_isError_gen = Rf_inherits(rcpp_result_gen, "try-error");
-    if (rcpp_isError_gen) {
-        SEXP rcpp_msgSEXP_gen = Rf_asChar(rcpp_result_gen);
-        UNPROTECT(1);
-        (Rf_error)("%s", CHAR(rcpp_msgSEXP_gen));
-    }
-    UNPROTECT(1);
-    return rcpp_result_gen;
-}
-
-// validate (ensure exported C++ functions exist before calling them)
-static int _oeli_RcppExport_validate(const char* sig) { 
-    static std::set<std::string> signatures;
-    if (signatures.empty()) {
-        signatures.insert("double(*ddirichlet)(arma::vec const&,arma::vec const&,bool)");
-        signatures.insert("arma::vec(*rdirichlet)(arma::vec const&)");
-        signatures.insert("double(*dmixnorm)(arma::vec const&,arma::mat const&,arma::mat const&,arma::vec)");
-        signatures.insert("double(*pmixnorm)(arma::vec const&,arma::mat const&,arma::mat const&,arma::vec,double)");
-        signatures.insert("arma::vec(*rmixnorm)(arma::mat const&,arma::mat const&,arma::vec)");
-        signatures.insert("double(*dmvnorm)(arma::vec const&,arma::vec const&,arma::mat const&,bool)");
-        signatures.insert("double(*pmvnorm)(arma::vec const&,arma::vec const&,arma::mat const&,double,Rcpp::Nullable<Rcpp::NumericVector>,std::string,int)");
-        signatures.insert("arma::vec(*rmvnorm)(arma::vec const&,arma::mat const&,bool)");
-        signatures.insert("double(*dtnorm)(double,double,double,double,bool,bool)");
-        signatures.insert("double(*dttnorm)(double,double,double,double,double,bool)");
-        signatures.insert("double(*rtnorm)(double,double,double,bool,bool)");
-        signatures.insert("double(*rttnorm)(double,double,double,double,bool)");
-        signatures.insert("double(*dwishart)(arma::mat const&,int const&,arma::mat const&,bool,bool)");
-        signatures.insert("arma::mat(*rwishart)(double,arma::mat const&,bool)");
-    }
-    return signatures.find(sig) != signatures.end();
-}
-
-// registerCCallable (register entry points for exported C++ functions)
-RcppExport SEXP _oeli_RcppExport_registerCCallable() { 
-    R_RegisterCCallable("oeli", "_oeli_ddirichlet", (DL_FUNC)_oeli_ddirichlet_try);
-    R_RegisterCCallable("oeli", "_oeli_rdirichlet", (DL_FUNC)_oeli_rdirichlet_try);
-    R_RegisterCCallable("oeli", "_oeli_dmixnorm", (DL_FUNC)_oeli_dmixnorm_try);
-    R_RegisterCCallable("oeli", "_oeli_pmixnorm", (DL_FUNC)_oeli_pmixnorm_try);
-    R_RegisterCCallable("oeli", "_oeli_rmixnorm", (DL_FUNC)_oeli_rmixnorm_try);
-    R_RegisterCCallable("oeli", "_oeli_dmvnorm", (DL_FUNC)_oeli_dmvnorm_try);
-    R_RegisterCCallable("oeli", "_oeli_pmvnorm", (DL_FUNC)_oeli_pmvnorm_try);
-    R_RegisterCCallable("oeli", "_oeli_rmvnorm", (DL_FUNC)_oeli_rmvnorm_try);
-    R_RegisterCCallable("oeli", "_oeli_dtnorm", (DL_FUNC)_oeli_dtnorm_try);
-    R_RegisterCCallable("oeli", "_oeli_dttnorm", (DL_FUNC)_oeli_dttnorm_try);
-    R_RegisterCCallable("oeli", "_oeli_rtnorm", (DL_FUNC)_oeli_rtnorm_try);
-    R_RegisterCCallable("oeli", "_oeli_rttnorm", (DL_FUNC)_oeli_rttnorm_try);
-    R_RegisterCCallable("oeli", "_oeli_dwishart", (DL_FUNC)_oeli_dwishart_try);
-    R_RegisterCCallable("oeli", "_oeli_rwishart", (DL_FUNC)_oeli_rwishart_try);
-    R_RegisterCCallable("oeli", "_oeli_RcppExport_validate", (DL_FUNC)_oeli_RcppExport_validate);
-    return R_NilValue;
-}
 
 RcppExport SEXP run_testthat_tests(SEXP);
 
 static const R_CallMethodDef CallEntries[] = {
-    {"_oeli_ddirichlet", (DL_FUNC) &_oeli_ddirichlet, 3},
-    {"_oeli_rdirichlet", (DL_FUNC) &_oeli_rdirichlet, 1},
     {"_oeli_ddirichlet_cpp", (DL_FUNC) &_oeli_ddirichlet_cpp, 3},
     {"_oeli_rdirichlet_cpp", (DL_FUNC) &_oeli_rdirichlet_cpp, 1},
-    {"_oeli_dmixnorm_cpp", (DL_FUNC) &_oeli_dmixnorm_cpp, 4},
-    {"_oeli_pmixnorm_cpp", (DL_FUNC) &_oeli_pmixnorm_cpp, 5},
-    {"_oeli_rmixnorm_cpp", (DL_FUNC) &_oeli_rmixnorm_cpp, 3},
+    {"_oeli_dmixnorm_cpp", (DL_FUNC) &_oeli_dmixnorm_cpp, 5},
+    {"_oeli_pmixnorm_cpp", (DL_FUNC) &_oeli_pmixnorm_cpp, 8},
+    {"_oeli_rmixnorm_cpp", (DL_FUNC) &_oeli_rmixnorm_cpp, 4},
     {"_oeli_dmvnorm_cpp", (DL_FUNC) &_oeli_dmvnorm_cpp, 4},
     {"_oeli_pmvnorm_cpp", (DL_FUNC) &_oeli_pmvnorm_cpp, 7},
     {"_oeli_rmvnorm_cpp", (DL_FUNC) &_oeli_rmvnorm_cpp, 3},
@@ -798,19 +235,6 @@ static const R_CallMethodDef CallEntries[] = {
     {"_oeli_rttnorm_cpp", (DL_FUNC) &_oeli_rttnorm_cpp, 5},
     {"_oeli_dwishart_cpp", (DL_FUNC) &_oeli_dwishart_cpp, 5},
     {"_oeli_rwishart_cpp", (DL_FUNC) &_oeli_rwishart_cpp, 3},
-    {"_oeli_dmixnorm", (DL_FUNC) &_oeli_dmixnorm, 4},
-    {"_oeli_pmixnorm", (DL_FUNC) &_oeli_pmixnorm, 5},
-    {"_oeli_rmixnorm", (DL_FUNC) &_oeli_rmixnorm, 3},
-    {"_oeli_dmvnorm", (DL_FUNC) &_oeli_dmvnorm, 4},
-    {"_oeli_pmvnorm", (DL_FUNC) &_oeli_pmvnorm, 7},
-    {"_oeli_rmvnorm", (DL_FUNC) &_oeli_rmvnorm, 3},
-    {"_oeli_dtnorm", (DL_FUNC) &_oeli_dtnorm, 6},
-    {"_oeli_dttnorm", (DL_FUNC) &_oeli_dttnorm, 6},
-    {"_oeli_rtnorm", (DL_FUNC) &_oeli_rtnorm, 5},
-    {"_oeli_rttnorm", (DL_FUNC) &_oeli_rttnorm, 5},
-    {"_oeli_dwishart", (DL_FUNC) &_oeli_dwishart, 5},
-    {"_oeli_rwishart", (DL_FUNC) &_oeli_rwishart, 3},
-    {"_oeli_RcppExport_registerCCallable", (DL_FUNC) &_oeli_RcppExport_registerCCallable, 0},
     {"run_testthat_tests", (DL_FUNC) &run_testthat_tests, 1},
     {NULL, NULL, 0}
 };

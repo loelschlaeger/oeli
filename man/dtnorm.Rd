@@ -23,9 +23,9 @@ dtnorm(x, mean, sd, point, above, log = FALSE)
 
 dttnorm(x, mean, sd, lower, upper, log = FALSE)
 
-rtnorm(mean, sd, point, above, log = FALSE)
+rtnorm(n = 1, mean, sd, point, above, log = FALSE)
 
-rttnorm(mean, sd, lower, upper, log = FALSE)
+rttnorm(n = 1, mean, sd, lower, upper, log = FALSE)
 }
 \arguments{
 \item{x}{[\code{numeric(1)}]\cr
@@ -44,12 +44,19 @@ The truncation point.}
 Truncate from above? Else, from below.}
 
 \item{log}{[\code{logical(1)}]\cr
-Return the logarithm of the density value?}
+For \code{dtnorm()} and \code{dttnorm()}, return the logarithm of the density value?
+
+For \code{rtnorm()} and \code{rttnorm()}, return the exponential of the draw, which
+is a draw from the truncated log-normal distribution?}
+
+\item{n}{[\code{integer(1)}]\cr
+The number of requested samples.}
 }
 \value{
 For \code{dtnorm()} and \code{dttnorm()}: The density value.
 
-For \code{rtnorm()} and \code{rttnorm()}: The random draw
+For \code{rtnorm()} and \code{rttnorm()}: A \code{numeric} of length \code{n} with the random
+draws.
 }
 \description{
 The function \code{dtnorm()} computes the density of a truncated normal
@@ -62,18 +69,23 @@ a two-sided truncated normal distribution, respectively.
 
 The functions with suffix \verb{_cpp} perform no input checks, hence are faster.
 }
+\details{
+\code{rtnorm()} draws by the rejection methods of Robert (1995), and \code{rttnorm()}
+inverts the distribution function of the truncated tail, so that both
+remain accurate when a truncation point lies far in the tail.
+}
 \examples{
-x <- c(0, 0)
-mean <- c(0, 0)
-Sigma <- diag(2)
-
 # compute density
-dmvnorm(x = x, mean = mean, Sigma = Sigma)
-dmvnorm(x = x, mean = mean, Sigma = Sigma, log = TRUE)
+dtnorm(x = 1, mean = 0, sd = 1, point = 0, above = FALSE)
+dttnorm(x = 0, mean = 0, sd = 1, lower = -1, upper = 1, log = TRUE)
 
 # sample
-rmvnorm(n = 3, mean = mean, Sigma = Sigma)
-rmvnorm(mean = mean, Sigma = Sigma, log = TRUE)
+rtnorm(n = 3, mean = 0, sd = 1, point = 0, above = FALSE)
+rttnorm(mean = 0, sd = 1, lower = -1, upper = 1)
+}
+\references{
+Robert, C. P. (1995). Simulation of truncated normal variables. Statistics
+and Computing, 5(2), 121-125.
 }
 \seealso{
 Other simulation helpers:

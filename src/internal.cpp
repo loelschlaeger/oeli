@@ -1,10 +1,6 @@
-// [[Rcpp::depends("RcppArmadillo")]]
+// [[Rcpp::depends(RcppArmadillo)]]
 #include <RcppArmadillo.h>
-#include "../inst/include/dirichlet.h"
-#include "../inst/include/mixnorm.h"
-#include "../inst/include/mvnorm.h"
-#include "../inst/include/tnorm.h"
-#include "../inst/include/wishart.h"
+#include "../inst/include/oeli.h"
 
 //' @rdname ddirichlet
 //' @export
@@ -13,7 +9,7 @@
 double ddirichlet_cpp(
    arma::vec const& x, arma::vec const& concentration, bool log = false
 ) {
-  return ddirichlet(x, concentration, log);
+  return oeli::ddirichlet(x, concentration, log);
 }
 
 //' @rdname ddirichlet
@@ -23,7 +19,7 @@ double ddirichlet_cpp(
 arma::vec rdirichlet_cpp(
    arma::vec const& concentration
 ) {
-  return rdirichlet(concentration);
+  return oeli::rdirichlet(concentration);
 }
 
 //' @rdname dmixnorm
@@ -32,9 +28,9 @@ arma::vec rdirichlet_cpp(
 
 double dmixnorm_cpp(
    arma::vec const& x, arma::mat const& mean, arma::mat const& Sigma,
-   arma::vec proportions
+   arma::vec proportions, bool log = false
 ) {
-   return dmixnorm(x, mean, Sigma, proportions);
+   return oeli::dmixnorm(x, mean, Sigma, proportions, log);
 }
 
 //' @rdname dmixnorm
@@ -43,9 +39,13 @@ double dmixnorm_cpp(
 
 double pmixnorm_cpp(
    arma::vec const& x, arma::mat const& mean, arma::mat const& Sigma,
-   arma::vec proportions, double abseps = 1e-3
+   arma::vec proportions, double abseps = 1e-3,
+   Rcpp::Nullable<Rcpp::NumericVector> lower = R_NilValue,
+   std::string method = "genz", int draws = 500
 ) {
-  return pmixnorm(x, mean, Sigma, proportions, abseps);
+  return oeli::pmixnorm(
+    x, mean, Sigma, proportions, abseps, lower, method, draws
+  );
 }
 
 //' @rdname dmixnorm
@@ -53,9 +53,10 @@ double pmixnorm_cpp(
 // [[Rcpp::export]]
 
 arma::vec rmixnorm_cpp(
-   arma::mat const& mean, arma::mat const& Sigma, arma::vec proportions
+   arma::mat const& mean, arma::mat const& Sigma, arma::vec proportions,
+   bool log = false
 ) {
-  return rmixnorm(mean, Sigma, proportions);
+  return oeli::rmixnorm(mean, Sigma, proportions, log);
 }
 
 //' @rdname dmvnorm
@@ -66,7 +67,7 @@ double dmvnorm_cpp(
    arma::vec const& x, arma::vec const& mean, arma::mat const& Sigma,
    bool log = false
 ) {
-  return dmvnorm(x, mean, Sigma, log);
+  return oeli::dmvnorm(x, mean, Sigma, log);
 }
 
 //' @rdname dmvnorm
@@ -79,7 +80,7 @@ double pmvnorm_cpp(
    Rcpp::Nullable<Rcpp::NumericVector> lower = R_NilValue,
    std::string method = "genz", int draws = 500
 ) {
-  return pmvnorm(x, mean, Sigma, abseps, lower, method, draws);
+  return oeli::pmvnorm(x, mean, Sigma, abseps, lower, method, draws);
 }
 
 //' @rdname dmvnorm
@@ -89,7 +90,7 @@ double pmvnorm_cpp(
 arma::vec rmvnorm_cpp(
    arma::vec const& mean, arma::mat const& Sigma, bool log = false
 ) {
-  return rmvnorm(mean, Sigma, log);
+  return oeli::rmvnorm(mean, Sigma, log);
 }
 
 //' @rdname dtnorm
@@ -99,7 +100,7 @@ arma::vec rmvnorm_cpp(
 double dtnorm_cpp(
    double x, double mean, double sd, double point, bool above, bool log = false
 ) {
-  return dtnorm(x, mean, sd, point, above, log);
+  return oeli::dtnorm(x, mean, sd, point, above, log);
 }
 
 //' @rdname dtnorm
@@ -107,9 +108,10 @@ double dtnorm_cpp(
 // [[Rcpp::export]]
 
 double dttnorm_cpp(
-   double x, double mean, double sd, double lower, double upper, bool log = false
+   double x, double mean, double sd, double lower, double upper,
+   bool log = false
 ) {
-  return dttnorm(x, mean, sd, lower, upper, log);
+  return oeli::dttnorm(x, mean, sd, lower, upper, log);
 }
 
 //' @rdname dtnorm
@@ -119,7 +121,7 @@ double dttnorm_cpp(
 double rtnorm_cpp(
    double mean, double sd, double point, bool above, bool log = false
 ) {
-  return rtnorm(mean, sd, point, above, log);
+  return oeli::rtnorm(mean, sd, point, above, log);
 }
 
 //' @rdname dtnorm
@@ -129,7 +131,7 @@ double rtnorm_cpp(
 double rttnorm_cpp(
    double mean, double sd, double lower, double upper, bool log = false
 ) {
-  return rttnorm(mean, sd, lower, upper, log);
+  return oeli::rttnorm(mean, sd, lower, upper, log);
 }
 
 //' @rdname dwishart
@@ -137,10 +139,10 @@ double rttnorm_cpp(
 // [[Rcpp::export]]
 
 double dwishart_cpp(
-   arma::mat const& x, int const& df, arma::mat const& scale,
+   arma::mat const& x, double df, arma::mat const& scale,
    bool log = false, bool inv = false
 ) {
-  return dwishart(x, df, scale, log, inv);
+  return oeli::dwishart(x, df, scale, log, inv);
 }
 
 //' @rdname dwishart
@@ -150,5 +152,5 @@ double dwishart_cpp(
 arma::mat rwishart_cpp(
    double df, arma::mat const& scale, bool inv = false
 ) {
-  return rwishart(df, scale, inv);
+  return oeli::rwishart(df, scale, inv);
 }

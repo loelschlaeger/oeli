@@ -17,13 +17,13 @@
 #' Return the logarithm of the density value?
 #'
 #' @param n \[`integer(1)`\]\cr
-#' The number of samples.
+#' The number of requested samples.
 #'
 #' @return
 #' For `ddirichlet()`: The density value.
 #'
-#' For `rdirichlet()`: If \code{n = 1} a \code{vector} of length \code{p}, else
-#' a \code{matrix} of dimension \code{n} times \code{p} with samples as rows.
+#' For `rdirichlet()`: If `n = 1` a `vector` of length `p`, else a `matrix` of
+#' dimension `n` times `p` with samples as rows.
 #'
 #' @keywords distribution
 #' @family simulation helpers
@@ -42,12 +42,14 @@
 #' rdirichlet(n = 4, concentration = 1:2)
 
 ddirichlet <- function(x, concentration, log = FALSE) {
-  checkmate::assert_numeric(x, lower = 0, upper = 1, any.missing = FALSE)
-  stopifnot("'x' must sum up to 1" = sum(x) == 1)
-  checkmate::assert_numeric(
-    concentration, lower = 0, any.missing = FALSE, len = length(x)
+  input_check_response(check_probability_vector(x), "x")
+  input_check_response(
+    check_numeric_vector(
+      concentration, lower = 0, any.missing = FALSE, len = length(x)
+    ),
+    "concentration"
   )
-  checkmate::assert_flag(log)
+  input_check_response(checkmate::check_flag(log), "log")
   ddirichlet_cpp(x, concentration, log)
 }
 
@@ -55,16 +57,18 @@ ddirichlet <- function(x, concentration, log = FALSE) {
 #' @export
 
 rdirichlet <- function(n = 1, concentration) {
-  checkmate::assert_int(n, lower = 1)
-  checkmate::assert_vector(concentration, strict = TRUE)
-  checkmate::assert_numeric(concentration, any.missing = FALSE, lower = 0)
+  input_check_response(checkmate::check_int(n, lower = 1), "n")
+  input_check_response(
+    check_numeric_vector(concentration, lower = 0, any.missing = FALSE),
+    "concentration"
+  )
   dim <- length(concentration)
-  out <- replicate(n = n, rdirichlet_cpp(concentration), simplify = TRUE)
+  draws <- replicate(n = n, rdirichlet_cpp(concentration), simplify = TRUE)
   if (n == 1) {
-    drop(out)
+    drop(draws)
   } else if (dim == 1) {
-    as.matrix(out)
+    as.matrix(draws)
   } else {
-    t(out)
+    t(draws)
   }
 }

@@ -15,20 +15,20 @@ rdirichlet_cpp <- function(concentration) {
 
 #' @rdname dmixnorm
 #' @export
-dmixnorm_cpp <- function(x, mean, Sigma, proportions) {
-    .Call(`_oeli_dmixnorm_cpp`, x, mean, Sigma, proportions)
+dmixnorm_cpp <- function(x, mean, Sigma, proportions, log = FALSE) {
+    .Call(`_oeli_dmixnorm_cpp`, x, mean, Sigma, proportions, log)
 }
 
 #' @rdname dmixnorm
 #' @export
-pmixnorm_cpp <- function(x, mean, Sigma, proportions, abseps = 1e-3) {
-    .Call(`_oeli_pmixnorm_cpp`, x, mean, Sigma, proportions, abseps)
+pmixnorm_cpp <- function(x, mean, Sigma, proportions, abseps = 1e-3, lower = NULL, method = "genz", draws = 500L) {
+    .Call(`_oeli_pmixnorm_cpp`, x, mean, Sigma, proportions, abseps, lower, method, draws)
 }
 
 #' @rdname dmixnorm
 #' @export
-rmixnorm_cpp <- function(mean, Sigma, proportions) {
-    .Call(`_oeli_rmixnorm_cpp`, mean, Sigma, proportions)
+rmixnorm_cpp <- function(mean, Sigma, proportions, log = FALSE) {
+    .Call(`_oeli_rmixnorm_cpp`, mean, Sigma, proportions, log)
 }
 
 #' @rdname dmvnorm
@@ -85,7 +85,3 @@ rwishart_cpp <- function(df, scale, inv = FALSE) {
     .Call(`_oeli_rwishart_cpp`, df, scale, inv)
 }
 
-# Register entry points for exported C++ functions
-methods::setLoadAction(function(ns) {
-    .Call(`_oeli_RcppExport_registerCCallable`)
-})

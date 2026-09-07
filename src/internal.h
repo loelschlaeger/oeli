@@ -12,16 +12,19 @@ arma::vec rdirichlet_cpp(arma::vec const& concentration);
 
 double dmixnorm_cpp(
     arma::vec const& x, arma::mat const& mean, arma::mat const& Sigma,
-    arma::vec proportions
+    arma::vec proportions, bool log = false
 );
 
 double pmixnorm_cpp(
     arma::vec const& x, arma::mat const& mean, arma::mat const& Sigma,
-    arma::vec proportions, double abseps = 1e-3
+    arma::vec proportions, double abseps = 1e-3,
+    Rcpp::Nullable<Rcpp::NumericVector> lower = R_NilValue,
+    std::string method = "genz", int draws = 500
 );
 
 arma::vec rmixnorm_cpp(
-    arma::mat const& mean, arma::mat const& Sigma, arma::vec proportions
+    arma::mat const& mean, arma::mat const& Sigma, arma::vec proportions,
+    bool log = false
 );
 
 double dmvnorm_cpp(
@@ -41,25 +44,25 @@ arma::vec rmvnorm_cpp(
 );
 
 double dtnorm_cpp(
-    double x, double mean, double sig, double point, bool above,
+    double x, double mean, double sd, double point, bool above,
     bool log = false
 );
 
 double dttnorm_cpp(
-    double x, double mean, double sig, double lower, double upper,
+    double x, double mean, double sd, double lower, double upper,
     bool log = false
 );
 
 double rtnorm_cpp(
-    double mean, double sig, double point, bool above, bool log = false
+    double mean, double sd, double point, bool above, bool log = false
 );
 
 double rttnorm_cpp(
-    double mean, double sig, double lower, double upper, bool log = false
+    double mean, double sd, double lower, double upper, bool log = false
 );
 
 double dwishart_cpp(
-    arma::mat const& x, int const& df, arma::mat const& scale,
+    arma::mat const& x, double df, arma::mat const& scale,
     bool log = false, bool inv = false
 );
 

@@ -59,7 +59,10 @@ variance, which is a different format than in \code{stats::dnorm()} or
 \code{stats::rnorm}, which require a standard deviation.}
 
 \item{log}{[\code{logical(1)}]\cr
-Consider the log-normal distribution?}
+For \code{dmvnorm()}, return the logarithm of the density value?
+
+For \code{rmvnorm()}, return the exponential of the draw, which is a draw from
+the log-normal distribution?}
 
 \item{abseps}{[\code{numeric(1)}]\cr
 The absolute error tolerance for \code{method = "genz"}.}
@@ -110,9 +113,9 @@ the bivariate probability conditional on the third component.
 
 For \code{p > 3}, the argument \code{method} selects the approximation:
 \itemize{
-\item \code{"genz"} calls \code{mvtnorm::pmvnorm} with the randomized Quasi-Monte-Carlo
-procedure by Genz and Bretz. The argument \code{abseps} controls the accuracy
-of the Gaussian integral approximation.
+\item \code{"genz"} uses the randomized Quasi-Monte-Carlo procedure by Genz and
+Bretz of the \code{mvtnorm} package. The argument \code{abseps} controls the
+accuracy of the Gaussian integral approximation.
 \item \code{"ghk"} uses the Geweke-Hajivassiliou-Keane simulator on \code{draws}
 quasi-random Halton points. The result is deterministic and smooth in
 \code{x}, \code{mean}, and \code{Sigma}, which makes it suitable for likelihood

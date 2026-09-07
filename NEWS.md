@@ -1,8 +1,14 @@
 # oeli 0.7.8
 
+* The C++ kernels of the densities and draws are now inline functions in the
+  namespace `oeli`, provided through the package headers.
+
+* Improved interfaces and numerical stability of distribution functions.
+
 * Small bug fixes.
 
 * Small documentation fixes.
+
 # oeli 0.7.7
 
 * Added function `find_pkg_functions()` to list R functions in a package.

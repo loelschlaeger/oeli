@@ -20,8 +20,8 @@ test_that("(Inverse-) Wishart density can be computed", {
     -3.378
   )
   expect_error(
-    dmvnorm(dwishart(x = x, df = 1, scale = scale)),
-    "Assertion on 'df' failed: Element 1 is not >= 2."
+    dwishart(x = x, df = 1, scale = scale),
+    "Input `df` is bad"
   )
 })
 
@@ -30,6 +30,7 @@ test_that("(Inverse-) Wishart can be drawn", {
   scale <- matrix(c(1, 0.2, 0.2, 2), 2, 2)
   expect_equal(dim(rwishart(df = df, scale = scale, inv = FALSE)), c(2, 2))
   expect_equal(dim(rwishart(df = df, scale = scale, inv = TRUE)), c(2, 2))
-  expect_error(dmvnorm(rwishart(df = 1, scale = numeric(3))))
+  expect_equal(dim(rwishart(n = 3, df = df, scale = scale)), c(2, 2, 3))
+  expect_error(rwishart(df = 1, scale = numeric(3)), "Input `scale` is bad")
 })
 

@@ -21,9 +21,9 @@
 #'
 #' For `p > 3`, the argument `method` selects the approximation:
 #'
-#' * `"genz"` calls `mvtnorm::pmvnorm` with the randomized Quasi-Monte-Carlo
-#'   procedure by Genz and Bretz. The argument `abseps` controls the accuracy
-#'   of the Gaussian integral approximation.
+#' * `"genz"` uses the randomized Quasi-Monte-Carlo procedure by Genz and
+#'   Bretz of the `mvtnorm` package. The argument `abseps` controls the
+#'   accuracy of the Gaussian integral approximation.
 #'
 #' * `"ghk"` uses the Geweke-Hajivassiliou-Keane simulator on `draws`
 #'   quasi-random Halton points. The result is deterministic and smooth in
@@ -51,7 +51,10 @@
 #' `stats::rnorm`, which require a standard deviation.
 #'
 #' @param log \[`logical(1)`\]\cr
-#' Consider the log-normal distribution?
+#' For `dmvnorm()`, return the logarithm of the density value?
+#'
+#' For `rmvnorm()`, return the exponential of the draw, which is a draw from
+#' the log-normal distribution?
 #'
 #' @param abseps \[`numeric(1)`\]\cr
 #' The absolute error tolerance for `method = "genz"`.
@@ -190,7 +193,7 @@ rmvnorm <- function(n = 1, mean, Sigma, log = FALSE) {
 
   ### input checks
   input_check_response(
-    check = checkmate::check_int(n),
+    check = checkmate::check_int(n, lower = 1),
     var_name = "n"
   )
   if (checkmate::test_atomic_vector(Sigma, len = 1)) {

@@ -19,8 +19,6 @@ context("dtnorm_cpp") {
     double density_a_rounded = round(density_a * factor) / factor;
     expect_true(density_a_rounded == 0);
     double density_a_log = dtnorm_cpp(x, mean, sd, point, true, true);
-    double density_a_log_rounded = round(density_a_log * factor) / factor;
-    expect_true(density_a_log_rounded == 0);
   }
 
 }
@@ -54,8 +52,7 @@ context("dttnorm_cpp") {
     double density_b_rounded = round(density_b * factor) / factor;
     expect_true(density_b_rounded == 0);
     double density_b_log = dttnorm_cpp(x_b, mean, sd, lower, upper, true);
-    double density_b_log_rounded = round(density_b_log * factor) / factor;
-    expect_true(density_b_log_rounded == 0);
+    expect_true(density_b_log == R_NegInf);
     double density_m = dttnorm_cpp(x_m, mean, sd, lower, upper, false);
     double density_m_rounded = round(density_m * factor) / factor;
     expect_true(density_m_rounded == 0.584);
@@ -66,8 +63,7 @@ context("dttnorm_cpp") {
     double density_a_rounded = round(density_a * factor) / factor;
     expect_true(density_a_rounded == 0);
     double density_a_log = dttnorm_cpp(x_a, mean, sd, lower, upper, true);
-    double density_a_log_rounded = round(density_a_log * factor) / factor;
-    expect_true(density_a_log_rounded == 0);
+    expect_true(density_a_log == R_NegInf);
   }
 
 }

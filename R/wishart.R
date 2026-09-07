@@ -10,8 +10,8 @@
 #' @param x \[`matrix()`\]\cr
 #' A covariance matrix of dimension `p`.
 #'
-#' @param df \[`integer()`\]\cr
-#' The degrees of freedom greater of equal `p`.
+#' @param df \[`numeric(1)`\]\cr
+#' The degrees of freedom, at least `p`.
 #'
 #' @param scale \[`matrix()`\]\cr
 #' The scale covariance matrix of dimension `p`.
@@ -22,10 +22,14 @@
 #' @param inv \[`logical(1)`\]\cr
 #' Use this inverse Wishart distribution?
 #'
+#' @param n \[`integer(1)`\]\cr
+#' The number of requested samples.
+#'
 #' @return
 #' For `dwishart()`: The density value.
 #'
-#' For `rwishart()`: A `matrix`, the random draw.
+#' For `rwishart()`: If `n = 1` a `matrix` of dimension `p` times `p`, else
+#' an `array` of dimension `p` times `p` times `n` with the draws as slices.
 #'
 #' @keywords distribution
 #' @family simulation helpers
@@ -46,32 +50,30 @@
 #' rwishart(df = df, scale = scale, inv = TRUE)
 #'
 #' # expectation of Wishart is df * scale
-#' n <- 100
-#' replicate(n, rwishart(df = df, scale = scale), simplify = FALSE) |>
-#'   Reduce(f = "+") / n
+#' apply(rwishart(n = 100, df = df, scale = scale), 1:2, mean)
 #' df * scale
 #'
 #' # expectation of inverse Wishart is scale / (df - p - 1)
-#' n <- 100
-#' replicate(n, rwishart(df = df, scale = scale, TRUE), simplify = FALSE) |>
-#'   Reduce(f = "+") / n
+#' apply(rwishart(n = 100, df = df, scale = scale, inv = TRUE), 1:2, mean)
 #' scale / (df - 2 - 1)
 
 dwishart <- function(x, df, scale, log = FALSE, inv = FALSE) {
-  assert_covariance_matrix(x)
-  checkmate::assert_int(df, lower = nrow(x))
-  assert_covariance_matrix(scale, dim = nrow(x))
-  checkmate::assert_flag(log)
-  checkmate::assert_flag(inv)
+  input_check_response(check_covariance_matrix(x), "x")
+  input_check_response(checkmate::check_number(df, lower = nrow(x)), "df")
+  input_check_response(check_covariance_matrix(scale, dim = nrow(x)), "scale")
+  input_check_response(checkmate::check_flag(log), "log")
+  input_check_response(checkmate::check_flag(inv), "inv")
   dwishart_cpp(x, df, scale, log, inv)
 }
 
 #' @rdname dwishart
 #' @export
 
-rwishart <- function(df, scale, inv = FALSE) {
-  assert_covariance_matrix(scale)
-  checkmate::assert_int(df, lower = nrow(scale))
-  checkmate::assert_flag(inv)
-  rwishart_cpp(df, scale, inv)
+rwishart <- function(n = 1, df, scale, inv = FALSE) {
+  input_check_response(checkmate::check_int(n, lower = 1), "n")
+  input_check_response(check_covariance_matrix(scale), "scale")
+  input_check_response(checkmate::check_number(df, lower = nrow(scale)), "df")
+  input_check_response(checkmate::check_flag(inv), "inv")
+  draws <- replicate(n, rwishart_cpp(df, scale, inv), simplify = FALSE)
+  if (n == 1) draws[[1]] else simplify2array(draws)
 }

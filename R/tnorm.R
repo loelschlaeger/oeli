@@ -11,6 +11,11 @@
 #'
 #' The functions with suffix `_cpp` perform no input checks, hence are faster.
 #'
+#' @details
+#' `rtnorm()` draws by the rejection methods of Robert (1995), and `rttnorm()`
+#' inverts the distribution function of the truncated tail, so that both
+#' remain accurate when a truncation point lies far in the tail.
+#'
 #' @param x \[`numeric(1)`\]\cr
 #' A quantile.
 #'
@@ -20,44 +25,51 @@
 #' @param sd \[`numeric(1)`\]\cr
 #' The non-negative standard deviation.
 #'
-#' @param log \[`logical(1)`\]\cr
-#' Return the logarithm of the density value?
-#'
 #' @param point,lower,upper \[`numeric(1)`\]\cr
 #' The truncation point.
 #'
 #' @param above \[`logical(1)`\]\cr
 #' Truncate from above? Else, from below.
 #'
+#' @param log \[`logical(1)`\]\cr
+#' For `dtnorm()` and `dttnorm()`, return the logarithm of the density value?
+#'
+#' For `rtnorm()` and `rttnorm()`, return the exponential of the draw, which
+#' is a draw from the truncated log-normal distribution?
+#'
+#' @param n \[`integer(1)`\]\cr
+#' The number of requested samples.
+#'
 #' @return
 #' For `dtnorm()` and `dttnorm()`: The density value.
 #'
-#' For `rtnorm()` and `rttnorm()`: The random draw
+#' For `rtnorm()` and `rttnorm()`: A `numeric` of length `n` with the random
+#' draws.
+#'
+#' @references
+#' Robert, C. P. (1995). Simulation of truncated normal variables. Statistics
+#' and Computing, 5(2), 121-125.
 #'
 #' @keywords distribution
 #' @family simulation helpers
 #' @export
 #'
 #' @examples
-#' x <- c(0, 0)
-#' mean <- c(0, 0)
-#' Sigma <- diag(2)
-#'
 #' # compute density
-#' dmvnorm(x = x, mean = mean, Sigma = Sigma)
-#' dmvnorm(x = x, mean = mean, Sigma = Sigma, log = TRUE)
+#' dtnorm(x = 1, mean = 0, sd = 1, point = 0, above = FALSE)
+#' dttnorm(x = 0, mean = 0, sd = 1, lower = -1, upper = 1, log = TRUE)
 #'
 #' # sample
-#' rmvnorm(n = 3, mean = mean, Sigma = Sigma)
-#' rmvnorm(mean = mean, Sigma = Sigma, log = TRUE)
+#' rtnorm(n = 3, mean = 0, sd = 1, point = 0, above = FALSE)
+#' rttnorm(mean = 0, sd = 1, lower = -1, upper = 1)
 
 dtnorm <- function(x, mean, sd, point, above, log = FALSE) {
-  checkmate::assert_number(x)
-  checkmate::assert_number(mean)
-  checkmate::assert_number(sd)
-  checkmate::assert_number(point)
-  checkmate::assert_flag(above)
-  checkmate::assert_flag(log)
+  input_check_response(checkmate::check_number(x), "x")
+  input_check_response(checkmate::check_number(mean), "mean")
+  input_check_response(checkmate::check_number(sd, lower = 0), "sd")
+  input_check_response(checkmate::check_number(point), "point")
+  input_check_response(checkmate::check_flag(above), "above")
+  input_check_response(checkmate::check_flag(log), "log")
   dtnorm_cpp(x, mean, sd, point, above, log)
 }
 
@@ -65,36 +77,41 @@ dtnorm <- function(x, mean, sd, point, above, log = FALSE) {
 #' @export
 
 dttnorm <- function(x, mean, sd, lower, upper, log = FALSE) {
-  checkmate::assert_number(x)
-  checkmate::assert_number(mean)
-  checkmate::assert_number(sd)
-  checkmate::assert_number(lower)
-  checkmate::assert_number(upper, lower = lower)
-  checkmate::assert_flag(log)
+  input_check_response(checkmate::check_number(x), "x")
+  input_check_response(checkmate::check_number(mean), "mean")
+  input_check_response(checkmate::check_number(sd, lower = 0), "sd")
+  input_check_response(checkmate::check_number(lower), "lower")
+  input_check_response(checkmate::check_number(upper, lower = lower), "upper")
+  input_check_response(checkmate::check_flag(log), "log")
   dttnorm_cpp(x, mean, sd, lower, upper, log)
 }
 
 #' @rdname dtnorm
 #' @export
 
-rtnorm <- function(mean, sd, point, above, log = FALSE) {
-  checkmate::assert_number(mean)
-  checkmate::assert_number(sd)
-  checkmate::assert_number(point)
-  checkmate::assert_flag(above)
-  checkmate::assert_flag(log)
-  rtnorm_cpp(mean, sd, point, above, log)
+rtnorm <- function(n = 1, mean, sd, point, above, log = FALSE) {
+  input_check_response(checkmate::check_int(n, lower = 1), "n")
+  input_check_response(checkmate::check_number(mean), "mean")
+  input_check_response(checkmate::check_number(sd, lower = 0), "sd")
+  input_check_response(checkmate::check_number(point), "point")
+  input_check_response(checkmate::check_flag(above), "above")
+  input_check_response(checkmate::check_flag(log), "log")
+  vapply(seq_len(n), function(i) {
+    rtnorm_cpp(mean, sd, point, above, log)
+  }, numeric(1))
 }
 
 #' @rdname dtnorm
 #' @export
 
-rttnorm <- function(mean, sd, lower, upper, log = FALSE) {
-  checkmate::assert_number(mean)
-  checkmate::assert_number(sd)
-  checkmate::assert_number(lower)
-  checkmate::assert_number(upper, lower = lower)
-  checkmate::assert_flag(log)
-  rttnorm_cpp(mean, sd, lower, upper, log)
+rttnorm <- function(n = 1, mean, sd, lower, upper, log = FALSE) {
+  input_check_response(checkmate::check_int(n, lower = 1), "n")
+  input_check_response(checkmate::check_number(mean), "mean")
+  input_check_response(checkmate::check_number(sd, lower = 0), "sd")
+  input_check_response(checkmate::check_number(lower), "lower")
+  input_check_response(checkmate::check_number(upper, lower = lower), "upper")
+  input_check_response(checkmate::check_flag(log), "log")
+  vapply(seq_len(n), function(i) {
+    rttnorm_cpp(mean, sd, lower, upper, log)
+  }, numeric(1))
 }
-

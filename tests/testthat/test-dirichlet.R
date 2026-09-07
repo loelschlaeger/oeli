@@ -12,8 +12,9 @@ test_that("Dirichlet density can be computed", {
   )
   expect_error(
     ddirichlet(x = c(0.5, 0.3, 0.3), concentration = concentration),
-    "'x' must sum up to 1"
+    "Input `x` is bad"
   )
+  expect_equal(ddirichlet(x = c(0.1, 0.2, 0.7), concentration = c(1, 1, 1)), 2)
 })
 
 test_that("Dirichlet can be drawn", {
@@ -25,7 +26,7 @@ test_that("Dirichlet can be drawn", {
   )
   expect_error(
     rdirichlet(concentration = diag(3)),
-    "Assertion on 'concentration' failed: Must be of type 'vector', not 'matrix'."
+    "Input `concentration` is bad"
   )
   checkmate::expect_matrix(
     rdirichlet(n = 5, concentration = 1),
