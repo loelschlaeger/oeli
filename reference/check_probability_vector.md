@@ -1,7 +1,7 @@
 # Check probability vector
 
 These functions check whether the input fulfills the properties of a
-probability matrix.
+probability vector.
 
 ## Usage
 

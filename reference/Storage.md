@@ -128,7 +128,7 @@ Adding an element.
 - `identifier`:
 
   \[[`character()`](https://rdrr.io/r/base/character.html)\]  
-  Pne or more identifiers (the identifier `"all"` is reserved to select
+  One or more identifiers (the identifier `"all"` is reserved to select
   all elements).
 
 - `confirm`:
@@ -163,7 +163,7 @@ Getting elements.
 - `identifier`:
 
   \[[`character()`](https://rdrr.io/r/base/character.html)\]  
-  Pne or more identifiers (the identifier `"all"` is reserved to select
+  One or more identifiers (the identifier `"all"` is reserved to select
   all elements).
 
 - `ids`:
@@ -220,7 +220,7 @@ removing elements
 - `identifier`:
 
   \[[`character()`](https://rdrr.io/r/base/character.html)\]  
-  Pne or more identifiers (the identifier `"all"` is reserved to select
+  One or more identifiers (the identifier `"all"` is reserved to select
   all elements).
 
 - `ids`:
@@ -275,7 +275,7 @@ Computing the number of identified elements.
 - `identifier`:
 
   \[[`character()`](https://rdrr.io/r/base/character.html)\]  
-  Pne or more identifiers (the identifier `"all"` is reserved to select
+  One or more identifiers (the identifier `"all"` is reserved to select
   all elements).
 
 - `missing_identifier`:
@@ -319,7 +319,7 @@ Returning indices based on defined identifiers.
 - `identifier`:
 
   \[[`character()`](https://rdrr.io/r/base/character.html)\]  
-  Pne or more identifiers (the identifier `"all"` is reserved to select
+  One or more identifiers (the identifier `"all"` is reserved to select
   all elements).
 
 - `logical`:
@@ -409,7 +409,7 @@ my_storage$get("all") # get all elements
 #> [[5]]
 #> function (x, ...) 
 #> UseMethod("mean")
-#> <bytecode: 0x55acf91246d0>
+#> <bytecode: 0x563bc4a3b6d0>
 #> <environment: namespace:base>
 #> 
 my_storage$get(c("text", "!text"))
@@ -430,7 +430,7 @@ my_storage$get(c("text", "!text"), logical = "or")
 #> [[5]]
 #> function (x, ...) 
 #> UseMethod("mean")
-#> <bytecode: 0x55acf91246d0>
+#> <bytecode: 0x563bc4a3b6d0>
 #> <environment: namespace:base>
 #> 
 
@@ -442,7 +442,7 @@ my_storage$get(ids = 4:5)
 #> [[2]]
 #> function (x, ...) 
 #> UseMethod("mean")
-#> <bytecode: 0x55acf91246d0>
+#> <bytecode: 0x563bc4a3b6d0>
 #> <environment: namespace:base>
 #> 
 my_storage$get(ids = 4:5, id_names = TRUE) # add the ids as names
@@ -452,7 +452,7 @@ my_storage$get(ids = 4:5, id_names = TRUE) # add the ids as names
 #> $`5`
 #> function (x, ...) 
 #> UseMethod("mean")
-#> <bytecode: 0x55acf91246d0>
+#> <bytecode: 0x563bc4a3b6d0>
 #> <environment: namespace:base>
 #> 
 ```

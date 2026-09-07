@@ -19,7 +19,7 @@ sample_correlation_matrix(dim, df = dim, scale = diag(dim))
 
 - df:
 
-  \[`integer(1)`\]  
+  \[`numeric(1)`\]  
   The degrees of freedom of the inverse Wishart distribution greater or
   equal `dim`.
 
@@ -53,8 +53,8 @@ Other matrix helpers:
 
 ``` r
 sample_correlation_matrix(dim = 3)
-#>            [,1]       [,2]       [,3]
-#> [1,]  1.0000000 -0.7826028  0.8943386
-#> [2,] -0.7826028  1.0000000 -0.8286991
-#> [3,]  0.8943386 -0.8286991  1.0000000
+#>           [,1]      [,2]      [,3]
+#> [1,] 1.0000000 0.2215534 0.5523397
+#> [2,] 0.2215534 1.0000000 0.8679107
+#> [3,] 0.5523397 0.8679107 1.0000000
 ```

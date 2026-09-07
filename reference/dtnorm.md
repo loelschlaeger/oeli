@@ -26,9 +26,9 @@ dtnorm(x, mean, sd, point, above, log = FALSE)
 
 dttnorm(x, mean, sd, lower, upper, log = FALSE)
 
-rtnorm(mean, sd, point, above, log = FALSE)
+rtnorm(n = 1, mean, sd, point, above, log = FALSE)
 
-rttnorm(mean, sd, lower, upper, log = FALSE)
+rttnorm(n = 1, mean, sd, lower, upper, log = FALSE)
 ```
 
 ## Arguments
@@ -61,13 +61,34 @@ rttnorm(mean, sd, lower, upper, log = FALSE)
 - log:
 
   \[`logical(1)`\]  
-  Return the logarithm of the density value?
+  For `dtnorm()` and `dttnorm()`, return the logarithm of the density
+  value?
+
+  For `rtnorm()` and `rttnorm()`, return the exponential of the draw,
+  which is a draw from the truncated log-normal distribution?
+
+- n:
+
+  \[`integer(1)`\]  
+  The number of requested samples.
 
 ## Value
 
 For `dtnorm()` and `dttnorm()`: The density value.
 
-For `rtnorm()` and `rttnorm()`: The random draw
+For `rtnorm()` and `rttnorm()`: A `numeric` of length `n` with the
+random draws.
+
+## Details
+
+`rtnorm()` draws by the rejection methods of Robert (1995), and
+`rttnorm()` inverts the distribution function of the truncated tail, so
+that both remain accurate when a truncation point lies far in the tail.
+
+## References
+
+Robert, C. P. (1995). Simulation of truncated normal variables.
+Statistics and Computing, 5(2), 121-125.
 
 ## See also
 
@@ -84,22 +105,15 @@ Other simulation helpers:
 ## Examples
 
 ``` r
-x <- c(0, 0)
-mean <- c(0, 0)
-Sigma <- diag(2)
-
 # compute density
-dmvnorm(x = x, mean = mean, Sigma = Sigma)
-#> [1] 0.1591549
-dmvnorm(x = x, mean = mean, Sigma = Sigma, log = TRUE)
-#> [1] -1.837877
+dtnorm(x = 1, mean = 0, sd = 1, point = 0, above = FALSE)
+#> [1] 0.4839414
+dttnorm(x = 0, mean = 0, sd = 1, lower = -1, upper = 1, log = TRUE)
+#> [1] -0.5372234
 
 # sample
-rmvnorm(n = 3, mean = mean, Sigma = Sigma)
-#>            [,1]       [,2]
-#> [1,]  1.0585922 -0.5458027
-#> [2,]  0.7046408  0.7790653
-#> [3,] -0.4347647  1.3836792
-rmvnorm(mean = mean, Sigma = Sigma, log = TRUE)
-#> [1] 0.6602938 0.5354678
+rtnorm(n = 3, mean = 0, sd = 1, point = 0, above = FALSE)
+#> [1] 1.152508 1.376613 2.007539
+rttnorm(mean = 0, sd = 1, lower = -1, upper = 1)
+#> [1] 0.470705
 ```

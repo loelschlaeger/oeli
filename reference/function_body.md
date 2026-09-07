@@ -18,7 +18,7 @@ function_body(fun, braces = FALSE, nchar = getOption("width") - 4)
 - braces:
 
   \[`logical(1)`\]  
-  Remove `"{"` and `"}"` at start and end (if any)?
+  Keep `"{"` and `"}"` at start and end (if any)?
 
 - nchar:
 

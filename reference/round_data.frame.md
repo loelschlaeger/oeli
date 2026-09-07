@@ -41,14 +41,14 @@ Other data.frame helpers:
 df <- data.frame("label" = c("A", "B"), "number" = rnorm(10))
 round_data.frame(df, digits = 1)
 #>    label number
-#> 1      A    0.1
-#> 2      B    2.7
-#> 3      A    0.7
-#> 4      B   -0.8
-#> 5      A   -1.4
-#> 6      B   -0.7
-#> 7      A   -0.8
-#> 8      B    0.3
-#> 9      A   -0.9
-#> 10     B    1.5
+#> 1      A   -0.4
+#> 2      B    1.5
+#> 3      A    0.4
+#> 4      B   -0.7
+#> 5      A    0.8
+#> 6      B    1.0
+#> 7      A    1.0
+#> 8      B    1.4
+#> 9      A    0.2
+#> 10     B   -0.4
 ```

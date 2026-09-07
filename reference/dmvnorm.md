@@ -81,7 +81,10 @@ rmvnorm(n = 1, mean, Sigma, log = FALSE)
 - log:
 
   \[`logical(1)`\]  
-  Consider the log-normal distribution?
+  For `dmvnorm()`, return the logarithm of the density value?
+
+  For `rmvnorm()`, return the exponential of the draw, which is a draw
+  from the log-normal distribution?
 
 - abseps:
 
@@ -131,11 +134,9 @@ integrates the bivariate probability conditional on the third component.
 
 For `p > 3`, the argument `method` selects the approximation:
 
-- `"genz"` calls
-  [`mvtnorm::pmvnorm`](https://rdrr.io/pkg/mvtnorm/man/pmvnorm.html)
-  with the randomized Quasi-Monte-Carlo procedure by Genz and Bretz. The
-  argument `abseps` controls the accuracy of the Gaussian integral
-  approximation.
+- `"genz"` uses the randomized Quasi-Monte-Carlo procedure by Genz and
+  Bretz of the `mvtnorm` package. The argument `abseps` controls the
+  accuracy of the Gaussian integral approximation.
 
 - `"ghk"` uses the Geweke-Hajivassiliou-Keane simulator on `draws`
   quasi-random Halton points. The result is deterministic and smooth in
@@ -181,10 +182,10 @@ pmvnorm(x = rep(0, 5), mean = 0, Sigma = diag(5), method = "ghk")
 
 # sample
 rmvnorm(n = 3, mean = mean, Sigma = Sigma)
-#>            [,1]      [,2]
-#> [1,] -1.7221543 0.2175000
-#> [2,]  0.6216408 1.5787680
-#> [3,]  1.3660086 0.1229803
+#>            [,1]       [,2]
+#> [1,] -0.3310116  0.6295526
+#> [2,] -0.2075124 -1.6936109
+#> [3,] -2.4179433  0.8202115
 rmvnorm(mean = mean, Sigma = Sigma, log = TRUE)
-#> [1] 0.4298983 0.2764626
+#> [1] 0.2355629 0.8860431
 ```

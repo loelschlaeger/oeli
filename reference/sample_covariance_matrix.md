@@ -18,7 +18,7 @@ sample_covariance_matrix(dim, df = dim, scale = diag(dim), diag = FALSE)
 
 - df:
 
-  \[`integer(1)`\]  
+  \[`numeric(1)`\]  
   The degrees of freedom of the inverse Wishart distribution greater or
   equal `dim`.
 
@@ -57,8 +57,8 @@ Other matrix helpers:
 
 ``` r
 sample_covariance_matrix(dim = 3)
-#>           [,1]      [,2]      [,3]
-#> [1,]  1.145570 -1.572312 -1.423716
-#> [2,] -1.572312  3.024784  2.009502
-#> [3,] -1.423716  2.009502  2.174850
+#>            [,1]       [,2]        [,3]
+#> [1,]  35.252927 -1.5694679 -10.3216283
+#> [2,]  -1.569468  0.2062862   0.4207078
+#> [3,] -10.321628  0.4207078   3.2418538
 ```

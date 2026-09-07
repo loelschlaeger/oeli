@@ -12,7 +12,7 @@ split_vector_at(x, at)
 
 - x:
 
-  \[atomic()\`\]  
+  \[`atomic()`\]  
   A vector of elements.
 
 - at:

@@ -17,7 +17,7 @@ rwishart_cpp(df, scale, inv = FALSE)
 
 dwishart(x, df, scale, log = FALSE, inv = FALSE)
 
-rwishart(df, scale, inv = FALSE)
+rwishart(n = 1, df, scale, inv = FALSE)
 ```
 
 ## Arguments
@@ -29,8 +29,8 @@ rwishart(df, scale, inv = FALSE)
 
 - df:
 
-  \[[`integer()`](https://rdrr.io/r/base/integer.html)\]  
-  The degrees of freedom greater of equal `p`.
+  \[`numeric(1)`\]  
+  The degrees of freedom, at least `p`.
 
 - scale:
 
@@ -47,11 +47,18 @@ rwishart(df, scale, inv = FALSE)
   \[`logical(1)`\]  
   Use this inverse Wishart distribution?
 
+- n:
+
+  \[`integer(1)`\]  
+  The number of requested samples.
+
 ## Value
 
 For `dwishart()`: The density value.
 
-For `rwishart()`: A `matrix`, the random draw.
+For `rwishart()`: If `n = 1` a `matrix` of dimension `p` times `p`, else
+an `array` of dimension `p` times `p` times `n` with the draws as
+slices.
 
 ## See also
 
@@ -83,32 +90,28 @@ dwishart(x = x, df = df, scale = scale, inv = TRUE)
 # sample
 rwishart(df = df, scale = scale)
 #>           [,1]      [,2]
-#> [1,]  6.428307 -5.102937
-#> [2,] -5.102937 10.880516
+#> [1,] 10.916213 -3.044349
+#> [2,] -3.044349  6.055640
 rwishart(df = df, scale = scale, inv = TRUE)
-#>             [,1]        [,2]
-#> [1,]  0.11364869 -0.08480038
-#> [2,] -0.08480038  0.24144222
+#>            [,1]       [,2]
+#> [1,]  0.6896157 -0.1497311
+#> [2,] -0.1497311  0.1339354
 
 # expectation of Wishart is df * scale
-n <- 100
-replicate(n, rwishart(df = df, scale = scale), simplify = FALSE) |>
-  Reduce(f = "+") / n
+apply(rwishart(n = 100, df = df, scale = scale), 1:2, mean)
 #>           [,1]      [,2]
-#> [1,]  5.459509 -1.840384
-#> [2,] -1.840384  4.865101
+#> [1,]  5.450034 -1.778992
+#> [2,] -1.778992  4.881211
 df * scale
 #>      [,1] [,2]
 #> [1,]  6.0 -1.8
 #> [2,] -1.8  4.8
 
 # expectation of inverse Wishart is scale / (df - p - 1)
-n <- 100
-replicate(n, rwishart(df = df, scale = scale, TRUE), simplify = FALSE) |>
-  Reduce(f = "+") / n
-#>            [,1]       [,2]
-#> [1,]  0.3127171 -0.1304178
-#> [2,] -0.1304178  0.3033028
+apply(rwishart(n = 100, df = df, scale = scale, inv = TRUE), 1:2, mean)
+#>             [,1]        [,2]
+#> [1,]  0.39347712 -0.09653709
+#> [2,] -0.09653709  0.25599598
 scale / (df - 2 - 1)
 #>            [,1]       [,2]
 #> [1,]  0.3333333 -0.1000000

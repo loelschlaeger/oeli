@@ -12,7 +12,7 @@ system_information()
 
 A `list` with elements:
 
-- `maschine`, the model name of the device
+- `machine`, the model name of the device
 
 - `cores`, the number of cores
 

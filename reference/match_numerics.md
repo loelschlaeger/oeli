@@ -1,7 +1,8 @@
 # Best-possible match of two numeric vectors
 
 This function matches the indices of two numeric vectors as good as
-possible (that means with the smallest possible sum of deviations).
+possible (that means with the smallest possible sum of absolute
+deviations).
 
 ## Usage
 
@@ -14,7 +15,7 @@ match_numerics(x, y)
 - x, y:
 
   \[[`numeric()`](https://rdrr.io/r/base/numeric.html)\]  
-  Two vectors of the same length.
+  Two vectors of the same length without missing values.
 
 ## Value
 

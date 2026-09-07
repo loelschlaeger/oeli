@@ -40,7 +40,7 @@ rdirichlet(n = 1, concentration)
 - n:
 
   \[`integer(1)`\]  
-  The number of samples.
+  The number of requested samples.
 
 ## Value
 
@@ -75,11 +75,11 @@ ddirichlet(x = x, concentration = concentration, log = TRUE)
 
 # sample
 rdirichlet(concentration = 1:3)
-#> [1] 0.03034494 0.26715274 0.70250233
+#> [1] 0.2512504 0.2939780 0.4547716
 rdirichlet(n = 4, concentration = 1:2)
 #>           [,1]      [,2]
-#> [1,] 0.4787002 0.5212998
-#> [2,] 0.1732394 0.8267606
-#> [3,] 0.1397261 0.8602739
-#> [4,] 0.1665350 0.8334650
+#> [1,] 0.2182627 0.7817373
+#> [2,] 0.2689416 0.7310584
+#> [3,] 0.8662345 0.1337655
+#> [4,] 0.2356817 0.7643183
 ```

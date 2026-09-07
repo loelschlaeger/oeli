@@ -18,12 +18,12 @@ occurrence_info(x, relative = FALSE, named = FALSE)
 
 - relative:
 
-  \[`logical(1)` \]  
-  The number of rows or columns to be printed, greater or equal `2`.
+  \[`logical(1)`\]  
+  Report relative (in percent) instead of absolute occurrences?
 
 - named:
 
-  \[`logical(1)` \]  
+  \[`logical(1)`\]  
   Prepend column names of `x` (if not `NA`)?
 
 ## Value

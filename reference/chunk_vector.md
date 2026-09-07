@@ -16,13 +16,13 @@ chunk_vector(x, n, type = 1, strict = FALSE)
 
 - x:
 
-  \[atomic()\`\]  
+  \[`atomic()`\]  
   A vector of elements.
 
 - n:
 
   \[`integer(1)`\]  
-  A number smaller or equal `length(x)`.
+  The number of chunks (`type = 1`) or the chunk size (`type = 2`).
 
 - type:
 

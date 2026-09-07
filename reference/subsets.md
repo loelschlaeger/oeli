@@ -12,12 +12,12 @@ subsets(v, n = seq_along(v))
 
 - v:
 
-  \[atomic()\`\]  
+  \[`atomic()`\]  
   A vector of elements.
 
 - n:
 
-  \[integer(1)\`\]  
+  \[[`integer()`](https://rdrr.io/r/base/integer.html)\]  
   The requested subset sizes.
 
 ## Value

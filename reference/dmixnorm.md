@@ -17,17 +17,35 @@ The univariate normal mixture is available as the special case `p = 1`.
 ## Usage
 
 ``` r
-dmixnorm_cpp(x, mean, Sigma, proportions)
+dmixnorm_cpp(x, mean, Sigma, proportions, log = FALSE)
 
-pmixnorm_cpp(x, mean, Sigma, proportions, abseps = 0.001)
+pmixnorm_cpp(
+  x,
+  mean,
+  Sigma,
+  proportions,
+  abseps = 0.001,
+  lower = NULL,
+  method = "genz",
+  draws = 500L
+)
 
-rmixnorm_cpp(mean, Sigma, proportions)
+rmixnorm_cpp(mean, Sigma, proportions, log = FALSE)
 
-dmixnorm(x, mean, Sigma, proportions)
+dmixnorm(x, mean, Sigma, proportions, log = FALSE)
 
-pmixnorm(x, mean, Sigma, proportions, abseps = 0.001)
+pmixnorm(
+  x,
+  mean,
+  Sigma,
+  proportions,
+  abseps = 0.001,
+  lower = NULL,
+  method = "genz",
+  draws = 500
+)
 
-rmixnorm(n = 1, mean, Sigma, proportions)
+rmixnorm(n = 1, mean, Sigma, proportions, log = FALSE)
 ```
 
 ## Arguments
@@ -54,10 +72,37 @@ rmixnorm(n = 1, mean, Sigma, proportions)
 
   If proportions do not sum to unity, they are rescaled to do so.
 
+- log:
+
+  \[`logical(1)`\]  
+  For `dmixnorm()`, return the logarithm of the density value?
+
+  For `rmixnorm()`, return the exponential of the draw, which is a draw
+  from the mixture of log-normal distributions?
+
 - abseps:
 
   \[`numeric(1)`\]  
-  The absolute error tolerance.
+  The absolute error tolerance for `method = "genz"`.
+
+- lower:
+
+  \[[`numeric()`](https://rdrr.io/r/base/numeric.html) \| `NULL`\]  
+  Optionally lower limits of length `p`, where `NULL` corresponds to
+  `-Inf`.
+
+  For the functions without suffix `_cpp`, it can also be of length `1`
+  for convenience, then `rep(lower, p)` is considered.
+
+- method:
+
+  \[`character(1)`\]  
+  Either `"genz"` or `"ghk"`, see the details.
+
+- draws:
+
+  \[`integer(1)`\]  
+  The number of Halton points for `method = "ghk"`.
 
 - n:
 
@@ -68,7 +113,8 @@ rmixnorm(n = 1, mean, Sigma, proportions)
 
 For `dmixnorm()`: The density value.
 
-For `pmixnorm()`: The value of the distribution function.
+For `pmixnorm()`: The value of the distribution function or the
+rectangle probability.
 
 For `rmixnorm()`: If `n = 1` a `vector` of length `p` (note that it is a
 column vector for `rmixnorm_cpp()`), else a `matrix` of dimension `n`
@@ -78,9 +124,8 @@ times `p` with samples as rows.
 
 `pmixnorm()` is based on
 [`pmvnorm()`](http://loelschlaeger.de/oeli/reference/dmvnorm.md), which
-is exact for `p <= 3` and uses the randomized Quasi-Monte-Carlo
-procedure by Genz and Bretz otherwise. The argument `abseps` controls
-the accuracy of the Gaussian integral approximation.
+is exact for `p <= 3` and approximates the probability by the method
+selected in `method` otherwise.
 
 ## See also
 
@@ -105,15 +150,25 @@ proportions <- c(0.7, 0.3)
 # compute density
 dmixnorm(x = x, mean = mean, Sigma = Sigma, proportions = proportions)
 #> [1] 0.08873136
+dmixnorm(
+  x = x, mean = mean, Sigma = Sigma, proportions = proportions, log = TRUE
+)
+#> [1] -2.422142
 
 # compute CDF
 pmixnorm(x = x, mean = mean, Sigma = Sigma, proportions = proportions)
 #> [1] 0.5705027
 
+# compute rectangle probability
+pmixnorm(
+  x = x, mean = mean, Sigma = Sigma, proportions = proportions, lower = -1
+)
+#> [1] 0.1165162
+
 # sample
 rmixnorm(n = 3, mean = mean, Sigma = Sigma, proportions = proportions)
-#>             [,1]       [,2]
-#> [1,]  0.09222369 -0.2667189
-#> [2,]  0.77242146 -1.8695873
-#> [3,] -0.67758877  0.3747341
+#>            [,1]      [,2]
+#> [1,] -1.3107073 -1.520797
+#> [2,] -0.7407926 -1.594475
+#> [3,]  1.6442855 -1.360091
 ```
