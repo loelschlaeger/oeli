@@ -7,7 +7,8 @@
 #' the logo. Type \code{?oeli} to see an example.
 #'
 #' @references
-#' - This function builds upon \code{\link[hexSticker]{sticker}}.
+#' - This function builds upon \code{\link[hexSticker]{sticker}} and requires
+#'   the packages \pkg{ggplot2} and \pkg{hexSticker} to be installed.
 #' - Use \code{\link[usethis]{use_logo}} to set up the logo for a package.
 #'
 #' @param package_name \[`character(1)`\]\cr
@@ -29,7 +30,7 @@
 #' @keywords packaging
 #' @family package helpers
 #'
-#' @examples
+#' @examplesIf requireNamespace("ggplot2", quietly = TRUE) && requireNamespace("hexSticker", quietly = TRUE)
 #' print(package_logo("my_package", brackets = TRUE))
 
 package_logo <- function(
@@ -41,6 +42,19 @@ package_logo <- function(
     s_height = 1,
     white_around_sticker = FALSE
   ) {
+
+  ### check if suggested packages are installed
+  for (pkg in c("ggplot2", "hexSticker")) {
+    if (!requireNamespace(pkg, quietly = TRUE)) {
+      cli::cli_abort(
+        paste(
+          "Package {.pkg {pkg}} is required to create a package logo,",
+          "install it via {.code install.packages(\"{pkg}\")}."
+        ),
+        call = NULL
+      )
+    }
+  }
 
   ### input checks
   input_check_response(

@@ -183,12 +183,7 @@ importFrom(future,
   plan
 )
 importFrom(future.apply,future_lapply)
-importFrom(ggplot2,
-  ggplot,
-  theme_void
-)
 importFrom(glue,glue)
-importFrom(hexSticker,sticker)
 importFrom(progressr,
   handler_progress,
   handlers,

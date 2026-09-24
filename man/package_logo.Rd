@@ -36,11 +36,14 @@ center. The font size for the package name is scaled such that it fits inside
 the logo. Type \code{?oeli} to see an example.
 }
 \examples{
+\dontshow{if (requireNamespace("ggplot2", quietly = TRUE) && requireNamespace("hexSticker", quietly = TRUE)) withAutoprint(\{ # examplesIf}
 print(package_logo("my_package", brackets = TRUE))
+\dontshow{\}) # examplesIf}
 }
 \references{
 \itemize{
-\item This function builds upon \code{\link[hexSticker]{sticker}}.
+\item This function builds upon \code{\link[hexSticker]{sticker}} and requires
+the packages \pkg{ggplot2} and \pkg{hexSticker} to be installed.
 \item Use \code{\link[usethis]{use_logo}} to set up the logo for a package.
 }
 }

@@ -1,7 +1,7 @@
 Package: oeli
 Type: Package
 Title: Some Utilities for Developing Data Science Software
-Version: 0.7.8
+Version: 0.7.8.9000
 Authors@R: person(
     given = "Lennart", 
     family = "Oelschl\u00e4ger", 
@@ -24,9 +24,7 @@ Imports:
     dplyr,
     future,
     future.apply,
-    ggplot2,
     glue,
-    hexSticker,
     progressr,
     R6,
     Rcpp,
@@ -41,6 +39,8 @@ LinkingTo:
     RcppArmadillo,
     testthat
 Suggests:
+    ggplot2,
+    hexSticker,
     knitr,
     rmarkdown,
     testthat (>= 3.0.0),

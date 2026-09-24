@@ -1,3 +1,7 @@
+# oeli 0.7.8.9000
+
+* Moved `{ggplot2}` and `{hexSticker}` from `Imports` to `Suggests`.
+
 # oeli 0.7.8
 
 * The C++ kernels of the densities and draws are now inline functions in the
