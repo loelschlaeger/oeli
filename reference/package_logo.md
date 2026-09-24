@@ -50,7 +50,8 @@ A `ggplot` object.
 ## References
 
 - This function builds upon
-  [`sticker`](https://rdrr.io/pkg/hexSticker/man/sticker.html).
+  [`sticker`](https://rdrr.io/pkg/hexSticker/man/sticker.html) and
+  requires the packages ggplot2 and hexSticker to be installed.
 
 - Use `use_logo` to set up the logo for a package.
 
