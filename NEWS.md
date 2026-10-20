@@ -1,4 +1,4 @@
-# oeli 0.7.8.9000
+# oeli 0.7.9
 
 * Moved `{ggplot2}` and `{hexSticker}` from `Imports` to `Suggests`.
 
